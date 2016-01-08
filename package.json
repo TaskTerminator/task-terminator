@@ -1,0 +1,31 @@
+{
+  "name": "terminatorApp",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TaskTerminator/task-terminator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TaskTerminator/task-terminator/issues"
+  },
+  "homepage": "https://github.com/TaskTerminator/task-terminator/#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "express-session": "^1.12.1",
+    "highcharts-ng": "0.0.11",
+    "mongoose": "^4.2.9",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.0.0",
+    "passport-local": "latest"
+  }
+}
