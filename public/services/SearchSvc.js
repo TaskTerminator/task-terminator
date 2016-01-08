@@ -1,5 +1,5 @@
-angular.module('terminatorApp').service('SearchSvc', function($http) {
+angular.module('terminatorApp').service('SearchSvc', function($http, $q) {
 
-
+  
 
 });
