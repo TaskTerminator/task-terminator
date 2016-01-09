@@ -1,4 +1,4 @@
-var app = angular.module('terminatorApp', ['ui.router', 'ngMaterial', 'ui.bootstrap']);
+var app = angular.module('terminatorApp', ['ui.router', 'ngMaterial', 'ui.bootstrap', 'ngAnimate']);
 
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
