@@ -47,6 +47,26 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: '/search',
             templateUrl: 'Templates/search.html',
             controller: 'SearchCtrl',
+        })
+        .state('dashboard', {
+            url: '/dashboard',
+            templateUrl: 'Templates/dashboard.html',
+            controller: 'DashboardCtrl',
+        })
+        .state('projects', {
+            url: '/projects',
+            templateUrl: 'Templates/projects.html',
+            controller: 'ProjectsCtrl',
+        })
+        .state('templates', {
+            url: '/templates',
+            templateUrl: 'Templates/projectTemplate.html',
+            controller: 'TemplatesCtrl',
+        })
+        .state('yourteam', {
+            url: '/yourteam',
+            templateUrl: 'Templates/yourTeam.html',
+            controller: 'YourTeamCtrl',
         });
 
     $urlRouterProvider
