@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const allowedDays = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 const allowedFrequencies = ["Triggered", "Scheduled"];
@@ -9,24 +9,19 @@ const allowedWeeklyIntervals = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'F
 const allowedSemiMonthlyIntervals = ["1st","2nd", "3rd", "4th", "5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th"];
 const allowedQuarterlyInterval = ["First Day of the Quarter", "Last Day of the Quarter", "# Days from Start", "# Days from End", "Any" ];
 
-
-// This is the model for the Project creation
-const projectSchema = new mongoose.Schema({
+//This is the model for project template creation.
+const templateSchema = new mongoose.Schema({
   //The name will be the same for all projects generated from the template
   name:{type:String},
   //Description is the  unique visual identifies of a project on the front end
   description: {type:String},
-  status: {type: String, enum: ['Complete', 'Incomplete'], default: 'Incomplete'},
   tasks: [
         {type: String , ref: 'TemplateTask'}
           ],
-  timetable: {
-    frequency: {type: String, enum: ['Single','Triggered', 'Scheduled']},
-  },
   setup: {
       created: {type: Date, default: new Date()},
       type:  {type: String, enum: ['Single','Triggered', 'Scheduled']},
-      //Pick one of these
+      //Pick one of these two frequency options
       frequency:  {
           byDate: {type: Boolean},
           byInterval: {type: Boolean}
@@ -61,7 +56,7 @@ const projectSchema = new mongoose.Schema({
       },
       intervalType: {type: String, enum: allowedIntervalTypes}
   }
-}));
 
-module.exports = mongoose.model('Project', projectSchema);
+});
 
+module.exports = mongoose.model('Template', templateSchema);

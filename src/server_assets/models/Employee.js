@@ -23,7 +23,7 @@ const employeeSchema = new mongoose.Schema({
   },
   positions:[{type:String, ref: 'Position'}],
   departments: [{type:String, ref: 'Department'}],
-}));
+});
 
 //This is for local Auth if we want to use said authentication type.
 
@@ -51,4 +51,3 @@ const employeeSchema = new mongoose.Schema({
 // });
 
 module.exports = mongoose.model('Employee', employeeSchema);
-

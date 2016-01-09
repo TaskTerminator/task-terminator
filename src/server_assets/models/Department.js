@@ -6,6 +6,6 @@ const departmentSchema = new mongoose.Schema({
   employees: [
         {type:String, ref: 'Employee'}
     ]
-}));
+});
 
 module.exports = mongoose.model('Department', departmentSchema);

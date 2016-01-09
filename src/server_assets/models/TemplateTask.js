@@ -13,6 +13,6 @@ const templateTaskSchema = new mongoose.Schema({
       positions: {type:String, ref: 'Position'},
       employees: {type:String, ref: 'Employee'}
   }
-}));
+});
 
 module.exports = mongoose.model('TemplateTask', templateTaskSchema);
