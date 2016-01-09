@@ -1,0 +1,104 @@
+
+
+/* BASE STYLES
+============================================================================= */
+html
+overflow-y:hidden
+.page
+bottom:50
+position:absolute
+text-align:center
+top:50
+width:100%
+
+/* ANIMATIONS
+============================================================================= */
+
+.page.ng-leave
+z-index:9999
+.page.ng-enter
+z-index:8888
+
+/* page specific animations ------------------------ */
+
+/* Dashboard ------------------------ */
+.page-dashboard.ng-leave
+-webkit-animation:slideOutLeft 0.5s both ease-in
+-moz-animation:slideOutLeft 0.5s both ease-in
+animation:slideOutLeft 0.5s both ease-in
+
+.page-dashboard.ng-enter
+-webkit-animation:slideInRight 0.5s both ease-in
+-moz-animation:slideInRight 0.5s both ease-in
+animation:slideInRight 0.5s both ease-in
+
+/* Projects ------------------------ */
+.page-projects.ng-leave
+-webkit-animation:slideOutLeft 0.5s both ease-in
+-moz-animation:slideOutLeft 0.5s both ease-in
+animation:slideOutLeft 0.5s both ease-in
+
+.page-projects.ng-enter
+-webkit-animation:slideInRight 0.5s both ease-in
+-moz-animation:slideInRight 0.5s both ease-in
+animation:slideInRight 0.5s both ease-in
+
+/* Your Team ------------------------ */
+.page-yourTeam.ng-leave
+-webkit-animation:slideOutLeft 0.5s both ease-in
+-moz-animation:slideOutLeft 0.5s both ease-in
+animation:slideOutLeft 0.5s both ease-in
+
+.page-yourTeam.ng-enter
+-webkit-animation:slideInRight 0.5s both ease-in
+-moz-animation:slideInRight 0.5s both ease-in
+animation:slideInRight 0.5s both ease-in
+
+
+/* slide in from the right */
+@keyframes slideInRight {
+  from{
+    transform:translateX(100%)
+  }
+  to{
+    transform: translateX(0)
+  }
+}
+
+@-moz-keyframes slideInRight {
+  from{
+    -moz-transform:translateX(100%)
+  }
+  to{
+     -moz-transform: translateX(0)
+  }
+}
+
+
+@-webkit-keyframes slideInRight {
+  from{
+    -webkit-transform:translateX(100%)
+  }
+  to{
+     -webkit-transform: translateX(0)
+  }
+}
+
+/* slide out to the left */
+@keyframes slideOutLeft {
+  to{
+     transform: translateX(-100%)
+  }
+}
+
+@-moz-keyframes slideOutLeft {
+  to{
+     -moz-transform: translateX(-100%)
+  }
+}
+
+@-webkit-keyframes slideOutLeft {
+  to{
+     -webkit-transform: translateX(-100%)
+  }
+}

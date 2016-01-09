@@ -17,7 +17,7 @@ gulp.task ('move', function() {
 // Stylus Tasks
 /////////////////
 gulp.task('styles', function() {
-  gulp.src('./src/public/style.styl')
+  gulp.src('./src/public/*.styl')
       .pipe(stylus())
       .pipe(gulp.dest('./build/public'))
 });
