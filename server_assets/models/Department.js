@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 //Departments within the company.
-var departmentSchema = mongoose.Schema({
+const departmentSchema = new mongoose.Schema({
   name: {type:String, required:true},
   employees: [
         {type:String, ref: 'Employee'}

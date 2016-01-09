@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var templateTaskSchema = mongoose.Schema({
+const templateTaskSchema = new mongoose.Schema({
   name: {type: String, required: true},
   description: {type: String},
   associatedProject : {type:String, ref:'Project'},
