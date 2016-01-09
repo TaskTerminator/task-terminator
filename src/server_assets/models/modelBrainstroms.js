@@ -136,10 +136,10 @@ var Template = mongoose.model('Template', new mongoose.Schema({
       created: {type: Date, default: new Date()},
       type:  {type: String, enum: ['Single','Triggered', 'Scheduled']},
       //Pick one of these two frequency options
-      frequency:  {
-          byDate: {type: Boolean},
-          byInterval: {type: Boolean}
-      },
+      // frequency:  {
+      //     byDate: {type: Boolean},
+      //     byInterval: {type: Boolean}
+      // },
       frequency:  {type: String, enum: ['By Date','By Interval']},
       //Due date will require function based on user selection. Will be stand in for next instance or selected day.
       dueDate: {type:Date},

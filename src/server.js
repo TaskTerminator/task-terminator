@@ -23,10 +23,11 @@ app.listen(port, function () {
 });
 
 //-----------Connection to database-----------//
-mongoose.connect('mongodb://localhost/terminator')
+mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
+// mongoose.connect('mongodb://localhost/terminator')
 mongoose.connection.once('connected', function() {
   console.log('connected to db');
-})
+});
 
 //-----------Passport Facebook Authentication-----------//
 app.use(session({
