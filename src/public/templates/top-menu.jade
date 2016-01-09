@@ -1,11 +1,13 @@
 .containter
   .row
-    .col-sm-12.text-center
+    .col-sm-10.text-center
       #menu-directive
         .btn-group
-          label.btn.btn-success(ng-model="radioModel" uib-btn-radio="'Left'" uncheckable)
-            | Left
-          label.btn.btn-success(ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable)
-            | Middle
-          label.btn.btn-success(ng-model="radioModel" uib-btn-radio="'Right'" uncheckable)
-            | Right
+          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Left'" uncheckable)
+            | Dashboard
+          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable)
+            | Projects
+          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Right'" uncheckable)
+            | Team
+    .col-sm-2.text-center
+      span.hamburger.glyphicon.glyphicon-menu-hamburger
