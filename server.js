@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
 // var FacebookStrategy = require('passport-facebook').Strategy;
-var secret = require("./secret");
+// var secret = require("./secret");
 var bcrypt = require('bcrypt-nodejs');
 
 var app = express();
