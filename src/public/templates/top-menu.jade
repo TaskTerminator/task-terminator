@@ -1,13 +1,13 @@
 .containter
-  .row
+  .row.topmenu
     .col-sm-10.text-center
       #menu-directive
         .btn-group
-          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Left'" uncheckable)
+          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Left'" uncheckable ui-sref="dashboard")
             | Dashboard
-          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable)
+          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable ui-sref="projects")
             | Projects
-          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Right'" uncheckable)
-            | Team
+          label.btn.btn-success.mnbtn(ng-model="radioModel" uib-btn-radio="'Right'" uncheckable ui-sref="yourteam")
+            | Your Team
     .col-sm-2.text-center
-      span.hamburger.glyphicon.glyphicon-menu-hamburger
+      button.hamburger.glyphicon.glyphicon-menu-hamburger
