@@ -9,7 +9,8 @@ html
     link(rel="stylesheet" href="style.css")
 
   body(ng-app="terminatorApp")
-
+  
+    top-menu  
     ui-view
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.js")
@@ -21,12 +22,14 @@ html
 
     script(src="app.js" charset="utf-8")
 
+    script(src="controllers/DashboardCtrl.js" charset="utf-8")
     script(src="controllers/HomeCtrl.js" charset="utf-8")
     script(src="controllers/YourTeamCtrl.js" charset="utf-8")
     script(src="controllers/ProjectsCtrl.js" charset="utf-8")
     script(src="controllers/SearchCtrl.js" charset="utf-8")
     script(src="controllers/TemplatesCtrl.js" charset="utf-8")
 
+    script(src="services/DashboardSvc.js" charset="utf-8")
     script(src="services/HomeSvc.js" charset="utf-8")
     script(src="services/YourTeamSvc.js" charset="utf-8")
     script(src="services/ProjectsSvc.js" charset="utf-8")
