@@ -4,7 +4,7 @@ angular.module('terminatorApp').directive('topMenu', function() {
     restrict: 'E',
     templateUrl: 'templates/top-menu.html',
     controller: function ($scope) {
-      $scope.radioModel = 'Middle';
+      $scope.radioModel = 'Left';
     }
   };
 
