@@ -11,6 +11,14 @@ const bcrypt = require('bcrypt-nodejs');
 const app = express();
 const port = 8000;
 
+//********** CONTROLLERS **********
+const companyCtrl = require('./server_assets/controllers/companyCtrl.js');
+const departmentCtrl = require('./server_assets/controllers/departmentCtrl.js');
+const employeeCtrl = require('./server_assets/controllers/employeeCtrl.js');
+const positionCtrl = require('./server_assets/controllers/positionCtrl.js');
+const projectCtrl = require('./server_assets/controllers/projectCtrl.js');
+const templateCtrl = require('./server_assets/controllers/templateCtrl.js');
+
 mongoose.Promise = require('q').Promise;
 
 //----------Fluff------------//
@@ -21,6 +29,30 @@ app.use(express.static(__dirname+'/Public'));
 app.listen(port, function () {
   console.log("Listening on port: " + port);
 });
+
+//********** COMPANY ENDPOINTS **********
+app.post('/api/company', companyCtrl.newCompany);
+
+//********** DEPARTMENT ENDPOINTS **********
+app.post('/api/department', departmentCtrl.newDepartment);
+
+//********** EMPLOYEE ENDPOINTS **********
+app.post('/api/employee', employeeCtrl.newEmployee);
+
+//********** POSITION ENDPOINTS **********
+app.post('api/position', positionCtrl.newPosition);
+
+//********** PROJECT ENDPOINTS **********
+app.post('api/project', projectCtrl.newProject);
+
+//********** TASK ENDPOINTS **********
+
+
+//********** TEMPLATE ENDPOINTS **********
+app.post('api/template', templateCtrl.newTemplate);
+
+
+
 
 //-----------Connection to database-----------//
 mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
