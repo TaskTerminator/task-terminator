@@ -1,4 +1,4 @@
-angular.module('terminatorApp').service('EmployeeSvc', function($http, $q) {
+angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
 
     this.getEmployees = function () {
 
