@@ -1,15 +1,17 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var cors = require('cors');
-var mongoose = require('mongoose');
-var session = require('express-session');
-var passport = require('passport');
-// var FacebookStrategy = require('passport-facebook').Strategy;
-// var secret = require("./secret");
-var bcrypt = require('bcrypt-nodejs');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+// const FacebookStrategy = require('passport-facebook').Strategy;
+// const secret = require("./secret");
+const bcrypt = require('bcrypt-nodejs');
 
-var app = express();
-var port = 8000;
+const app = express();
+const port = 8000;
+
+mongoose.Promise = require('q').Promise;
 
 //----------Fluff------------//
 app.use(bodyParser.urlencoded({extended:false}));

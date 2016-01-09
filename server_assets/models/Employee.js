@@ -1,9 +1,8 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-var q = require('q');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 //Users are all employees of the company. NOTE: Not all users will actually have login access to the UI.
-var employeeSchema = mongoose.Schema({
+const employeeSchema = new mongoose.Schema({
   //Employee name information
   identification: {
     name: {

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 //Model of tasks tied to active projects. References department, position, and individual
-var projectTaskSchema = mongoose.Schema({
+const projectTaskSchema = new mongoose.Schema({
   name: {type: String, required: true},
   description: {type:String},
   status: {type: String, enum: ['Complete', 'Incomplete'], default: 'Incomplete'},

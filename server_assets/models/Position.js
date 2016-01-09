@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Position/role employees have at the company.
-var positionSchema = mongoose.Schema({
+const positionSchema = new mongoose.Schema({
   name: {type:String, required:true},
   employees: [
         {type:String, ref:'Employee'}

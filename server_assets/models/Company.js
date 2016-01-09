@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-var companySchema = mongoose.Schema({
+const companySchema = new mongoose.Schema({
   name: {type:String, required:true},
   //Availability indicates days and hours of operations for the company. This will affect the timeline of deadlines, etc.
   availability: {
