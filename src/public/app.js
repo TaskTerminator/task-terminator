@@ -42,6 +42,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: '/home',
             templateUrl: 'Templates/home.html',
             controller: 'MainCtrl',
+        })
+        .state('search', {
+            url: '/search',
+            templateUrl: 'Templates/search.html',
+            controller: 'SearchCtrl',
         });
 
     $urlRouterProvider
