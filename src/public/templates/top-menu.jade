@@ -1,0 +1,11 @@
+.containter
+  .row
+    .col-sm-12.text-center
+      #menu-directive
+        .btn-group
+          label.btn.btn-success(ng-model="radioModel" uib-btn-radio="'Left'" uncheckable)
+            | Left
+          label.btn.btn-success(ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable)
+            | Middle
+          label.btn.btn-success(ng-model="radioModel" uib-btn-radio="'Right'" uncheckable)
+            | Right

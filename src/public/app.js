@@ -41,7 +41,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         .state('home', {
             url: '/home',
             templateUrl: 'Templates/home.html',
-            controller: 'MainCtrl',
+            controller: 'HomeCtrl',
         })
         .state('search', {
             url: '/search',
