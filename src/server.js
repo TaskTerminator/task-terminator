@@ -38,28 +38,46 @@ app.listen(port, function () {
 app.post('/api/company', companyCtrl.newCompany);
 
 //********** DEPARTMENT ENDPOINTS **********
+app.get('/api/department/:id', departmentCtrl.oneDepartment);
+app.put('/api/department/:id', departmentCtrl.editDepartment);
+app.delete('/api/department/:id', departmentCtrl.deleteDepartment);
 app.post('/api/department', departmentCtrl.newDepartment);
+
 app.get('/api/department', departmentCtrl.allDepartments);
 
+
 //********** EMPLOYEE ENDPOINTS **********
+app.get('/api/employee/:id', employeeCtrl.oneEmployee);
+app.put('/api/employee/:id', employeeCtrl.editEmployee);
+app.delete('/api/employee/:id', employeeCtrl.deleteEmployee);
 app.post('/api/employee', employeeCtrl.newEmployee);
 app.get('/api/employee', employeeCtrl.allEmployees);
 
+
 //********** POSITION ENDPOINTS **********
+app.get('/api/position/:id', positionCtrl.onePosition);
+app.put('/api/position/:id', positionCtrl.editPosition);
+app.delete('/api/position/:id', positionCtrl.deletePosition);
 app.post('/api/position', positionCtrl.newPosition);
 app.get('/api/position', positionCtrl.allPositions);
 
 //********** PROJECT ENDPOINTS **********
+app.get('/api/project/:id', projectCtrl.oneProject);
+app.put('/api/project/:id', projectCtrl.editProject);
+app.delete('/api/project/:id', projectCtrl.deleteProject);
 app.post('/api/project', projectCtrl.newProject);
 app.get('/api/project', projectCtrl.allProjects);
 
 //********** PROJECT TASK ENDPOINTS **********
-app.get('/api/tasks/project/:id', templateTaskCtrl.getTasks);
-
-
+app.get('/api/tasks/project/:id', projectTaskCtrl.getTasks);
+// * app.get('/api/tasks/department/:id', projectTaskCtrl.getDepartmentTask);
 
 //********** TEMPLATE ENDPOINTS **********
+app.get('/api/template/:id', templateCtrl.oneTemplate);
+app.put('/api/template/:id', templateCtrl.editTemplate);
+app.delete('/api/template/:id', templateCtrl.deleteTemplate);
 app.post('/api/template', templateCtrl.newTemplate);
+app.get('/api/template', templateCtrl.allTemplates);
 
 //********** TEMPLATE TASK ENDPOINTS **********
 app.get('/api/tasks/template', templateTaskCtrl.getAllTasks);

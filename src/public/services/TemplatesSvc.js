@@ -17,7 +17,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.getOneTaskTemplate = function (id) {
 
@@ -33,7 +33,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.postTaskTemplate = function () {
     var defer = $q.defer();
@@ -79,7 +79,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
       console.log("error: ", error);
     });
 
-    return defer.promise;;
+    return defer.promise;
   };
 
   ////////////////////////

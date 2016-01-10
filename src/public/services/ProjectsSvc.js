@@ -14,7 +14,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.getOneProject = function (id) {
 
@@ -30,7 +30,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.getProjectTask = function (id) {
 
@@ -38,7 +38,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
 
     $http({
       method: "GET",
-      url: "/api/task/project/" + id
+      url: "/api/tasks/project/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -46,7 +46,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.postProject = function () {
     var defer = $q.defer();
@@ -92,7 +92,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
       console.log("error: ", error);
     });
 
-    return defer.promise;;
+    return defer.promise;
   };
 
 

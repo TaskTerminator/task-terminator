@@ -18,7 +18,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       });
 
       return defer.promise;
-    }
+    };
 
     this.getOneEmployee = function (id) {
 
@@ -34,7 +34,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       });
 
       return defer.promise;
-    }
+    };
 
     this.postEmployee = function () {
       var defer = $q.defer();
@@ -80,7 +80,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
         console.log("error: ", error);
       });
 
-      return defer.promise;;
+      return defer.promise;
     };
 
 });

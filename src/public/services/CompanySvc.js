@@ -42,7 +42,7 @@ angular.module('terminatorApp').service('CompanySvc', function($http, $q) {
 
     $http({
       method: "GET",
-      url: "/api/task/company/" + id
+      url: "/api/tasks/company/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
