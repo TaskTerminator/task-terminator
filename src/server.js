@@ -6,7 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const secret = require("./secret");
-const bcrypt = require('bcrypt-nodejs');
+// const bcrypt = require('bcrypt-nodejs');
 
 const app = express();
 const port = 8000;
