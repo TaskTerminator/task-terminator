@@ -1,12 +1,16 @@
-angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
+angular.module('terminatorApp').service('PositionSvc', function($http, $q) {
 
-  this.getProjects = function () {
+  ////////////////////////
+  // Position Calls
+  ////////////////////////
+
+  this.getPositions = function () {
 
     var defer = $q.defer();
 
     $http({
       method: "GET",
-      url: "/api/project"
+      url: "/api/position"
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -16,13 +20,13 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     return defer.promise;
   }
 
-  this.getOneProject = function (id) {
+  this.getOnePosition = function (id) {
 
     var defer = $q.defer();
 
     $http({
       method: "GET",
-      url: "/api/project/" + id
+      url: "/api/position/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -32,13 +36,13 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     return defer.promise;
   }
 
-  this.getProjectTask = function (id) {
+  this.getPositionTask = function (id) {
 
     var defer = $q.defer();
 
     $http({
       method: "GET",
-      url: "/api/task/project/" + id
+      url: "/api/task/position/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -48,12 +52,12 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     return defer.promise;
   }
 
-  this.postProject = function () {
+  this.postPosition = function () {
     var defer = $q.defer();
 
     $http({
       method: "POST",
-      url: "/api/project",
+      url: "/api/position",
       data: {}
     }).then(function(response) {
       defer.resolve(response);
@@ -64,12 +68,12 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.editProject = function () {
+  this.editPosition = function () {
     var defer = $q.defer();
 
     $http({
       method: "PUT",
-      url: "/api/project/" + id,
+      url: "/api/position/" + id,
       data: {}
     }).then(function(response) {
       defer.resolve(response);
@@ -80,12 +84,12 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.deleteProject = function (id) {
+  this.deletePosition = function (id) {
     var defer = $q.defer();
 
     $http({
       method: "DELETE",
-      url: "/api/project/" + id
+      url: "/api/position/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {

@@ -1,12 +1,16 @@
 angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
 
+  ////////////////////////
+  // Employee Calls
+  ////////////////////////
+
     this.getEmployees = function () {
 
       var defer = $q.defer();
 
       $http({
         method: "GET",
-        url: "/api/client"
+        url: "/api/employee"
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
@@ -22,7 +26,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
 
       $http({
         method: "GET",
-        url: "/api/client/" + id
+        url: "/api/employee/" + id
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
@@ -37,7 +41,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
 
       $http({
         method: "POST",
-        url: "/api/client",
+        url: "/api/employee",
         data: {}
       }).then(function(response) {
         defer.resolve(response);
@@ -53,7 +57,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
 
       $http({
         method: "PUT",
-        url: "/api/client/" + id,
+        url: "/api/employee/" + id,
         data: {}
       }).then(function(response) {
         defer.resolve(response);
@@ -69,7 +73,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
 
       $http({
         method: "DELETE",
-        url: "/api/client/" + id
+        url: "/api/employee/" + id
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {

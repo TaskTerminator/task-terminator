@@ -1,12 +1,15 @@
 angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
-  this.getTemplates = function () {
+////////////////////////
+// Task Template Calls
+////////////////////////
+  this.getTaskTemplates = function () {
 
     var defer = $q.defer();
 
     $http({
       method: "GET",
-      url: "/api/client"
+      url: "/api/tasks/template"
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -16,13 +19,13 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   }
 
-  this.getOneTemplate = function (id) {
+  this.getOneTaskTemplate = function (id) {
 
     var defer = $q.defer();
 
     $http({
       method: "GET",
-      url: "/api/client/" + id
+      url: "/api/tasks/template/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -32,12 +35,12 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   }
 
-  this.postTemplate = function () {
+  this.postTaskTemplate = function () {
     var defer = $q.defer();
 
     $http({
       method: "POST",
-      url: "/api/client",
+      url: "/api/tasks/template",
       data: {}
     }).then(function(response) {
       defer.resolve(response);
@@ -48,12 +51,12 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.editTemplate = function () {
+  this.editTaskTemplate = function () {
     var defer = $q.defer();
 
     $http({
       method: "PUT",
-      url: "/api/client/" + id,
+      url: "/api/tasks/template/" + id,
       data: {}
     }).then(function(response) {
       defer.resolve(response);
@@ -64,12 +67,95 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.deleteTemplate = function (id) {
+  this.deleteTaskTemplate = function (id) {
     var defer = $q.defer();
 
     $http({
       method: "DELETE",
-      url: "/api/client/" + id
+      url: "/api/tasks/template/" + id
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;;
+  };
+
+  ////////////////////////
+  // Project Template Calls
+  ////////////////////////
+
+  this.getProjectTemplates = function () {
+
+    var defer = $q.defer();
+
+    $http({
+      method: "GET",
+      url: "/api/template"
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  }
+
+  this.getOneProjectTemplate = function (id) {
+
+    var defer = $q.defer();
+
+    $http({
+      method: "GET",
+      url: "/api/template/" + id
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  }
+
+  this.postProjectTemplate = function () {
+    var defer = $q.defer();
+
+    $http({
+      method: "POST",
+      url: "/api/template",
+      data: {}
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  };
+
+  this.editProjectTemplate = function () {
+    var defer = $q.defer();
+
+    $http({
+      method: "PUT",
+      url: "/api/template/" + id,
+      data: {}
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  };
+
+  this.deleteProjectTemplate = function (id) {
+    var defer = $q.defer();
+
+    $http({
+      method: "DELETE",
+      url: "/api/template/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
