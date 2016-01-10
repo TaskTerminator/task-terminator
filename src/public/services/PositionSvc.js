@@ -18,7 +18,7 @@ angular.module('terminatorApp').service('PositionSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.getOnePosition = function (id) {
 
@@ -34,7 +34,7 @@ angular.module('terminatorApp').service('PositionSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.getPositionTask = function (id) {
 
@@ -42,7 +42,7 @@ angular.module('terminatorApp').service('PositionSvc', function($http, $q) {
 
     $http({
       method: "GET",
-      url: "/api/task/position/" + id
+      url: "/api/tasks/position/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -50,7 +50,7 @@ angular.module('terminatorApp').service('PositionSvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.postPosition = function () {
     var defer = $q.defer();
@@ -96,7 +96,7 @@ angular.module('terminatorApp').service('PositionSvc', function($http, $q) {
       console.log("error: ", error);
     });
 
-    return defer.promise;;
+    return defer.promise;
   };
 
 
