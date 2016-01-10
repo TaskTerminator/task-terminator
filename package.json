@@ -36,5 +36,8 @@
     "gulp-jade": "^1.1.0",
     "gulp-nodemon": "^2.0.6",
     "gulp-stylus": "^2.2.0"
+  },
+  "jshintConfig": {
+    "esnext": true
   }
 }
