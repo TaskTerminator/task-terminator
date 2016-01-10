@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
 
 //Users are all employees of the company. NOTE: Not all users will actually have login access to the UI.
 const employeeSchema = new mongoose.Schema({
