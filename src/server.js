@@ -76,8 +76,8 @@ app.get('/api/tasks/project/:id', projectTaskCtrl.getTasks);
 app.get('/api/template/:id', templateCtrl.oneTemplate);
 app.put('/api/template/:id', templateCtrl.editTemplate);
 app.delete('/api/template/:id', templateCtrl.deleteTemplate);
-
 app.post('/api/template', templateCtrl.newTemplate);
+app.get('/api/template', templateCtrl.allTemplates);
 
 //********** TEMPLATE TASK ENDPOINTS **********
 app.get('/api/tasks/template', templateTaskCtrl.getAllTasks);

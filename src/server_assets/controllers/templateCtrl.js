@@ -23,4 +23,9 @@ deleteTemplate: function(req,res){
   return res.status(200).end();
 },
 
+allTemplates: function(req,res){
+  console.log("GET ALL TEMPLATES ENDPOINT");
+  return res.status(200).end();
+}
+
 };
