@@ -17,11 +17,15 @@ const departmentCtrl = require('./server_assets/controllers/departmentCtrl.js');
 const employeeCtrl = require('./server_assets/controllers/employeeCtrl.js');
 const positionCtrl = require('./server_assets/controllers/positionCtrl.js');
 const projectCtrl = require('./server_assets/controllers/projectCtrl.js');
+const projectTaskCtrl = require('./server_assets/controllers/projectTaskCtrl.js');
 const templateCtrl = require('./server_assets/controllers/templateCtrl.js');
+const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl.js');
 
+
+//what is this for?
 mongoose.Promise = require('q').Promise;
 
-//----------Fluff------------//
+//----------Middleware------------//
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors());
@@ -35,21 +39,33 @@ app.post('/api/company', companyCtrl.newCompany);
 
 //********** DEPARTMENT ENDPOINTS **********
 app.post('/api/department', departmentCtrl.newDepartment);
+app.get('/api/department', departmentCtrl.allDepartments);
 
 //********** EMPLOYEE ENDPOINTS **********
 app.post('/api/employee', employeeCtrl.newEmployee);
+app.get('/api/employee', employeeCtrl.allEmployees);
 
 //********** POSITION ENDPOINTS **********
-app.post('api/position', positionCtrl.newPosition);
+app.post('/api/position', positionCtrl.newPosition);
+app.get('/api/position', positionCtrl.allPositions);
 
 //********** PROJECT ENDPOINTS **********
-app.post('api/project', projectCtrl.newProject);
+app.post('/api/project', projectCtrl.newProject);
+app.get('/api/project', projectCtrl.allProjects);
 
-//********** TASK ENDPOINTS **********
+//********** PROJECT TASK ENDPOINTS **********
+app.get('/api/tasks/project/:id', templateTaskCtrl.getTasks);
+
 
 
 //********** TEMPLATE ENDPOINTS **********
-app.post('api/template', templateCtrl.newTemplate);
+app.post('/api/template', templateCtrl.newTemplate);
+
+//********** TEMPLATE TASK ENDPOINTS **********
+app.get('/api/tasks/template', templateTaskCtrl.getAllTasks);
+app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
+
+
 
 
 
