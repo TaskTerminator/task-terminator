@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
-const Department = require('../models/Department.js');
+const Company = require('../models/Company.js');
 
 
 
 module.exports = {
 
   newCompany: function(req, res) {
-    console.log("POST - ADD COMPANY ENDPOINT");
-    return res.status(200).end();
+  	const company = new Company(req.body);
+  	company.save().then((result) => {
+  		return res.json(result);
+  	}).catch((err) => {
+  		return res.status(500).end();
+  	});
   }
-
 
 };
