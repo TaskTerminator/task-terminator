@@ -5,7 +5,15 @@ module.exports = {
 
   newEmployee: function(req,res){
     console.log("POST - ADD EMPLOYEE ENDPOINT");
-    return res.status(200).end();
+    var employee = new Employee(req.body);
+    employee.identification.name.fullName = employee.identification.name.firstName + " " + employee.identification.name.lastName;
+    employee.save().then(function(err,result){
+      if(err){
+        console.log("POST - ADD EMPLOYEE ERROR", err);
+      } else {
+        return res.status(201).end();
+      }
+    });
   },
 
   oneEmployee: function(req,res){
