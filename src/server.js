@@ -20,7 +20,7 @@ const projectCtrl = require('./server_assets/controllers/projectCtrl.js');
 const projectTaskCtrl = require('./server_assets/controllers/projectTaskCtrl.js');
 const templateCtrl = require('./server_assets/controllers/templateCtrl.js');
 const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl.js');
-const slackCtrl = require('./server_assets/controllers/slackCtrl.js');
+// const slackCtrl = require('./server_assets/controllers/slackCtrl.js');
 
 
 //what is this for?
