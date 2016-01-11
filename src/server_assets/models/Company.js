@@ -14,7 +14,7 @@ const companySchema = new mongoose.Schema({
     streetAddress: {type:String},
     city: {type: String},
     state: {type: String},
-    zip: {type: Number}
+    zip: {type: String}
   },
   //The below three reference to the specific departments, positions, and employees within the company.
   departments: [{type: String, ref: 'Department'}],
