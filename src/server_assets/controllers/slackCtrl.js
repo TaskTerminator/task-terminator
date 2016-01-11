@@ -104,15 +104,16 @@ const controller = Botkit.slackbot({
   });
 
 
-
-  controller.hears(["complete","^pattern$"],["direct_message","direct_mention","mention"],function(bot,message) {
-
-  	  // do something to respond to message
-  	  // all of the fields available in a normal Slack message object are available
-  	  // https://api.slack.com/events/message
-  	  bot.reply(message,'You used a keyword!');
-
-  	});
+	// controller.on('user_typing',function(bot,message) {
+	//
+  // // controller.hears(["complete","^pattern$"],["direct_message","direct_mention","mention"],function(bot,message) {
+	//
+  // 	  // do something to respond to message
+  // 	  // all of the fields available in a normal Slack message object are available
+  // 	  // https://api.slack.com/events/message
+  // 	  bot.reply(message,'Type faster!!!!!!!!!!!!!');
+	//
+  // 	});
 
 module.exports = {
 
