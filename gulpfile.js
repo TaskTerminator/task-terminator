@@ -46,6 +46,12 @@ gulp.task('babel', function() {
 		.pipe(gulp.dest('./build'));
 });
 
+gulp.task('watch', ['styles', 'index_page', 'templates'], function(){
+  gulp.watch('**/*.styl', ['styles']);
+  gulp.watch('**/*.jade', ['index_page', 'templates']);
+  gulp.watch('**/*.js', ['babel']);
+});
+
 gulp.task('develop', function () {
   nodemon({ script: './build/server.js'
           , ext: 'html js'
@@ -55,9 +61,5 @@ gulp.task('develop', function () {
     })
 })
 
-gulp.task('watch', ['styles', 'index_page', 'templates'], function(){
-  gulp.watch('**/*.styl', ['styles']);
-  gulp.watch('**/*.jade', ['index_page', 'templates']);
-});
 
 gulp.task('default', ['watch', 'babel', 'move', 'develop']);
