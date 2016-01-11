@@ -11,6 +11,7 @@
   .row.topmenu
     .col-sm-12.text-center
       h1 Dashboard Page
+<<<<<<< HEAD
     .col-md-3
       h3 Overview
       h4 9 Projects Complete
@@ -20,5 +21,7 @@
     .col-md-3.col-md-offset-1
       h3 Tomorrow's Projects
 
+=======
       
       
+>>>>>>> 6143adf2b722f1508739eb3c7792775c76fc1b08
