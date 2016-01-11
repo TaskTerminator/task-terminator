@@ -13,12 +13,12 @@ module.exports = {
     return res.status(200).end();
   },
 
-  editEmployee: function(req,res){
+  editPosition: function(req,res){
     console.log('EDIT - POSITION ID: ', req.params.id);
     return res.status(200).end();
   },
-  
-  deleteEmployee: function(req,res){
+
+  deletePosition: function(req,res){
     console.log('DELETE - POSITION ID: ', req.params.id);
     return res.status(200).end();
   },
