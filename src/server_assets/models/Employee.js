@@ -11,10 +11,10 @@ const employeeSchema = new mongoose.Schema({
     },
     //Employee's username for Authentication, reports, etc in the UI. Only for employee's who would be starting projects.
     userName: {type: String},
-    //Slack handle to tie to the slack bot commands.
-    slackHandle: {type: String},
+    // slackHandle: {type: String},
     email: {type: String},
-    googleId: {}
+    //We need to store some auth info here... will wait to find out exactly what
+    // googleId: {}
   },
   //This determines whether an employee has access. True = access to UI.
   permissions: {

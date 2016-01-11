@@ -4,6 +4,7 @@ var jade = require ('gulp-jade');
 var babel = require('gulp-babel');
 var nodemon = require('gulp-nodemon');
 
+var path
 
 //////////////////
 // Copy package.json to build folder
@@ -46,18 +47,21 @@ gulp.task('babel', function() {
 		.pipe(gulp.dest('./build'));
 });
 
+gulp.task('watch', ['styles', 'index_page', 'templates', 'babel'], function(){
+  gulp.watch('./src/**/*.styl', ['styles']);
+  gulp.watch('./src/**/*.jade', ['index_page', 'templates']);
+  gulp.watch('./src/**/*.js', ['babel']);
+});
+
 gulp.task('develop', function () {
   nodemon({ script: './build/server.js'
           , ext: 'html js'
+          , delay: 3500
          })
     .on('restart', function () {
       console.log('restarted!')
     })
 })
 
-gulp.task('watch', ['styles', 'index_page', 'templates'], function(){
-  gulp.watch('**/*.styl', ['styles']);
-  gulp.watch('**/*.jade', ['index_page', 'templates']);
-});
 
-gulp.task('default', ['watch', 'babel', 'move', 'develop']);
+gulp.task('default', ['develop', 'watch']);
