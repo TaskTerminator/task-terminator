@@ -53,6 +53,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: 'Templates/dashboard.html',
             controller: 'DashboardCtrl',
         })
+        .state('projectForms', {
+            url: '/projectForms',
+            templateUrl: 'Templates/projectForms.html',
+            controller: 'DashboardCtrl',
+        })
         .state('projects', {
             url: '/projects',
             templateUrl: 'Templates/projects.html',

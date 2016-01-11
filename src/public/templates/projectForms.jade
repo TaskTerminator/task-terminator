@@ -1,9 +1,13 @@
 .container
   .row
     .col-md-12
-      | Add project form
+      | Add project form 
       form
-        input(type="text" s)
+        | Project name
+        input(type="text" ng-model="name")
+        
   .row
     .col-md-12
-      |  
+      |  Project Info
+      ul
+        li(ng-repeat="project in projects")
