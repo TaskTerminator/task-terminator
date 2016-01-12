@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Employee = require('../models/Employee.js');
+const Position = require('../models/Position');
 
 module.exports = {
 
