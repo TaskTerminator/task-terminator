@@ -13,8 +13,13 @@
       h1 Dashboard Page
     .col-md-3
       h3 Overview
+<<<<<<< HEAD
+      h4 9 Projects Complete
+      button.btn.btn-lg.btn-danger(type="button" uib-popover="We love Wilson ;)" popover-title="Popover title") 2 Incomplete Scheduled Projects
+=======
       button.btn.btn-lg.btn-success(popover animation="true" type="button" uib-popover="You got these projects done. No thanks to Wilson...because he's the worst" popover-title="Completed Projects" popover-trigger="focus") 9 Projects Complete
       button.btn.btn-lg.btn-danger(popover-animation="true" type="button" uib-popover="You have two incomplete projects. Both are Wilson's fault because he's the worst" popover-title="Popover title" popover-trigger="focus") 2 Incomplete Scheduled Projects
+>>>>>>> 20e128c2b66767eb6e37ee18e5b5e0f9f22ea18e
     .col-md-3.col-md-offset-1
       h3 Today's Projects
     .col-md-3.col-md-offset-1
