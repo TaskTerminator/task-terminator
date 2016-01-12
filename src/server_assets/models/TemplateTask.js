@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const templateTaskSchema = new mongoose.Schema({
   name: {type: String, required: true},
   description: {type: String},
   associatedProject : {type:String, ref:'Project'},
   date: {
-    created: {type: Date, default: new Date()},
+    created: {type: Date, default: moment()},
     deadline: {type: Date},
   },
   assigment: {
