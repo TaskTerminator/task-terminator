@@ -3,7 +3,7 @@ const Department = require('../models/Department.js');
 
 module.exports = {
 
-  newDepartment: function(req, res) {
+  newDepartment(req, res) {
     console.log("POST - ADD DEPARTMENT ENDPOINT", req.body);
     const newDepartment = new Department(req.body);
     newDepartment.save().then((result) => {
@@ -13,7 +13,7 @@ module.exports = {
     });
   },
 
-  oneDepartment: function(req,res){
+  oneDepartment(req,res) {
     console.log("GET - DEPARTMENT ID: ", req.params.id);
     Department.findById(req.params.id).exec().then((department) => {
       return res.json(department);
@@ -22,7 +22,7 @@ module.exports = {
     });
   },
 
-  editDepartment: function(req,res){
+  editDepartment(req,res) {
     console.log("PUT - EDIT DEPARTMENT ID: ", req.params.id);
     Department.update({_id: req.params.id}, req.body).then(() => {
       return res.status(200).end();
@@ -31,7 +31,7 @@ module.exports = {
     });
   },
 
-  deleteDepartment: function(req,res){
+  deleteDepartment(req,res) {
     console.log('DELETE - DEPARTMENT ID: ', req.params.id);
     Department.remove({_id: req.params.id}, req.body).then(() => {
       return res.status(200).end();
@@ -40,7 +40,7 @@ module.exports = {
     });
   },
 
-  allDepartments: function(req, res) {
+  allDepartments(req, res) {
     console.log('GET - ALL DEPARTMENTS ENDPOINT');
     Department.find().exec().then((departments) => {
       return res.json(departments);

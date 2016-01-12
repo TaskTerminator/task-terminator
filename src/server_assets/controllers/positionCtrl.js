@@ -12,7 +12,7 @@ module.exports = {
     });
   },
 
-  onePosition(req,res){
+  onePosition(req,res) {
     Position.findById(req.params.id).exec().then((position) => {
       return res.json(position);
     }).catch((err) => {
@@ -20,7 +20,7 @@ module.exports = {
     });
   },
 
-  editPosition(req,res){
+  editPosition(req,res) {
     Position.update({_id: req.params.id}, req.body).then(() => {
       return res.status(200).end();
     }).catch((err) => {
@@ -28,7 +28,7 @@ module.exports = {
     });
   },
 
-  deletePosition(req,res){
+  deletePosition(req,res) {
     Position.remove({_id: req.params.id}, req.body).then(() => {
       return res.status(200).end();
     }).catch((err) => {
@@ -36,7 +36,7 @@ module.exports = {
     });
   },
 
-  allPositions(req,res){
+  allPositions(req,res) {
     Position.find().exec().then((positions) => {
       return res.json(positions);
     }).catch((err) => {
