@@ -16,6 +16,17 @@ module.exports = {
           result.positions.push(newPosition._id);
           result.save();
         });
+
+      Department
+        .findOne({
+          "name": "All"
+        })
+        .exec()
+        .then((result) =>{
+          result.positions.push(newPosition._id);
+          result.save();
+        });
+
       Department
         .findOne({
           _id: req.params.departmentid
