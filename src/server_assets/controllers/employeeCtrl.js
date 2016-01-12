@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Employee = require('../models/Employee.js');
 const Company = require('../models/Company');
+const Department = require('../models/Department.js');
+const Position = require('../models/Position.js');
 
 module.exports = {
 
@@ -17,6 +19,29 @@ module.exports = {
             result.employees.push(newEmployee._id);
             result.save();
           });
+    Department
+          .findOne({
+            _id: req.params.departmentid
+          })
+          .exec()
+          .then(function(result) {
+            console.log(result);
+            result.employees.push(newEmployee._id);
+            result.save();
+          });
+    Position
+          .findOne({
+            _id: req.params.positionid
+          })
+          .exec()
+          .then(function(result) {
+            console.log(result);
+            result.employees.push(newEmployee._id);
+            result.save();
+          });
+    newEmployee.company = req.params.companyid;
+    newEmployee.department = req.params.departmentid;
+    newEmployee.position = req.params.positionid;
     newEmployee.identification.name.fullName = req.body.identification.name.firstName + " " + req.body.identification.name.lastName;
     newEmployee.save().then((result) => {
       return res.json(result);
