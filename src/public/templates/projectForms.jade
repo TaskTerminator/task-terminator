@@ -1,13 +1,72 @@
-.container
+.container(style="padding-top: 20px;")
   .row
-    .col-md-12
-      | Add project form 
+    .col-md-4.col-md-offset-4
       form
-        | Project name
-        input(type="text" ng-model="name")
+        .form-group
+          label(for="addProjectField")
+            | Project Name:  
+          input.form-control(type="text" ng-model="name" id="addProjectField")
+        .form-group
+          label(for="descriptionField")
+            | Description:  
+          input.form-control(type="text" ng-model="description" id="descriptionField")
+        .form-group
+          label(for="statusField")
+            | Status:  
+          select.form-control(ng-model="status" id="statusField")
+            option
+              | Complete
+            option
+              | Incomplete
+        .form-group
+          label(for="tasksField")
+            | Tasks: 
+          //- div
+          //-   ul
+          //-     li(ng-repeat="project.tasks in projects") 
+        .form-group
+          label(for="createdDateField")
+            | Created Date:  
+            p.input-group
+                input(type="text" class="form-control" uib-datepicker-popup="{{format}}"  is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="createdDateField")
+                span.input-group-btn
+                  button(type="button" class="btn btn-default" ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
+        .form-group
+          label(for="typeField")
+            | Timetable:  
+          select.form-control(ng-model="type" id="typeField")
+            option
+              | Single
+            option
+              | Triggered
+            option
+              | Scheduled
+        .form-group
+          label(for="frequencyField")
+            | frequency:  
+          select.form-control(ng-model="frequency" id="frequencyField")
+            option
+              | By Date
+            option
+              | By Interval
+        .form-group
+          label(for="actualDateField")
+            | Actual Due Date:  
+            p.input-group
+                input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
+                span.input-group-btn
+                  button(type="button" class="btn btn-default" ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
+        .form-group
+          label(for="anticipatedDateField")
+            | Anticipated Due Date:  
+            p.input-group
+                input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
+                span.input-group-btn
+                  button(type="button" class="btn btn-default" ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
         
-  .row
-    .col-md-12
-      |  Project Info
-      ul
-        li(ng-repeat="project in projects")
+        
+
+          
