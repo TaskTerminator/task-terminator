@@ -60,7 +60,7 @@ app.get('/api/employee', employeeCtrl.allEmployees);
 app.get('/api/position/:id', positionCtrl.onePosition);
 app.put('/api/position/:id', positionCtrl.editPosition);
 app.delete('/api/position/:id', positionCtrl.deletePosition);
-app.post('/api/position', positionCtrl.newPosition);
+app.post('/api/position/:companyid/:departmentid', positionCtrl.newPosition);
 app.get('/api/position', positionCtrl.allPositions);
 
 //********** PROJECT ENDPOINTS **********
