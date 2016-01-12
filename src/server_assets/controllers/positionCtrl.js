@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 const Position = require('../models/Position.js');
 const Company = require('../models/Company.js');
-<<<<<<< HEAD
+// <<<<<<< HEAD
 const Department = require('../models/Department.js');
-=======
->>>>>>> origin
+// =======
+// >>>>>>> origin
 
 module.exports = {
 
   newPosition(req, res) {
-<<<<<<< HEAD
+// <<<<<<< HEAD
     const newPosition = new Position(req.body);
     Company
       .findOne({
