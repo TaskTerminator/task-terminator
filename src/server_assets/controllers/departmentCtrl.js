@@ -1,11 +1,24 @@
 const mongoose = require('mongoose');
 const Department = require('../models/Department.js');
+const Company = require('../models/Company.js');
 
 module.exports = {
 
   newDepartment(req, res) {
     console.log("POST - ADD DEPARTMENT ENDPOINT", req.body);
     const newDepartment = new Department(req.body);
+    console.log("COMPANY ID", req.params.companyid);
+    Company
+          .findOne({
+            _id: req.params.companyid
+          })
+          .exec()
+          .then(function(result) {
+            console.log(result);
+            result.departments.push(newDepartment._id);
+            result.save();
+            // console.log(result);
+          });
     newDepartment.save().then((result) => {
       return res.json(result);
     }).catch((err) => {

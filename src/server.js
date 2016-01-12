@@ -42,7 +42,7 @@ app.post('/api/company', companyCtrl.newCompany);
 app.get('/api/department/:id', departmentCtrl.oneDepartment);
 app.put('/api/department/:id', departmentCtrl.editDepartment);
 app.delete('/api/department/:id', departmentCtrl.deleteDepartment);
-app.post('/api/department', departmentCtrl.newDepartment);
+app.post('/api/department/:companyid', departmentCtrl.newDepartment);
 
 app.get('/api/department', departmentCtrl.allDepartments);
 
@@ -90,8 +90,8 @@ app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
 
 
 //-----------Connection to database-----------//
-mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
-// mongoose.connect('mongodb://localhost/terminator')
+// mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
+mongoose.connect('mongodb://localhost/terminator');
 mongoose.connection.once('connected', function() {
   console.log('connected to db');
 });
