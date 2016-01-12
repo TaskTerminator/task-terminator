@@ -20,9 +20,6 @@ const projectSchema = new mongoose.Schema({
   tasks: [
         {type: String , ref: 'TemplateTask'}
           ],
-  timetable: {
-    frequency: {type: String, enum: ['Single','Triggered', 'Scheduled']},
-  },
   setup: {
       created: {type: Date, default: new Date()},
       type:  {type: String, enum: ['Single','Triggered', 'Scheduled']},
