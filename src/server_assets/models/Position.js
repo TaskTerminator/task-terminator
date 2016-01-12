@@ -6,7 +6,8 @@ const positionSchema = new mongoose.Schema({
   employees: [
         {type:String, ref:'Employee'}
       ],
-  department: {type:String, ref: 'Department'}
+  departments: [{type:String, ref: 'Department'}],
+  company: {type:String, ref: 'Company'}
 });
 
 module.exports = mongoose.model('Position', positionSchema);
