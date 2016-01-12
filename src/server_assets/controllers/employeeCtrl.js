@@ -1,12 +1,22 @@
 const mongoose = require('mongoose');
 const Employee = require('../models/Employee.js');
-const Position = require('../models/Position');
+const Company = require('../models/Company');
 
 module.exports = {
 
   newEmployee(req, res) {
     console.log("POST - ADD EMPLOYEE ENDPOINT", req.body);
     const newEmployee = new Employee(req.body);
+    Company
+          .findOne({
+            _id: req.params.companyid
+          })
+          .exec()
+          .then(function(result) {
+            console.log(result);
+            result.employees.push(newEmployee._id);
+            result.save();
+          });
     newEmployee.identification.name.fullName = req.body.identification.name.firstName + " " + req.body.identification.name.lastName;
     newEmployee.save().then((result) => {
       return res.json(result);
