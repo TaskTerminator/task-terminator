@@ -52,7 +52,7 @@ app.get('/api/department', departmentCtrl.allDepartments);
 app.get('/api/employee/:id', employeeCtrl.oneEmployee);
 app.put('/api/employee/:id', employeeCtrl.editEmployee);
 app.delete('/api/employee/:id', employeeCtrl.deleteEmployee);
-app.post('/api/:companyid/employee', employeeCtrl.newEmployee);
+app.post('/api/:companyid/:departmentid/:positionid/employee', employeeCtrl.newEmployee);
 app.get('/api/:companyid/employee', employeeCtrl.allEmployees);
 
 
