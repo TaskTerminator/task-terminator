@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Position = require('../models/Position.js');
 const Company = require('../models/Company.js');
 const Department = require('../models/Department.js');
-const Department = require('../models/Department.js');
 
 module.exports = {
 
@@ -31,22 +30,6 @@ module.exports = {
         return res.json(result);
       }).catch((err) => {
         return res.status(500).end();
-
-    const newPosition = new Position(req.body);
-    Company
-      .findOne({
-        _id: req.params.companyid
-      })
-      .exec().then((result) => {
-        console.log("COMPANY",result);
-        result.positions.push(newPosition._id);
-      });
-    Department
-      .findOne({
-        _id: req.params.departmentid
-      }).exec().then((result) => {
-        console.log("DEPARTMENT", result);
-        result.positions.push(newPosition._id);
       });
     },
 
