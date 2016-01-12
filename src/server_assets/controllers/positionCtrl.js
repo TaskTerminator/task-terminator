@@ -1,37 +1,38 @@
 const mongoose = require('mongoose');
 const Position = require('../models/Position.js');
 const Company = require('../models/Company.js');
-<<<<<<< HEAD
 const Department = require('../models/Department.js');
-=======
->>>>>>> origin
+
 
 module.exports = {
 
   newPosition(req, res) {
-<<<<<<< HEAD
-    const newPosition = new Position(req.body);
-    Company
-      .findOne({
-        _id: req.params.companyid
-      })
-      .exec().then((result) => {
-        console.log("COMPANY",result);
-        result.positions.push(newPosition._id);
+      const newPosition = new Position(req.body);
+      Company
+        .findOne({
+          _id: req.params.companyid
+        })
+        .exec()
+        .then(function(result) {
+          result.positions.push(newPosition._id);
+          result.save();
+        });
+      Department
+        .findOne({
+          _id: req.params.departmentid
+        }).exec().then((result) => {
+          // console.log("DEPARTMENT", result);
+          result.positions.push(newPosition._id);
+          result.save();
+        });
+      newPosition.company = req.params.companyid;
+      newPosition.department = req.params.departmentid;
+      newPosition.save().then((result) => {
+        return res.json(result);
+      }).catch((err) => {
+        return res.status(500).end();
       });
-    Department
-      .findOne({
-        _id: req.params.departmentid
-      }).exec().then((result) => {
-        console.log("DEPARTMENT", result);
-        result.positions.push(newPosition._id);
-      });
-    newPosition.save().then((result) => {
-      return res.json(result);
-    }).catch((err) => {
-      return res.status(500).end();
-    });
-  },
+    },
 
     onePosition(req, res) {
       Position.findById(req.params.id).exec().then((position) => {
