@@ -58,9 +58,15 @@ module.exports = {
 
   allEmployees(req, res) {
     console.log('GET - ALL EMPLOYEES ENDPOINT');
-    Employee.find().exec().then((positions) => {
-      return res.json(positions);
-    }).catch((err) => {
+    Company
+          .findOne({
+            _id: req.params.companyid
+          })
+          .exec()
+          .then(function(result) {
+            console.log(result);
+            return res.json(result.employees);
+          }).catch((err) => {
       return res.status(500).end();
     });
   }
