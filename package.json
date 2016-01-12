@@ -24,6 +24,7 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "highcharts-ng": "0.0.11",
+    "moment": "^2.11.1",
     "mongoose": "^4.2.9",
     "passport": "^0.3.2",
     "passport-facebook": "^2.0.0",
