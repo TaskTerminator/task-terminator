@@ -31,8 +31,7 @@ module.exports = {
         return res.json(result);
       }).catch((err) => {
         return res.status(500).end();
-=======
-// <<<<<<< HEAD
+
     const newPosition = new Position(req.body);
     Company
       .findOne({
@@ -48,7 +47,6 @@ module.exports = {
       }).exec().then((result) => {
         console.log("DEPARTMENT", result);
         result.positions.push(newPosition._id);
->>>>>>> master
       });
     },
 
