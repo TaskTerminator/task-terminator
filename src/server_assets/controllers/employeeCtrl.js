@@ -3,7 +3,7 @@ const Employee = require('../models/Employee.js');
 
 module.exports = {
 
-  newEmployee: function(req, res) {
+  newEmployee(req, res) {
     console.log("POST - ADD EMPLOYEE ENDPOINT", req.body);
     const newEmployee = new Employee(req.body);
     newEmployee.identification.name.fullName = req.body.identification.name.firstName + " " + req.body.identification.name.lastName;
