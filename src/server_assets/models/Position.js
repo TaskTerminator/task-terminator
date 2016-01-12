@@ -6,7 +6,7 @@ const positionSchema = new mongoose.Schema({
   employees: [
         {type:String, ref:'Employee'}
       ],
-  departments: [{type:String, ref: 'Department'}],
+  department: {type:String, ref: 'Department'},
   company: {type:String, ref: 'Company'}
 });
 
