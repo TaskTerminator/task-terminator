@@ -4,29 +4,45 @@ const Project = require('../models/Project.js');
 module.exports = {
 
   newProject(req, res) {
-    console.log("POST - NEW PROJECT ENDPOINT");
-    return res.status(200).end();
+    const project = new Project(req.body);
+    project.save().then((result) => {
+      return res.json(result);
+    }).catch((err) => {
+      return res.status(500).end();
+    });
   },
 
   oneProject(req, res) {
-    console.log("GET - PROJECT ID: ", req.params.id);
-    return res.status(200).end();
+    Project.findById(req.params.id).exec().then((result) => {
+      return res.json(result);
+    }).catch((err) => {
+      return res.status(500).end();
+    });
   },
 
   editProject(req, res) {
-    console.log("EDIT - PROJECT ID: ", req.params.id);
-    return res.status(200).end();
+    Project.update({_id: req.params.id}, req.body).then(() => {
+      return res.status(200).end();
+    }).catch((err) => {
+      return res.status(500).end();
+    });
   },
 
   deleteProject(req, res) {
-    console.log("DELETE - PROJECT ID: ", req.params.id);
-    return res.status(200).end();
+    Project.remove({_id: req.params.id}, req.body).then(() => {
+      return res.status(200).end();
+    }).catch((err) => {
+      return res.status(500).end();
+    });
   },
 
 
-  allProjects(req,res) {
-    console.log('GET - ALL PROJECTS ENDPOING');
-    return res.status(200).end();
+  allProjects(req, res) {
+    Project.find().exec().then((result) => {
+      return res.json(result);
+    }).catch((err) => {
+      return res.status(500).end();
+    });
   }
 
 };
