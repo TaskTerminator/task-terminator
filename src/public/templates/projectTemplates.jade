@@ -1,4 +1,47 @@
 .container
   .row.topmenu
     .col-sm-10.text-center
-      h1 Project Templates View
+      form
+        .form-group
+          label(for="addProjectField")
+            | Project Template Name:  
+          input.form-control(type="text" ng-model="name" id="addProjectField")
+        .form-group
+          label(for="addProjectField")
+            | Tasks:  
+        .form-group
+          label(for="createdDateField")
+            | Anticipated Due Date:  
+            p.input-group
+                input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="createdDate")
+                span.input-group-btn
+                  button(type="button" class="btn btn-default" ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
+        .form-group
+          label(for="projectTemplateType")
+            | Project Template Name:  
+          input.form-control(type="text" ng-model="name" id="projectTemplateType")
+        .form-group
+          label(for="frequencyField")
+            | frequency:  
+          select.form-control(ng-model="frequency" id="frequencyField")
+            option
+              | By Date
+            option
+              | By Interval
+        .form-group
+          label(for="actualDateField")
+            | Actual Due Date:  
+            p.input-group
+                input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
+                span.input-group-btn
+                  button(type="button" class="btn btn-default" ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
+        .form-group
+          label(for="anticipatedDateField")
+            | Anticipated Due Date:  
+            p.input-group
+                input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
+                span.input-group-btn
+                  button(type="button" class="btn btn-default" ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
