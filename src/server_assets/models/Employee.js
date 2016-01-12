@@ -20,6 +20,7 @@ const employeeSchema = new mongoose.Schema({
   permissions: {
     admin: {type: Boolean, default: false}
   },
+  company: {type:String, ref: 'Company'},
   positions:[{type:String, ref: 'Position'}],
   departments: [{type:String, ref: 'Department'}],
 });

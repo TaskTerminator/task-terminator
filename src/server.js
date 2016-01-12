@@ -52,7 +52,7 @@ app.get('/api/department', departmentCtrl.allDepartments);
 app.get('/api/employee/:id', employeeCtrl.oneEmployee);
 app.put('/api/employee/:id', employeeCtrl.editEmployee);
 app.delete('/api/employee/:id', employeeCtrl.deleteEmployee);
-app.post('/api/employee', employeeCtrl.newEmployee);
+app.post('/api/employee/:companyid', employeeCtrl.newEmployee);
 app.get('/api/employee', employeeCtrl.allEmployees);
 
 
@@ -60,7 +60,7 @@ app.get('/api/employee', employeeCtrl.allEmployees);
 app.get('/api/position/:id', positionCtrl.onePosition);
 app.put('/api/position/:id', positionCtrl.editPosition);
 app.delete('/api/position/:id', positionCtrl.deletePosition);
-app.post('/api/position', positionCtrl.newPosition);
+app.post('/api/position/:companyid/:departmentid', positionCtrl.newPosition);
 app.get('/api/position', positionCtrl.allPositions);
 
 //********** PROJECT ENDPOINTS **********
@@ -91,8 +91,8 @@ app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
 
 
 //-----------Connection to database-----------//
-// mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
-mongoose.connect('mongodb://localhost/terminator');
+mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
+// mongoose.connect('mongodb://localhost/terminator');
 mongoose.connection.once('connected', function() {
   console.log('connected to db');
 });
