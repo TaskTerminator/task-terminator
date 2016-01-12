@@ -52,8 +52,8 @@ app.get('/api/department', departmentCtrl.allDepartments);
 app.get('/api/employee/:id', employeeCtrl.oneEmployee);
 app.put('/api/employee/:id', employeeCtrl.editEmployee);
 app.delete('/api/employee/:id', employeeCtrl.deleteEmployee);
-app.post('/api/employee/:companyid', employeeCtrl.newEmployee);
-app.get('/api/employee', employeeCtrl.allEmployees);
+app.post('/api/:companyid/employee', employeeCtrl.newEmployee);
+app.get('/api/:companyid/employee', employeeCtrl.allEmployees);
 
 
 //********** POSITION ENDPOINTS **********
