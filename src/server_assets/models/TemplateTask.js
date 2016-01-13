@@ -13,6 +13,9 @@ const templateTaskSchema = new mongoose.Schema({
       departments: {type:String, ref: 'Department'},
       positions: {type:String, ref: 'Position'},
       employees: {type:String, ref: 'Employee'}
+  },
+  status : {
+    complete: {type: Boolean, default: false}
   }
 });
 
