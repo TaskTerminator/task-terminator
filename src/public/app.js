@@ -63,6 +63,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             templateUrl: 'Templates/projects.html',
             controller: 'ProjectsCtrl',
         })
+        .state('singleProject', {
+            url: '/singleProject',
+            templateUrl: 'Templates/singleProject.html',
+            controller: 'DashboardCtrl',
+        })
         .state('templates', {
             url: '/templates',
             templateUrl: 'Templates/projectTemplate.html',
