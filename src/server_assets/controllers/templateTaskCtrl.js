@@ -6,10 +6,16 @@ const time = require('../controllers/timeCtrl.js');
 
 module.exports = {
 
+<<<<<<< HEAD
   addTask(req, res) {
       console.log("ADD TASK ENDPOINT");
       const newTemplateTask = new TemplateTask(req.body);
       Template
+=======
+addTask(req, res) {
+  const newTemplateTask = new TemplateTask(req.body);
+  Template
+>>>>>>> master
         .findOne({
           _id: req.params.templateid
         })
@@ -18,7 +24,6 @@ module.exports = {
           // console.log(result);
           result.tasks.push(newTemplateTask._id);
           result.save();
-          // console.log(result);
         });
 
       newTemplateTask.save().then((result) => {
@@ -29,6 +34,7 @@ module.exports = {
     },
 
 
+<<<<<<< HEAD
     getAllTasks(req, res) {
       console.log('GET - ALL TEMPLATE TASKS ENDPOINT');
       return res.status(200).end();
@@ -38,5 +44,22 @@ module.exports = {
       console.log('GET - TASKS FOR TEMPLATE: ', req.params.id);
       return res.status(200).end();
     }
+=======
+  getAllTasks(req, res) {
+      TemplateTask.find().exec().then((result) => {
+          return res.json(result);
+      }).catch((err) => {
+          return res.status(500).end();
+      });
+  },
+
+  getTasks(req, res) {
+      Template.findById({_id: req.params.id}).exec().then((result) => {
+          return res.json(result.tasks);
+      }).catch((err) => {
+          return res.status(500).end();
+      });
+  }
+>>>>>>> master
 
 };

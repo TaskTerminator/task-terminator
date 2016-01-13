@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
-const ProjectTask = require('../models/ProjectTask.js');
+const Project = require('../models/Project.js');
 
 
 module.exports = {
 
   getTasks(req, res) {
-    console.log('GET - TASKS FOR PROJECT: ', req.params.id);
-    return res.status(200).end();
+      Project.findById({_id: req.params.id}).exec().then((result) => {
+          return res.json(result.tasks);
+      }).catch((err) => {
+          return res.status(500).end();
+      });
   }
 
 };
