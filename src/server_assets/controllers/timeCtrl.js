@@ -25,8 +25,20 @@ module.exports = {
     return moment();
   },
 
-  today : function() {
+  dayOfWeek : function() {
     return moment().day();
+  },
+
+  thisMonth: function() {
+    return moment().month();
+  },
+
+  thisQuarter: function() {
+    return moment().quarter();
+  },
+
+  nextMonth: function() {
+    return moment().month() + 1;
   },
 
   deadlineToday: function() {
@@ -61,8 +73,64 @@ module.exports = {
   },
 
   monthlyFirstDay: function(){
-    return moment.hours(deadlineHour).minute(0).second(0).millisecond(0).date(1);
-  }
+    var nextMonth = moment().month() + 1;
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).month(nextMonth).date(1);
+  },
+
+  monthlyLastDay: function() {
+    var nextMonth = moment().month() + 1;
+    return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  monthlyAnyDay: function() {
+    //defaults deadline to the last day of the month same function as monthlyLastDay.... we could do last business day as a strech
+    var nextMonth = moment().month() + 1;
+    return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  monthlyDaysFromStart: function(selectedDayOfMonth){
+    var nextMonth = moment().month() + 1;
+    return moment().month(nextMonth).date(selectedDayOfMonth).hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  monthlyDaysBeforeEnd: function(numDaysBefore){
+    var nextMonth = moment().month() + 1;
+    return moment().month(nextMonth).endOf("month").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  semiMonthlyFirstCycle : function(selectedDate){
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(selectedDate);
+  },
+
+  semiMothlySecondCycle : function(firstCycleDate){
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(firstCycleDate + 15);
+  },
+
+  quarterlyFirstDay: function(){
+    var nextQuarter = moment().quarter() + 1;
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).quarter(nextQuarter).date(1);
+  },
+
+  quarterlyLastDay: function() {
+    var nextQuarter = moment().quarter() + 1;
+    return moment().quarter(nextQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  quarterlyAnyDay: function() {
+    //defaults deadline to the last day of the month same function as monthlyLastDay.... we could do last business day as a strech
+    var nextQuarter = moment().quarter() + 1;
+    return moment().quarter(nextQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  quarterlyDaysFromStart: function(selectedDayOfMonth){
+    var nextQuarter = moment().quarter() + 1;
+    return moment().quarter(nextQuarter).date(selectedDayOfMonth).hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  quarterlyDaysBeforeEnd: function(numDaysBefore){
+    var nextQuarter = moment().quarter() + 1;
+    return moment().quarter(nextQuarter).endOf("quarter").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
 
 
 
