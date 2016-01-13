@@ -20,7 +20,8 @@ const projectCtrl = require('./server_assets/controllers/projectCtrl.js');
 const projectTaskCtrl = require('./server_assets/controllers/projectTaskCtrl.js');
 const templateCtrl = require('./server_assets/controllers/templateCtrl.js');
 const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl.js');
-//const slackCtrl = require('./server_assets/controllers/slackCtrl.js');
+const slackCtrl = require('./server_assets/controllers/slackCtrl.js');
+const testTimeCtrl = require('./server_assets/controllers/testTimeCtrl.js');
 
 
 //what is this for?
@@ -85,6 +86,10 @@ app.get('/api/template', templateCtrl.allTemplates);
 app.get('/api/tasks/template', templateTaskCtrl.getAllTasks);
 app.post('/api/template/:templateid/tasks', templateTaskCtrl.addTask);
 app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
+
+//********** TIME ENDPOINTS **********
+app.get('/api/time', testTimeCtrl.testTime);
+
 
 
 

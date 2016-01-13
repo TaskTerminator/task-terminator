@@ -1,6 +1,20 @@
-angular.module('terminatorApp').controller('DashboardCtrl', function($scope) {
+angular.module('terminatorApp').controller('DashboardCtrl', function($scope, CompanySvc, ProjectsSvc) {
 
   $scope.cssClass = 'page-dashboard';
+
+  $scope.getCompanies = function() {
+    CompanySvc.getCompanies().then(function(res) {
+      console.log(res)
+      $scope.companies = res.data;
+    });
+  }();
+
+  $scope.getProjects = function() {
+    ProjectsSvc.getProjects().then(function(res) {
+      console.log(res)
+      $scope.projects = res.data;
+    });
+  }();
 
   //////////////////////
   // Datepicker Stuff

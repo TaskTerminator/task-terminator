@@ -1,0 +1,37 @@
+.container.singleProject
+  .row
+    .col-sm-12.text-center
+      h1 Project Title
+  .row
+    .col-sm-12.text-center
+      h2 Project Description
+  .row
+    .col-sm-4.col-sm-offset-4.text-center.dueDate
+      h4 Due Date
+
+  .row  
+
+    
+    .col-md-8.col-sm-offset-2
+      .panel.panel-default
+        .panel-body
+          table.table
+            thead 
+              tr
+                th(id="th-one" class="text-center" style="padding-left:40px;")
+                  | Task Name
+                th(id="th-two" class="text-right" style="padding=0;")
+                  | Assigned To
+                th(id="th-three" class="text-right" style="padding-right:18px;padding-left:0;")
+                  | Due Date
+          .list-group
+              a(href="#" class="list-group-item" ng-repeat="task in taskList")
+                .row
+                  .col-xs-6
+                    | task.name
+                  
+                  .col-xs-4.text-center(style="padding:0;")
+                    | task.assignedTo
+                  
+                  .col-xs-2.text-center(style="padding:0")
+                    | task.dueDate | date
