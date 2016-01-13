@@ -10,8 +10,6 @@
       h4 Due Date
 
   .row  
-
-    
     .col-md-8.col-sm-offset-2
       .panel.panel-default
         .panel-body
@@ -21,17 +19,17 @@
                 th(id="th-one" class="text-center" style="padding-left:40px;")
                   | Task Name
                 th(id="th-two" class="text-right" style="padding=0;")
-                  | Assigned To
+                  | Description
                 th(id="th-three" class="text-right" style="padding-right:18px;padding-left:0;")
                   | Due Date
           .list-group
-              a(href="#" class="list-group-item" ng-repeat="task in taskList")
+              a(href="#" class="list-group-item" ng-repeat="project in projects")
                 .row
                   .col-xs-6
-                    | task.name
+                    | {{project.name}}
                   
                   .col-xs-4.text-center(style="padding:0;")
-                    | task.assignedTo
+                    | {{project.description}}
                   
                   .col-xs-2.text-center(style="padding:0")
-                    | task.dueDate | date
+                    | {{project.setup.dueDate.actual | date:'mediumDate'}}
