@@ -6,7 +6,12 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
   	var modalInstance = $uibModal.open({
   		animation: true,
   		templateUrl: "myModalContent.jade",
+      controller: 'ProjectsCtrl',
   	})
   }
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 
 });
