@@ -5,8 +5,7 @@ const moment = require('moment');
 
 module.exports = {
 
-addTask(req,res){
-  console.log("ADD TASK ENDPOINT");
+addTask(req, res) {
   const newTemplateTask = new TemplateTask(req.body);
   Template
         .findOne({
@@ -17,7 +16,6 @@ addTask(req,res){
           console.log(result);
           result.tasks.push(newTemplateTask._id);
           result.save();
-          // console.log(result);
         });
   newTemplateTask.save().then((result) =>{
     return res.json(result);
@@ -28,13 +26,19 @@ addTask(req,res){
 
 
   getAllTasks(req, res) {
-    console.log('GET - ALL TEMPLATE TASKS ENDPOINT');
-    return res.status(200).end();
+      TemplateTask.find().exec().then((result) => {
+          return res.json(result);
+      }).catch((err) => {
+          return res.status(500).end();
+      });
   },
 
   getTasks(req, res) {
-    console.log('GET - TASKS FOR TEMPLATE: ', req.params.id);
-    return res.status(200).end();
+      Template.findById({_id: req.params.id}).exec().then((result) => {
+          return res.json(result.tasks);
+      }).catch((err) => {
+          return res.status(500).end();
+      });
   }
 
 };
