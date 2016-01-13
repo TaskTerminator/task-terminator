@@ -8,10 +8,10 @@ module.exports = {
       console.log("NOW : ", time.now()._d);
       console.log("TODAY - DAY OF WEEK: ",  time.dayOfWeek());
       console.log("THIS MONTH : ", time.thisMonth());
-      console.log("THIS QUARTER", time.thisQuarter());
-      console.log("THIS YEAR ", time.thisYear());
+      console.log("THIS QUARTER:", time.thisQuarter());
+      console.log("THIS YEAR: ", time.thisYear());
       console.log("NEXT MONTH : ", time.nextMonth());
-      // console.log("NEXT BUSINESS DAY", time.nextBusinessDay());
+      console.log("NEXT BUSINESS DAY:", time.nextBusinessDay()._d);
       console.log("WEEKLY ANY DAY: ", time.weeklyAnyDay()._d);
       console.log("WEEKLY SPECIFIC DAY - MON: ", time.weeklySpecificDay(1)._d);
       console.log("WEEKLY SPECIFIC DAY - WED: ", time.weeklySpecificDay(3)._d);
