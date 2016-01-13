@@ -252,7 +252,7 @@ module.exports = {
     nextBusinessDay: function (date) {
         const isIn = function (increaseDays) {
             //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
-            const today = moment().add(2, "days").day();
+            const today = moment().day();
             const nextBD = today + increaseDays;
             let flag = false;
             for (let i = 0; i < businessDays.length; i++) {
@@ -266,8 +266,8 @@ module.exports = {
             if (isIn(i) === true) {
                 return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
             }
-            return moment().add(1, "weeks").startOf('isoWeek').hours(deadlineHour);
         }
+        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
     },
 
 
