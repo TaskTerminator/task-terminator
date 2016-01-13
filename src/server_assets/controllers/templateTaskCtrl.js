@@ -19,19 +19,6 @@ module.exports = {
           result.save();
         });
 
-        console.log("MOMENT DAY: ",  time.today());
-        // console.log("NEXT BUSINESS DAY", time.nextBusinessDay());
-        console.log("WEEKLY ANY DAY: ", time.weeklyAnyDay()._d);
-        console.log("WEEKLY SPECIFIC DAY - MON: ", time.weeklySpecificDay(1)._d);
-        console.log("WEEKLY SPECIFIC DAY - WED: ", time.weeklySpecificDay(3)._d);
-        console.log("WEEKLY SPECIFIC DAY - FRI: ", time.weeklySpecificDay(5)._d);
-        console.log("BIWEEKLY ANY DAY: ", time.biWeeklyAnyDay()._d);
-        console.log("BIWEEKLY SPECIFIC DAY - MON: ", time.biWeeklySpecificDay(1)._d);
-        console.log("BIWEEKLY SPECIFIC DAY - WED: ", time.biWeeklySpecificDay(3)._d);
-        console.log("BIWEEKLY SPECIFIC DAY - FRI: ", time.biWeeklySpecificDay(5)._d);
-
-
-
         newTemplateTask.save().then((result) => {
             return res.json(result);
         }).catch((err) => {
