@@ -9,6 +9,7 @@ module.exports = {
       console.log("TODAY - DAY OF WEEK: ",  time.dayOfWeek());
       console.log("THIS MONTH : ", time.thisMonth());
       console.log("THIS QUARTER", time.thisQuarter());
+      console.log("THIS YEAR ", time.thisYear());
       console.log("NEXT MONTH : ", time.nextMonth());
       // console.log("NEXT BUSINESS DAY", time.nextBusinessDay());
       console.log("WEEKLY ANY DAY: ", time.weeklyAnyDay()._d);
@@ -40,6 +41,15 @@ module.exports = {
       console.log("QUARTER 2 DAYS BEFORE END :",time.quarterlyDaysBeforeEnd(2)._d);
       console.log("QUARTER 9 DAYS BEFORE END :",time.quarterlyDaysBeforeEnd(9)._d);
       console.log("QUARTER 17 DAYS BEFORE END :",time.quarterlyDaysBeforeEnd(17)._d);
+      console.log("ANNUALLY FIRST DAY: ", time.annuallyFirstDay()._d);
+      console.log("ANNUALLY LAST DAY: ", time.annuallyLastDay()._d);
+      console.log("ANNUALLY ANY DAY", time.annuallyAnyDay()._d);
+      console.log("ANNUALLY 5 DAYS FROM START :",time.annuallyDaysFromStart(5)._d);
+      console.log("ANNUALLY 13 DAYS FROM START :",time.annuallyDaysFromStart(13)._d);
+      console.log("ANNUALLY 26 DAYS FROM START :",time.annuallyDaysFromStart(26)._d);
+      console.log("ANNUALLY 2 DAYS BEFORE END :",time.annuallyDaysBeforeEnd(2)._d);
+      console.log("ANNUALLY 9 DAYS BEFORE END :",time.annuallyDaysBeforeEnd(9)._d);
+      console.log("ANNUALLY 17 DAYS BEFORE END :",time.annuallyDaysBeforeEnd(17)._d);
 
 
       return res.status(200).end();

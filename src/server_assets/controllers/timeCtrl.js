@@ -37,6 +37,10 @@ module.exports = {
     return moment().quarter();
   },
 
+  thisYear: function() {
+    return moment().year();
+  },
+
   nextMonth: function() {
     return moment().month() + 1;
   },
@@ -131,6 +135,33 @@ module.exports = {
     var nextQuarter = moment().quarter() + 1;
     return moment().quarter(nextQuarter).endOf("quarter").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
   },
+
+  annuallyFirstDay: function(){
+    var nextYear = moment().year() + 1;
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).year(nextYear).date(1);
+  },
+
+  annuallyLastDay: function() {
+    var nextYear = moment().year() + 1;
+    return moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  annuallyAnyDay: function() {
+    //defaults deadline to the last day of the month same function as monthlyLastDay.... we could do last business day as a strech
+    var nextYear = moment().year() + 1;
+    return moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  annuallyDaysFromStart: function(selectedDayOfMonth){
+    var nextYear = moment().year() + 1;
+    return moment().year(nextYear).date(selectedDayOfMonth).hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
+  annuallyDaysBeforeEnd: function(numDaysBefore){
+    var nextYear = moment().year() + 1;
+    return moment().year(nextYear).endOf("year").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  },
+
 
 
 
