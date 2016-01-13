@@ -21,86 +21,6 @@ const allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the 
 
 module.exports = {
 
-<<<<<<< HEAD
-    now: function () {
-        return moment();
-    },
-
-    today: function () {
-        return moment().day();
-    },
-
-    deadlineToday: function () {
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0);
-    },
-
-    triggeredProjectDeadline: function () {
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(daysToDeadline, 'days');
-    },
-
-    dateDeadline: function (date) {
-        return moment(date).hours(deadlineHour).minute(0).second(0).millisecond(0);
-    },
-
-    weeklyAnyDay: function () {
-        const lastDay = businessDays.sort().reverse()[0];
-        //This looks to last business day of week in company settings and puts deadline at the deadline hour of that day each week
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay + 7);
-    },
-
-    weeklySpecificDay: function (selectedDay) {
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay + 7);
-    },
-
-    biWeeklyAnyDay: function () {
-        const lastDay = businessDays.sort().reverse()[0];
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay + 14);
-    },
-
-    biWeeklySpecificDay: function (selectedDay) {
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay + 14);
-    },
-
-    monthlyFirstDay: function () {
-        return moment.hours(deadlineHour).minute(0).second(0).millisecond(0).date(1);
-    },
-
-    nextBusinessDay: function (date) {
-        const isIn = function (increaseDays) {
-            //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
-            const today = moment().day();
-            const nextBD = today + increaseDays;
-            let flag = false;
-            for (let i = 0; i < businessDays.length; i++) {
-                if (businessDays[i] === nextBD) {
-                    flag = true;
-                }
-            }
-            return flag;
-        };
-        for (let i = 1; i < 7; i++) {
-            if (isIn(i) === true) {
-                return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
-            }
-            return moment().add(1, "weeks").startOf('isoWeek').hours(deadlineHour);
-        }
-    },
-
-
-
-
-
-    // nextOccurance: function(intervalType) {
-    //
-    //   if(intervalType === "Daily"){
-    //     return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, 'days');
-    //   } else if( intevalType === 'Daily Business Days') {
-    //     return
-    //   }
-    //
-    // }
-};
-=======
   now: function() {
     return moment();
   },
@@ -242,27 +162,26 @@ module.exports = {
     return moment().year(nextYear).endOf("year").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
   },
 
-
-
-
-  // nextBusinessDay: function(date){
-  //   var isIn = function(increaseDays){
-  //     //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
-  //     var today = moment().day();
-  //     for(var i = 0; i < 7; i ++){
-  //       if (businessDays[today + i] === i){
-  //         return true;
-  //       }
-  //     }
-  //     return businessDays.includes(today + increaseDays);
-  //   };
-  //
-  //   for (var i = 1; i < 7; i ++){
-  //     if(isIn(i) === true){
-  //       return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
-  //     }
-  //   }
-  // }
+    nextBusinessDay: function (date) {
+        const isIn = function (increaseDays) {
+            //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
+            const today = moment().add(2, "days").day();
+            const nextBD = today + increaseDays;
+            let flag = false;
+            for (let i = 0; i < businessDays.length; i++) {
+                if (businessDays[i] === nextBD) {
+                    flag = true;
+                }
+            }
+            return flag;
+        };
+        for (let i = 1; i < 7; i++) {
+            if (isIn(i) === true) {
+                return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
+            }
+            return moment().add(1, "weeks").startOf('isoWeek').hours(deadlineHour);
+        }
+    },
 
 
 
@@ -276,4 +195,3 @@ module.exports = {
   //
   // }
 };
->>>>>>> origin
