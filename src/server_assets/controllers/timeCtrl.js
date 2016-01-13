@@ -1,6 +1,8 @@
 //Any day formulas default deadline to last business day
 //Specific day formulas allow for full range of user selection
 
+//We need to pass an "instance" argument to accomodate situations where the user may want this task to trigger in within current time period
+
 const mongoose = require('mongoose');
 const moment = require('moment');
 const daysToDeadline = 7;
@@ -81,9 +83,13 @@ module.exports = {
     return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).month(nextMonth).date(1);
   },
 
-  monthlyLastDay: function() {
-    var nextMonth = moment().month() + 1;
-    return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  monthlyLastDay: function(instance) {
+    if(instance === "first") {
+      return moment().endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    } else {
+      var nextMonth = moment().month() + 1;
+      return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    }
   },
 
   monthlyAnyDay: function() {
@@ -92,10 +98,7 @@ module.exports = {
     return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
   },
 
-  monthlyDaysFromStart: function(selectedDayOfMonth){
-    var nextMonth = moment().month() + 1;
-    return moment().month(nextMonth).date(selectedDayOfMonth).hours(deadlineHour).minute(0).second(0).millisecond(0);
-  },
+
 
   monthlyDaysBeforeEnd: function(numDaysBefore){
     var nextMonth = moment().month() + 1;
@@ -121,46 +124,130 @@ module.exports = {
   },
 
   quarterlyAnyDay: function() {
-    //defaults deadline to the last day of the month same function as monthlyLastDay.... we could do last business day as a strech
     var nextQuarter = moment().quarter() + 1;
     return moment().quarter(nextQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
   },
 
-  quarterlyDaysFromStart: function(selectedDayOfMonth){
-    var nextQuarter = moment().quarter() + 1;
-    return moment().quarter(nextQuarter).date(selectedDayOfMonth).hours(deadlineHour).minute(0).second(0).millisecond(0);
+  monthlyDaysFromStart: function(numDays,instance){
+    var nextMonth = moment().month() + 1;
+    var naturalInstance = moment().startOf('month').hours(deadlineHour).minute(0).second(0).millisecond(0).add(numDays -1, 'days');
+    var nextInstance = moment().month(nextMonth).startOf('month').hours(deadlineHour).minute(0).second(0).millisecond(0).add(numDays -1, 'days');
+
+    if(moment().isAfter(naturalInstance)){
+      return nextInstance;
+    } else if(instance === "first"){
+      return naturalInstance;
+    } else {
+      return nextInstance;
+    }
   },
+
+  quarterlyDaysFromStart: function(numDays, instance){
+    var nextQuarter = moment().quarter() + 1;
+    var naturalInstance = moment().startOf('quarter').hours(0).seconds(0).millisecond(0).add(numDays, 'days');
+    var nextInstance = moment().quarter(nextQuarter).date(1).hours(0).seconds(0).millisecond(0).add(numDays, 'days');
+
+    if(moment().isAfter(naturalInstance) === true){
+      return nextInstance;
+    } else if(instance === "first"){
+      return naturalInstance;
+    } else {
+      return nextInstance;
+    }
+  },
+
+  annuallyDaysFromStart: function(numDays, instance){
+    var nextYear = moment().year() + 1;
+    var naturalInstance = moment().startOf('year').hours(0).seconds(0).millisecond(0).add(numDays, 'days');
+    var nextInstance = moment().year(nextYear).startOf('year').hours(0).seconds(0).millisecond(0).add(numDays, 'days');
+
+    if(moment().isAfter(naturalInstance) === true){
+      return nextInstance;
+    } else if(instance === "first"){
+      return naturalInstance;
+    } else {
+      return nextInstance;
+    }
+  },
+
 
   quarterlyDaysBeforeEnd: function(numDaysBefore){
     var nextQuarter = moment().quarter() + 1;
     return moment().quarter(nextQuarter).endOf("quarter").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
   },
 
-  annuallyFirstDay: function(){
-    var nextYear = moment().year() + 1;
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).year(nextYear).date(1);
+  annuallyFirstDay: function(instance){
+      var nextYear = moment().year() + 1;
+      return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).year(nextYear).date(1);
   },
 
-  annuallyLastDay: function() {
-    var nextYear = moment().year() + 1;
-    return moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+  annuallyLastDay: function(instance) {
+    if(instance === "first"){
+      return moment().endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    } else {
+      var nextYear = moment().year() + 1;
+      return moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    }
   },
 
   annuallyAnyDay: function() {
-    //defaults deadline to the last day of the month same function as monthlyLastDay.... we could do last business day as a strech
     var nextYear = moment().year() + 1;
     return moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
   },
 
-  annuallyDaysFromStart: function(selectedDayOfMonth){
-    var nextYear = moment().year() + 1;
-    return moment().year(nextYear).date(selectedDayOfMonth).hours(deadlineHour).minute(0).second(0).millisecond(0);
-  },
 
   annuallyDaysBeforeEnd: function(numDaysBefore){
     var nextYear = moment().year() + 1;
     return moment().year(nextYear).endOf("year").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
   },
+
+
+  annuallyParticularMonth: function(selectedMonth, instance){
+    var nextYear = moment().year() + 1;
+    var naturalInstance =  moment().month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    var nextInstance = moment().year(nextYear).month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+
+    if(moment().isAfter(naturalInstance) === true){
+      return nextInstance;
+    } else if(instance === "first"){
+      return naturalInstance;
+    } else {
+      return nextInstance;
+    }
+  },
+
+  annuallyParticularQuarter: function(selectedQuarter, instance){
+    if(instance === "first"){
+      return moment().quarter(selectedQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    } else {
+      var nextYear = moment().year() + 1;
+      return moment().year(nextYear).quarter(selectedQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    }
+  },
+
+
+
+
+
+
+  // nextBusinessDay: function(date){
+  //   var isIn = function(increaseDays){
+  //     //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
+  //     var today = moment().day();
+  //     for(var i = 0; i < 7; i ++){
+  //       if (businessDays[today + i] === i){
+  //         return true;
+  //       }
+  //     }
+  //     return businessDays.includes(today + increaseDays);
+  //   };
+  //
+  //   for (var i = 1; i < 7; i ++){
+  //     if(isIn(i) === true){
+  //       return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
+  //     }
+  //   }
+  // }
 
     nextBusinessDay: function (date) {
         const isIn = function (increaseDays) {
@@ -182,6 +269,7 @@ module.exports = {
             return moment().add(1, "weeks").startOf('isoWeek').hours(deadlineHour);
         }
     },
+
 
 
 
