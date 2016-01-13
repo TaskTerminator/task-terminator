@@ -7,7 +7,7 @@ module.exports = {
 		Company.find().exec().then((result) => {
 			return res.json(result);
 		}).catch((err) => {
-			console.log(err)
+			console.log(err);
 			return res.status(500).end();
 		});
 	},
