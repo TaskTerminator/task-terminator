@@ -18,6 +18,12 @@
       button.btn.btn-lg.btn-danger(popover-animation="true" type="button" uib-popover="You have two incomplete projects." popover-title="Popover title" popover-trigger="focus") 2 Incomplete Scheduled Projects
     .col-md-4
       h3 Today's Projects
+      div.dashboard-projects
+        ul
+          li.text-left(ng-repeat="project in projects")
+            | Project Name: {{project.name}} <br>
+            | Description: {{project.description}} <br>
+            | Due Date: {{project.setup.dueDate.actual | date:'mediumDate'}}
     .col-md-4
       h3 Tomorrow's Projects
 
