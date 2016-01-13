@@ -4,9 +4,12 @@ const ProjectTask = require('../models/ProjectTask.js');
 
 module.exports = {
 
-  getTasks(req, res) {
-    console.log('GET - TASKS FOR PROJECT: ', req.params.id);
-    return res.status(200).end();
+  getTask(req, res) {
+      ProjectTask.findById({_id: req.params.id}).exec().then((result) => {
+          return res.json(result);
+      }).catch((err) => {
+          return res.status(500).end();
+      });
   }
 
 };
