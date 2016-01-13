@@ -87,6 +87,7 @@ module.exports = {
           .findOne({
             _id: req.params.companyid
           })
+          .populate('employees')
           .exec()
           .then(function(result) {
             console.log(result);
