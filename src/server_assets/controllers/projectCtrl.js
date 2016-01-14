@@ -6,13 +6,25 @@ const timeCtrl = require('../controllers/timeCtrl');
 module.exports = {
 
   newProject(req, res) {
-    const project = new Project(req.body);
-    project.save().then((result) => {
-      return res.json(result);
+    Template.findById(req.params.templateid).exec().then((template) => {
+
+      var template_plain = template.toObject();
+      delete template_plain._id;
+      delete template_plain.__v;
+
+      console.log(template_plain);
+        let newProject = new Project(template_plain);
+        newProject.description = req.body.description;
+        newProject.save().then(() => {
+            return res.status(200).end();
+        }).catch((err) => {
+          console.log("bad dog", err);
+            return res.status(500).end();
     }).catch((err) => {
-      return res.status(500).end();
+      console.log("badder dog", err);
     });
-  },
+  });
+},
 
   oneProject(req, res) {
     Project.findById(req.params.id).exec().then((result) => {

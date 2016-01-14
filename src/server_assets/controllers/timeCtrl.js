@@ -340,9 +340,5 @@ module.exports = {
         return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
     },
 
-    // makeProject: function(templateId, first) {
-        
-    // }
-
 
 };

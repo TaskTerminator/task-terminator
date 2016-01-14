@@ -8,8 +8,6 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   }();
 
 
-
-
   $scope.cssClass = 'page-yourTeam';
 
   $scope.openAddEmployeeModal = function() {
@@ -18,6 +16,18 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		templateUrl: "./templates/addNewEmployee.html",
       controller: 'YourTeamCtrl',
       size: 'lg'
+  	})
+  }
+
+  $scope.openEditEmployeeModal = function(employee) {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/editEmployee.html",
+      size: 'lg',
+      controller: function ($scope) {
+        $scope.employee = employee;
+        console.log(employee);
+      }
   	})
   }
 
