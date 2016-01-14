@@ -19,7 +19,7 @@
   .row
     div.employeeList    
       .list-group
-        a.list-group-item(ng-repeat='employee in employees' ng-click='openEditEmployeeModal(employee)')
+        a.list-group-item(ng-repeat='employee in employees | orderBy: "identification.name.fullName"' ng-click='openEditEmployeeModal(employee)')
           .row
             .col-xs-4
               | {{employee.identification.name.fullName}}
