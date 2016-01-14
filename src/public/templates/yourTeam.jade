@@ -3,5 +3,27 @@
     .col-md-12.text-center
       h1 Your Team
   .row
-    .col-sm-12
+    .col-sm-12.text-right
       button.btn.btn-primary.btn-lg(ng-click="openAddEmployeeModal()") Add new employee
+  .row
+    .col-sm-12
+      table.table
+        thead
+          tr
+            th 
+              | Employee Name
+            th
+              | Position/Department
+            th.text-center
+              | Due Date
+  .row
+    div.employeeList    
+      .list-group
+        a.list-group-item(href='#', ng-repeat='employee in employees')
+          .row
+            .col-xs-4
+              | {{employee.identification.name.fullName}}
+            .col-xs-4
+              | {{employee.positions}}/{{employee.departments}}
+            .col-xs-2
+              | {{task.dueDate | date}}
