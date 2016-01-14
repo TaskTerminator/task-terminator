@@ -1,7 +1,11 @@
 .container
   .row
     .col-md-4
-      button.btn.btn-default(type="button" ng-click="openModal()") Create New Project
+      button.btn.btn-default(type="button" ng-click="openSingleModal()") Single Instance Project
+    .col-md-4
+      button.btn.btn-default(type="button" ng-click="openScheduleModal()") Scheduled Project
+    .col-md-4
+      button.btn.btn-default(type="button" ng-click="openTemplateModal()") Create Template
   .row
     .col-sm-12
       hr(color: black;)
