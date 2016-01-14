@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const projectTaskSchema = new mongoose.Schema({
   name: {type: String, required: true},
   description: {type:String},
-  status: {type: String, enum: ['Complete', 'Incomplete'], default: 'Incomplete'},
+  status: {
+      complete: {type: Boolean, default:false}
+  },
   associatedProject : {type:String, ref:'Project'},
   date: {
     created: {type: Date, default: new Date()},
