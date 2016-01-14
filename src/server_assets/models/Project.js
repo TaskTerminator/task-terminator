@@ -12,6 +12,7 @@ const allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the 
 
 // This is the model for the Project creation
 const projectSchema = new mongoose.Schema({
+  //_id: {type:mongoose.Schema.Types.ObjectId, default: function () { return new mongoose.Schema.Types.ObjectId();} },
   //The name will be the same for all projects generated from the template
   name:{type:String},
   //Description is the  unique visual identifies of a project on the front end
