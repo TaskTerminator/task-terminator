@@ -8,7 +8,7 @@ const moment = require('moment');
 const daysToDeadline = 7;
 const deadlineHour = 17;
 //How can set this globally to here? Just putting in an array for now...... this needs to be translated to and array of numbers [0-7] where 0 === Sunday
-const businessDays = [1, 2, 3, 4, 5];
+const businessDays = [0, 1, 2, 3, 4, 5, 6, 7];
 
 const allowedDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const allowedFrequencies = ["Triggered", "Scheduled"];
@@ -332,16 +332,6 @@ module.exports = {
   //       if (businessDays[today + i] === i){
   //         return true;
   //       }
-  //     }
-  //     return businessDays.includes(today + increaseDays);
-  //   };
-  //
-  //   for (const i = 1; i < 7; i ++){
-  //     if(isIn(i) === true){
-  //       return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
-  //     }
-  //   }
-  // }
 
     nextBusinessDay: function (date) {
         const isIn = function (increaseDays) {
@@ -349,8 +339,8 @@ module.exports = {
             const today = moment().day();
             const nextBD = today + increaseDays;
             let flag = false;
-            for (let i = 0; i < businessDays.length; i++) {
-                if (businessDays[i] === nextBD) {
+            for (let i = 1; i < 6 ; i++) {
+                if (i === nextBD) {
                     flag = true;
                 }
             }
@@ -362,7 +352,9 @@ module.exports = {
         return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
     },
 
-
+    // nextOccurrence: function() {
+        
+    // }
 
 
 };
