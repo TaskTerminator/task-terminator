@@ -1,61 +1,29 @@
 const mongoose = require('mongoose');
 const Project = require('../models/Project.js');
 const Template = require('../models/Template');
-const timeCtrl = require('../controllers/timeCtrl'); 
+const timeCtrl = require('../controllers/timeCtrl');
 
 module.exports = {
 
   newProject(req, res) {
     Template.findById(req.params.templateid).exec().then((template) => {
-        let newProject = new Project();
-        newProject = {
-            name: template.name,
-            description: req.body.description,
-            setup: {
-                type: template.setup.type,
-                frequency: template.setup.frequency,
-            },
-            interval: {
-                type: template.interval.type,
-                weeklyInterval: template.interval.weeklyInterval,
-                monthlyInterval: {
-                    selection: template.interval.monthlyInterval.selection,
-                    fromBeginning: template.interval.monthlyInterval.fromBeginning,
-                    fromEnd: template.interval.monthlyInterval.fromEnd
-                },
-                annualInterval: {
-                    selection: template.interval.annualInterval.selection,
-                    fromBeginning: template.interval.annualInterval.fromBeginning,
-                    fromEnd: template.interval.annualInterval.fromEnd
-                },
-                quarterlyInterval: {
-                    selection: template.interval.quarterlyInterval.selection,
-                    fromBeginning: template.interval.quarterlyInterval.fromBeginning,
-                    fromEnd: template.interval.quarterlyInterval.fromEnd
-                },
-                semiMonthlyInterval: {
-                    selection: template.interval.semiMonthlyInterval.selection,
-                    fromBeginning: template.interval.semiMonthlyInterval.fromBeginning,
-                    fromEnd: template.interval.semiMonthlyInterval.fromEnd
-                },
-               
-            critical: template.critical
-            } 
-        };
+
+      var template_plain = template.toObject();
+      delete template_plain._id;
+      delete template_plain.__v;
+
+      console.log(template_plain);
+        let newProject = new Project(template_plain);
+        newProject.description = req.body.description;
         newProject.save().then(() => {
             return res.status(200).end();
         }).catch((err) => {
+          console.log("bad dog", err);
             return res.status(500).end();
+    }).catch((err) => {
+      console.log("badder dog", err);
     });
-    // const project = new Project(req.body);
-    // project.save().then((result) => {
-    //   return res.json(result);
-    // }
-    // ).catch((err) => {
-    //   return res.status(500).end();
-    // }
-    // );
-  })
+  });
 },
 
   oneProject(req, res) {
