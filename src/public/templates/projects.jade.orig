@@ -1,0 +1,41 @@
+.container
+<<<<<<< HEAD
+  script(type="text/ng-template" id="myModalContent.jade")
+    .container(style="padding-top: 20px;")
+      .row
+        .col-md-4
+          .form-group
+            h4 Project Name: 
+            input(type="text" placeholder="Project Name" ng-model="name")
+          hr
+          .form-group  
+            h4 Description: 
+            input(type="text" placeholder="Project Description" ng-model="description")
+          hr
+          div  
+            h4 Single Instance? :
+            button.btn.btn-success(type="button" ng-click="change()" ng-disabled="!meh") Yes
+            button.btn.btn-danger(type="button" ng-click="change()" ng-disabled="meh") No
+          hr
+          .form-group
+            h4(ng-show="meh") Single
+            h4(ng-hide="meh") Multiple
+=======
+>>>>>>> fb4f888b25c48af6b0ce34d117f7d49e5010f4b4
+  .row
+    .col-md-4
+      button.btn.btn-default(type="button" ng-click="openModal()") Create New Project
+  .row
+    .col-sm-12
+      hr(color: black;)
+  .row
+    .col-md-4
+      .box-wrapper(style="margin: 25px auto;" ng-click="openModal2()")
+        .project-thing
+    .col-md-4
+      .box-wrapper(style="margin: 25px auto;" ng-click="openModal2()")
+        .project-thing
+    .col-md-4
+      .box-wrapper(style="margin: 25px auto;" ng-click="openModal2()")
+        .project-thing        
+  
