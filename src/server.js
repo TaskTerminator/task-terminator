@@ -23,8 +23,6 @@ const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl.j
 const slackCtrl = require('./server_assets/controllers/slackCtrl.js');
 const testTimeCtrl = require('./server_assets/controllers/testTimeCtrl.js');
 
-
-//what is this for?
 mongoose.Promise = require('q').Promise;
 
 //----------Middleware------------//

@@ -1,4 +1,5 @@
 .container
+<<<<<<< HEAD
   script(type="text/ng-template" id="myModalContent.jade")
     .container(style="padding-top: 20px;")
       .row
@@ -19,6 +20,8 @@
           .form-group
             h4(ng-show="meh") Single
             h4(ng-hide="meh") Multiple
+=======
+>>>>>>> fb4f888b25c48af6b0ce34d117f7d49e5010f4b4
   .row
     .col-md-4
       button.btn.btn-default(type="button" ng-click="openModal()") Create New Project

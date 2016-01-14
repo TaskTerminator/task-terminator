@@ -1,0 +1,30 @@
+.singleProject(style="margin:0 auto;")
+  h1.text-center Project Title
+  hr
+  .text-center
+      h2 Project Description
+  .text-center.dueDate
+      h4 Due Date
+
+.panel.panel-default(style="margin:0 25px;")
+  .panel-body
+    table.table
+      thead 
+        tr
+          th(id="th-one" class="text-center" style="padding-left:40px;")
+            | Task Name
+          th(id="th-two" class="text-right" style="padding=0;")
+            | Description
+          th(id="th-three" class="text-right" style="padding-right:18px;padding-left:0;")
+            | Due Date
+    .list-group
+        a(href="#" class="list-group-item" ng-repeat="project in projects")
+          .row
+            .col-xs-6
+              | {{project.name}}
+            
+            .col-xs-4.text-center(style="padding:0;")
+              | {{project.description}}
+            
+            .col-xs-2.text-center(style="padding:0")
+              | {{project.setup.dueDate.actual | date:'mediumDate'}}
