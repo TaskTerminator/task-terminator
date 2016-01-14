@@ -313,27 +313,6 @@ module.exports = {
     }
   },
 
-  nextBusinessDay: function(date) {
-    const isIn = function(increaseDays) {
-      //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
-      const today = moment().day();
-      const nextBD = today + increaseDays;
-      let flag = false;
-      for (let i = 0; i < businessDays.length; i++) {
-        if (businessDays[i] === nextBD) {
-          flag = true;
-        }
-      }
-      return flag;
-    };
-    for (let i = 1; i < 7; i++) {
-      if (isIn(i) === true) {
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
-      }
-      return moment().add(1, "weeks").startOf('isoWeek').hours(deadlineHour);
-    }
-  },
-
   semiMonthlyFirstCycle: function(selectedDate) {
     return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(selectedDate);
   },
@@ -343,6 +322,47 @@ module.exports = {
   },
 
 
+
+
+  // nextBusinessDay: function(date){
+  //   var isIn = function(increaseDays){
+  //     //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
+  //     var today = moment().day();
+  //     for(var i = 0; i < 7; i ++){
+  //       if (businessDays[today + i] === i){
+  //         return true;
+  //       }
+  //     }
+  //     return businessDays.includes(today + increaseDays);
+  //   };
+  //
+  //   for (var i = 1; i < 7; i ++){
+  //     if(isIn(i) === true){
+  //       return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
+  //     }
+  //   }
+  // }
+
+    nextBusinessDay: function (date) {
+        const isIn = function (increaseDays) {
+            //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
+            const today = moment().day();
+            const nextBD = today + increaseDays;
+            let flag = false;
+            for (let i = 0; i < businessDays.length; i++) {
+                if (businessDays[i] === nextBD) {
+                    flag = true;
+                }
+            }
+            return flag;
+        };
+        for (let i = 1; i < 7; i++) {
+            if (isIn(i) === true) {
+                return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(i, 'days');
+            }
+        }
+        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
+    },
 
 
 

@@ -9,10 +9,24 @@ module.exports = {
       console.log("NOW : ", time.now()._d);
       console.log("TODAY - DAY OF WEEK: ",  time.dayOfWeek());
       console.log("THIS MONTH : ", time.thisMonth());
-      console.log("THIS QUARTER", time.thisQuarter());
-      console.log("THIS YEAR ", time.thisYear());
+      console.log("THIS QUARTER:", time.thisQuarter());
+      console.log("THIS YEAR: ", time.thisYear());
       console.log("NEXT MONTH : ", time.nextMonth());
       console.log("NEXT BUSINESS DAY", time.nextBusinessDay()._d);
+      console.log("NEXT BUSINESS DAY:", time.nextBusinessDay()._d);
+      console.log("WEEKLY ANY DAY: ", time.weeklyAnyDay()._d);
+      console.log("WEEKLY SPECIFIC DAY - MON: ", time.weeklySpecificDay(1)._d);
+      console.log("WEEKLY SPECIFIC DAY - WED: ", time.weeklySpecificDay(3)._d);
+      console.log("WEEKLY SPECIFIC DAY - FRI: ", time.weeklySpecificDay(5)._d);
+      console.log("BIWEEKLY ANY DAY: ", time.biWeeklyAnyDay()._d);
+      console.log("BIWEEKLY SPECIFIC DAY - MON: ", time.biWeeklySpecificDay(1)._d);
+      console.log("BIWEEKLY SPECIFIC DAY - WED: ", time.biWeeklySpecificDay(3)._d);
+      console.log("BIWEEKLY SPECIFIC DAY - FRI: ", time.biWeeklySpecificDay(5)._d);
+      console.log("MONTHLY FIRST DAY: ", time.monthlyFirstDay()._d);
+      console.log(" ");
+      console.log("FIRST MONTHLY LAST DAY: ", time.monthlyLastDay("first")._d);
+      console.log("NEXT  MONTHLY LAST DAY: ", time.monthlyLastDay()._d);
+      console.log(" ");
 
       console.log(" ");
       console.log("WEEKLY ANY DAY first : ", time.weeklyAnyDay("first")._d);
