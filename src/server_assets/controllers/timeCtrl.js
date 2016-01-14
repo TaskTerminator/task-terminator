@@ -321,18 +321,6 @@ module.exports = {
     return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(firstCycleDate + 15);
   },
 
-
-
-
-  // nextBusinessDay: function(date){
-  //   const isIn = function(increaseDays){
-  //     //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
-  //     const today = moment().day();
-  //     for(const i = 0; i < 7; i ++){
-  //       if (businessDays[today + i] === i){
-  //         return true;
-  //       }
-
     nextBusinessDay: function (date) {
         const isIn = function (increaseDays) {
             //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
@@ -352,9 +340,9 @@ module.exports = {
         return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
     },
 
-    makeProject: function(templateId, first) {
+    // makeProject: function(templateId, first) {
         
-    }
+    // }
 
 
 };
