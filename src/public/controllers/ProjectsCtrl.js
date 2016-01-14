@@ -13,7 +13,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
   };
 
   $scope.change = function() {
-  	$scope.yes = !$scope.yes;
+  	$scope.meh = !$scope.meh;
   };
 
   $scope.openModal2 = function() {
@@ -27,6 +27,14 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
+  };
+
+  $scope.addTask = function() {
+    $scope.showTaskBox = !$scope.showTaskBox;
+  };
+
+  $scope.cancelAddTask = function() {
+    $scope.showTaskBox = !$scope.showTaskBox;
   };
 
 });
