@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
-const time = require('../controllers/timeCtrl.js');
+const time = require('./timeCtrl.js');
 
 module.exports = {
 

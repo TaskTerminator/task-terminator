@@ -11,11 +11,6 @@
             | Description:  
           input.form-control(type="text" ng-model="description" id="descriptionField")
         .form-group
-          label(for="singleInstance")
-            | Check if Single Instance:  
-          input(type="checkbox" ng-model="checked" ng-init="checked=true")
-          br
-          div.animate-if(ng-if="checked")
             button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
               span(type="text" ng-if="!showTaskBox") Add Task
               span(type="text" ng-if="showTaskBox") Cancel Task
@@ -43,14 +38,6 @@
                 //-ul
                 //-li(ng-repeat="project.tasks in projects") 
             .form-group
-              label(for="startDateField")
-                | Start Date:  
-                p.input-group
-                  input(type="text" class="form-control" uib-datepicker-popup="{{format}}"  is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="createdDateField")
-                  span.input-group-btn
-                    button(type="button" class="btn btn-default" ng-click="open1()")
-                      i.glyphicon.glyphicon-calendar
-            .form-group
               label(for="actualDateField")
                 | Actual Due Date:  
                 p.input-group
@@ -66,16 +53,6 @@
                   span.input-group-btn
                     button(type="button" class="btn btn-default" ng-click="open1()")
                       i.glyphicon.glyphicon-calendar
-          div.animate-if(ng-if="!checked") Multiple Instance Stuff
-            .form-group
-              label(for="frequencyField")
-                | frequency:  
-              select.form-control(ng-model="frequency" id="frequencyField")
-                option
-                  | By Date
-                option
-                  | By Interval
-        
-        
+        button.btn.btn-success(type="button" ng-click="postProject()") Submit
 
           
