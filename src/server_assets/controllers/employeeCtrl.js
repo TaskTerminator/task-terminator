@@ -84,17 +84,17 @@ module.exports = {
   allEmployees(req, res) {
     console.log('GET - ALL EMPLOYEES ENDPOINT');
     Company
-          .findOne({
-            _id: req.params.companyid
-          })
-          .populate('employees')
-          .exec()
-          .then(function(result) {
-            console.log(result);
-            return res.json(result.employees);
-          }).catch((err) => {
+      .findOne({
+        _id: req.params.companyid
+      })
+      .populate('employees')
+      .exec(function(err, company) {
+
+        Employee.populate(company.employees, {path:'positions', select:'name'}, function(err, docs) {
+          return res.json(docs);
+        });
+      }).catch((err) => {
       return res.status(500).end();
     });
   }
-
 };
