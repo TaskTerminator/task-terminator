@@ -47,10 +47,11 @@
             label(for="startField")
               | Start Date:  
               p.input-group
-                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="startDate")
+                input.form-control(type='date' uib-datepicker-popup ng-model='dt' is-open='popup1.opened' min-date='minDate' max-date='maxDate' datepicker-options='dateOptions' date-disabled="disabled(date, mode)" ng-required='true' close-text='Close')
                 span.input-group-btn
-                  button.btn.btn-default(type="button" ng-click="open1()")
+                  button.btn.btn-default(type='button' ng-click='open1($event)')
                     i.glyphicon.glyphicon-calendar
+
           .form-group
             label(for="actualDateField")
               | Actual Due Date:  
@@ -93,7 +94,7 @@
             label(for="startField")
               | Start Date:
               p.input-group
-                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="startDate")
+                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="startDate")
                 span.input-group-btn
                   button.btn.btn-default(type="button" ng-click="open1()")
                     i.glyphicon.glyphicon-calendar
@@ -103,7 +104,7 @@
               p.input-group
                 input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
                 span.input-group-btn
-                  button.btn.btn-default(type="button" ng-click="open1()")
+                  button.btn.btn-default(type="button" ng-click="open2()")
                     i.glyphicon.glyphicon-calendar
           .form-group
             label(for="anticipatedDateField")
@@ -111,7 +112,5 @@
               p.input-group
                 input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
                 span.input-group-btn
-                  button.btn.btn-default(type="button" ng-click="open1()")
+                  button.btn.btn-default(type="button" ng-click="open3()")
                     i.glyphicon.glyphicon-calendar
-
-
