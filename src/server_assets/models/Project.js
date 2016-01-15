@@ -8,6 +8,7 @@ const allowedAnnuallyIntervals = ["First Day of the Year", "Last Day of the Year
 const allowedWeeklyIntervals = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Any'];
 const allowedSemiMonthlyIntervals = ["1st","2nd", "3rd", "4th", "5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th"];
 const allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the Quarter", "# Days from Start", "# Days from End", "Any" ];
+const targets = ['Today', '# Days from Today', 'Specific Date' ];
 
 
 // This is the model for the Project creation
@@ -32,8 +33,9 @@ const projectSchema = new mongoose.Schema({
       frequency:  {type: String, enum: ['By Date','By Interval']},
       //Due date will require function based on user selection. Will be stand in for next instance or selected day.
       dueDate: {
-        actual: {type:Date, default: new Date()},
-        anticipated: {type:Date, default: new Date()},
+          actual: {type:Date, default: new Date()},
+          anticipated: {type:Date, default: new Date()},
+          target: {type: String, enum: targets}
       },
       interval : {
           type: {type: String, enum: allowedIntervalTypes},
@@ -60,7 +62,6 @@ const projectSchema = new mongoose.Schema({
             fromEnd: {}
           }
       },
-      intervalType: {type: String, enum: allowedIntervalTypes},
       critical: {type: Boolean, default: false}
   }
 });
