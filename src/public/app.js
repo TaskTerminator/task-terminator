@@ -80,6 +80,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         });
 
     $urlRouterProvider
-        .otherwise('/home');
+        .otherwise('/dashboard');
 
 });

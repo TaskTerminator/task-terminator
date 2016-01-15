@@ -1,4 +1,15 @@
-angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uibModal) {
+angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uibModal, ProjectsSvc) {
+
+////////////////////////////////////////
+
+  $scope.getProjects = function() {
+    ProjectsSvc.getProjects().then(function(res) {
+      console.log(res)
+      $scope.projects = res.data;
+    });
+  }();
+
+////////////////////////////////////////
 
   $scope.cssClass = 'page-projects';
   $scope.yes = !$scope.yes;
@@ -25,11 +36,13 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
   	$scope.meh = !$scope.meh;
   };
 
-  $scope.openModal2 = function() {
+  $scope.openModal = function(project) {
   	var modalInstance = $uibModal.open({
   		animation: true,
   		templateUrl: "./templates/singleProject.html",
-      controller: 'ProjectsCtrl',
+      controller: function ($scope) {
+        $scope.project = project;
+      },
       size: 'lg'
   	})
   }
