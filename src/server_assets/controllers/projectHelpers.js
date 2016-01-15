@@ -105,9 +105,6 @@ module.exports = {
         if (template_plain.setup.dueDate.target === 'Today') {
             date = timeCtrl.deadlineToday();
         }
-        else if (template_plain.setup.dueDate.target === '# Days from Today') {
-            date = timeCtrl.triggeredProjectDeadline();
-        }
         else if (template_plain.setup.dueDate.target === 'Specific Date') {
             date = timeCtrl.dateDeadline(date);
         }
