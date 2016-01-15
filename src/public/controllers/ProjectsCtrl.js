@@ -21,6 +21,15 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
     })
   };
 
+  $scope.openTemplateModal = function() {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: "./templates/projectTemplates.html",
+      controller: "ProjectsCtrl",
+      size: "lg"
+    })
+  }
+
   $scope.change = function() {
   	$scope.meh = !$scope.meh;
   };
