@@ -1,0 +1,116 @@
+.container(style="padding-top: 20px;")
+  .row
+    .col-md-4.col-md-offset-2
+      button.btn.btn-default(type="button" ng-click="date = !date" ng-disabled="date") By Date
+      button.btn.btn-default(type="button" ng-click="date = !date" ng-disabled="!date") By Interval
+  .row
+    .col-md-4
+      form
+        .form-group
+          label(for="addProjectField")
+            | Project Name: 
+          input.form-control(type="text" ng-model="name" id="addProjectField")
+        .form-group
+          label(for="descriptionField")
+            | Description:
+          input.form-control(type="text")
+        .form-group
+            button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
+              span(type="text" ng-if="!showTaskBox") Add Task
+              span(type="text" ng-if="showTaskBox") Cancel Task
+            div.animate-if(ng-if="showTaskBox")
+              label(for="taskName")
+                | Task Name:
+              input.form-control(type="text" ng-model="name" id="taskName")
+              label(for="taskDesc")
+                | Task Description:
+              input.form-control(type="text" ng-model="description" id="taskDesc")
+              label(for="taskAssign")
+                | Assign To:
+              select.form-control(ng-model="taskAssign" id="assignField")
+                option
+                  | Department
+                option
+                  | Role
+                option
+                  | Individual
+              button.btn.btn-success(type="button" ng-click="addTask()") Submit
+            .form-group
+              label(for="tasksField")
+                | Tasks: 
+                //-div
+                //-ul
+                //-li(ng-repeat="project.tasks in projects")
+        .animate-if(ng-if="date")
+          h4 By Date
+          .form-group
+            label(for="startField")
+              | Start Date:  
+              p.input-group
+                input.form-control(type='date' uib-datepicker-popup ng-model='dt' is-open='popup1.opened' min-date='minDate' max-date='maxDate' datepicker-options='dateOptions' date-disabled="disabled(date, mode)" ng-required='true' close-text='Close')
+                span.input-group-btn
+                  button.btn.btn-default(type='button' ng-click='open1($event)')
+                    i.glyphicon.glyphicon-calendar
+
+          .form-group
+            label(for="actualDateField")
+              | Actual Due Date:  
+              p.input-group
+                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
+                span.input-group-btn
+                  button.btn.btn-default(type="button" ng-click="open2()")
+                    i.glyphicon.glyphicon-calendar
+          .form-group
+            label(for="anticipatedDateField")
+              | Anticipated Due Date:  
+              p.input-group
+                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
+                span.input-group-btn
+                  button.btn.btn-default(type="button" ng-click="open3()")
+                    i.glyphicon.glyphicon-calendar
+        .animate-if(ng-if="!date")
+          h4 By Interval
+          .form-group
+            label(for="intervalField")
+              | Interval
+              select.form-control(ng-model="interval" id="intervalField")
+                option
+                  | Daily
+                option
+                  | Daily\(Business Days)
+                option 
+                  | Weekly
+                option
+                  | Bi-Weekly
+                option
+                  | Monthly
+                option
+                  | Semi-Monthly
+                option
+                  | Quarterly
+                option
+                  |Annually
+          .form-group
+            label(for="startField")
+              | Start Date:
+              p.input-group
+                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="startDate")
+                span.input-group-btn
+                  button.btn.btn-default(type="button" ng-click="open1()")
+                    i.glyphicon.glyphicon-calendar
+          .form-group
+            label(for="actualDateField")
+              | Actual Due Date:  
+              p.input-group
+                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
+                span.input-group-btn
+                  button.btn.btn-default(type="button" ng-click="open2()")
+                    i.glyphicon.glyphicon-calendar
+          .form-group
+            label(for="anticipatedDateField")
+              | Anticipated Due Date:  
+              p.input-group
+                input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
+                span.input-group-btn
+                  button.btn.btn-default(type="button" ng-click="open3()")
+                    i.glyphicon.glyphicon-calendar

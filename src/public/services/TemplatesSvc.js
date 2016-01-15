@@ -1,9 +1,9 @@
 angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
 ////////////////////////
-// Task Template Calls
+//  Template Calls
 ////////////////////////
-  this.getTaskTemplates = function () {
+  this.getTemplates = function () {
 
     var defer = $q.defer();
 
@@ -19,7 +19,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.getOneTaskTemplate = function (id) {
+  this.getOneTemplate = function (id) {
 
     var defer = $q.defer();
 
@@ -35,7 +35,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.postTaskTemplate = function () {
+  this.postTemplate = function () {
     var defer = $q.defer();
 
     $http({
@@ -51,7 +51,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.editTaskTemplate = function () {
+  this.editTemplate = function () {
     var defer = $q.defer();
 
     $http({
@@ -67,7 +67,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.deleteTaskTemplate = function (id) {
+  this.deleteTemplate = function (id) {
     var defer = $q.defer();
 
     $http({
