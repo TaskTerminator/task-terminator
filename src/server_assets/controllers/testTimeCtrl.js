@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const moment = require('moment');
-const time = require('../controllers/timeCtrl.js');
+const time = require('./timeCtrl.js');
 
 module.exports = {
 
@@ -12,7 +12,6 @@ module.exports = {
       console.log("THIS QUARTER:", time.thisQuarter());
       console.log("THIS YEAR: ", time.thisYear());
       console.log("NEXT MONTH : ", time.nextMonth());
-      console.log("NEXT BUSINESS DAY", time.nextBusinessDay()._d);
       console.log("NEXT BUSINESS DAY:", time.nextBusinessDay()._d);
       console.log("WEEKLY ANY DAY: ", time.weeklyAnyDay()._d);
       console.log("WEEKLY SPECIFIC DAY - MON: ", time.weeklySpecificDay(1)._d);

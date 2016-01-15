@@ -84,17 +84,32 @@ module.exports = {
   allEmployees(req, res) {
     console.log('GET - ALL EMPLOYEES ENDPOINT');
     Company
-          .findOne({
-            _id: req.params.companyid
-          })
-          .populate('employees')
-          .exec()
-          .then(function(result) {
-            console.log(result);
-            return res.json(result.employees);
-          }).catch((err) => {
+      .findOne({
+        _id: req.params.companyid
+      })
+      .populate('employees')
+      .exec(function(err, company) {
+        var employeeArr = [];
+        var employeeDepArr = [];
+        Employee.populate(company.employees, [{path:'positions', select:'name'}, {path:'departments', select:'name'}], function(err, docs) {
+          return res.json(docs);
+        });
+        // Employee.populate(company.employees, {path: 'departments', select: 'name'}, function(err, depdocs) {
+        //   employeeDepArr = res.json(depdocs);
+        // });
+
+        //  for (var i = 0; i < employeeArr.length; i++) {
+        //   for (var y = 0; y < employeeDepArr.length; y++) {
+        //     if (employeeArr[i].name === employeeDepArr[y].name) {
+        //       employeeArr[i].departments = employeeDepArr[y].departments;
+        //       break;
+        //     }
+        //   }
+        // }
+
+        // return employeeArr;
+      }).catch((err) => {
       return res.status(500).end();
     });
   }
-
 };

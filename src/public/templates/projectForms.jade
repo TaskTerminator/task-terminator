@@ -11,62 +11,48 @@
             | Description:  
           input.form-control(type="text" ng-model="description" id="descriptionField")
         .form-group
-          label(for="statusField")
-            | Status:  
-          select.form-control(ng-model="status" id="statusField")
-            option
-              | Complete
-            option
-              | Incomplete
-        .form-group
-          label(for="tasksField")
-            | Tasks: 
-          //- div
-          //-   ul
-          //-     li(ng-repeat="project.tasks in projects") 
-        .form-group
-          label(for="createdDateField")
-            | Created Date:  
-            p.input-group
-                input(type="text" class="form-control" uib-datepicker-popup="{{format}}"  is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="createdDateField")
-                span.input-group-btn
-                  button(type="button" class="btn btn-default" ng-click="open1()")
-                    i.glyphicon.glyphicon-calendar
-        .form-group
-          label(for="typeField")
-            | Timetable:  
-          select.form-control(ng-model="type" id="typeField")
-            option
-              | Single
-            option
-              | Triggered
-            option
-              | Scheduled
-        .form-group
-          label(for="frequencyField")
-            | frequency:  
-          select.form-control(ng-model="frequency" id="frequencyField")
-            option
-              | By Date
-            option
-              | By Interval
-        .form-group
-          label(for="actualDateField")
-            | Actual Due Date:  
-            p.input-group
-                input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
-                span.input-group-btn
-                  button(type="button" class="btn btn-default" ng-click="open1()")
-                    i.glyphicon.glyphicon-calendar
-        .form-group
-          label(for="anticipatedDateField")
-            | Anticipated Due Date:  
-            p.input-group
-                input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
-                span.input-group-btn
-                  button(type="button" class="btn btn-default" ng-click="open1()")
-                    i.glyphicon.glyphicon-calendar
-        
-        
+            button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
+              span(type="text" ng-if="!showTaskBox") Add Task
+              span(type="text" ng-if="showTaskBox") Cancel Task
+            div.animate-if(ng-if="showTaskBox")
+              label(for="taskName")
+                | Task Name:
+              input.form-control(type="text" ng-model="name" id="taskName")
+              label(for="taskDesc")
+                | Task Description:
+              input.form-control(type="text" ng-model="description" id="taskDesc")
+              label(for="taskAssign")
+                | Assign To:
+              select.form-control(ng-model="taskAssign" id="assignField")
+                option
+                  | Department
+                option
+                  | Role
+                option
+                  | Individual
+              button.btn.btn-success(type="button" ng-click="addTask()") Submit
+            .form-group
+              label(for="tasksField")
+                | Tasks: 
+                //-div
+                //-ul
+                //-li(ng-repeat="project.tasks in projects") 
+            .form-group
+              label(for="actualDateField")
+                | Actual Due Date:  
+                p.input-group
+                  input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
+                  span.input-group-btn
+                    button(type="button" class="btn btn-default" ng-click="open1()")
+                      i.glyphicon.glyphicon-calendar
+            .form-group
+              label(for="anticipatedDateField")
+                | Anticipated Due Date:  
+                p.input-group
+                  input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
+                  span.input-group-btn
+                    button(type="button" class="btn btn-default" ng-click="open1()")
+                      i.glyphicon.glyphicon-calendar
+        button.btn.btn-success(type="button" ng-click="postProject()") Submit
 
           
