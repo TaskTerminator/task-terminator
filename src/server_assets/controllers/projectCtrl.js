@@ -6,40 +6,53 @@ const TemplateTask = require('../models/TemplateTask.js');
 const timeCtrl = require('../controllers/timeCtrl');
 const helpers = require('../controllers/projectHelpers');
 const _ = require('underscore');
+const Q = require('q');
 
 
 module.exports = {
 
   newProject(req, res) {
+    console.log("#1 - New Project Function Called");
     var templateId = req.params.templateid;
     var instance = req.body.instance;
-
+    var associatedProjectId;
+    var newProject;
     helpers.makeProjectObject(templateId)
       .then((cleanObject) => {
-        var newProject = new Project(cleanObject);
-        var associatedProjectId = newProject._id;
+        console.log("#3 - Make Project Object Returned: ", cleanObject);
+        newProject = new Project(cleanObject);
+        console.log("#4 - New Project Id : ", newProject._id);
+        associatedProjectId = newProject._id;
+        console.log("#5 - associatedProjectId :", associatedProjectId);
         return helpers.nextOccurrence(cleanObject, instance);
       })
       .then((deadline) => {
+        console.log("#14 - Next Occurance Returned: ", deadline);
         newProject.setup.dueDate.actual = deadline;
-        return helpers.getTaskArray(templateid);
+        console.log("#15 - New Project Deadline Set : ", newProject.setup.dueDate.actual);
+        return helpers.getTaskArray(templateId);
       })
       .then((arrayofIds) => {
+        console.log("#17 - Returned From Task Array Helper ", arrayofIds);
         //for every id, make a new project task
         var new_tasks_promises = _.map(arrayofIds, function(id) {
+          console.log("Array of Ids ID ", id);
           return helpers.makeTemplateTaskObject(id, associatedProjectId);
         });
         //new_tasks_promises now contains an array of promises which will be resolved as each of the tasks are created
-        return q.all(new_tasks_promises);
+        console.log("#19 - Array of New Task Promises", new_tasks_promises);
+        return Q.all(new_tasks_promises);
       })
       .then((clean_objects) =>{
-        return q.all(_.map(clean_objects, (clean_object) => {
-          return helpers.makeProjectTask(clean_object);
+        console.log("#20 - Array of New Task Objects", clean_objects);
+        return Q.all(_.map(clean_objects, (clean_object) => {
+          return helpers.makeProjectTask(clean_object, associatedProjectId);
         }));
       })
       .spread((project_tasks) => {
+        console.log("#22 - Project Tasks", project_tasks);
         //take tasks, put in Project, save
-
+        console.log("Made it!");
       });
 
 
