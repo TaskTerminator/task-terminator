@@ -32,8 +32,8 @@ const projectSchema = new mongoose.Schema({
       frequency:  {type: String, enum: ['By Date','By Interval']},
       //Due date will require function based on user selection. Will be stand in for next instance or selected day.
       dueDate: {
-        actual: {type:Date},
-        anticipated: {type:Date},
+        actual: {type:Date, default: new Date()},
+        anticipated: {type:Date, default: new Date()},
       },
       interval : {
           type: {type: String, enum: allowedIntervalTypes},

@@ -4,25 +4,38 @@ const Template = require('../models/Template.js');
 
 module.exports = {
 
-  getTaskArray: function(id) {
-    Template.findById(id)
-      .exec()
-      .then((template) => {
-        const taskArray = template.tasks;
-        return taskArray;
-      });
-  },
+    getTaskArray(id) {
+        Template.findById(id)
+            .exec()
+            .then((template) => {
+                const taskArray = template.tasks;
+                return taskArray;
+            });
+    },
+    
+    makeTemplateTaskObject(id) {
+        TemplateTask.findById(id)
+            .exec()
+            .then((returnedTask) => {
+                console.log("ORIGINAL TASK PRE MANIPULATION", returnedTask);
+                const task_plain = returnedTask.toObject();
+                delete task_plain._id;
+                delete task_plain.__v;
+                delete task_plain.date.created;
+                return task_plain;
+            });
+    },
 
-  makeProjectObject: function(id){
-    Template.findById(id)
-      .exec()
-      .then((template) =>{
-        var new_Object = template.toObject();
-        delete new_Object._id;
-        delete new_Object.__v;
-        return new_Object;
-      });
-  },
+    makeProjectObject(id){
+        Template.findById(id)
+            .exec()
+            .then((template) =>{
+                var new_Object = template.toObject();
+                delete new_Object._id;
+                delete new_Object.__v;
+                return new_Object;
+            });
+    },
     
     nextOccurrence(instance) {
         let date = '';
@@ -85,6 +98,10 @@ module.exports = {
     };
         date = template_plain.setup.dueDate.actual;
         return date;
+    },
+    
+    triggeredProject() {
+        
     },
 
 };
