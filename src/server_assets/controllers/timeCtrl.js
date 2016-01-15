@@ -12,7 +12,7 @@ const businessDays = [0, 1, 2, 3, 4, 5, 6, 7];
 
 const allowedDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const allowedFrequencies = ["Triggered", "Scheduled"];
-const allowedIntervalTypes = ['Daily', 'Daily Business Days', 'Weekly', 'Bi-Weekly', 'Monthly', 'Semi-Montly', 'Quarterly', 'Annually'];
+const allowedIntervalTypes = ['Daily', 'Daily Business Days', 'Weekly', 'Bi-Weekly', 'Monthly', 'Semi-Monthly', 'Quarterly', 'Annually'];
 const allowedMonthlyIntervals = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const allowedAnnuallyIntervals = ["First Day of the Year", "Last Day of the Year", "Any Day of the year", "In a Particular Month", "In a Particular Quarter", "# of Days From Start", "# of Days Before end"];
 const allowedWeeklyIntervals = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Any'];
@@ -115,6 +115,7 @@ module.exports = {
 
   monthlyFirstDay: function() {
     const nextMonth = moment().month() + 1;
+      console.log(moment().hours(deadlineHour).minute(0).second(0).millisecond(0).month(nextMonth).date(1));
     return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).month(nextMonth).date(1);
   },
 
@@ -321,24 +322,24 @@ module.exports = {
     return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(firstCycleDate + 15);
   },
 
-    nextBusinessDay: function (date) {
-        const isIn = function (increaseDays) {
-            //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
-            const today = moment().day();
-            const nextBD = today + increaseDays;
-            let flag = false;
-            for (let i = 1; i < 6 ; i++) {
-                if (i === nextBD) {
-                    flag = true;
-                }
+nextBusinessDay: function (date) {
+    const isIn = function (increaseDays) {
+        //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
+        const today = moment().day();
+        const nextBD = today + increaseDays;
+        let flag = false;
+        for (let i = 1; i < 6 ; i++) {
+            if (i === nextBD) {
+                flag = true;
             }
-            return flag;
-        };
-        if (isIn(1) === true) {
-            return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, 'days');
         }
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
-    },
+        return flag;
+    };
+    if (isIn(1) === true) {
+        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, 'days');
+    }
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
+},
 
 
 };

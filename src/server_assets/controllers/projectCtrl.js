@@ -4,13 +4,13 @@ const ProjectTask = require('../models/ProjectTask.js');
 const Template = require('../models/Template');
 const TemplateTask = require('../models/TemplateTask.js');
 const timeCtrl = require('../controllers/timeCtrl');
+const helpers = require('../controllers/projectHelpers');
 
 
 module.exports = {
 
   newProject(req, res) {
-
-    //Look up the template that is creating this task
+      //Look up the template that is creating this task
     Template.findById(req.params.templateid).exec().then((template) => {
       //When the template is returned convert it to a true object rather than a mongoose object
       var template_plain = template.toObject();
@@ -97,3 +97,5 @@ module.exports = {
   }
 
 };
+
+    
