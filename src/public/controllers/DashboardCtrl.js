@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('DashboardCtrl', function($scope, CompanySvc, ProjectsSvc) {
+angular.module('terminatorApp').controller('DashboardCtrl', function($scope, CompanySvc, ProjectsSvc, TemplatesSvc) {
 
   $scope.cssClass = 'page-dashboard';
 
@@ -14,6 +14,13 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
       console.log(res)
       $scope.projects = res.data;
     });
+  }();
+
+  $scope.getTemplates = function () {
+    TemplatesSvc.getTemplates().then(function(res){
+      console.log(res);
+      $scope.templates = res.data;
+    })
   }();
 
   //////////////////////
