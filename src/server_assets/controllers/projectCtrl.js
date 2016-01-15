@@ -5,6 +5,7 @@ const Template = require('../models/Template');
 const TemplateTask = require('../models/TemplateTask.js');
 const timeCtrl = require('../controllers/timeCtrl');
 const helpers = require('../controllers/projectHelpers');
+const _ = require('underscore');
 
 
 module.exports = {
@@ -31,15 +32,15 @@ module.exports = {
         //new_tasks_promises now contains an array of promises which will be resolved as each of the tasks are created
         return q.all(new_tasks_promises);
       })
-      .then((clean_objects) => {
-
-        return q.all(_.map(clean_objects, ((clean_object) => {
+      .then((clean_objects) =>{
+        return q.all(_.map(clean_objects, (clean_object) => {
           return helpers.makeProjectTask(clean_object);
-        })
-      }))
+        }));
+      })
       .spread((project_tasks) => {
         //take tasks, put in Project, save
-      })
+
+      });
 
 
 

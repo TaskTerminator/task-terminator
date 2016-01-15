@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Employee = require('../models/Employee.js');
 const Template = require('../models/Template.js');
+const ProjectTask = require('../models/ProjectTask.js');
 const Q = require('q');
 
 module.exports = {
@@ -42,6 +43,12 @@ module.exports = {
           deferred.resolve(new_Object);
         });
       return deferred.promise;
+    },
+
+    makeProjectTask(object, associatedProjectId){
+      var newTask = new ProjectTask(object);
+      newTask.associatedProject = associatedProjectId;
+      newTask();
     },
 
     nextOccurrence(template_plain, instance) {
