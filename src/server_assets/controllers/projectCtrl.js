@@ -15,6 +15,7 @@ module.exports = {
     console.log("#1 - New Project Function Called");
     var templateId = req.params.templateid;
     var instance = req.body.instance;
+    var description = req.body.description;
     var associatedProjectId;
     var newProject;
     helpers.makeProjectObject(templateId)
@@ -49,10 +50,17 @@ module.exports = {
           return helpers.makeProjectTask(clean_object, associatedProjectId);
         }));
       })
-      .spread((project_tasks) => {
+      .then((project_tasks) => {
         console.log("#22 - Project Tasks", project_tasks);
         //take tasks, put in Project, save
-        console.log("Made it!");
+        newProject.description = description;
+        for (var i = 0; i < project_tasks.length; i++) {
+          newProject.tasks.push(project_tasks[i]);
+        }
+        newProject.save().then((project => {
+          console.log("Made it!");
+          return res.json(project);
+        }));
       });
 
 

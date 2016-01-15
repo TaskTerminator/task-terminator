@@ -44,6 +44,7 @@ module.exports = {
           var new_Object = template.toObject();
           delete new_Object._id;
           delete new_Object.__v;
+          delete new_Object.tasks;
           deferred.resolve(new_Object);
         });
       return deferred.promise;
