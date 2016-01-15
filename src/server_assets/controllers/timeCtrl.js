@@ -23,23 +23,23 @@ const allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the 
 module.exports = {
 
   now: function() {
-    return moment();
+    return moment()._d;
   },
 
   dayOfWeek: function() {
-    return moment().day();
+    return moment().day()._d;
   },
 
   thisMonth: function() {
-    return moment().month();
+    return moment().month()._d;
   },
 
   thisQuarter: function() {
-    return moment().quarter();
+    return moment().quarter()._d;
   },
 
   thisYear: function() {
-    return moment().year();
+    return moment().year()._d;
   },
 
   nextMonth: function() {
@@ -47,15 +47,15 @@ module.exports = {
   },
 
   deadlineToday: function() {
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0);
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
   },
 
   triggeredProjectDeadline: function() {
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(daysToDeadline, 'days');
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(daysToDeadline, 'days')._d;
   },
 
   dateDeadline: function(date) {
-    return moment(date).hours(deadlineHour).minute(0).second(0).millisecond(0);
+    return moment(date).hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
   },
 
 
@@ -63,8 +63,8 @@ module.exports = {
   weeklyAnyDay: function(instance) {
     //This looks to last business day of week in company settings and puts deadline at the deadline hour of that day each week
     const lastDay = businessDays.sort().reverse()[0];
-    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay);
-    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay + 7);
+    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay)._d;
+    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay + 7)._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -76,8 +76,8 @@ module.exports = {
   },
 
   weeklySpecificDay: function(selectedDay, instance) {
-    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay);
-    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay + 7);
+    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay)._d;
+    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay + 7)._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -90,8 +90,8 @@ module.exports = {
 
   biWeeklyAnyDay: function(instance) {
     const lastDay = businessDays.sort().reverse()[0];
-    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay);
-    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay + 14);
+    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay)._d;
+    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(lastDay + 14)._d;
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
     } else if (instance === "first") {
@@ -102,8 +102,8 @@ module.exports = {
   },
 
   biWeeklySpecificDay: function(selectedDay, instance) {
-    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay);
-    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay + 14);
+    const naturalInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay)._d;
+    const nextInstance = moment().hours(deadlineHour).minute(0).second(0).millisecond(0).day(selectedDay + 14)._d;
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
     } else if (instance === "first") {
@@ -115,16 +115,15 @@ module.exports = {
 
   monthlyFirstDay: function() {
     const nextMonth = moment().month() + 1;
-      console.log(moment().hours(deadlineHour).minute(0).second(0).millisecond(0).month(nextMonth).date(1));
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).month(nextMonth).date(1);
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).month(nextMonth).date(1)._d;
   },
 
   monthlyLastDay: function(instance) {
     if (instance === "first") {
-      return moment().endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+      return moment().endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     } else {
       const nextMonth = moment().month() + 1;
-      return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+      return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     }
   },
 
@@ -132,16 +131,16 @@ module.exports = {
     //defaults deadline to the last day of the month same function as monthlyLastDay.... we could do last business day as a strech
     const nextMonth = moment().month() + 1;
     if (instance === "first") {
-      return moment().endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+      return moment().endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     } else {
-      return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+      return moment().month(nextMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     }
   },
 
   monthlyDaysFromStart: function(numDays, instance) {
     const nextMonth = moment().month() + 1;
-    const naturalInstance = moment().startOf('month').hours(deadlineHour).minute(0).second(0).millisecond(0).add(numDays - 1, 'days');
-    const nextInstance = moment().month(nextMonth).startOf('month').hours(deadlineHour).minute(0).second(0).millisecond(0).add(numDays - 1, 'days');
+    const naturalInstance = moment().startOf('month').hours(deadlineHour).minute(0).second(0).millisecond(0).add(numDays - 1, 'days')._d;
+    const nextInstance = moment().month(nextMonth).startOf('month').hours(deadlineHour).minute(0).second(0).millisecond(0).add(numDays - 1, 'days')._d;
 
     if (moment().isAfter(naturalInstance)) {
       return nextInstance;
@@ -155,8 +154,8 @@ module.exports = {
 
   monthlyDaysBeforeEnd: function(numDaysBefore, instance) {
     const nextMonth = moment().month() + 1;
-    const naturalInstance = moment().endOf("month").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().month(nextMonth).endOf("month").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance = moment().endOf("month").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().month(nextMonth).endOf("month").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
 
     if (moment().isAfter(naturalInstance)) {
       return nextInstance;
@@ -171,13 +170,13 @@ module.exports = {
 
   quarterlyFirstDay: function() {
     const nextQuarter = moment().quarter() + 1;
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).quarter(nextQuarter).date(1);
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).quarter(nextQuarter).date(1)._d;
   },
 
   quarterlyLastDay: function(instance) {
     const nextQuarter = moment().quarter() + 1;
-    const naturalInstance = moment().endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().quarter(nextQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance = moment().endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().quarter(nextQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
 
     if (moment().isAfter(naturalInstance)) {
       return nextInstance;
@@ -190,8 +189,8 @@ module.exports = {
 
   quarterlyAnyDay: function(instance) {
     const nextQuarter = moment().quarter() + 1;
-    const naturalInstance = moment().endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().quarter(nextQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance = moment().endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().quarter(nextQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     if (moment().isAfter(naturalInstance)) {
       return nextInstance;
     } else if (instance === "first") {
@@ -203,8 +202,8 @@ module.exports = {
 
   quarterlyDaysFromStart: function(numDays, instance) {
     const nextQuarter = moment().quarter() + 1;
-    const naturalInstance = moment().startOf('quarter').hours(0).seconds(0).millisecond(0).add(numDays, 'days');
-    const nextInstance = moment().quarter(nextQuarter).date(1).hours(0).seconds(0).millisecond(0).add(numDays, 'days');
+    const naturalInstance = moment().startOf('quarter').hours(0).seconds(0).millisecond(0).add(numDays, 'days')._d;
+    const nextInstance = moment().quarter(nextQuarter).date(1).hours(0).seconds(0).millisecond(0).add(numDays, 'days')._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -217,8 +216,8 @@ module.exports = {
 
   quarterlyDaysBeforeEnd: function(numDaysBefore,instance) {
     const nextQuarter = moment().quarter() + 1;
-    const naturalInstance =  moment().endOf("quarter").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().quarter(nextQuarter).endOf("quarter").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance =  moment().endOf("quarter").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().quarter(nextQuarter).endOf("quarter").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
     } else if (instance === "first") {
@@ -230,22 +229,22 @@ module.exports = {
 
   annuallyFirstDay: function(instance) {
     const nextYear = moment().year() + 1;
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).year(nextYear).date(1);
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).year(nextYear).date(1)._d;
   },
 
   annuallyLastDay: function(instance) {
     if (instance === "first") {
-      return moment().endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+      return moment().endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     } else {
       const nextYear = moment().year() + 1;
-      return moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+      return moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     }
   },
 
   annuallyAnyDay: function(instance) {
     const nextYear = moment().year() + 1;
-    const naturalInstance = moment().endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance = moment().endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().year(nextYear).endOf("year").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -258,8 +257,8 @@ module.exports = {
 
   annuallyDaysFromStart: function(numDays, instance) {
     const nextYear = moment().year() + 1;
-    const naturalInstance = moment().startOf('year').hours(0).seconds(0).millisecond(0).add(numDays, 'days');
-    const nextInstance = moment().year(nextYear).startOf('year').hours(0).seconds(0).millisecond(0).add(numDays, 'days');
+    const naturalInstance = moment().startOf('year').hours(0).seconds(0).millisecond(0).add(numDays, 'days')._d;
+    const nextInstance = moment().year(nextYear).startOf('year').hours(0).seconds(0).millisecond(0).add(numDays, 'days')._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -273,8 +272,8 @@ module.exports = {
 
   annuallyDaysBeforeEnd: function(numDaysBefore, instance) {
     const nextYear = moment().year() + 1;
-    const naturalInstance = moment().endOf("year").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().year(nextYear).endOf("year").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance = moment().endOf("year").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().year(nextYear).endOf("year").subtract(numDaysBefore, "days").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -287,9 +286,10 @@ module.exports = {
 
 
   annuallyParticularMonth: function(selectedMonth, instance) {
+    console.log("#12 - Made it to annuallyParticularMonth");
     const nextYear = moment().year() + 1;
-    const naturalInstance = moment().month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().year(nextYear).month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance = moment().month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().year(nextYear).month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -302,8 +302,8 @@ module.exports = {
 
   annuallyParticularQuarter: function(selectedQuarter, instance) {
     const nextYear = moment().year() + 1;
-    const naturalInstance = moment().quarter(selectedQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
-    const nextInstance = moment().year(nextYear).quarter(selectedQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0);
+    const naturalInstance = moment().quarter(selectedQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+    const nextInstance = moment().year(nextYear).quarter(selectedQuarter).endOf("quarter").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
 
     if (moment().isAfter(naturalInstance) === true) {
       return nextInstance;
@@ -315,11 +315,11 @@ module.exports = {
   },
 
   semiMonthlyFirstCycle: function(selectedDate) {
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(selectedDate);
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(selectedDate)._d;
   },
 
   semiMothlySecondCycle: function(firstCycleDate) {
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(firstCycleDate + 15);
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(firstCycleDate + 15)._d;
   },
 
 nextBusinessDay: function (date) {
@@ -336,9 +336,9 @@ nextBusinessDay: function (date) {
         return flag;
     };
     if (isIn(1) === true) {
-        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, 'days');
+        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, 'days')._d;
     }
-    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek');
+    return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, "weeks").startOf('isoWeek')._d;
 },
 
 
