@@ -11,12 +11,12 @@
     .col-sm-12.text-center
       h2 Active Projects
   .row
-    .col-md-4(ng-repeat="project in projects")
+    .col-md-3(ng-repeat="project in projects")
       .box-wrapper(style="margin: 25px auto;" ng-click="openModal(project)")
         .project-thing
-          ul
+          ul(style="list-style-type:none; padding:5px;")
             li
-              p {{project.name}}
-              p {{project.description}}
-              p {{project.dueDate}}     
+              p <b><i>Project Name:</i></b> {{project.name}}
+              p <b><i>Description:</i></b> {{project.description}}
+              p <b><i>Due Date:</i></b> {{project.setup.dueDate.actual | date:'mediumDate'}}     
   
