@@ -8,7 +8,7 @@ const allowedAnnuallyIntervals = ["First Day of the Year", "Last Day of the Year
 const allowedWeeklyIntervals = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Any'];
 const allowedSemiMonthlyIntervals = ["1st","2nd", "3rd", "4th", "5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th"];
 const allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the Quarter", "# Days from Start", "# Days from End", "Any" ];
-const targets = ['Today', '# Days from Today', 'Specific Date' ];
+const targets = ['Today', 'Specific Date' ];
 
 
 // This is the model for the Project creation
