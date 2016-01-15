@@ -1,22 +1,22 @@
 .container
-  .row
-    .col-md-4
-      button.btn.btn-default(type="button" ng-click="openSingleModal()") Single Instance Project
-    .col-md-4
+  .row.text-center(style="padding-top: 20px;")
+    .col-md-4.text-right
+      h3(style="margin-top:5px;") Create New: 
+    .col-md-6.text-left
+      button.btn.btn-primary(type="button" ng-click="openSingleModal()") Single Instance Project
       button.btn.btn-default(type="button" ng-click="openScheduleModal()") Scheduled Project
-    .col-md-4
       button.btn.btn-default(type="button" ng-click="openTemplateModal()") Create Template
+    .col-md-2
   .row
-    .col-sm-12
-      hr(color: black;)
+    .col-sm-12.text-center
+      h2 Active Projects
   .row
-    .col-md-4
-      .box-wrapper(style="margin: 25px auto;" ng-click="openModal2()")
+    .col-md-4(ng-repeat="project in projects")
+      .box-wrapper(style="margin: 25px auto;" ng-click="openModal(project)")
         .project-thing
-    .col-md-4
-      .box-wrapper(style="margin: 25px auto;" ng-click="openModal2()")
-        .project-thing
-    .col-md-4
-      .box-wrapper(style="margin: 25px auto;" ng-click="openModal2()")
-        .project-thing        
+          ul
+            li
+              p {{project.name}}
+              p {{project.description}}
+              p {{project.dueDate}}     
   
