@@ -62,7 +62,8 @@ const projectSchema = new mongoose.Schema({
             fromEnd: {}
           }
       },
-      critical: {type: Boolean, default: false}
+      critical: {type: Boolean, default: false},
+      projectUrl: {type:String}
   }
 });
 
