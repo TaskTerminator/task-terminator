@@ -18,6 +18,7 @@ const projectSchema = new mongoose.Schema({
   name:{type:String},
   //Description is the  unique visual identifies of a project on the front end
   description: {type:String},
+  friendlyId: {type: String},
   status: {type: String, enum: ['Complete', 'Incomplete'], default: 'Incomplete'},
   tasks: [
         {type: String , ref: 'TemplateTask'}

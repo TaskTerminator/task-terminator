@@ -33,6 +33,7 @@ const controller = Botkit.slackbot({
 	});
 
 	witbot.hears('all_departments', 0.5, function (bot, message, outcome) {
+		console.log("WIT.AI Outcome", outcome);
 		botHelper.allDepartments()
 		.then((departments) =>{
 			return botHelper.arrayMaker(departments);
@@ -53,11 +54,37 @@ const controller = Botkit.slackbot({
 		});
 	});
 
+	witbot.hears('all_tasks',0.5, function(bot,message,coutcome){
+		botHelper.allProjectTasks()
+		.then((tasks) =>{
+			// console.log("Here are the tasks I got back!",tasks);
+			return botHelper.arrayMaker(tasks);
+		})
+		.then((taskNames) => {
+			// console.log("Here's the returned promise...", taskNames);
+			var title = "Here's all the tasks I could find...";
+			return botHelper.attachmentMaker(taskNames, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
 	witbot.hears('task_complete', 0.5, function (bot, message, outcome) {
+		console.log("WIT.AI Outcome", outcome);
+
 		bot.reply(message, "Way to go brah!");
 	});
 
 	witbot.hears('all_employees', 0.5, function (bot, message, outcome) {
+		console.log(outcome);
 		botHelper.allEmployees()
 		.then((employees) =>{
 			return botHelper.arrayMakerEmployeeName(employees);

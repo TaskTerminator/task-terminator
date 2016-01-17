@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 //Model of tasks tied to active projects. References department, position, and individual
 const projectTaskSchema = new mongoose.Schema({
   name: {type: String, required: true},
+  friendlyId: {type: String, unique: true},
   description: {type:String},
   status: {
       complete: {type: Boolean, default:false}

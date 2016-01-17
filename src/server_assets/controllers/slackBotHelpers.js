@@ -4,6 +4,7 @@ const Company = require('../models/Company.js');
 const Department = require('../models/Department.js');
 const Employee = require('../models/Employee.js');
 const Project = require('../models/Project.js');
+const ProjectTask = require('../models/ProjectTask.js');
 const Q = require('q');
 
 module.exports = {
@@ -142,6 +143,18 @@ module.exports = {
       Project.find().exec()
         .then((projects) => {
           deferred.resolve(projects);
+      }).catch((err) => {
+        return res.status(500).end();
+      });
+      return deferred.promise;
+    },
+
+    allProjectTasks: function(req,res){
+      console.log("Made it to all project tasks!");
+    var deferred = Q.defer();
+    ProjectTask.find().exec().then((results) => {
+      console.log("This is what I found for all the tasks", results);
+      deferred.resolve(results);
       }).catch((err) => {
         return res.status(500).end();
       });
