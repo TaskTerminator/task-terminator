@@ -76,5 +76,70 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
     opened: false
   };
 
+  ///////////////////////////////////////////////////////////
+  //  Highcharts Stuff
+  ///////////////////////////////////////////////////////////
+
+  $scope.projectsPerWeek = {
+        options: {
+          colors: ['#50B432'],
+            chart: {
+                type: 'bar',
+                enableMouseTracking: true,
+                plotShadow: true
+            },
+            legend: {
+                backgroundColor: '#FCFFC5'
+            },
+        },
+
+        xAxis: {
+            title: {
+              text: "Months",
+            },
+            categories: ['Jan','Feb',"Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
+        },
+        yAxis: {
+            title: {
+                text: 'Completed Projects'
+            }
+        },
+        series: [{
+            name: 'Actual',
+            data: [5, 7, 3.5, 6, 2, 9, 4, 5, 3, 5, 1, 6]
+        }],
+        title: {
+            text: 'Projects Completed This Week'
+        },
+        loading: false
+    };
+
+    $scope.projectsPerMonth = {
+        options: {
+            chart: {
+                type: 'line',
+                enableMouseTracking: true
+            }
+        },
+        xAxis: {
+            title: {
+              text: "Years"
+            },
+            categories: ['2013','2014', '2015', '2016']
+        },
+        yAxis: {
+            title: {
+                text: 'Dollars'
+            }
+        },
+        series: [{
+            name: 'Actual',
+            data: [84, 89, 94, 96]
+        }],
+        title: {
+            text: 'Projects Completed Per Month'
+        },
+        loading: false
+    };
 
 });

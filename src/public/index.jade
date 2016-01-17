@@ -11,8 +11,7 @@ html
 
   body(ng-app="terminatorApp")
   
-    top-menu
-    ui-view(class="page {{cssClass}}")
+    ui-view
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-rc.0/angular-animate.js")
@@ -20,6 +19,11 @@ html
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.1/angular-material.js" charset="utf-8")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js" charset="utf-8")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.js" charset="utf-8")
+    script(src="scripts/highcharts.js" charset="utf-8")
+    script(src="scripts/highcharts-ng.js" charset="utf-8")
+    script(src="scripts/standalone-framework.js" charset="utf-8")
+
+    
 
     script(src="app.js" charset="utf-8")
 
@@ -27,7 +31,7 @@ html
     script(src="controllers/HomeCtrl.js" charset="utf-8")
     script(src="controllers/YourTeamCtrl.js" charset="utf-8")
     script(src="controllers/ProjectsCtrl.js" charset="utf-8")
-    script(src="controllers/SearchCtrl.js" charset="utf-8")
+    script(src="controllers/ActivityCtrl.js" charset="utf-8")
     script(src="controllers/TemplatesCtrl.js" charset="utf-8")
 
     script(src="services/DashboardSvc.js" charset="utf-8")
@@ -42,3 +46,5 @@ html
     
     
     script(src="directives/menuDirective.js" charset="utf-8")
+    script(src="directives/sidebar.js" charset="utf-8")
+    script(src="directives/header.js" charset="utf-8")
