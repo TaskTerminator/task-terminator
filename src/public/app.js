@@ -1,4 +1,4 @@
-var app = angular.module('terminatorApp', ['ui.router', 'ngMaterial', 'ui.bootstrap', 'ngAnimate']);
+var app = angular.module('terminatorApp', ['ui.router', 'ngMaterial', 'ui.bootstrap', 'ngAnimate', 'highcharts-ng']);
 
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -38,21 +38,44 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
   // });
 
     $stateProvider
-        .state('home', {
-            url: '/home',
-            templateUrl: 'Templates/home.html',
-            controller: 'HomeCtrl',
-        })
-        .state('search', {
-            url: '/search',
-            templateUrl: 'Templates/search.html',
-            controller: 'SearchCtrl',
-        })
         .state('dashboard', {
             url: '/dashboard',
-            templateUrl: 'Templates/dashboard.html',
-            controller: 'DashboardCtrl',
+            templateUrl: 'Templates/main.html',
+            // controller: 'DashboardCtrl',
         })
+        .state('dashboard.home',{
+            url:'/home',
+            controller: 'DashboardCtrl',
+            templateUrl:'Templates/home.html',
+        })
+        .state('dashboard.view-projects',{
+            url:'/projects/view',
+            controller: 'ProjectsCtrl',
+            templateUrl:'Templates/projects.html',
+        })
+        .state('dashboard.crud-projects',{
+            url:'/projects/edit',
+            controller: 'ProjectsCtrl',
+            templateUrl:'Templates/projects.html',
+        })
+        .state('dashboard.activity',{
+            url:'/activity',
+            controller: 'ActivityCtrl',
+            templateUrl:'Templates/activity.html',
+        })
+        .state('dashboard.view-employees',{
+            url:'/employees/view',
+            controller: 'YourTeamCtrl',
+            templateUrl:'Templates/yourTeam.html',
+        })
+        .state('dashboard.crud-employee',{
+            url:'/employees/edit',
+            controller: 'YourTeamCtrl',
+            templateUrl:'Templates/yourTeam.html',
+        })
+
+
+
         .state('projectForms', {
             url: '/projectForms',
             templateUrl: 'Templates/projectForms.html',
@@ -80,6 +103,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         });
 
     $urlRouterProvider
-        .otherwise('/dashboard');
+        .otherwise('/dashboard/home');
 
 });

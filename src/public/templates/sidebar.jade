@@ -1,0 +1,27 @@
+.navbar-default.sidebar(role='navigation')
+  .sidebar-nav.navbar-collapse
+    ul#side-menu.nav.in
+      li(ui-sref-active='active')
+        a(ui-sref='dashboard.home')
+          |  Dashboard
+      li(ng-class='{active: collapseVar==1}')
+        | {{dropDown}}
+        a(href='', ng-click='check(1)')
+          |  Projects
+        ul.nav.nav-second-level(collapse='collapseVar!=1')
+          li(ui-sref-active='active')
+            a(ui-sref='dashboard.view-projects') View Projects
+          li(ui-sref-active='active')
+            a(ui-sref='dashboard.crud-projects') Add/Update/Remove Projects
+          li(ui-sref-active='active')
+      li(ui-sref-active='active')
+        a(ui-sref='dashboard.activity')
+          |  Activity
+      li(ng-class='{active: collapseVar==2}')
+        a(href='', ng-click='check(2)')
+          |  Employee
+        ul.nav.nav-second-level(collapse='collapseVar!=2')
+          li
+            a(ui-sref='dashboard.view-employees') View Employees
+          li
+            a(ui-sref='dashboard.crud-employee') Add/Edit/Remove Employees
