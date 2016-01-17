@@ -1,4 +1,59 @@
+h1(style="padding-left:15px; padding-top: 15px;")
+  | Dashboard
+hr
 .container
-  .row.topmenu
-    .col-sm-12.text-center
-      h1 Home/Login/Register View
+  .row.dashboard-cards
+    .col-md-3
+      .panel
+        .panel-body(style='background-color: pink;')
+          .row
+            .col-md-6
+              span.glyphicon.glyphicon-remove(aria-hidden="true" style="font-size:70px; color: red;")
+            .col-md-6.text-center
+              p 0
+              p Overdue Tasks
+        .panel-footer 
+          | Overdue Tasks
+    .col-md-3
+      .panel
+        .panel-body(style='background-color: lightgreen;')
+          .row
+            .col-md-4
+              span.glyphicon.glyphicon-duplicate(aria-hidden="true" style="font-size:70px; color:green;")
+            .col-md-8.text-center
+              p 0
+              p Current Projects
+        .panel-footer
+          | Current Projects
+    .col-md-3
+      .panel
+        .panel-body(style='background-color: lightblue;')
+          .row
+            .col-md-6
+              span.glyphicon.glyphicon-signal(aria-hidden="true" style="font-size:70px; color: blue;")
+            .col-md-6
+              | Check your activity!
+        .panel-footer 
+          | Activity
+    .col-md-3
+      .panel
+        .panel-body(style='background-color: yellow;')
+          .row
+            .col-md-6
+              span.glyphicon.glyphicon-user(aria-hidden="true" style="font-size:70px; color: orange;")
+            .col-md-6
+              | Manage your team
+        .panel-footer 
+          | Something about employees?
+
+.row.dash-chart
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h4 Activity Snapshot
+      .panel-body
+        .row
+        .col-md-10.col-sm-10.col-lg-6
+          highchart#gciPerMonth(config='projectsPerWeek')
+        .col-md-10.col-sm-10.col-lg-6
+          highchart#chart1(config='projectsPerMonth')

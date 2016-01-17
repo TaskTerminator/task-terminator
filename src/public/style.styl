@@ -1,36 +1,74 @@
-body
-  background-color: #eeeaea
+  /* BASE STYLES
+============================================================================= */
 
-.frame-border
-  border 1px black solid
+body {
+    background-color: #fff
+    padding-bottom: 20px
+}
 
-.topmenu
-  padding-top 20px
+#wrapper {
+    width: 100%
+}
 
-.hamburger
-  font-size 30px
+#page-wrapper {
+    padding: 0 15px
+    min-height: 568px
+    background-color: #eee
+}
 
-.mnbtn
-  width: 250px
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit
+        margin: 0 0 0 250px
+        padding: 0 30px
+        border-left: 1px solid #e7e7e7
+    }
+}
 
-.box-wrapper
-  height: 230px
-  width: 230px
-  border: 1px black solid
-  margin: 15px
-  background-color: rgba(107, 135, 168, 1)
+.navbar-top-links {
+    margin-right: 0
+}
 
-.box-wrapper:hover
-  background-color: rgba(107, 135, 168, 0.7)
+.navbar-top-links li {
+    display: inline-block
+}
 
-.project-thing
-  height: 200px
-  width: 195px;
-  margin: 15 auto
-  background-color: rgba(74, 201, 98, 1)
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px
+  padding-right: 15px
+}
 
-.project-thing:hover
-  background-color: rgba(74, 201, 98, 0.5)
+/* Custom page header */
+.header {
+  border-bottom: 4px solid #e5e5e5
+}
+
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0
+  margin-bottom: 0
+  line-height: 40px
+  padding-bottom: 19px
+}
+
+/* Custom page footer */
+.footer {
+  padding-top: 19px
+  color: #777
+  border-top: 1px solid #e5e5e5
+}
+
+#side-menu {
+  height: 900px
+}
+
+.nav>li.active>a {
+text-decoration: none
+background-color: #eee
+}
 
 .dashboard-projects
   height: 350px
@@ -47,6 +85,19 @@ body
 
 .dashboard-projects hr
   color: black
+
+.dashboard-cards .panel
+  border: 1px #a0a0a0 solid
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(135,135,135,1);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(135,135,135,1);
+  box-shadow: 2px 2px 5px 0px rgba(135,135,135,1);
+
+.dashboard-cards .panel .panel-body
+  border-radius: 5px 5px 0 0
+
+.dashboard-cards .panel .panel-footer
+  border-radius: 0 0 5px 5px
+  background-color: #e5e5e5
 
 .singleProject
   margin-top: 10px
@@ -65,11 +116,58 @@ body
   border: .5px black solid
   padding-top: 20px
 
+  /* Sidebar Styling
+  ============================================================================= */
+
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0
+    padding-left: 0
+}
+
+.sidebar .sidebar-search {
+    padding: 15px
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #e7e7e7
+    padding-left: 15px
+}
+
+.sidebar ul li a.active {
+    background-color: #eee
+}
+
+.sidebar .arrow {
+    float: right
+}
+
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+    border-bottom: 0!important
+}
+
+.sidebar .nav-second-level li a {
+    padding-left: 20px
+}
+
+.sidebar .nav-third-level li a {
+    padding-left: 35px
+}
+
+@media(min-width:768px) {
+  .sidebar {
+      z-index: 0
+      position: absolute
+      width: 250px
+      margin-top: 0px
+  }
+}
+
+
+
 
   /* BASE STYLES
 ============================================================================= */
-body
-  height: 1200px
 .page
 	bottom:50
 	position:absolute
