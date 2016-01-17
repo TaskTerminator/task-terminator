@@ -7,6 +7,8 @@ const timeCtrl = require('../controllers/timeCtrl');
 const helpers = require('../controllers/projectHelpers');
 const _ = require('underscore');
 const Q = require('q');
+const randomstring = require('randomstring');
+
 
 
 module.exports = {
@@ -22,6 +24,7 @@ module.exports = {
       .then((cleanObject) => {
         console.log("#3 - Make Project Object Returned: ", cleanObject);
         newProject = new Project(cleanObject);
+        newProject.friendlyId = randomstring.generate({length: 5, readable: true});
         console.log("#4 - New Project Id : ", newProject._id);
         associatedProjectId = newProject._id;
         console.log("#5 - associatedProjectId :", associatedProjectId);

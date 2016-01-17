@@ -3,6 +3,8 @@ const Botkit = require('botkit');
 const Q = require('q');
 const positions = require('../controllers/positionCtrl.js');
 const botHelper = require('../controllers/slackBotHelpers.js');
+const Witbot = require('witbot');
+
 const controller = Botkit.slackbot({
 	  debug: false
 	});
@@ -16,29 +18,22 @@ const controller = Botkit.slackbot({
     }
   });
 
-	// give the bot something to listen for.
-  controller.hears('show roles','direct_message,direct_mention,mention',function(bot,message) {
-		botHelper.allPositions()
-		.then((positions) =>{
-			return botHelper.arrayMaker(positions);
-		})
-		.then((positionNames) => {
-			var title = "Here's all the positions I could find...";
-			return botHelper.attachmentMaker(positionNames, title);
-		})
-		.then((attachment) => {
-			var attachments = [];
-			attachments.push(attachment);
-			bot.reply(message,{
-				// text: ' ',
-				attachments: attachments,
-			},function(err,resp) {
-				console.log(err,resp);
-			});
-		});
-  });
+	const witbot = Witbot("CZPINC6EVOQ7DCPZSUUBQ3B5GWQVOQ66"
+	);
 
-	controller.hears(['show departments', 'departments'],'direct_message,direct_mention,mention',function(bot,message) {
+	//wire up DM's and direct mentions to wit.ai
+	controller.hears('.*', 'direct_message,direct_mention', function (bot, message) {
+  	witbot.process(message.text, bot, message);
+	});
+
+	witbot.hears('greeting', 0.3, function (bot, message, outcome) {
+		console.log("WIT.AI Outcome", outcome);
+		console.log("WIT.AI Outcome", outcome.entities.greeting);
+  	bot.reply(message, 'Greetings earthling.');
+	});
+
+	witbot.hears('all_departments', 0.5, function (bot, message, outcome) {
+		console.log("WIT.AI Outcome", outcome);
 		botHelper.allDepartments()
 		.then((departments) =>{
 			return botHelper.arrayMaker(departments);
@@ -59,7 +54,37 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	controller.hears(['show employees', 'employees'],'direct_message,direct_mention,mention',function(bot,message) {
+	witbot.hears('all_tasks',0.5, function(bot,message,coutcome){
+		botHelper.allProjectTasks()
+		.then((tasks) =>{
+			// console.log("Here are the tasks I got back!",tasks);
+			return botHelper.arrayMaker(tasks);
+		})
+		.then((taskNames) => {
+			// console.log("Here's the returned promise...", taskNames);
+			var title = "Here's all the tasks I could find...";
+			return botHelper.attachmentMaker(taskNames, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+	witbot.hears('task_complete', 0.5, function (bot, message, outcome) {
+		console.log("WIT.AI Outcome", outcome);
+
+		bot.reply(message, "Way to go brah!");
+	});
+
+	witbot.hears('all_employees', 0.5, function (bot, message, outcome) {
+		console.log(outcome);
 		botHelper.allEmployees()
 		.then((employees) =>{
 			return botHelper.arrayMakerEmployeeName(employees);
@@ -81,15 +106,15 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	controller.hears(['what can you do', 'help', 'you has skillz'], 'direct_message,direct_mention,mention', function(bot, message){
-		var title = "Play around with these commands to see what I can do...";
-		var botSkillz = [
-			"show roles",
-			'show departments',
-			'show employees',
-			"help"
-		];
-		botHelper.attachmentMaker(botSkillz,title)
+	witbot.hears('all_positions', 0.5, function (bot, message, outcome) {
+		botHelper.allPositions()
+		.then((positions) =>{
+			return botHelper.arrayMaker(positions);
+		})
+		.then((positionNames) => {
+			var title = "Here's all the positions I could find...";
+			return botHelper.attachmentMaker(positionNames, title);
+		})
 		.then((attachment) => {
 			var attachments = [];
 			attachments.push(attachment);
@@ -101,6 +126,174 @@ const controller = Botkit.slackbot({
 			});
 		});
 	});
+
+	witbot.hears('help', 0.2, function (bot, message, outcome) {
+		var title = " ";
+		var botSkillz = [
+			"show roles",
+			"Forgot a job title? Here's all of em for your company!",
+			'show departments',
+			"All the departments. All of em. ",
+			'show employees',
+			"Don't forget that guy in accounting's name. Find him here!",
+			'show projects',
+			"Just a list of every open project in your company. Now get working. ",
+			"help",
+			"Tells you all about my magic powers.",
+		];
+		botHelper.helpAttachment(botSkillz,title)
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+	witbot.otherwise(function (bot, message) {
+		var title = " ";
+		var botSkillz = [
+			"show roles",
+			"Forgot a job title? Here's all of em for your company!",
+			'show departments',
+			"All the departments. All of em. ",
+			'show employees',
+			"Don't forget that guy in accounting's name. Find him here!",
+			'show projects',
+			"Just a list of every open project in your company. Now get working. ",
+			"help",
+			"Tells you all about my magic powers.",
+		];
+		botHelper.helpAttachment(botSkillz,title)
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+	// give the bot something to listen for.
+  // controller.hears('show roles','direct_message,direct_mention,mention',function(bot,message) {
+	// 	botHelper.allPositions()
+	// 	.then((positions) =>{
+	// 		return botHelper.arrayMaker(positions);
+	// 	})
+	// 	.then((positionNames) => {
+	// 		var title = "Here's all the positions I could find...";
+	// 		return botHelper.attachmentMaker(positionNames, title);
+	// 	})
+	// 	.then((attachment) => {
+	// 		var attachments = [];
+	// 		attachments.push(attachment);
+	// 		bot.reply(message,{
+	// 			// text: ' ',
+	// 			attachments: attachments,
+	// 		},function(err,resp) {
+	// 			console.log(err,resp);
+	// 		});
+	// 	});
+  // });
+
+	// controller.hears(['show departments', 'departments'],'direct_message,direct_mention,mention',function(bot,message) {
+	// 	botHelper.allDepartments()
+	// 	.then((departments) =>{
+	// 		return botHelper.arrayMaker(departments);
+	// 	})
+	// 	.then((departmentNames) => {
+	// 		var title = "Here's all the departments I could find...";
+	// 		return botHelper.attachmentMaker(departmentNames, title);
+	// 	})
+	// 	.then((attachment) => {
+	// 		var attachments = [];
+	// 		attachments.push(attachment);
+	// 		bot.reply(message,{
+	// 			// text: ' ',
+	// 			attachments: attachments,
+	// 		},function(err,resp) {
+	// 			console.log(err,resp);
+	// 		});
+	// 	});
+	// });
+
+	// controller.hears(['show employees', 'employees'],'direct_message,direct_mention,mention',function(bot,message) {
+	// 	botHelper.allEmployees()
+	// 	.then((employees) =>{
+	// 		return botHelper.arrayMakerEmployeeName(employees);
+	// 	})
+	// 	.then((employeeNames) => {
+	// 		console.log("Here's the returned promise...", employeeNames);
+	// 		var title = "Here's all the employees I could find...";
+	// 		return botHelper.attachmentMaker(employeeNames, title);
+	// 	})
+	// 	.then((attachment) => {
+	// 		var attachments = [];
+	// 		attachments.push(attachment);
+	// 		bot.reply(message,{
+	// 			// text: ' ',
+	// 			attachments: attachments,
+	// 		},function(err,resp) {
+	// 			console.log(err,resp);
+	// 		});
+	// 	});
+	// });
+
+	controller.hears(['show projects', 'projects'],'direct_message,direct_mention,mention',function(bot,message) {
+		botHelper.allProjects()
+		.then((projects) =>{
+			return botHelper.arrayMaker(projects);
+		})
+		.then((projectNames) => {
+			console.log("Here's the returned promise...", projectNames);
+			var title = "Here's all the projects I could find...";
+			return botHelper.attachmentMaker(projectNames, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+	// controller.hears(['what can you do', 'help', 'you has skillz'], 'direct_message,direct_mention,mention', function(bot, message){
+	// 	var title = " ";
+	// 	var botSkillz = [
+	// 		"show roles",
+	// 		"Forgot a job title? Here's all of em for your company!",
+	// 		'show departments',
+	// 		"All the departments. All of em. ",
+	// 		'show employees',
+	// 		"Don't forget that guy in accounting's name. Find him here!",
+	// 		'show projects',
+	// 		"Just a list of every open project in your company. Now get working. ",
+	// 		"help",
+	// 		"Tells you all about my magic powers.",
+	// 	];
+	// 	botHelper.helpAttachment(botSkillz,title)
+	// 	.then((attachment) => {
+	// 		var attachments = [];
+	// 		attachments.push(attachment);
+	// 		bot.reply(message,{
+	// 			// text: ' ',
+	// 			attachments: attachments,
+	// 		},function(err,resp) {
+	// 			console.log(err,resp);
+	// 		});
+	// 	});
+	// });
 
 
   controller.hears(['dm me'],['direct_message','direct_mention'],function(bot,message) {

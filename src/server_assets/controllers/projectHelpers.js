@@ -5,6 +5,7 @@ const TemplateTask = require('../models/TemplateTask.js');
 const ProjectTask = require('../models/ProjectTask.js');
 const Q = require('q');
 const timeCtrl = require('../controllers/timeCtrl.js');
+const randomstring = require('randomstring');
 
 module.exports = {
 
@@ -54,6 +55,7 @@ module.exports = {
       console.log("#21 Made it to Make Project Task");
       var deferred = Q.defer();
       var newTask = new ProjectTask(object);
+      newTask.friendlyId = randomstring.generate({length: 5, readable: true});
       newTask.associatedProject = associatedProjectId;
       newTask.save().then((task) => {
         deferred.resolve(task._id);
