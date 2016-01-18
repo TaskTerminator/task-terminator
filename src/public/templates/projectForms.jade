@@ -5,11 +5,11 @@
         .form-group
           label(for="addProjectField")
             | Project Name:  
-          input.form-control(type="text" ng-model="name" id="addProjectField")
+          input.form-control(type="text" ng-model="newSingleProject.name" id="addProjectField")
         .form-group
           label(for="descriptionField")
             | Description:  
-          input.form-control(type="text" ng-model="description" id="descriptionField")
+          input.form-control(type="text" ng-model="newSingleProject.description" id="descriptionField")
         .form-group
             button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
               span(type="text" ng-if="!showTaskBox") Add Task
@@ -41,7 +41,7 @@
               label(for="actualDateField")
                 | Actual Due Date:  
                 p.input-group
-                  input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
+                  input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="newSingleProject.setup.dueDate.actual")
                   span.input-group-btn
                     button.btn.btn-default(type="button" ng-click="open1()")
                       i.glyphicon.glyphicon-calendar
@@ -49,10 +49,10 @@
               label(for="anticipatedDateField")
                 | Anticipated Due Date:  
                 p.input-group
-                  input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="anticipatedDate")
+                  input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="newSingleProject.setup.dueDate.anticipated")
                   span.input-group-btn
                     button.btn.btn-default(type="button" class="btn btn-default" ng-click="open1()")
                       i.glyphicon.glyphicon-calendar
-        button.btn.btn-success(type="button" ng-click="postProject()") Submit
+        button.btn.btn-success(type="button" ng-click="postSingleProject()") Submit
 
           
