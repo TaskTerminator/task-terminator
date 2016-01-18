@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state) {
+angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state, CompanySvc) {
 
   $scope.newEmployee = {};
 
@@ -6,6 +6,13 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
     YourTeamSvc.getEmployees().then(function(res) {
       console.log(res)
       $scope.employees = res.data;
+    });
+  }();
+
+  $scope.getCompany = function() {
+    CompanySvc.getCompanies().then(function(res) {
+      console.log(res)
+      $scope.companies = res.data;
     });
   }();
 
