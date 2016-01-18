@@ -71,7 +71,7 @@ app.get('/api/project', projectCtrl.allProjects);
 
 //********** PROJECT TASK ENDPOINTS **********
 app.get('/api/tasks/project/:id', projectTaskCtrl.getTasks);
-app.post('/api/tasks/project/:projectId', projectTaskCtrl.addTask);
+// app.post('/api/tasks/project/:projectId', projectTaskCtrl.addTask);
 // * app.get('/api/tasks/department/:id', projectTaskCtrl.getDepartmentTask);
 
 //********** TEMPLATE ENDPOINTS **********

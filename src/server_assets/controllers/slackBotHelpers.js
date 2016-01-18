@@ -6,6 +6,7 @@ const Employee = require('../models/Employee.js');
 const Project = require('../models/Project.js');
 const ProjectTask = require('../models/ProjectTask.js');
 const Q = require('q');
+const moment = require('moment');
 
 module.exports = {
 
@@ -123,7 +124,7 @@ module.exports = {
       for(var j = 0; j < array.length; j ++){
         attachment.fields.push({
           label: 'Field',
-          value: "_#"+ array[j].friendlyId + "_ : " + array[j].name + " - " + array[j].description + " - " + array[j].status,
+          value: "_#" + array[j].friendlyId + "_: *" + array[j].name + "* - " + array[j].description + " - *Due : *" + moment(array[j].setup.dueDate.actual).format('dddd, MMMM Do'),
           short: false
         });
       }
