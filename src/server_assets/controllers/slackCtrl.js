@@ -257,22 +257,22 @@ const controller = Botkit.slackbot({
 
     witbot.hears('all_incomplete_tasks', 0.2, function (bot, message, outcome) {
 		console.log("I'm trying to get all incomplete tasks!");
-//		botHelper.allIncompleteProjectTasks()
-//		.then((projectDetails) => {
-//			var title = "Here's all the incomplete tasks I could find...";
-//			console.log("Here's all the incomplete tasks I returned....", projectDetails);
-//			return botHelper.projectsAttachment(projectDetails, title);
-//		})
-//		.then((attachment) => {
-//			var attachments = [];
-//			attachments.push(attachment);
-//			bot.reply(message,{
-//				// text: ' ',
-//				attachments: attachments,
-//			},function(err,resp) {
-//				console.log(err,resp);
-//			});
-//		});
+		botHelper.allIncompleteProjectTasks()
+		.then((projectDetails) => {
+			var title = "Here's all the incomplete tasks I could find...";
+			console.log("Here's all the incomplete tasks I returned....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
 	});
 
 

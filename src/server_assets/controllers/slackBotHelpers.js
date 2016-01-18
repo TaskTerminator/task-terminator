@@ -234,11 +234,17 @@ module.exports = {
       console.log("Made it to all incomplete project tasks!");
     var deferred = Q.defer();
     ProjectTask.find().exec().then((results) => {
-      console.log("This is what I found for all the tasks", results);
-      deferred.resolve(results);
+        var incompleteTasks = [];
+        results.map((item) => {
+            if (!item.status.complete) {
+                incompleteTasks.push(item);
+            }
+        })
+      deferred.resolve(incompleteTasks);
       }).catch((err) => {
         return res.status(500).end();
       });
+        console.log(1111111, deferred.promise);
       return deferred.promise;
     },
 
