@@ -36,13 +36,13 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
-    this.postEmployee = function () {
+    this.postEmployee = function (newEmployee) {
       var defer = $q.defer();
 
       $http({
         method: "POST",
-        url: "api/569533191bfb3ca903f17803/employee",
-        data: {}
+        url: "api/569533191bfb3ca903f17803/569553970a39481510b6bf84/569553ff0a39481510b6bf87/employee",
+        data: newEmployee
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {

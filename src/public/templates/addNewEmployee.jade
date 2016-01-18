@@ -1,27 +1,27 @@
 h1.text-center
   | Add employee form
 div.employeeAddForm
-  form
+  form 
     .form-group
       label(for="EmployeeFirstNameField")
         | First Name:  
-      input.form-control(type="text" ng-model="firstName" id="EmployeeFirstNameField")
+      input.form-control(type="text" ng-model="newEmployee.firstName" id="EmployeeFirstNameField")
     .form-group
       label(for="EmployeeLastNameField")
         | Last Name:  
-      input.form-control(type="text" ng-model="lastName" id="EmployeeLastNameField")
+      input.form-control(type="text" ng-model="newEmployee.lastName" id="EmployeeLastNameField")
     .form-group
       label(for="EmployeeUsernameField")
         | Email:  
-      input.form-control(type="email" ng-model="username" id="EmployeeUsernameField")
+      input.form-control(type="email" ng-model="newEmployee.username" id="EmployeeUsernameField")
     .form-group
       label(for="EmployeeEmailField")
         | Email:  
-      input.form-control(type="email" ng-model="email" id="EmployeeEmailField")
+      input.form-control(type="email" ng-model="newEmployee.email" id="EmployeeEmailField")
     .form-group
       label(for="permissionsField")
         | Admin:  
-      select.form-control(ng-model="admin" id="permissionsField")
+      select.form-control(ng-model="newEmployee.admin" id="permissionsField")
         option(value="true")
           | Yes
         option(value="false")
@@ -32,3 +32,4 @@ div.employeeAddForm
     .form-group
       label(for="PositionsField")
         | Position:  
+    button.btn.btn-primary.btn-lg(ng-click="addEmployee(newEmployee)")
