@@ -97,9 +97,6 @@ const controller = Botkit.slackbot({
 		bot.reply(message, 'Greetings earthling.');
 	});
 
-
-
-
 	/****************** DEPARTMENTS ******************/
 	witbot.hears('all_departments', 0.5, function (bot, message, outcome) {
 		console.log("WIT.AI Outcome", outcome);
