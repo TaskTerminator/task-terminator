@@ -15,21 +15,26 @@ module.exports = {
   },
     
     addTask(req, res) {
-        const newTask = new Task(req.params.projectId);
+        const newTask = new Task(req.body);
+        const ID = req.params.projectid;
         newTask.friendlyId = randomstring.generate({length: 5, readable: true});
-        newTask.associatedProject = req.params.projectId;
+        newTask.associatedProject = ID;
+        newTask.save()
         .then((task) => {
-            console.log("TASKKKKKK", task)
-            Project.findByIdAndUpdate(req.params.projectId, {$push: {"tasks": task._id}}).exec()
+            Project.findByIdAndUpdate(ID, {$push: {"tasks": task._id}}).exec()
         })
-        .then((project) => {
-            project.save()
-            newTask.save()
-        })
-        .then((result) => {
-            return res.json(result);
+        .then(() => {
+            return res.status(201).end();
         })
         .catch((err) => {
+            return res.status(500).end();
+        });
+    },
+    
+    editTask(req, res) {
+        Project.findByIdAndUpdate(req.params.id, req.body).exec().then(() => {
+            return res.status(200).end();
+        }).catch((err) => {
             return res.status(500).end();
         });
     },
