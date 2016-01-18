@@ -1,9 +1,18 @@
-angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc) {
+angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state, CompanySvc) {
+
+  $scope.newEmployee = {};
 
   $scope.getEmployees = function() {
     YourTeamSvc.getEmployees().then(function(res) {
       console.log(res)
       $scope.employees = res.data;
+    });
+  }();
+
+  $scope.getCompany = function() {
+    CompanySvc.getCompanies().then(function(res) {
+      console.log(res)
+      $scope.companies = res.data;
     });
   }();
 
@@ -26,9 +35,15 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope) {
         $scope.employee = employee;
-        console.log(employee);
       }
   	})
+  }
+
+  $scope.addEmployee = function(newEmployee) {
+    console.log("Passed Employee info", newEmployee)
+    YourTeamSvc.postEmployee(newEmployee).then(function(results) {
+      console.log("Employee added");
+    })
   }
 
 });
