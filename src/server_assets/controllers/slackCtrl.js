@@ -77,6 +77,43 @@ const controller = Botkit.slackbot({
 		});
 	});
 
+	witbot.hears('all_projects', 0.3, function (bot, message, outcome) {
+		console.log("I'm trying to get projects!");
+		botHelper.allProjects()
+		.then((projectDetails) => {
+			var title = "Here's all the projects I could find...";
+			console.log("Here's all the projects I returned....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+	witbot.hears('tasks_in_project', 0.5, function(bot,message, outcome){
+		console.log("this is what WIT.AI returned", outcome.entities.project_id);
+		console.log("this is what WIT.AI returned", outcome.entities.project_id[0].value);
+
+		var projectId = outcome.entities.project_id[0].value;
+		return botHelper.hashStripper(projectId)
+		.then((cleanId) => {
+			console.log("Here's the clean ID I made", cleanId);
+			return botHelper.tasksInProject(cleanId);
+		})
+		.then((tasks) => {
+			console.log("Here's the tasks associated with that project", tasks);
+		});
+
+		// bot.reply(message, "Let me get those tasks for you!");
+	});
+
 	witbot.hears('task_complete', 0.5, function (bot, message, outcome) {
 		console.log("WIT.AI Outcome", outcome);
 
