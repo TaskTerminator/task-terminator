@@ -13,7 +13,6 @@ module.exports = {
           return res.status(500).end();
       });
   },
-<<<<<<< HEAD
     
     addTask(req, res) {
         const newTask = new Task(req.body);
@@ -31,35 +30,15 @@ module.exports = {
             return res.status(500).end();
         });
     },
-    
+
     editTask(req, res) {
-        Project.findByIdAndUpdate(req.params.id, req.body).exec().then(() => {
+        Project.findByIdAndUpdate(req.params.id, req.body).exec()
+        .then(() => {
             return res.status(200).end();
-        }).catch((err) => {
+        })
+        .catch((err) => {
             return res.status(500).end();
         });
-    },
-=======
-
-    // addTask(req, res) {
-    //     const newTask = new Task(req.params.projectId);
-    //     newTask.friendlyId = randomstring.generate({length: 5, readable: true});
-    //     newTask.associatedProject = req.params.projectId;
-    //     .then((task) => {
-    //         console.log("TASKKKKKK", task)
-    //         Project.findByIdAndUpdate(req.params.projectId, {$push: {"tasks": task._id}}).exec()
-    //     })
-    //     .then((project) => {
-    //         project.save()
-    //         newTask.save()
-    //     })
-    //     .then((result) => {
-    //         return res.json(result);
-    //     })
-    //     .catch((err) => {
-    //         return res.status(500).end();
-    //     });
-    // },
->>>>>>> master
+    }
 
 };

@@ -63,21 +63,6 @@ module.exports = {
       return deferred.promise;
     },
 
-    // makeProjectTask(object, associatedProjectId){
-    //   var deferred = Q.defer();
-    //   var projectTaskIds = [];
-    //   var allThePromises = [];
-    //   for(var i = 0; i < object.length; i ++){
-    //     var newTask = new ProjectTask(object[i]);
-    //     newTask.associatedProject = associatedProjectId;
-    //     projectTaskIds.push(newTask._id);
-    //     allThePromises.push(newTask.save());
-    //   }
-    //   Q.all(allThePromises);
-    //   deferred.resolve(projectTaskIds);
-    //   return deferred.promise;
-    // },
-
     nextOccurrence(template, instance) {
       console.log("#6 - Next Occurance Called");
       console.log("#7 - Interval Type ", template.setup.interval.type);
