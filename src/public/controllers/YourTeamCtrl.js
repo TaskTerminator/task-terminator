@@ -35,7 +35,6 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope) {
         $scope.employee = employee;
-        console.log(employee);
       }
   	})
   }
