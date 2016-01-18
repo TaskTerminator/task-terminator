@@ -7,13 +7,16 @@ div(ng-repeat="company in companies")
     h3 Departments: 
       ul
         li(ng-repeat='department in company.departments')
+          | {{department.name}}
           
   div
     h3 Positions:
       ul
         li(ng-repeat='position in company.positions')
+          | {{position.name}}
   div
     h3 Employees: 
       ul
         li(ng-repeat='employee in company.employees')
+          | {{employee.identification.name.fullName}}
   
