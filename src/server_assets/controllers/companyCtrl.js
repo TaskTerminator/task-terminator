@@ -4,7 +4,12 @@ const Company = require('../models/Company.js');
 module.exports = {
 
 	allCompanies(req, res) {
-		Company.find().exec().then((result) => {
+		Company.find()
+		.populate('departments')
+		.populate('positions')
+		.populate('employees')
+		.exec()
+		.then((result) => {
 			return res.json(result);
 		}).catch((err) => {
 			console.log(err);
