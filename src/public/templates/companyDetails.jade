@@ -2,8 +2,12 @@ h1 Company Details
 hr
 div(ng-repeat="company in companies")
   div
-    h3 Company name: {{company.name}}
+    h2.text-center
+      | Company name: {{company.name}}
   div.container
+    .row
+      .col-sm-12.text-right(style="padding-bottom: 20px;")
+        button.btn.btn-primary.btn-lg(ng-click="openAddDepartmentModal()") Add New Department
     .row
       .col-md-12
         .panel.panel-default
@@ -25,7 +29,7 @@ div(ng-repeat="company in companies")
             .row
               div.departmentList(style="padding-top:0;")    
                 .list-group
-                  a.list-group-item(ng-repeat='department in company.departments' ng-click='openEditEmployeeModal(employee)')
+                  a.list-group-item(ng-repeat='department in company.departments' ng-click='openEditDepartmentModal(department)')
                     .row
                       .col-xs-4
                         | {{department.name}}
@@ -35,6 +39,9 @@ div(ng-repeat="company in companies")
                         | {{department.positions.length}}
           
   div.container
+    .row
+      .col-sm-12.text-right(style="padding-bottom: 20px;")
+        button.btn.btn-primary.btn-lg(ng-click="openAddPositionModal()") Add New Position
     .row
       .col-md-12
         .panel.panel-default
@@ -56,7 +63,7 @@ div(ng-repeat="company in companies")
             .row
               div.positionList(style="padding-top:0;")    
                 .list-group
-                  a.list-group-item(ng-repeat='position in company.positions' ng-click='openEditEmployeeModal(employee)')
+                  a.list-group-item(ng-repeat='position in company.positions' ng-click='openEditPositionModal(position)')
                     .row
                       .col-xs-4
                         | {{position.name}}
@@ -69,7 +76,7 @@ div(ng-repeat="company in companies")
   .container(style="padding-top: 20px;")
     .row
       .col-sm-12.text-right(style="padding-bottom: 20px;")
-        button.btn.btn-primary.btn-lg(ng-click="openAddEmployeeModal()") Add new employee
+        button.btn.btn-primary.btn-lg(ng-click="openAddEmployeeModal()") Add New Employee
     .row
       .col-md-12
         .panel.panel-default

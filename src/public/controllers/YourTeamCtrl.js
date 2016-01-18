@@ -19,6 +19,10 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
 
   $scope.cssClass = 'page-yourTeam';
 
+  ///////////////////////////////////////////////////////////////
+  // Employee Modals
+  ///////////////////////////////////////////////////////////////
+
   $scope.openAddEmployeeModal = function() {
   	var modalInstance = $uibModal.open({
   		animation: true,
@@ -38,6 +42,60 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       }
   	})
   }
+
+  ///////////////////////////////////////////////////////////////
+  // Department Modals
+  ///////////////////////////////////////////////////////////////
+
+  $scope.openAddDepartmentModal = function() {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/addNewEmployee.html",
+      controller: 'YourTeamCtrl',
+      size: 'lg'
+  	})
+  }
+
+  $scope.openEditDepartmentModal = function(department) {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/editEmployee.html",
+      size: 'lg',
+      controller: function ($scope) {
+        $scope.department = department;
+      }
+  	})
+  }
+
+  ///////////////////////////////////////////////////////////////
+  // Position Modals
+  ///////////////////////////////////////////////////////////////
+
+  $scope.openAddPositionModal = function() {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/addNewEmployee.html",
+      controller: 'YourTeamCtrl',
+      size: 'lg'
+  	})
+  }
+
+  $scope.openEditPositionModal = function(position) {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/editEmployee.html",
+      size: 'lg',
+      controller: function ($scope) {
+        $scope.position = position;
+      }
+  	})
+  }
+
+
+
+
+
+
 
   $scope.addEmployee = function(newEmployee) {
     console.log("Passed Employee info", newEmployee)
