@@ -83,15 +83,22 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	controller.hears(['dm me'],['direct_message','direct_mention'],function(bot,message) {
-		bot.startConversation(message,function(err,convo) {
-			convo.say('Heard ya');
-		});
-
-		bot.startPrivateConversation(message,function(err,dm) {
-			dm.say('Private reply!');
-		});
+	witbot.hears('how_are_you', 0.3, function (bot, message, outcome) {
+		console.log("WIT.AI Outcome", outcome);
+		console.log("WIT.AI Outcome", outcome.entities.greeting);
+		bot.reply(message, "I'm great.");
+		bot.reply(message, "Better than great.");
+		bot.reply(message, "Grand in fact.");
 	});
+
+	witbot.hears('greeting', 0.3, function (bot, message, outcome) {
+		console.log("WIT.AI Outcome", outcome);
+		console.log("WIT.AI Outcome", outcome.entities.greeting);
+		bot.reply(message, 'Greetings earthling.');
+	});
+
+
+
 
 	/****************** DEPARTMENTS ******************/
 	witbot.hears('all_departments', 0.5, function (bot, message, outcome) {
@@ -140,12 +147,6 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	/****************** GREETINGS ******************/
-	witbot.hears('greeting', 0.3, function (bot, message, outcome) {
-		console.log("WIT.AI Outcome", outcome);
-		console.log("WIT.AI Outcome", outcome.entities.greeting);
-		bot.reply(message, 'Greetings earthling.');
-	});
 
 	/****************** POSITIONS ******************/
 	witbot.hears('all_positions', 0.5, function (bot, message, outcome) {
