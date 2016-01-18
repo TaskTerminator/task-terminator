@@ -255,12 +255,54 @@ const controller = Botkit.slackbot({
 		});
 	});
 
+    witbot.hears('all_incomplete_tasks', 0.2, function (bot, message, outcome) {
+		console.log("I'm trying to get all incomplete tasks!");
+//		botHelper.allIncompleteProjectTasks()
+//		.then((projectDetails) => {
+//			var title = "Here's all the incomplete tasks I could find...";
+//			console.log("Here's all the incomplete tasks I returned....", projectDetails);
+//			return botHelper.projectsAttachment(projectDetails, title);
+//		})
+//		.then((attachment) => {
+//			var attachments = [];
+//			attachments.push(attachment);
+//			bot.reply(message,{
+//				// text: ' ',
+//				attachments: attachments,
+//			},function(err,resp) {
+//				console.log(err,resp);
+//			});
+//		});
+	});
+
 
  	witbot.hears('task_complete', 0.5, function (bot, message, outcome) {
  		console.log("WIT.AI Outcome", outcome);
 
  		bot.reply(message, "Way to go brah!");
  	});
+
+    /****************** INCOMPETE PROJECTS ******************/
+
+	witbot.hears('incomplete_projects', 0.2, function (bot, message, outcome) {
+		console.log("I'm trying to get projects!");
+		botHelper.allIncompleteProjects()
+		.then((projectDetails) => {
+			var title = "Here's all the incomplete projects I could find...";
+			console.log("Here's all the incomplete projects I returned....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
 
 
  module.exports = {

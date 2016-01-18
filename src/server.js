@@ -95,6 +95,7 @@ app.post('/api/singleproject', projectCtrl.newSingleProject);
 
 //********** TRIGGERED PROJECT ENDPOINTS **********
 app.post('/api/triggeredproject/:templateid', projectCtrl.newTriggeredProject);
+app.put('/api/triggeredproject/:triggeredprojectid', projectCtrl.editTriggeredProject);
 
 
 //-----------Connection to database-----------//
