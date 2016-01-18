@@ -189,6 +189,15 @@ module.exports = {
             });
       });
     },
+    
+    editTriggeredProject(req, res) {
+        Project.update({_id: req.params.triggeredprojectid}, req.body)
+        .then(() => {
+            return res.status(200).end();
+        }).catch((err) => {
+            return res.status(500).end();
+        });
+    },
 
   oneProject(req, res) {
     Project.findById(req.params.id).exec().then((result) => {

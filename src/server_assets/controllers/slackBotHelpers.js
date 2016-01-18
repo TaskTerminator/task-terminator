@@ -195,6 +195,27 @@ module.exports = {
       console.log(deferred.promise);
       return deferred.promise;
     },
+    
+    allIncompleteProjects: function(req, res) {
+      var deferred = Q.defer();
+      Project.find().exec()
+        .then((projects) => {
+          console.log("Here's the projects I found...",projects);
+          const incompleteProjects = [];
+          projects.map((item) => {
+              console.log("ITEM", item)
+              if (item.status === 'Incomplete') {
+                  console.log('INCOMPLETE PROJECTS', projects)
+                  incompleteProjects.push(item);
+              } 
+          })
+          deferred.resolve(incompleteProjects);
+      }).catch((err) => {
+        return res.status(500).end();
+      });
+      console.log(deferred.promise);
+          return deferred.promise;
+    },
 
     /************** QUERIES - PROJECT TASKS  **************/
     allProjectTasks: function(req,res){
@@ -208,8 +229,20 @@ module.exports = {
       });
       return deferred.promise;
     },
+    
+    allIncompleteProjectTasks: function(req,res){
+      console.log("Made it to all incomplete project tasks!");
+    var deferred = Q.defer();
+    ProjectTask.find().exec().then((results) => {
+      console.log("This is what I found for all the tasks", results);
+      deferred.resolve(results);
+      }).catch((err) => {
+        return res.status(500).end();
+      });
+      return deferred.promise;
+    },
 
-    tasksInProject : function(id){
+    tasksInProject: function(id){
       console.log("Here's the id I'm looking for", id);
       var deferred = Q.defer();
       Project.find({"friendlyId":id})
