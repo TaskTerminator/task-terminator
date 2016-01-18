@@ -107,13 +107,16 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
 
 
 
-
+  setInterval(function(){
+    console.log($scope.newEmployee.departments);
+  }, 3000);
 
   $scope.addEmployee = function(newEmployee) {
     console.log("Passed Employee info", newEmployee)
     YourTeamSvc.postEmployee(newEmployee).then(function(results) {
       console.log("Employee added");
     })
+    $scope.newEmployee = {};
   }
 
 });
