@@ -30,19 +30,19 @@ module.exports = {
     },
 
   dayOfWeek: function() {
-    return moment().day()._d;
+    return moment().day();
   },
 
   thisMonth: function() {
-    return moment().month()._d;
+    return moment().month();
   },
 
   thisQuarter: function() {
-    return moment().quarter()._d;
+    return moment().quarter();
   },
 
   thisYear: function() {
-    return moment().year()._d;
+    return moment().year();
   },
 
   nextMonth: function() {
