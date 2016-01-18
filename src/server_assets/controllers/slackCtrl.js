@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const mongoose = require('mongoose');
 const Botkit = require('botkit');
 const Q = require('q');
@@ -264,7 +263,7 @@ const controller = Botkit.slackbot({
 module.exports = {
 
 };
-=======
+
 // const mongoose = require('mongoose');
 // const Botkit = require('botkit');
 // const Q = require('q');
@@ -530,4 +529,4 @@ module.exports = {
 // module.exports = {
 //
 // };
->>>>>>> 223c07103b8590bf1be345e17d7dc3cf4a114da1
+

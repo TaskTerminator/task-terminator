@@ -71,12 +71,21 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
   $scope.newSingleProject = {
     setup: {type: "Single"}
   };
-  $scope.postSingleProject = function(newSingleProject) {
+  $scope.postProject = function(newSingleProject) {
     console.log("New Single Project Info: ", newSingleProject);
     ProjectsSvc.postProject(newSingleProject).then(function(results) {
       console.log("Single Project added: ", results);
     })
   };
+
+  $scope.saveProject = function() {
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: "./templates/projectTasks.html",
+      controller: "ProjectsCtrl",
+      size: "lg"
+    })
+  }
 //////////////////////////////////////////////////////////
 
 
