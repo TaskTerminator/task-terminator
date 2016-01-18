@@ -73,6 +73,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'YourTeamCtrl',
             templateUrl:'Templates/yourTeam.html',
         })
+        .state('dashboard.company-details',{
+            url:'/company',
+            controller: 'YourTeamCtrl',
+            templateUrl:'Templates/companyDetails.html',
+        })
 
 
 
