@@ -71,6 +71,7 @@ app.get('/api/project', projectCtrl.allProjects);
 
 //********** PROJECT TASK ENDPOINTS **********
 app.get('/api/tasks/project/:id', projectTaskCtrl.getTasks);
+app.post('/api/tasks/project/:projectId', projectTaskCtrl.addTask);
 // * app.get('/api/tasks/department/:id', projectTaskCtrl.getDepartmentTask);
 
 //********** TEMPLATE ENDPOINTS **********
@@ -87,6 +88,9 @@ app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
 
 //********** TIME ENDPOINTS **********
 app.get('/api/time', testTimeCtrl.testTime);
+
+//********** SINGLE PROJECT ENDPOINTS **********
+app.post('/api/singleproject', projectCtrl.newSingleProject);
 
 
 //-----------Connection to database-----------//
