@@ -60,10 +60,10 @@ module.exports = {
         for (var i = 0; i < project_tasks.length; i++) {
           newProject.tasks.push(project_tasks[i]);
         }
-        newProject.save().then((project => {
+        newProject.save().then((project) => {
           console.log("Made it!");
           return res.json(project);
-        }));
+        });
       });
 
 

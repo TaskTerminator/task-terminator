@@ -129,12 +129,9 @@ module.exports = {
         } else if (template.setup.interval.annualInterval.selection === 'Last Day of the Year') {
           deadline = timeCtrl.annuallyLastDay(instance);
         } else if (template.setup.interval.annualInterval.selection === 'In a Particular Month') {
-
           console.log("#11 - Make it to the correct annual selection!");
           deadline = timeCtrl.annuallyParticularMonth(template.setup.interval.annualInterval.selectMonth, instance);
           console.log("#13 - Deadline", deadline);
-
-
         } else if (template.setup.interval.annualInterval.selection === 'In a Particular Quarter') {
           deadline = timeCtrl.annuallyParticularQuarter(template.setup.interval.annualInterval.selectQuarter, instance);
         } else if (template.setup.interval.annualInterval.selection === '# of Days From Start') {
@@ -144,6 +141,10 @@ module.exports = {
         } else {
           deadline = timeCtrl.annuallyAnyDay(instance);
         }
+      } else if (intervalType === 'Daily') {
+          deadline = timeCtrl.nextDay();
+      } else if (intervalType === 'Daily Business Day') {
+          deadline = timeCtrl.nextBusinessDay();
       }
       deferred.resolve(deadline);
       return deferred.promise;

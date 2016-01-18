@@ -25,21 +25,24 @@ module.exports = {
   now: function() {
     return moment()._d;
   },
+    nextDay: function() {
+        return moment().add(1, 'days')._d;
+    },
 
   dayOfWeek: function() {
-    return moment().day()._d;
+    return moment().day();
   },
 
   thisMonth: function() {
-    return moment().month()._d;
+    return moment().month();
   },
 
   thisQuarter: function() {
-    return moment().quarter()._d;
+    return moment().quarter();
   },
 
   thisYear: function() {
-    return moment().year()._d;
+    return moment().year();
   },
 
   nextMonth: function() {
@@ -322,7 +325,7 @@ module.exports = {
     return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).date(firstCycleDate + 15)._d;
   },
 
-nextBusinessDay: function (date) {
+nextBusinessDay: function () {
     const isIn = function (increaseDays) {
         //Sets a number for day of the week...Sunday = 0, Monday = 1 etc.
         const today = moment().day();
