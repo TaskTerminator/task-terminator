@@ -1,4 +1,6 @@
-angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc) {
+angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state) {
+
+  $scope.newEmployee = {};
 
   $scope.getEmployees = function() {
     YourTeamSvc.getEmployees().then(function(res) {
@@ -29,6 +31,13 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
         console.log(employee);
       }
   	})
+  }
+
+  $scope.addEmployee = function(newEmployee) {
+    console.log("Passed Employee info", newEmployee)
+    YourTeamSvc.postEmployee(newEmployee).then(function(results) {
+      console.log("Employee added");
+    })
   }
 
 });
