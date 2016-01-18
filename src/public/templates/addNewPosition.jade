@@ -1,0 +1,18 @@
+h1.text-center
+  | Add New Position Form
+div.employeeAddForm
+  form
+    .form-group
+      label(for="PositionName")
+        | Position Name:  
+      input.form-control(type="text" ng-model="position.name" id="PositionName")
+    .form-group
+      label(for="departmentName")
+        | Department Name:  
+      input.form-control(type="text" ng-model="position.department" id="departmentName")
+    .list-group.employeeList
+      h3 Employees:
+      a.list-group-item(ng-repeat='employee in employees')
+        .row
+          .col-xs-4
+            | {{employee.identification.name.fullName}}
