@@ -12,8 +12,8 @@ div.employeeAddForm
       input.form-control(type="text" ng-model="newEmployee.lastName" id="EmployeeLastNameField")
     .form-group
       label(for="EmployeeUsernameField")
-        | Email:  
-      input.form-control(type="email" ng-model="newEmployee.username" id="EmployeeUsernameField")
+        | Username:  
+      input.form-control(type="text" ng-model="newEmployee.username" id="EmployeeUsernameField")
     .form-group
       label(for="EmployeeEmailField")
         | Email:  
@@ -28,8 +28,14 @@ div.employeeAddForm
           | No
     .form-group
       label(for="DepartmentsField")
-        | Department:  
+        | Department: 
+      select.form-control(ng-model="newEmployee.department" id="EmployeeDepartmentField")
+        option(ng-repeat="department in departments")
+          | {{department}} 
     .form-group
       label(for="PositionsField")
-        | Position:  
-    button.btn.btn-primary.btn-lg(ng-click="addEmployee(newEmployee)")
+        | Position:
+      select.form-control(ng-model="newEmployee.position" id="EmployeePositionField")
+        option(ng-repeat="position in positions")
+          | {{position}}  
+    button.btn.btn-primary.btn-lg(ng-click="addEmployee(newEmployee)") Submit
