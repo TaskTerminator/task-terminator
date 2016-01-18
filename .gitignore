@@ -4,3 +4,4 @@ bower_components/
 build/
 .jshintrc
 UserStory.txt
+*.orig
