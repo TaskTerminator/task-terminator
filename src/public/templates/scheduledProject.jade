@@ -14,33 +14,6 @@
           label(for="descriptionField")
             | Description:
           input.form-control(type="text")
-        .form-group
-            button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
-              span(type="text" ng-if="!showTaskBox") Add Task
-              span(type="text" ng-if="showTaskBox") Cancel Task
-            div.animate-if(ng-if="showTaskBox")
-              label(for="taskName")
-                | Task Name:
-              input.form-control(type="text" ng-model="name" id="taskName")
-              label(for="taskDesc")
-                | Task Description:
-              input.form-control(type="text" ng-model="description" id="taskDesc")
-              label(for="taskAssign")
-                | Assign To:
-              select.form-control(ng-model="taskAssign" id="assignField")
-                option
-                  | Department
-                option
-                  | Role
-                option
-                  | Individual
-              button.btn.btn-success(type="button" ng-click="addTask()") Submit
-            .form-group
-              label(for="tasksField")
-                | Tasks: 
-                //-div
-                //-ul
-                //-li(ng-repeat="project.tasks in projects")
         .animate-if(ng-if="date")
           h4 By Date
           .form-group
@@ -113,4 +86,4 @@
                 span.input-group-btn
                   button.btn.btn-default(type="button" ng-click="open3()")
                     i.glyphicon.glyphicon-calendar
-      button.btn.btn-success(type="button" ng-click="postProject()") Submit
+      button.btn.btn-success(type="button" ng-click="saveProject()") Create and Add Tasks

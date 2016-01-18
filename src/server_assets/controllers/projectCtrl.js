@@ -72,7 +72,6 @@ module.exports = {
 
 
 
-
   //     //Look up the template that is creating this task
   //   Template.findById(req.params.templateid).exec().then((template) => {
   //     //When the template is returned convert it to a true object rather than a mongoose object
@@ -125,6 +124,17 @@ module.exports = {
   //   });
   // });
 },
+    
+    newSingleProject(req, res) {
+        const newProject = new Project(req.body);
+        newProject.friendlyId = randomstring.generate({length: 5, readable: true});
+        newProject.save()
+        .then((project) => {
+            return res.json(project);
+        }).catch((err) => {
+            return res.status(500).end();
+        });
+    },
 
   oneProject(req, res) {
     Project.findById(req.params.id).exec().then((result) => {
