@@ -71,7 +71,8 @@ app.get('/api/project', projectCtrl.allProjects);
 
 //********** PROJECT TASK ENDPOINTS **********
 app.get('/api/tasks/project/:id', projectTaskCtrl.getTasks);
-// app.post('/api/tasks/project/:projectId', projectTaskCtrl.addTask);
+app.post('/api/tasks/project/:projectid', projectTaskCtrl.addTask);
+app.put('/api/tasks/project/:projectid', projectTaskCtrl.editTask);
 // * app.get('/api/tasks/department/:id', projectTaskCtrl.getDepartmentTask);
 
 //********** TEMPLATE ENDPOINTS **********
@@ -91,6 +92,9 @@ app.get('/api/time', testTimeCtrl.testTime);
 
 //********** SINGLE PROJECT ENDPOINTS **********
 app.post('/api/singleproject', projectCtrl.newSingleProject);
+
+//********** TRIGGERED PROJECT ENDPOINTS **********
+app.post('/api/triggeredproject/:templateid', projectCtrl.newTriggeredProject);
 
 
 //-----------Connection to database-----------//

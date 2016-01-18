@@ -26,7 +26,7 @@ module.exports = {
     return moment()._d;
   },
     nextDay: function() {
-        return moment().add(1, 'days')._d;
+        return moment().hours(deadlineHour).minute(0).second(0).millisecond(0).add(1, 'days')._d;
     },
 
   dayOfWeek: function() {
