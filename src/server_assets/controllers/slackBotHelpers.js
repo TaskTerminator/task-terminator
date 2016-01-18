@@ -9,6 +9,8 @@ const Q = require('q');
 
 module.exports = {
 
+  /************** ARRAYS **************/
+
     arrayMaker: function(array){
       var deferred = Q.defer();
       console.log("I'm trying to make an array!");
@@ -36,6 +38,8 @@ module.exports = {
       console.log("This is the deferred promise", deferred.promise);
       return deferred.promise;
     },
+
+/************** ATTACHMENTS **************/
 
     attachmentMaker: function(array,attachmentTitle){
       console.log("Here's the array to be turned into an attachement", array, attachmentTitle);
@@ -105,17 +109,41 @@ module.exports = {
       return deferred.promise;
     },
 
-    allPositions: function(req, res) {
+    projectsAttachment: function(array,attachmentTitle){
+      console.log("Here's the array to be turned into an attachement", array, attachmentTitle);
       var deferred = Q.defer();
-      Position.find().exec()
-        .then((positions) => {
-          deferred.resolve(positions);
-      }).catch((err) => {
-        return res.status(500).end();
-      });
+      console.log("I'm trying to make a nice attachment for you....");
+      var attachment = {
+        title: attachmentTitle,
+        color: '#7FEFBD',
+        fields: [],
+        mrkdwn_in: ['fields']
+      };
+
+      for(var j = 0; j < array.length; j ++){
+        attachment.fields.push({
+          label: 'Field',
+          value: "_#"+ array[j].friendlyId + "_ : " + array[j].name + " - " + array[j].description + " - " + array[j].status,
+          short: false
+        });
+      }
+      console.log(attachment);
+      deferred.resolve(attachment);
       return deferred.promise;
     },
 
+    /************** FORMATTING **************/
+
+    hashStripper: function(id){
+      console.log("Here's the id I'm trying to fix", id);
+      var deferred = Q.defer();
+      var cleanId = id.split('#');
+      deferred.resolve(cleanId[1]);
+      return deferred.promise;
+    },
+
+
+    /************** QUERIES - DEPARTMENTS  **************/
     allDepartments: function(req, res) {
       var deferred = Q.defer();
       Department.find().exec()
@@ -127,6 +155,7 @@ module.exports = {
       return deferred.promise;
     },
 
+    /************** QUERIES - EMPLOYEES  **************/
     allEmployees: function(req, res) {
       var deferred = Q.defer();
       Employee.find().exec()
@@ -138,17 +167,35 @@ module.exports = {
       return deferred.promise;
     },
 
-    allProjects: function(req, res) {
+    /************** QUERIES - POSITIONS  **************/
+    allPositions: function(req, res) {
       var deferred = Q.defer();
-      Project.find().exec()
-        .then((projects) => {
-          deferred.resolve(projects);
+      Position.find().exec()
+        .then((positions) => {
+          deferred.resolve(positions);
       }).catch((err) => {
         return res.status(500).end();
       });
       return deferred.promise;
     },
 
+
+
+    /************** QUERIES - PROJECTS  **************/
+    allProjects: function(req, res) {
+      var deferred = Q.defer();
+      Project.find().exec()
+        .then((projects) => {
+          console.log("Here's the projects I found...",projects);
+          deferred.resolve(projects);
+      }).catch((err) => {
+        return res.status(500).end();
+      });
+      console.log(deferred.promise);
+      return deferred.promise;
+    },
+
+    /************** QUERIES - PROJECT TASKS  **************/
     allProjectTasks: function(req,res){
       console.log("Made it to all project tasks!");
     var deferred = Q.defer();
@@ -161,20 +208,25 @@ module.exports = {
       return deferred.promise;
     },
 
+    tasksInProject : function(id){
+      console.log("Here's the id I'm looking for", id);
+      var deferred = Q.defer();
+      Project.find({"friendlyId":id})
+      .exec()
+      .then((result)=>{
+        console.log("did i find a project?", result);
+        deferred.resolve(result);
+      }).catch((err)=> {
+        return res.status(500).end();
+      });
+      return deferred.promise;
+    }
 
 
-    // makeTemplateTaskObject(id, associatedProjectId) {
-    //   console.log("#18 - Made it to Template Task Object");
-    //   var deferred = Q.defer();
-    //   TemplateTask.findById(id)
-    //     .exec()
-    //     .then((returnedTask) => {
-    //       const task_plain = returnedTask.toObject();
-    //       delete task_plain._id;
-    //       delete task_plain.__v;
-    //       delete task_plain.date.created;
-    //       deferred.resolve(task_plain);
-    //     });
-    //   return deferred.promise;
-    // },
+
+
+
+
+
+
 };
