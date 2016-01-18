@@ -140,12 +140,6 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	/****************** GREETINGS ******************/
-	witbot.hears('greeting', 0.3, function (bot, message, outcome) {
-		console.log("WIT.AI Outcome", outcome);
-		console.log("WIT.AI Outcome", outcome.entities.greeting);
-		bot.reply(message, 'Greetings earthling.');
-	});
 
 	/****************** POSITIONS ******************/
 	witbot.hears('all_positions', 0.5, function (bot, message, outcome) {
@@ -253,13 +247,169 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	witbot.hears('task_complete', 0.5, function (bot, message, outcome) {
-		console.log("WIT.AI Outcome", outcome);
-
-		bot.reply(message, "Way to go brah!");
-	});
 
 
-module.exports = {
+ 	/****************** DEPARTMENTS ******************/
+ 	witbot.hears('all_departments', 0.5, function (bot, message, outcome) {
+ 		console.log("WIT.AI Outcome", outcome);
+ 		botHelper.allDepartments()
+ 		.then((departments) =>{
+ 			return botHelper.arrayMaker(departments);
+ 		})
+ 		.then((departmentNames) => {
+ 			var title = "Here's all the departments I could find...";
+ 			return botHelper.attachmentMaker(departmentNames, title);
+ 		})
+ 		.then((attachment) => {
+ 			var attachments = [];
+ 			attachments.push(attachment);
+ 			bot.reply(message,{
+ 				// text: ' ',
+ 				attachments: attachments,
+ 			},function(err,resp) {
+ 				console.log(err,resp);
+ 			});
+ 		});
+ 	});
 
-};
+ 	/****************** EMPLOYEES ******************/
+ 	witbot.hears('all_employees', 0.5, function (bot, message, outcome) {
+ 		console.log(outcome);
+ 		botHelper.allEmployees()
+ 		.then((employees) =>{
+ 			return botHelper.arrayMakerEmployeeName(employees);
+ 		})
+ 		.then((employeeNames) => {
+ 			console.log("Here's the returned promise...", employeeNames);
+ 			var title = "Here's all the employees I could find...";
+ 			return botHelper.attachmentMaker(employeeNames, title);
+ 		})
+ 		.then((attachment) => {
+ 			var attachments = [];
+ 			attachments.push(attachment);
+ 			bot.reply(message,{
+ 				// text: ' ',
+ 				attachments: attachments,
+ 			},function(err,resp) {
+ 				console.log(err,resp);
+ 			});
+ 		});
+ 	});
+
+
+ 	/****************** POSITIONS ******************/
+ 	witbot.hears('all_positions', 0.5, function (bot, message, outcome) {
+ 		botHelper.allPositions()
+ 		.then((positions) =>{
+ 			return botHelper.arrayMaker(positions);
+ 		})
+ 		.then((positionNames) => {
+ 			var title = "Here's all the positions I could find...";
+ 			return botHelper.attachmentMaker(positionNames, title);
+ 		})
+ 		.then((attachment) => {
+ 			var attachments = [];
+ 			attachments.push(attachment);
+ 			bot.reply(message,{
+ 				// text: ' ',
+ 				attachments: attachments,
+ 			},function(err,resp) {
+ 				console.log(err,resp);
+ 			});
+ 		});
+ 	});
+
+ 	/****************** PROJECTS ******************/
+ 	witbot.hears('all_projects', 0.3, function (bot, message, outcome) {
+ 		console.log("I'm trying to get projects!");
+ 		botHelper.allProjects()
+ 		.then((projectDetails) => {
+ 			var title = "Here's all the projects I could find...";
+ 			console.log("Here's all the projects I returned....", projectDetails);
+ 			return botHelper.projectsAttachment(projectDetails, title);
+ 		})
+ 		.then((attachment) => {
+ 			var attachments = [];
+ 			attachments.push(attachment);
+ 			bot.reply(message,{
+ 				// text: ' ',
+ 				attachments: attachments,
+ 			},function(err,resp) {
+ 				console.log(err,resp);
+ 			});
+ 		});
+ 	});
+
+ 	witbot.hears('tasks_in_project', 0.5, function(bot,message, outcome){
+ 		console.log("this is what WIT.AI returned", outcome.entities.project_id);
+ 		console.log("this is what WIT.AI returned", outcome.entities.project_id[0].value);
+
+ 		var projectId = outcome.entities.project_id[0].value;
+ 		return botHelper.hashStripper(projectId)
+ 		.then((cleanId) => {
+ 			console.log("Here's the clean ID I made", cleanId);
+ 			return botHelper.tasksInProject(cleanId);
+ 		})
+ 		.then((tasks) => {
+ 			console.log("Here's the tasks associated with that project", tasks);
+ 		});
+
+ 		// bot.reply(message, "Let me get those tasks for you!");
+ 	});
+
+ 	controller.hears(['show projects', 'projects'],'direct_message,direct_mention,mention',function(bot,message) {
+ 		botHelper.allProjects()
+ 		.then((projects) =>{
+ 			return botHelper.arrayMaker(projects);
+ 		})
+ 		.then((projectNames) => {
+ 			console.log("Here's the returned promise...", projectNames);
+ 			var title = "Here's all the projects I could find...";
+ 			return botHelper.attachmentMaker(projectNames, title);
+ 		})
+ 		.then((attachment) => {
+ 			var attachments = [];
+ 			attachments.push(attachment);
+ 			bot.reply(message,{
+ 				// text: ' ',
+ 				attachments: attachments,
+ 			},function(err,resp) {
+ 				console.log(err,resp);
+ 			});
+ 		});
+ 	});
+
+ 	/****************** PROJECT TASKS ******************/
+ 	witbot.hears('all_tasks',0.5, function(bot,message,coutcome){
+ 		botHelper.allProjectTasks()
+ 		.then((tasks) =>{
+ 			// console.log("Here are the tasks I got back!",tasks);
+ 			return botHelper.arrayMaker(tasks);
+ 		})
+ 		.then((taskNames) => {
+ 			// console.log("Here's the returned promise...", taskNames);
+ 			var title = "Here's all the tasks I could find...";
+ 			return botHelper.attachmentMaker(taskNames, title);
+ 		})
+ 		.then((attachment) => {
+ 			var attachments = [];
+ 			attachments.push(attachment);
+ 			bot.reply(message,{
+ 				// text: ' ',
+ 				attachments: attachments,
+ 			},function(err,resp) {
+ 				console.log(err,resp);
+ 			});
+ 		});
+ 	});
+
+ 	witbot.hears('task_complete', 0.5, function (bot, message, outcome) {
+ 		console.log("WIT.AI Outcome", outcome);
+
+ 		bot.reply(message, "Way to go brah!");
+ 	});
+
+
+ module.exports = {
+
+ };

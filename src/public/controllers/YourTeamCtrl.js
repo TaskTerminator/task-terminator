@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state) {
+angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state, CompanySvc) {
 
   $scope.newEmployee = {};
 
@@ -9,8 +9,19 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
     });
   }();
 
+  $scope.getCompany = function() {
+    CompanySvc.getCompanies().then(function(res) {
+      console.log(res)
+      $scope.companies = res.data;
+    });
+  }();
+
 
   $scope.cssClass = 'page-yourTeam';
+
+  ///////////////////////////////////////////////////////////////
+  // Employee Modals
+  ///////////////////////////////////////////////////////////////
 
   $scope.openAddEmployeeModal = function() {
   	var modalInstance = $uibModal.open({
@@ -28,10 +39,75 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope) {
         $scope.employee = employee;
-        console.log(employee);
+        console.log($scope.employee);
+
       }
   	})
   }
+
+  ///////////////////////////////////////////////////////////////
+  // Department Modals
+  ///////////////////////////////////////////////////////////////
+
+  $scope.openAddDepartmentModal = function() {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/addNewDepartment.html",
+      controller: 'YourTeamCtrl',
+      size: 'lg'
+  	})
+  }
+
+  $scope.openEditDepartmentModal = function(department) {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/editDepartment.html",
+      size: 'lg',
+      controller: function ($scope, YourTeamSvc) {
+        $scope.department = department;
+        console.log($scope.department);
+      }
+  	})
+  }
+
+  ///////////////////////////////////////////////////////////////
+  // Position Modals
+  ///////////////////////////////////////////////////////////////
+
+  $scope.openAddPositionModal = function() {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/addNewPosition.html",
+      controller: 'YourTeamCtrl',
+      size: 'lg'
+  	})
+  }
+
+  $scope.openEditPositionModal = function(position) {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/editPosition.html",
+      size: 'lg',
+      controller: function ($scope) {
+        $scope.position = position;
+        console.log($scope.position);
+
+        $scope.getEmployees = function() {
+          YourTeamSvc.getEmployees().then(function(res) {
+            console.log(res)
+            $scope.employees = res.data;
+          });
+        }();
+
+      }
+  	})
+  }
+
+
+
+
+
+
 
   $scope.addEmployee = function(newEmployee) {
     console.log("Passed Employee info", newEmployee)
