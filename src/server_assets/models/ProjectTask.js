@@ -11,7 +11,7 @@ const projectTaskSchema = new mongoose.Schema({
   associatedProject : {type:String, ref:'Project'},
   date: {
     created: {type: Date, default: new Date()},
-    deadline: {},
+    deadline: {type: Date},
   },
   assigment: {
       departments: {type:String, ref: 'Department'},
