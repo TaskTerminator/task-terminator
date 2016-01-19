@@ -254,6 +254,7 @@ module.exports = {
     ProjectTask.find().exec().then((results) => {
         const incompleteTasks = [];
         results.map((item) => {
+            console.log("TASK", item)
             if (item.status === 'Incomplete') {
                 incompleteTasks.push(item)
             }
@@ -291,7 +292,8 @@ module.exports = {
             projects.map((item) => {
                 console.log('ITEM1', item.setup.dueDate.actual);
                 console.log('ITEM2', moment().hours(0).minute(0).second(0).millisecond(0)._d);
-                if (item.setup.dueDate.actual.isBefore(moment().hours(0).minute(0).second(0).millisecond(0)._d)) {
+                console.log('TRUE OR FALSE', moment().hours(0).minute(0).second(0).millisecond(0).isAfter(moment(item.setup.dueDate.actual)));
+                if (moment().hours(0).minute(0).second(0).millisecond(0).isAfter(moment(item.setup.dueDate.actual))) {
                     console.log('ITEM3', item)
                     overdue.push(item)
                 }
@@ -312,14 +314,37 @@ module.exports = {
             console.log('PROJECTS', projects)
             var week = [];
             projects.map((item) => {
-                console.log("DATE", item.setup.dueDate.actual)
-                console.log("DIFFERENCE IN DATES", item.setup.dueDate.actual.diff(moment()._d, 'days'))
-                if (item.setup.dueDate.actual.diff(moment()._d, 'days') <= 5 && item.status === 'Incomplete') {
+                console.log("WEEK", moment(item.setup.dueDate.actual).week());
+                console.log("CURRENT WEEK", moment().week());
+                if (moment().week() === moment(item.setup.dueDate.actual).week()) {
                     console.log('ITEM', item);
                     week.push(item);
                 }
             });
             deferred.resolve(week);
+        })
+        .catch((err) => {
+            return res.status(500).end();
+        });
+        return deferred.promise;
+    },
+    
+    projectsDueThisMonth(req, res) {
+        console.log("Made it to projectsDueThisMonth");
+        var deferred = Q.defer();
+        Project.find().exec()
+        .then((projects) => {
+            console.log('PROJECTS', projects)
+            var month = [];
+            projects.map((item) => {
+                console.log("MONTH", moment(item.setup.dueDate.actual).month());
+                console.log("CURRENT MONTH", moment().month());
+                if (moment().month() === moment(item.setup.dueDate.actual).month()) {
+                    console.log('ITEM', item);
+                    month.push(item);
+                }
+            });
+            deferred.resolve(month);
         })
         .catch((err) => {
             return res.status(500).end();
@@ -333,16 +358,17 @@ module.exports = {
         Project.find().exec()
         .then((projects) => {
             console.log('PROJECTS', projects)
-            var week = [];
+            var today = [];
             projects.map((item) => {
-                console.log("DATE", item.setup.dueDate.actual)
-                console.log("TODAY", moment().hours(17).minute(0).second(0).millisecond(0)._d)
-                if (item.setup.dueDate.actual === moment().hours(0).minute(0).second(0).millisecond(0)._d) {
+                console.log("DUE DATE", moment(item.setup.dueDate.actual).dayOfYear());
+                console.log("TODAY", moment().dayOfYear())
+                if (moment(item.setup.dueDate.actual).dayOfYear() === moment().dayOfYear()) {
                     console.log('ITEM', item);
-                    week.push(item);
+                    today.push(item);
                 }
             });
-            deferred.resolve(week);
+            console.log("ARRAY", today)
+            deferred.resolve(today);
         })
         .catch((err) => {
             return res.status(500).end();

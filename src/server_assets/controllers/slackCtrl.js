@@ -234,6 +234,32 @@ const controller = Botkit.slackbot({
 		});
 	});
 
+    witbot.hears('projects_due_this_month', 0.8, function (bot, message, outcome) {
+		console.log("I'm trying to get all projects due this month!");
+		botHelper.projectsDueThisMonth()
+		.then((projectDetails) => {
+			var title = "Here's all the projects due this month...";
+			console.log("Here's all the projects due this month....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+        .then((taskNames) => {
+			// console.log("Here's the returned promise...", taskNames);
+			var title = "Here's all the projects due this month...";
+			return botHelper.attachmentMaker(taskNames, title);
+		})
+		.then((attachment) => {
+            console.log('HELLO', attachment)
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
     witbot.hears('projects_due_this_week', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get all projects due this week!");
 		botHelper.projectsDueThisWeek()
