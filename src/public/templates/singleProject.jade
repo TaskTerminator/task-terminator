@@ -4,7 +4,7 @@
   .text-center
       h2 {{project.description}}
   .text-center.dueDate
-      h4 {{project.setup.dueDate.actual | date:'mediumDate'}}
+      h4 {{project.setup.dueDate.actual | date:'mediusmate'}}
 
 .panel.panel-default(style="margin:0 25px;")
   .panel-body
@@ -27,4 +27,4 @@
               | {{project.description}}
             
             .col-xs-2.text-center(style="padding:0")
-              | {{project.setup.dueDate.actual | date:'mediumDate'}}
+              | {{project.setup.dueDate.actual | date:'mediusmate'}}
