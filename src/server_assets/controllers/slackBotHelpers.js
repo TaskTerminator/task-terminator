@@ -254,6 +254,7 @@ module.exports = {
     ProjectTask.find().exec().then((results) => {
         const incompleteTasks = [];
         results.map((item) => {
+            console.log("TASK", item)
             if (item.status === 'Incomplete') {
                 incompleteTasks.push(item)
             }
@@ -289,9 +290,35 @@ module.exports = {
             console.log('PROJECTS', projects)
             var overdue = [];
             projects.map((item) => {
-                console.log('ITEM1', item)
-                if (item.setup.dueDate.actual.diff(moment(), 'days') < 0) {
-                    console.log('ITEM2', item)
+                console.log('ITEM1', item.setup.dueDate.actual);
+                console.log('ITEM2', moment());
+                console.log('TRUE OR FALSE', moment().isAfter(moment(item.setup.dueDate.actual)));
+                if (moment().isAfter(moment(item.setup.dueDate.actual))) {
+                    console.log('ITEM3', item)
+                    overdue.push(item)
+                }
+            });
+            deferred.resolve(overdue);
+        })
+        .catch((err) => {
+            return res.status(500).end();
+        });
+        return deferred.promise;
+    },
+    
+    overdueTasks(req, res) {
+        console.log("Made it to overdue tasks!");        
+        var deferred = Q.defer();
+        ProjectTask.find().exec()
+        .then((tasks) => {
+            console.log('TASKS', tasks)
+            var overdue = [];
+            tasks.map((item) => {
+                console.log('ITEM1', moment(item.date.deadline));
+                console.log('ITEM2', moment());
+                console.log('TRUE OR FALSE', moment().isAfter(moment(item.date.deadline)));
+                if (moment().isAfter(moment(item.date.deadline))) {
+                    console.log('ITEM3', item)
                     overdue.push(item)
                 }
             });
@@ -311,12 +338,37 @@ module.exports = {
             console.log('PROJECTS', projects)
             var week = [];
             projects.map((item) => {
-                if (item.setup.dueDate.actual.diff(moment(), 'days') <= 5 && item.status === 'Incomplete') {
+                console.log("WEEK", moment(item.setup.dueDate.actual).week());
+                console.log("CURRENT WEEK", moment().week());
+                if (moment().week() === moment(item.setup.dueDate.actual).week()) {
                     console.log('ITEM', item);
                     week.push(item);
                 }
             });
             deferred.resolve(week);
+        })
+        .catch((err) => {
+            return res.status(500).end();
+        });
+        return deferred.promise;
+    },
+    
+    projectsDueThisMonth(req, res) {
+        console.log("Made it to projectsDueThisMonth");
+        var deferred = Q.defer();
+        Project.find().exec()
+        .then((projects) => {
+            console.log('PROJECTS', projects)
+            var month = [];
+            projects.map((item) => {
+                console.log("MONTH", moment(item.setup.dueDate.actual).month());
+                console.log("CURRENT MONTH", moment().month());
+                if (moment().month() === moment(item.setup.dueDate.actual).month()) {
+                    console.log('ITEM', item);
+                    month.push(item);
+                }
+            });
+            deferred.resolve(month);
         })
         .catch((err) => {
             return res.status(500).end();
@@ -330,14 +382,17 @@ module.exports = {
         Project.find().exec()
         .then((projects) => {
             console.log('PROJECTS', projects)
-            var week = [];
+            var today = [];
             projects.map((item) => {
-                if (item.setup.dueDate.actual === moment() && item.status === 'Incomplete') {
+                console.log("DUE DATE", moment(item.setup.dueDate.actual).dayOfYear());
+                console.log("TODAY", moment().dayOfYear())
+                if (moment(item.setup.dueDate.actual).dayOfYear() === moment().dayOfYear()) {
                     console.log('ITEM', item);
-                    week.push(item);
+                    today.push(item);
                 }
             });
-            deferred.resolve(week);
+            console.log("ARRAY", today)
+            deferred.resolve(today);
         })
         .catch((err) => {
             return res.status(500).end();
