@@ -172,7 +172,7 @@ const controller = Botkit.slackbot({
 	});
 
 	/****************** PROJECTS ******************/
-	witbot.hears('all_projects', 0.3, function (bot, message, outcome) {
+	witbot.hears('all_projects', 0.7, function (bot, message, outcome) {
 		console.log("I'm trying to get projects!");
 		botHelper.allProjects()
 		.then((projectDetails) => {
@@ -209,15 +209,68 @@ const controller = Botkit.slackbot({
 		// bot.reply(message, "Let me get those tasks for you!");
 	});
 
-	controller.hears(['show projects', 'projects'],'direct_message,direct_mention,mention',function(bot,message) {
-		botHelper.allProjects()
-		.then((projects) =>{
-			return botHelper.arrayMaker(projects);
+	witbot.hears('overdue_projects', 0.5, function (bot, message, outcome) {
+		console.log("I'm trying to get all overdue projects!");
+		botHelper.overdueProjects()
+		.then((projectDetails) => {
+			var title = "Here's all the overdue projects I could find...";
+			console.log("Here's all the overdue projects I returned....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
 		})
-		.then((projectNames) => {
-			console.log("Here's the returned promise...", projectNames);
-			var title = "Here's all the projects I could find...";
-			return botHelper.attachmentMaker(projectNames, title);
+        .then((taskNames) => {
+			// console.log("Here's the returned promise...", taskNames);
+			var title = "Here's all the overdue projects I could find...";
+			return botHelper.attachmentMaker(taskNames, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+    witbot.hears('projects_due_this_week', 0.5, function (bot, message, outcome) {
+		console.log("I'm trying to get all projects due this week!");
+		botHelper.projectsDueThisWeek()
+		.then((projectDetails) => {
+			var title = "Here's all the projects due this week...";
+			console.log("Here's all the projects due this week....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+        .then((taskNames) => {
+			// console.log("Here's the returned promise...", taskNames);
+			var title = "Here's all the projects due this week...";
+			return botHelper.attachmentMaker(taskNames, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+    witbot.hears('projects_due_today', 0.5, function (bot, message, outcome) {
+		console.log("I'm trying to get all projects due today!");
+		botHelper.projectsDueToday()
+		.then((projectDetails) => {
+			var title = "Here's all the projects due today...";
+			console.log("Here's all the projects due today....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+        .then((taskNames) => {
+			// console.log("Here's the returned promise...", taskNames);
+			var title = "Here's all the projects due today...";
+			return botHelper.attachmentMaker(taskNames, title);
 		})
 		.then((attachment) => {
 			var attachments = [];
@@ -257,22 +310,23 @@ const controller = Botkit.slackbot({
 
     witbot.hears('all_incomplete_tasks', 0.2, function (bot, message, outcome) {
 		console.log("I'm trying to get all incomplete tasks!");
-//		botHelper.allIncompleteProjectTasks()
-//		.then((projectDetails) => {
-//			var title = "Here's all the incomplete tasks I could find...";
-//			console.log("Here's all the incomplete tasks I returned....", projectDetails);
-//			return botHelper.projectsAttachment(projectDetails, title);
-//		})
-//		.then((attachment) => {
-//			var attachments = [];
-//			attachments.push(attachment);
-//			bot.reply(message,{
-//				// text: ' ',
-//				attachments: attachments,
-//			},function(err,resp) {
-//				console.log(err,resp);
-//			});
-//		});
+		botHelper.allIncompleteTasks()
+		.then((projectDetails) => {
+			var title = "Here's all the incomplete tasks I could find...";
+			console.log("Here's all the incomplete tasks I returned....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+		.then((attachment) => {
+            console.log('ATTACHMENT', attachment)
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
 	});
 
 
@@ -282,14 +336,36 @@ const controller = Botkit.slackbot({
  		bot.reply(message, "Way to go brah!");
  	});
 
-    /****************** INCOMPETE PROJECTS ******************/
+    /****************** INCOMPLETE PROJECTS ******************/
 
-	witbot.hears('incomplete_projects', 0.2, function (bot, message, outcome) {
-		console.log("I'm trying to get projects!");
+	witbot.hears('incomplete_projects', 0.5, function (bot, message, outcome) {
+		console.log("I'm trying to get incomplete projects!");
 		botHelper.allIncompleteProjects()
 		.then((projectDetails) => {
 			var title = "Here's all the incomplete projects I could find...";
 			console.log("Here's all the incomplete projects I returned....", projectDetails);
+			return botHelper.projectsAttachment(projectDetails, title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
+	});
+
+    /****************** COMPLETE PROJECTS ******************/
+
+	witbot.hears('complete_projects', 0.5, function (bot, message, outcome) {
+		console.log("I'm trying to get complete projects!");
+		botHelper.allCompleteProjects()
+		.then((projectDetails) => {
+			var title = "Here's all the complete projects I could find...";
+			console.log("Here's all the complete projects I returned....", projectDetails);
 			return botHelper.projectsAttachment(projectDetails, title);
 		})
 		.then((attachment) => {
