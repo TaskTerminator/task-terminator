@@ -1,8 +1,14 @@
+color1 = rgb(117,117,113)
+color2 = #6ABED8
+color3 = #F0F0F0
+color4 = #80ABA0
+color5 = #181712
+
   /* BASE STYLES
 ============================================================================= */
 
-body {
-    background-color: #fff
+html, body {
+    background-color: color5
     padding-bottom: 20px
 }
 
@@ -12,8 +18,7 @@ body {
 
 #page-wrapper {
     padding: 0 15px
-    min-height: 568px
-    background-color: #eee
+    background-color: color5
 }
 
 @media(min-width:768px) {
@@ -21,16 +26,8 @@ body {
         position: inherit
         margin: 0 0 0 250px
         padding: 0 30px
-        border-left: 1px solid #e7e7e7
+        border-left: 1px solid color3
     }
-}
-
-.navbar-top-links {
-    margin-right: 0
-}
-
-.navbar-top-links li {
-    display: inline-block
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -43,7 +40,7 @@ body {
 
 /* Custom page header */
 .header {
-  border-bottom: 4px solid #e5e5e5
+  border-bottom: 4px solid color3
 }
 
 /* Make the masthead heading the same height as the navigation */
@@ -54,20 +51,13 @@ body {
   padding-bottom: 19px
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px
-  color: #777
-  border-top: 1px solid #e5e5e5
-}
-
 #side-menu {
   height: 900px
 }
 
 .nav>li.active>a {
 text-decoration: none
-background-color: #eee
+background-color: color3
 }
 
 .dashboard-projects
@@ -88,16 +78,16 @@ background-color: #eee
 
 .dashboard-cards .panel
   border: 1px #a0a0a0 solid
-  -webkit-box-shadow: 2px 2px 5px 0px rgba(135,135,135,1);
-  -moz-box-shadow: 2px 2px 5px 0px rgba(135,135,135,1);
-  box-shadow: 2px 2px 5px 0px rgba(135,135,135,1);
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(135,135,135,1)
+  -moz-box-shadow: 2px 2px 5px 0px rgba(135,135,135,1)
+  box-shadow: 2px 2px 5px 0px rgba(135,135,135,1)
 
 .dashboard-cards .panel .panel-body
   border-radius: 5px 5px 0 0
 
 .dashboard-cards .panel .panel-footer
   border-radius: 0 0 5px 5px
-  background-color: #e5e5e5
+  background-color: color3
 
 .singleProject
   margin-top: 10px
@@ -116,6 +106,12 @@ background-color: #eee
   border: .5px black solid
   padding-top: 20px
 
+h1
+  color: color2
+
+h3
+  color: color4
+
   /* Sidebar Styling
   ============================================================================= */
 
@@ -124,34 +120,35 @@ background-color: #eee
     padding-left: 0
 }
 
-.sidebar .sidebar-search {
-    padding: 15px
+nav.navbar {
+  background-color: color1
+
+}
+
+.sidebar {
+  background-color: color1
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid #e7e7e7
+    border-bottom: 1px solid #color3
     padding-left: 15px
 }
 
+.sidebar ul li a {
+  color: color3
+  background-color: color1
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.sidebar ul li a:hover {
+  background-color: rgb(141, 141, 141)
+}
+
 .sidebar ul li a.active {
-    background-color: #eee
-}
-
-.sidebar .arrow {
-    float: right
-}
-
-.sidebar .nav-second-level li,
-.sidebar .nav-third-level li {
-    border-bottom: 0!important
-}
-
-.sidebar .nav-second-level li a {
-    padding-left: 20px
-}
-
-.sidebar .nav-third-level li a {
-    padding-left: 35px
+    background-color: color3
 }
 
 @media(min-width:768px) {
@@ -168,6 +165,14 @@ background-color: #eee
   overflow-y: scroll
 }
 
+// .row .col-md-12 div.panel{
+//   background-color: rgb(190, 190, 190)
+// }
+
+.project-thing ul li {
+  border: 1px color1 solid
+  padding: 5px
+}
 
   /* Animation STYLES
 ============================================================================= */
