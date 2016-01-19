@@ -11,6 +11,10 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
 
 ////////////////////////////////////////
 
+  $scope.sortProjectList = true;
+
+////////////////////////////////////////
+
   $scope.cssClass = 'page-projects';
   $scope.yes = !$scope.yes;
 
