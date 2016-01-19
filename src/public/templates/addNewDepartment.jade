@@ -5,4 +5,5 @@ div.employeeAddForm
     .form-group
       label(for="departmentName")
         | Department Name:  
-      input.form-control(type="text" ng-model="departmentName" id="departmentName")
+      input.form-control(type="text" ng-model="newDepartment.name" id="departmentName")
+     button.btn.btn-primary.btn-lg(ng-click="addDepartment(newDepartment)") Submit
