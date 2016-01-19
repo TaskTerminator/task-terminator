@@ -30,7 +30,7 @@ const controller = Botkit.slackbot({
 		witbot.process(message.text, bot, message);
 	});
 
-	witbot.hears('help', 0.2, function (bot, message, outcome) {
+	witbot.hears('help', 0.5, function (bot, message, outcome) {
 		var title = " ";
 		var botSkillz = [
 			"show roles",
@@ -95,14 +95,14 @@ const controller = Botkit.slackbot({
 	});
 
 	/****************** GREETINGS ******************/
-	witbot.hears('greeting', 0.3, function (bot, message, outcome) {
+	witbot.hears('greeting', 0.5, function (bot, message, outcome) {
 		console.log("WIT.AI Outcome", outcome);
 		console.log("WIT.AI Outcome", outcome.entities.greeting);
 		bot.reply(message, 'Greetings earthling.');
 	});
 
 	/****************** DEPARTMENTS ******************/
-	witbot.hears('all_departments', 0.5, function (bot, message, outcome) {
+	witbot.hears('all_departments', 0.8, function (bot, message, outcome) {
 		console.log("WIT.AI Outcome", outcome);
 		botHelper.allDepartments()
 		.then((departments) =>{
@@ -125,7 +125,7 @@ const controller = Botkit.slackbot({
 	});
 
 	/****************** EMPLOYEES ******************/
-	witbot.hears('all_employees', 0.5, function (bot, message, outcome) {
+	witbot.hears('all_employees', 0.8, function (bot, message, outcome) {
 		console.log(outcome);
 		botHelper.allEmployees()
 		.then((employees) =>{
@@ -150,7 +150,7 @@ const controller = Botkit.slackbot({
 
 
 	/****************** POSITIONS ******************/
-	witbot.hears('all_positions', 0.5, function (bot, message, outcome) {
+	witbot.hears('all_positions', 0.8, function (bot, message, outcome) {
 		botHelper.allPositions()
 		.then((positions) =>{
 			return botHelper.arrayMaker(positions);
@@ -172,7 +172,7 @@ const controller = Botkit.slackbot({
 	});
 
 	/****************** PROJECTS ******************/
-	witbot.hears('all_projects', 0.7, function (bot, message, outcome) {
+	witbot.hears('all_projects', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get projects!");
 		botHelper.allProjects()
 		.then((projectDetails) => {
@@ -192,7 +192,7 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	witbot.hears('tasks_in_project', 0.5, function(bot,message, outcome){
+	witbot.hears('tasks_in_project', 0.8, function(bot,message, outcome){
 		console.log("this is what WIT.AI returned", outcome.entities.project_id);
 		console.log("this is what WIT.AI returned", outcome.entities.project_id[0].value);
 
@@ -209,7 +209,7 @@ const controller = Botkit.slackbot({
 		// bot.reply(message, "Let me get those tasks for you!");
 	});
 
-	witbot.hears('overdue_projects', 0.5, function (bot, message, outcome) {
+	witbot.hears('overdue_projects', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get all overdue projects!");
 		botHelper.overdueProjects()
 		.then((projectDetails) => {
@@ -234,7 +234,7 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-    witbot.hears('projects_due_this_week', 0.5, function (bot, message, outcome) {
+    witbot.hears('projects_due_this_week', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get all projects due this week!");
 		botHelper.projectsDueThisWeek()
 		.then((projectDetails) => {
@@ -259,7 +259,7 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-    witbot.hears('projects_due_today', 0.5, function (bot, message, outcome) {
+    witbot.hears('projects_due_today', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get all projects due today!");
 		botHelper.projectsDueToday()
 		.then((projectDetails) => {
@@ -285,7 +285,7 @@ const controller = Botkit.slackbot({
 	});
 
 	/****************** PROJECT TASKS ******************/
-	witbot.hears('all_tasks',0.5, function(bot,message,coutcome){
+	witbot.hears('all_tasks',0.8, function(bot,message,coutcome){
 		botHelper.allProjectTasks()
 		.then((tasks) =>{
 			// console.log("Here are the tasks I got back!",tasks);
@@ -308,7 +308,7 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-    witbot.hears('all_incomplete_tasks', 0.2, function (bot, message, outcome) {
+    witbot.hears('all_incomplete_tasks', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get all incomplete tasks!");
 		botHelper.allIncompleteTasks()
 		.then((projectDetails) => {
@@ -330,7 +330,7 @@ const controller = Botkit.slackbot({
 	});
 
 
- 	witbot.hears('task_complete', 0.5, function (bot, message, outcome) {
+ 	witbot.hears('task_complete', 0.8, function (bot, message, outcome) {
  		console.log("WIT.AI Outcome", outcome);
 
  		bot.reply(message, "Way to go brah!");
@@ -338,7 +338,7 @@ const controller = Botkit.slackbot({
 
     /****************** INCOMPLETE PROJECTS ******************/
 
-	witbot.hears('incomplete_projects', 0.5, function (bot, message, outcome) {
+	witbot.hears('incomplete_projects', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get incomplete projects!");
 		botHelper.allIncompleteProjects()
 		.then((projectDetails) => {
@@ -360,7 +360,7 @@ const controller = Botkit.slackbot({
 
     /****************** COMPLETE PROJECTS ******************/
 
-	witbot.hears('complete_projects', 0.5, function (bot, message, outcome) {
+	witbot.hears('complete_projects', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get complete projects!");
 		botHelper.allCompleteProjects()
 		.then((projectDetails) => {

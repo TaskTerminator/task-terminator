@@ -289,9 +289,10 @@ module.exports = {
             console.log('PROJECTS', projects)
             var overdue = [];
             projects.map((item) => {
-                console.log('ITEM1', item)
-                if (item.setup.dueDate.actual.diff(moment(), 'days') < 0) {
-                    console.log('ITEM2', item)
+                console.log('ITEM1', item.setup.dueDate.actual);
+                console.log('ITEM2', moment().hours(0).minute(0).second(0).millisecond(0)._d);
+                if (item.setup.dueDate.actual.isBefore(moment().hours(0).minute(0).second(0).millisecond(0)._d)) {
+                    console.log('ITEM3', item)
                     overdue.push(item)
                 }
             });
@@ -311,7 +312,9 @@ module.exports = {
             console.log('PROJECTS', projects)
             var week = [];
             projects.map((item) => {
-                if (item.setup.dueDate.actual.diff(moment(), 'days') <= 5 && item.status === 'Incomplete') {
+                console.log("DATE", item.setup.dueDate.actual)
+                console.log("DIFFERENCE IN DATES", item.setup.dueDate.actual.diff(moment()._d, 'days'))
+                if (item.setup.dueDate.actual.diff(moment()._d, 'days') <= 5 && item.status === 'Incomplete') {
                     console.log('ITEM', item);
                     week.push(item);
                 }
@@ -332,7 +335,9 @@ module.exports = {
             console.log('PROJECTS', projects)
             var week = [];
             projects.map((item) => {
-                if (item.setup.dueDate.actual === moment() && item.status === 'Incomplete') {
+                console.log("DATE", item.setup.dueDate.actual)
+                console.log("TODAY", moment().hours(17).minute(0).second(0).millisecond(0)._d)
+                if (item.setup.dueDate.actual === moment().hours(0).minute(0).second(0).millisecond(0)._d) {
                     console.log('ITEM', item);
                     week.push(item);
                 }
