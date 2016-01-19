@@ -14,6 +14,7 @@ hr
               p Overdue Tasks
         .panel-footer 
           | Overdue Tasks
+          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:rgb(255, 0, 0);")
     .col-md-3
       .panel
         .panel-body(style='background-color: lightgreen;')
@@ -23,8 +24,10 @@ hr
             .col-md-8.text-center
               p 0
               p Current Projects
-        .panel-footer
+        .panel-footer(ui-sref="dashboard.view-projects")
           | Current Projects
+          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:green;")
+
     .col-md-3
       .panel
         .panel-body(style='background-color: lightblue;')
@@ -35,6 +38,7 @@ hr
               | Check your activity!
         .panel-footer 
           | Activity
+          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:blue;")
     .col-md-3
       .panel
         .panel-body(style='background-color: yellow;')
@@ -45,6 +49,7 @@ hr
               | Manage your team
         .panel-footer 
           | Something about employees?
+          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:orange;")
 
 .row.dash-chart
   .col-md-12
@@ -53,7 +58,7 @@ hr
         h4 Activity Snapshot
       .panel-body
         .row
-        .col-md-10.col-sm-10.col-lg-6
+        .col-md-10.col-md-10.col-lg-6
           highchart#gciPerMonth(config='projectsPerWeek')
-        .col-md-10.col-sm-10.col-lg-6
+        .col-md-10.col-md-10.col-lg-6
           highchart#chart1(config='projectsPerMonth')

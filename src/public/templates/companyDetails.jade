@@ -6,7 +6,7 @@ div(ng-repeat="company in companies")
       | Company name: {{company.name}}
   div.container
     .row
-      .col-sm-12.text-right(style="padding-bottom: 20px;")
+      .col-md-12.text-right(style="padding-bottom: 20px;")
         button.btn.btn-primary.btn-lg(ng-click="openAddDepartmentModal()") Add New Department
     .row
       .col-md-12
@@ -16,7 +16,7 @@ div(ng-repeat="company in companies")
               | Departments: 
           .panel-body
             .row
-              .col-sm-12
+              .col-md-12
                 table.table
                   thead
                     tr
@@ -40,7 +40,7 @@ div(ng-repeat="company in companies")
           
   div.container
     .row
-      .col-sm-12.text-right(style="padding-bottom: 20px;")
+      .col-md-12.text-right(style="padding-bottom: 20px;")
         button.btn.btn-primary.btn-lg(ng-click="openAddPositionModal()") Add New Position
     .row
       .col-md-12
@@ -50,7 +50,7 @@ div(ng-repeat="company in companies")
               | Positions: 
           .panel-body
             .row
-              .col-sm-12
+              .col-md-12
                 table.table
                   thead
                     tr
@@ -75,7 +75,7 @@ div(ng-repeat="company in companies")
   
   .container(style="padding-top: 20px;")
     .row
-      .col-sm-12.text-right(style="padding-bottom: 20px;")
+      .col-md-12.text-right(style="padding-bottom: 20px;")
         button.btn.btn-primary.btn-lg(ng-click="openAddEmployeeModal()") Add New Employee
     .row
       .col-md-12
@@ -85,7 +85,7 @@ div(ng-repeat="company in companies")
               | Employees
           .panel-body
             .row
-              .col-sm-12
+              .col-md-12
                 table.table
                   thead
                     tr
