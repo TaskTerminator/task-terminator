@@ -3,62 +3,62 @@ h1(style="padding-left:15px; padding-top: 15px;")
 hr
 .container
   .row.dashboard-cards
-    .col-md-3
+    .col-sm-3
       .panel
         .panel-body(style='background-color: pink;')
           .row
-            .col-md-6
+            .col-sm-6
               span.glyphicon.glyphicon-remove(aria-hidden="true" style="font-size:70px; color: red;")
-            .col-md-6.text-center
+            .col-sm-6.text-center
               p 0
               p Overdue Tasks
         .panel-footer 
           | Overdue Tasks
           span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:rgb(255, 0, 0);")
-    .col-md-3
+    .col-sm-3
       .panel
         .panel-body(style='background-color: lightgreen;')
           .row
-            .col-md-4
+            .col-sm-4
               span.glyphicon.glyphicon-duplicate(aria-hidden="true" style="font-size:70px; color:green;")
-            .col-md-8.text-center
+            .col-sm-8.text-center
               p 0
               p Current Projects
         .panel-footer(ui-sref="dashboard.view-projects")
           | Current Projects
           span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:green;")
 
-    .col-md-3
+    .col-sm-3
       .panel
         .panel-body(style='background-color: lightblue;')
           .row
-            .col-md-6
+            .col-sm-6
               span.glyphicon.glyphicon-signal(aria-hidden="true" style="font-size:70px; color: blue;")
-            .col-md-6
+            .col-sm-6
               | Check your activity!
         .panel-footer 
           | Activity
           span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:blue;")
-    .col-md-3
+    .col-sm-3
       .panel
         .panel-body(style='background-color: yellow;')
           .row
-            .col-md-6
+            .col-sm-6
               span.glyphicon.glyphicon-user(aria-hidden="true" style="font-size:70px; color: orange;")
-            .col-md-6
+            .col-sm-6
               | Manage your team
         .panel-footer 
           | Something about employees?
           span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:orange;")
 
 .row.dash-chart
-  .col-md-12
+  .col-sm-12
     .panel.panel-default
       .panel-heading
         h4 Activity Snapshot
       .panel-body
         .row
-        .col-md-10.col-md-10.col-lg-6
+        .col-sm-10.col-sm-10.col-lg-6
           highchart#gciPerMonth(config='projectsPerWeek')
-        .col-md-10.col-md-10.col-lg-6
+        .col-sm-10.col-sm-10.col-lg-6
           highchart#chart1(config='projectsPerMonth')

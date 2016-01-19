@@ -2,15 +2,15 @@ h1(style="padding-left:15px; padding-top: 15px;") Projects
 hr
 .container
   .row.text-center(style="padding-top: 20px;")
-    .col-md-4.text-right
+    .col-sm-4.text-right
       h3(style="margin-top:5px;") Create New: 
-    .col-md-6.text-left
+    .col-sm-6.text-left
       button.btn.btn-primary(type="button" ng-click="openSingleModal()") Single Instance Project
       button.btn.btn-default(type="button" ng-click="openScheduleModal()") Scheduled Project
       button.btn.btn-default(type="button" ng-click="openTemplateModal()") Create Template
-    .col-md-2
+    .col-sm-2
   .row(style="padding-top: 15px;")
-    .col-md-12
+    .col-sm-12
       .panel.panel-default
         .panel-heading
           h3.panel-title(style="display:inline-block;") 
@@ -23,15 +23,15 @@ hr
 
         .panel-body
             .row
-              .col-md-3(ng-repeat="project in projects" ng-if="sortProjectList")
+              .col-sm-3(ng-repeat="project in projects" ng-if="sortProjectList")
                 .box-wrapper(style="margin: 25px auto;" ng-click="openModal(project)")
                   .project-thing
                     ul(style="list-style-type:none; padding:5px;")
                       li
                         p <b><i>Project Name:</i></b> {{project.name}}
                         p <b><i>Description:</i></b> {{project.description}}
-                        p <b><i>Due Date:</i></b> {{project.setup.dueDate.actual | date:'mediumDate'}}     
-              .col-md-12(style="padding: 0;")
+                        p <b><i>Due Date:</i></b> {{project.setup.dueDate.actual | date:'mediusmate'}}     
+              .col-sm-12(style="padding: 0;")
                 .list-group
                   a.list-group-item(ng-repeat='project in projects' ng-if="!sortProjectList" ng-click="openModal(project)")
                     .row
@@ -39,5 +39,5 @@ hr
                         | {{project.name}} 
                       .col-xs-4
                         | {{project.description}} 
-                      .col-xs-3.col-md-offset-1.text-center
-                        | {{project.setup.dueDate.actual | date:'mediumDate'}} 
+                      .col-xs-3.col-sm-offset-1.text-center
+                        | {{project.setup.dueDate.actual | date:'mediusmate'}} 
