@@ -53,9 +53,15 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   	var modalInstance = $uibModal.open({
   		animation: true,
   		templateUrl: "./templates/addNewDepartment.html",
-      controller: 'YourTeamCtrl',
-      size: 'lg'
-  	})
+      size: 'lg',
+      controller: function ($scope, YourTeamSvc) {
+        $scope.addDepartment = function(newDepartment) {
+          YourTeamSvc.postDepartment(newDepartment).then(function(results) {
+            console.log("Department added");
+          });
+        }
+  	 }
+    })
   }
 
   $scope.openEditDepartmentModal = function(department) {
@@ -78,8 +84,20 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   	var modalInstance = $uibModal.open({
   		animation: true,
   		templateUrl: "./templates/addNewPosition.html",
-      controller: 'YourTeamCtrl',
-      size: 'lg'
+      size: 'lg',
+      controller: function($scope, YourTeamSvc) {
+        $scope.addPosition = function(newPosition) {
+          YourTeamSvc.postPosition(newPosition).then(function(results) {
+            console.log("Position added");
+          })
+        }
+        $scope.getCompany = function() {
+          CompanySvc.getCompanies().then(function(res) {
+            console.log(res)
+            $scope.companies = res.data;
+          });
+        }();
+      } 
   	})
   }
 
@@ -103,13 +121,6 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   	})
   }
 
-
-
-
-
-  setInterval(function(){
-    console.log($scope.newEmployee.departments);
-  }, 3000);
 
   $scope.addEmployee = function(newEmployee) {
     console.log("Passed Employee info", newEmployee)

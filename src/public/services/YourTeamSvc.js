@@ -83,4 +83,41 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
+  ////////////////////////
+  // Department Calls
+  ////////////////////////
+    this.postDepartment = function(newDepartment) {
+      var defer = $q.defer();
+
+      $http({
+        method: "POST",
+        url: "api/department/569533191bfb3ca903f17803",
+        data: newDepartment
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
+
+      return defer.promise;
+    }
+
+  ////////////////////////
+  // Position Calls
+  ////////////////////////
+    this.postPosition = function(newPosition) {
+      var defer = $q.defer();
+
+      $http({
+        method: "POST",
+        url: "api/position/569533191bfb3ca903f17803/" + newPosition.department,
+        data: newPosition
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
+
+      return defer.promise;
+    }
 });
