@@ -5,9 +5,7 @@ const projectTaskSchema = new mongoose.Schema({
   name: {type: String, required: true},
   friendlyId: {type: String, unique: true},
   description: {type:String},
-  status: {
-      complete: {type: Boolean, default:false}
-  },
+  status: {type: String, enum: ['Incomplete', 'Complete'], default: 'Incomplete'},
   associatedProject : {type:String, ref:'Project'},
   date: {
     created: {type: Date, default: new Date()},
