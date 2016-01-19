@@ -291,9 +291,33 @@ module.exports = {
             var overdue = [];
             projects.map((item) => {
                 console.log('ITEM1', item.setup.dueDate.actual);
-                console.log('ITEM2', moment().hours(0).minute(0).second(0).millisecond(0)._d);
-                console.log('TRUE OR FALSE', moment().hours(0).minute(0).second(0).millisecond(0).isAfter(moment(item.setup.dueDate.actual)));
-                if (moment().hours(0).minute(0).second(0).millisecond(0).isAfter(moment(item.setup.dueDate.actual))) {
+                console.log('ITEM2', moment());
+                console.log('TRUE OR FALSE', moment().isAfter(moment(item.setup.dueDate.actual)));
+                if (moment().isAfter(moment(item.setup.dueDate.actual))) {
+                    console.log('ITEM3', item)
+                    overdue.push(item)
+                }
+            });
+            deferred.resolve(overdue);
+        })
+        .catch((err) => {
+            return res.status(500).end();
+        });
+        return deferred.promise;
+    },
+    
+    overdueTasks(req, res) {
+        console.log("Made it to overdue tasks!");        
+        var deferred = Q.defer();
+        ProjectTask.find().exec()
+        .then((tasks) => {
+            console.log('TASKS', tasks)
+            var overdue = [];
+            tasks.map((item) => {
+                console.log('ITEM1', moment(item.date.deadline));
+                console.log('ITEM2', moment());
+                console.log('TRUE OR FALSE', moment().isAfter(moment(item.date.deadline)));
+                if (moment().isAfter(moment(item.date.deadline))) {
                     console.log('ITEM3', item)
                     overdue.push(item)
                 }
