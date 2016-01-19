@@ -53,11 +53,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'ProjectsCtrl',
             templateUrl:'Templates/projects.html',
         })
-        .state('dashboard.crud-projects',{
-            url:'/projects/edit',
-            controller: 'ProjectsCtrl',
-            templateUrl:'Templates/projects.html',
-        })
         .state('dashboard.activity',{
             url:'/activity',
             controller: 'ActivityCtrl',
@@ -65,11 +60,6 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('dashboard.view-employees',{
             url:'/employees/view',
-            controller: 'YourTeamCtrl',
-            templateUrl:'Templates/yourTeam.html',
-        })
-        .state('dashboard.crud-employee',{
-            url:'/employees/edit',
             controller: 'YourTeamCtrl',
             templateUrl:'Templates/yourTeam.html',
         })
