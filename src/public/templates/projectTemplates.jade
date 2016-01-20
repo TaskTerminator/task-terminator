@@ -5,9 +5,9 @@
         .form-group
           label(for="addProjectField")
             | Project Name:  
-          input.form-control(type="text" ng-model="name" id="addProjectField")
-        .form-group
-          label(for="descriptionField")
-            | Description:  
-          input.form-control(type="text" ng-model="description" id="descriptionField") 
-        button.btn.btn-success(type="button" ng-click="saveProject()") Create and Add Tasks
+          input.form-control(type="text" ng-model="newTemplate.name" id="addProjectField")
+        //.form-group
+          //label(for="descriptionField")
+            //| Description:  
+          //input.form-control(type="text" ng-model="description" id="descriptionField") 
+        button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Create and Add Tasks

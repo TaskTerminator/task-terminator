@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uibModal, ProjectsSvc) {
+angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $scope, $uibModal, ProjectsSvc) {
 
 ////////////////////////////////////////
 
@@ -82,14 +82,27 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($scope, $uib
     })
   };
 
-  $scope.saveProject = function() {
-    var modalInstance = $uibModal.open({
-      animation: true,
-      templateUrl: "./templates/projectTasks.html",
-      controller: "ProjectsCtrl",
-      size: "lg"
-    })
+  // $scope.newTemplate = {};
+
+  $scope.addTemplate = function (newTemplate) {
+      var templateID;
+      ProjectsSvc.postTemplate(newTemplate).then(function(results) {
+        console.log("New Template added", results);
+        templateID = results.data._id;
+        console.log(templateID);
+        $state.go('templateTasks', {"id": templateID});
+      })   
   }
+  
+
+  // $scope.saveProject = function() {
+  //   var modalInstance = $uibModal.open({
+  //     animation: true,
+  //     templateUrl: "./templates/projectTasks.html",
+  //     controller: "ProjectsCtrl",
+  //     size: "lg"
+  //   })
+  // }
 //////////////////////////////////////////////////////////
 
 
