@@ -87,9 +87,16 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'DashboardCtrl',
         })
         .state('templates', {
-            url: '/templates',
+            url: '/template',
             templateUrl: 'Templates/projectTemplate.html',
             controller: 'TemplatesCtrl',
+        })
+        .state('templateTasks', {
+          url:'/templateTasks/:id',
+          templateUrl: 'Templates/templateTasks.html',
+          controller: 'TemplatesCtrl'
+          // templateUrl: 'Templates/templateTasks.html',
+          // controller: 'TemplatesCtrl'
         })
         .state('yourteam', {
             url: '/yourteam',
