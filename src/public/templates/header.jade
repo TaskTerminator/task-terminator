@@ -1,10 +1,22 @@
 nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
-  .navbar-header.container-fluid
-    button.navbar-toggle.collapsed(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-    a.navbar-brand(ui-sref="dashboard.home" style="font-family: 'Lobster Two', cursive; color: #F0F0F0; font-size:24px;") 
-      | <i>TaskTerminator</i>
-  
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+          span.sr-only Toggle navigation
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      a.navbar-brand(ui-sref="dashboard.home" style="font-family: 'Lobster Two', cursive; color: #F0F0F0; font-size:24px;") 
+        | <i>TaskTerminator</i>
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav.navbar-right.user-dropdown(style="padding-right:20px")
+        li.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+            span.glyphicon.glyphicon-user(style="color:#F0F0F0; font-size:18px")
+            span.caret(style="color:#F0F0F0; font-size:20px")
+          ul.dropdown-menu
+            li
+              a(href='#') User Profile
+            li.divider(role='separator')
+            li
+              a(href='#') Logout
