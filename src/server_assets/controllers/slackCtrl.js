@@ -268,6 +268,10 @@ const controller = Botkit.slackbot({
 		bot.reply(message, "https://www.youtube.com/watch?v=HmqCDgr3yQg");
 	});
 
+    witbot.hears('wilson', 0.3, function(bot,message,outcome){
+		bot.reply(message, "https://www.youtube.com/watch?v=3gNrkgwS6aM");
+	});
+
     witbot.hears('projects_due_this_month', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get all projects due this month!");
 		botHelper.projectsDueThisMonth()
