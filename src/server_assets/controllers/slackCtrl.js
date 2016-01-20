@@ -217,11 +217,6 @@ const controller = Botkit.slackbot({
 			console.log("Here's all the overdue projects I returned....", projectDetails);
 			return botHelper.projectsAttachment(projectDetails, title);
 		})
-        .then((taskNames) => {
-			// console.log("Here's the returned promise...", taskNames);
-			var title = "Here's all the overdue projects I could find...";
-			return botHelper.attachmentMaker(taskNames, title);
-		})
 		.then((attachment) => {
 			var attachments = [];
 			attachments.push(attachment);
@@ -234,6 +229,20 @@ const controller = Botkit.slackbot({
 		});
 	});
 
+	witbot.hears('insult', 0.7, function(bot,message,outcome){
+		console.log("YOU INSULTED ME!");
+		bot.reply(message, "https://www.youtube.com/watch?v=KWza5PQA5Zc");
+	});
+
+	witbot.hears('joke', 0.5, function(bot, message, outcome){
+		console.log("Here's your joke");
+		bot.reply(message, "https://www.youtube.com/watch?v=It3DU2HMbaY");
+	});
+
+	witbot.hears('brownbag', 0.4, function(bot,message,outcome){
+		bot.reply(message,"https://www.youtube.com/watch?v=ePkPYA4AQ3o");
+	});
+
     witbot.hears('projects_due_this_month', 0.8, function (bot, message, outcome) {
 		console.log("I'm trying to get all projects due this month!");
 		botHelper.projectsDueThisMonth()
@@ -242,13 +251,8 @@ const controller = Botkit.slackbot({
 			console.log("Here's all the projects due this month....", projectDetails);
 			return botHelper.projectsAttachment(projectDetails, title);
 		})
-        .then((taskNames) => {
-			// console.log("Here's the returned promise...", taskNames);
-			var title = "Here's all the projects due this month...";
-			return botHelper.attachmentMaker(taskNames, title);
-		})
 		.then((attachment) => {
-            console.log('HELLO', attachment)
+            console.log('HELLO', attachment);
 			var attachments = [];
 			attachments.push(attachment);
 			bot.reply(message,{
@@ -267,11 +271,6 @@ const controller = Botkit.slackbot({
 			var title = "Here's all the projects due this week...";
 			console.log("Here's all the projects due this week....", projectDetails);
 			return botHelper.projectsAttachment(projectDetails, title);
-		})
-        .then((taskNames) => {
-			// console.log("Here's the returned promise...", taskNames);
-			var title = "Here's all the projects due this week...";
-			return botHelper.attachmentMaker(taskNames, title);
 		})
 		.then((attachment) => {
 			var attachments = [];
@@ -293,11 +292,6 @@ const controller = Botkit.slackbot({
 			console.log("Here's all the projects due today....", projectDetails);
 			return botHelper.projectsAttachment(projectDetails, title);
 		})
-        .then((taskNames) => {
-			// console.log("Here's the returned promise...", taskNames);
-			var title = "Here's all the projects due today...";
-			return botHelper.attachmentMaker(taskNames, title);
-		})
 		.then((attachment) => {
 			var attachments = [];
 			attachments.push(attachment);
@@ -315,12 +309,8 @@ const controller = Botkit.slackbot({
 		botHelper.allProjectTasks()
 		.then((tasks) =>{
 			// console.log("Here are the tasks I got back!",tasks);
-			return botHelper.arrayMaker(tasks);
-		})
-		.then((taskNames) => {
-			// console.log("Here's the returned promise...", taskNames);
 			var title = "Here's all the tasks I could find...";
-			return botHelper.attachmentMaker(taskNames, title);
+			return botHelper.taskAttachment(tasks, title);
 		})
 		.then((attachment) => {
 			var attachments = [];
@@ -334,16 +324,16 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-    witbot.hears('all_incomplete_tasks', 0.8, function (bot, message, outcome) {
+    witbot.hears('all_incomplete_tasks', 0.2, function (bot, message, outcome) {
 		console.log("I'm trying to get all incomplete tasks!");
 		botHelper.allIncompleteTasks()
-		.then((projectDetails) => {
+		.then((incompleteTasks) => {
 			var title = "Here's all the incomplete tasks I could find...";
-			console.log("Here's all the incomplete tasks I returned....", projectDetails);
-			return botHelper.projectsAttachment(projectDetails, title);
+			console.log("Here's all the incomplete tasks I returned....", incompleteTasks);
+			return botHelper.taskAttachment(incompleteTasks, title);
 		})
 		.then((attachment) => {
-            console.log('ATTACHMENT', attachment)
+            console.log('ATTACHMENT', attachment);
 			var attachments = [];
 			attachments.push(attachment);
 			bot.reply(message,{
