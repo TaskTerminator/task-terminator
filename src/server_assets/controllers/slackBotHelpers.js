@@ -132,14 +132,41 @@ module.exports = {
       return deferred.promise;
     },
 
+    taskAttachment: function(array,attachmentTitle){
+      console.log("Here's the array to be turned into an attachment", array, attachmentTitle);
+      var deferred = Q.defer();
+      console.log("I'm trying to make a nice attachment for you....");
+      var attachment = {
+        title: attachmentTitle,
+        color: '#7FEFBD',
+        fields: [],
+        mrkdwn_in: ['fields']
+      };
+
+      for(var j = 0; j < array.length; j ++){
+        attachment.fields.push({
+          label: 'Field',
+          value: "_#" + array[j].friendlyId + "_: *" + array[j].name +  " - *Status: *" + array[j].status,
+          short: false
+        });
+      }
+      deferred.resolve(attachment);
+      return deferred.promise;
+    },
+
     /************** FORMATTING **************/
 
     hashStripper: function(id){
       console.log("Here's the id I'm trying to fix", id);
       var deferred = Q.defer();
-      var cleanId = id.split('#');
-      deferred.resolve(cleanId[1]);
-      return deferred.promise;
+      if(id.charAt(0) !== "#") {
+        deferred.resolve(id);
+        return deferred.promise;
+      } else {
+        var cleanId = id.split('#');
+        deferred.resolve(cleanId[1]);
+        return deferred.promise;
+      }
     },
 
 
@@ -194,7 +221,7 @@ module.exports = {
       console.log(deferred.promise);
       return deferred.promise;
     },
-    
+
     allIncompleteProjects: function(req, res) {
       var deferred = Q.defer();
       Project.find().exec()
@@ -202,19 +229,19 @@ module.exports = {
           console.log("Here's the incomplete projects I found...", projects);
           const incompleteProjects = [];
           projects.map((item) => {
-              console.log("ITEM", item)
+              console.log("ITEM", item);
               if (item.status === 'Incomplete') {
-                  console.log('INCOMPLETE PROJECTS', item)
+                  console.log('INCOMPLETE PROJECTS', item);
                   incompleteProjects.push(item);
-              } 
-          })
+              }
+          });
           deferred.resolve(incompleteProjects);
       }).catch((err) => {
         return res.status(500).end();
       });
       return deferred.promise;
     },
-    
+
     allCompleteProjects: function(req, res) {
       var deferred = Q.defer();
       Project.find().exec()
@@ -222,12 +249,12 @@ module.exports = {
           console.log("Here's the Complete projects I found...", projects);
           const completeProjects = [];
           projects.map((item) => {
-              console.log("ITEM", item)
+              console.log("ITEM", item);
               if (item.status === 'Complete') {
-                  console.log('COMPLETE PROJECTS', item)
+                  console.log('COMPLETE PROJECTS', item);
                   completeProjects.push(item);
-              } 
-          })
+              }
+          });
           deferred.resolve(completeProjects);
       }).catch((err) => {
         return res.status(500).end();
@@ -247,18 +274,18 @@ module.exports = {
       });
       return deferred.promise;
     },
-    
+
     allIncompleteTasks: function(req,res){
       console.log("Made it to all incomplete tasks!");
     var deferred = Q.defer();
     ProjectTask.find().exec().then((results) => {
         const incompleteTasks = [];
         results.map((item) => {
-            console.log("TASK", item)
+            console.log("TASK", item);
             if (item.status === 'Incomplete') {
-                incompleteTasks.push(item)
+                incompleteTasks.push(item);
             }
-        })
+        });
       deferred.resolve(incompleteTasks);
       }).catch((err) => {
         return res.status(500).end();
@@ -270,6 +297,7 @@ module.exports = {
       console.log("Here's the id I'm looking for", id);
       var deferred = Q.defer();
       Project.find({"friendlyId":id})
+      .populate('tasks')
       .exec()
       .then((result)=>{
         console.log("did i find a project?", result);
@@ -283,19 +311,21 @@ module.exports = {
     /************** QUERIES - DUE DATES  **************/
 
     overdueProjects(req, res) {
-        console.log("Made it to overdue projects!");        
+        console.log("Made it to overdue projects!");
         var deferred = Q.defer();
         Project.find().exec()
         .then((projects) => {
-            console.log('PROJECTS', projects)
+            console.log('PROJECTS', projects);
             var overdue = [];
             projects.map((item) => {
                 console.log('ITEM1', item.setup.dueDate.actual);
                 console.log('ITEM2', moment());
                 console.log('TRUE OR FALSE', moment().isAfter(moment(item.setup.dueDate.actual)));
                 if (moment().isAfter(moment(item.setup.dueDate.actual))) {
-                    console.log('ITEM3', item)
-                    overdue.push(item)
+                    if (item.status === 'Incomplete') {
+                        console.log('ITEM3', item);
+                        overdue.push(item);
+                    }
                 }
             });
             deferred.resolve(overdue);
@@ -305,21 +335,21 @@ module.exports = {
         });
         return deferred.promise;
     },
-    
+
     overdueTasks(req, res) {
-        console.log("Made it to overdue tasks!");        
+        console.log("Made it to overdue tasks!");
         var deferred = Q.defer();
         ProjectTask.find().exec()
         .then((tasks) => {
-            console.log('TASKS', tasks)
+            console.log('TASKS', tasks);
             var overdue = [];
             tasks.map((item) => {
                 console.log('ITEM1', moment(item.date.deadline));
                 console.log('ITEM2', moment());
                 console.log('TRUE OR FALSE', moment().isAfter(moment(item.date.deadline)));
                 if (moment().isAfter(moment(item.date.deadline))) {
-                    console.log('ITEM3', item)
-                    overdue.push(item)
+                    console.log('ITEM3', item);
+                    overdue.push(item);
                 }
             });
             deferred.resolve(overdue);
@@ -335,7 +365,7 @@ module.exports = {
         var deferred = Q.defer();
         Project.find().exec()
         .then((projects) => {
-            console.log('PROJECTS', projects)
+            console.log('PROJECTS', projects);
             var week = [];
             projects.map((item) => {
                 console.log("WEEK", moment(item.setup.dueDate.actual).week());
@@ -352,7 +382,7 @@ module.exports = {
         });
         return deferred.promise;
     },
-    
+
     projectsDueThisMonth(req, res) {
         console.log("Made it to projectsDueThisMonth");
         var deferred = Q.defer();
@@ -375,7 +405,7 @@ module.exports = {
         });
         return deferred.promise;
     },
-    
+
     projectsDueToday(req, res) {
         console.log("Made it to projectsDueToday");
         var deferred = Q.defer();
