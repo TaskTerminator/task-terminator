@@ -10,14 +10,14 @@ const controller = Botkit.slackbot({
 	  debug: false
 	});
 
-	// // connect the bot to a stream of messages
-	// controller.spawn({
-	//   token: 'xoxb-18104911812-5iVtooMM6dfCQcfyb8W9Rwoc',
-	// }).startRTM(function(err) {
-  //   if (err) {
-  //     throw new Error(err);
-  //   }
-  // });
+	 // connect the bot to a stream of messages
+	 controller.spawn({
+	   token: 'xoxb-18104911812-5iVtooMM6dfCQcfyb8W9Rwoc',
+	 }).startRTM(function(err) {
+     if (err) {
+       throw new Error(err);
+     }
+   });
 
 	//LINK THE BOT TO WIT.AI
 	const witbot = Witbot("CZPINC6EVOQ7DCPZSUUBQ3B5GWQVOQ66"
