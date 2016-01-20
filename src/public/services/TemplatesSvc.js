@@ -83,6 +83,27 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
   };
 
   ////////////////////////
+  // Task Template Calls
+  ////////////////////////
+
+  this.postTasks = function (newTasksArr, id) {
+    console.log("TemplatesSvc");
+    var defer = $q.defer();
+
+    $http({
+      method: "POST",
+      url: "/api/template/"+ id +"/tasks",
+      data: newTasksArr
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  }
+
+  ////////////////////////
   // Project Template Calls
   ////////////////////////
 
@@ -164,5 +185,21 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
     return defer.promise;;
   };
+
+  this.getCompanies = function () {
+
+    var defer = $q.defer();
+
+    $http({
+      method: "GET",
+      url: "/api/company"
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  }
 
 });

@@ -92,7 +92,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'TemplatesCtrl',
         })
         .state('templateTasks', {
-          url:'/templateTasks/:id',
+          url:'/template/Tasks/:id',
           templateUrl: 'Templates/templateTasks.html',
           controller: 'TemplatesCtrl'
           // templateUrl: 'Templates/templateTasks.html',
