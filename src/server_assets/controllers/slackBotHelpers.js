@@ -159,9 +159,14 @@ module.exports = {
     hashStripper: function(id){
       console.log("Here's the id I'm trying to fix", id);
       var deferred = Q.defer();
-      var cleanId = id.split('#');
-      deferred.resolve(cleanId[1]);
-      return deferred.promise;
+      if(id.charAt(0) !== "#") {
+        deferred.resolve(id);
+        return deferred.promise;
+      } else {
+        var cleanId = id.split('#');
+        deferred.resolve(cleanId[1]);
+        return deferred.promise;
+      }
     },
 
 
@@ -292,6 +297,7 @@ module.exports = {
       console.log("Here's the id I'm looking for", id);
       var deferred = Q.defer();
       Project.find({"friendlyId":id})
+      .populate('tasks')
       .exec()
       .then((result)=>{
         console.log("did i find a project?", result);
@@ -309,15 +315,15 @@ module.exports = {
         var deferred = Q.defer();
         Project.find().exec()
         .then((projects) => {
-            console.log('PROJECTS', projects)
+            console.log('PROJECTS', projects);
             var overdue = [];
             projects.map((item) => {
                 console.log('ITEM1', item.setup.dueDate.actual);
                 console.log('ITEM2', moment());
                 console.log('TRUE OR FALSE', moment().isAfter(moment(item.setup.dueDate.actual)));
                 if (moment().isAfter(moment(item.setup.dueDate.actual))) {
-                    console.log('ITEM3', item)
-                    overdue.push(item)
+                    console.log('ITEM3', item);
+                    overdue.push(item);
                 }
             });
             deferred.resolve(overdue);
@@ -333,15 +339,15 @@ module.exports = {
         var deferred = Q.defer();
         ProjectTask.find().exec()
         .then((tasks) => {
-            console.log('TASKS', tasks)
+            console.log('TASKS', tasks);
             var overdue = [];
             tasks.map((item) => {
                 console.log('ITEM1', moment(item.date.deadline));
                 console.log('ITEM2', moment());
                 console.log('TRUE OR FALSE', moment().isAfter(moment(item.date.deadline)));
                 if (moment().isAfter(moment(item.date.deadline))) {
-                    console.log('ITEM3', item)
-                    overdue.push(item)
+                    console.log('ITEM3', item);
+                    overdue.push(item);
                 }
             });
             deferred.resolve(overdue);
@@ -357,7 +363,7 @@ module.exports = {
         var deferred = Q.defer();
         Project.find().exec()
         .then((projects) => {
-            console.log('PROJECTS', projects)
+            console.log('PROJECTS', projects);
             var week = [];
             projects.map((item) => {
                 console.log("WEEK", moment(item.setup.dueDate.actual).week());

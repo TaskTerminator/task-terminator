@@ -21,7 +21,7 @@ const projectSchema = new mongoose.Schema({
   friendlyId: {type: String},
   status: {type: String, enum: ['Complete', 'Incomplete'], default: 'Incomplete'},
   tasks: [
-        {type: String , ref: 'TemplateTask'}
+        {type: String , ref: 'ProjectTask'}
           ],
   setup: {
       created: {type: Date, default: new Date()},
