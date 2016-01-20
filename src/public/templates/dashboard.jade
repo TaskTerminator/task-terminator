@@ -1,31 +1,31 @@
-//- Dashboard breakdown:
-//-   - Overview:
-//-    - What was complete/incomplete
-//-    - What was project name
-//-    - What was task name
-//-    - Who was responsible
-//-   - Dropdown for project name containing necessary information
-//-   
-
-.container
-  .row
-    .col-sm-12.text-center
-      h1 Dashboard Page
-  .row.text-center
-    .col-sm-4
-      h3 Overview
-      button.btn.btn-lg.btn-success(popover-animation="true" type="button" uib-popover="You got these projects done." popover-title="Completed Projects" popover-trigger="focus") 9 Projects Complete
-      button.btn.btn-lg.btn-danger(popover-animation="true" type="button" uib-popover="You have two incomplete projects." popover-title="Popover title" popover-trigger="focus") 2 Incomplete Scheduled Projects
-    .col-sm-4
-      h3 Today's Projects
-      div.dashboard-projects
-        ul
-          li.text-left(ng-repeat="project in projects")
-            | Project Name: {{project.name}} <br>
-            | Description: {{project.description}} <br>
-            | Due Date: {{project.setup.dueDate.actual | date:'mediusmate'}}
-    .col-sm-4
-      h3 Tomorrow's Projects
-
-      
-      
+//- //- Dashboard breakdown:
+//- //-   - Overview:
+//- //-    - What was complete/incomplete
+//- //-    - What was project name
+//- //-    - What was task name
+//- //-    - Who was responsible
+//- //-   - Dropdown for project name containing necessary information
+//- //-   
+//- 
+//- .container
+//-   .row
+//-     .col-sm-12.text-center
+//-       h1 Dashboard Page
+//-   .row.text-center
+//-     .col-sm-4
+//-       h3 Overview
+//-       button.btn.btn-lg.btn-success(popover-animation="true" type="button" uib-popover="You got these projects done." popover-title="Completed Projects" popover-trigger="focus") 9 Projects Complete
+//-       button.btn.btn-lg.btn-danger(popover-animation="true" type="button" uib-popover="You have two incomplete projects." popover-title="Popover title" popover-trigger="focus") 2 Incomplete Scheduled Projects
+//-     .col-sm-4
+//-       h3 Today's Projects
+//-       div.dashboard-projects
+//-         ul
+//-           li.text-left(ng-repeat="project in projects")
+//-             | Project Name: {{project.name}} <br>
+//-             | Description: {{project.description}} <br>
+//-             | Due Date: {{project.setup.dueDate.actual | date:'mediusmate'}}
+//-     .col-sm-4
+//-       h3 Tomorrow's Projects
+//- 
+//-       
+//-       

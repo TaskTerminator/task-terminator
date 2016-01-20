@@ -8,21 +8,21 @@ hr
         .panel-body(style='background-color: pink;')
           .row
             .col-sm-6
-              span.glyphicon.glyphicon-remove(aria-hidden="true" style="font-size:70px; color: red;")
+              span.glyphicon.glyphicon-remove.cardIcon(aria-hidden="true" style="color: red;")
             .col-sm-6.text-center
               p 0
               p Overdue Tasks
         .panel-footer 
           | Overdue Tasks
-          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:rgb(255, 0, 0);")
+          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:red;")
     .col-sm-3
       .panel
         .panel-body(style='background-color: lightgreen;')
           .row
             .col-sm-4
-              span.glyphicon.glyphicon-duplicate(aria-hidden="true" style="font-size:70px; color:green;")
+              span.glyphicon.glyphicon-duplicate.cardIcon(aria-hidden="true" style="color:green;")
             .col-sm-8.text-center
-              p 0
+              p {{projects.length}}
               p Current Projects
         .panel-footer(ui-sref="dashboard.view-projects")
           | Current Projects
@@ -33,7 +33,7 @@ hr
         .panel-body(style='background-color: lightblue;')
           .row
             .col-sm-6
-              span.glyphicon.glyphicon-signal(aria-hidden="true" style="font-size:70px; color: blue;")
+              span.glyphicon.glyphicon-signal.cardIcon(aria-hidden="true" style="color: blue;")
             .col-sm-6
               | Check your activity!
         .panel-footer 
@@ -44,7 +44,7 @@ hr
         .panel-body(style='background-color: yellow;')
           .row
             .col-sm-6
-              span.glyphicon.glyphicon-user(aria-hidden="true" style="font-size:70px; color: orange;")
+              span.glyphicon.glyphicon-user.cardIcon(aria-hidden="true" style="color: orange;")
             .col-sm-6
               | Manage your team
         .panel-footer 
