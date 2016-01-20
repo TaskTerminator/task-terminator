@@ -192,18 +192,31 @@ const controller = Botkit.slackbot({
 		});
 	});
 
-	witbot.hears('tasks_in_project', 0.8, function(bot,message, outcome){
+	witbot.hears('tasks_in_project', 0.3, function(bot,message, outcome){
 		console.log("this is what WIT.AI returned", outcome.entities.project_id);
 		console.log("this is what WIT.AI returned", outcome.entities.project_id[0].value);
-
+		var title = "Here are the tasks for project - " + outcome.entities.project_id[0].value;
 		var projectId = outcome.entities.project_id[0].value;
 		return botHelper.hashStripper(projectId)
 		.then((cleanId) => {
 			console.log("Here's the clean ID I made", cleanId);
 			return botHelper.tasksInProject(cleanId);
 		})
-		.then((tasks) => {
-			console.log("Here's the tasks associated with that project", tasks);
+		.then((project) => {
+			console.log("WHat we gotz back", project[0].tasks);
+			var array = project[0].tasks;
+			console.log("Here's the tasks associated with that project", array);
+			return botHelper.taskAttachment(array,title);
+		})
+		.then((attachment)=> {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
 		});
 
 		// bot.reply(message, "Let me get those tasks for you!");
@@ -239,8 +252,20 @@ const controller = Botkit.slackbot({
 		bot.reply(message, "https://www.youtube.com/watch?v=It3DU2HMbaY");
 	});
 
+	witbot.hears('canada', 0.5, function(bot,message,outcome){
+		bot.reply(message, "https://www.youtube.com/watch?v=pFCd4ZOTVg4");
+	});
+
+	witbot.hears('jimmy', 0.3, function(bot, message, outcome){
+		bot.reply(message, "https://www.youtube.com/watch?v=cTl762MuXyc");
+	});
+
 	witbot.hears('brownbag', 0.4, function(bot,message,outcome){
 		bot.reply(message,"https://www.youtube.com/watch?v=ePkPYA4AQ3o");
+	});
+
+	witbot.hears('cahlan', 0.3, function(bot,message,outcome){
+		bot.reply(message, "https://www.youtube.com/watch?v=HmqCDgr3yQg");
 	});
 
     witbot.hears('projects_due_this_month', 0.8, function (bot, message, outcome) {
