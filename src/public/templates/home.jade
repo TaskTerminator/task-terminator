@@ -1,7 +1,7 @@
 h1(style="padding-left:15px; padding-top: 15px;")
   | Dashboard
 hr
-.container
+.container-fluid
   .row.dashboard-cards
     .col-sm-3
       .panel
@@ -14,7 +14,7 @@ hr
               p Overdue Tasks
         .panel-footer 
           | Overdue Tasks
-          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:red;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(aria-hidden="true" style="color:red;")
     .col-sm-3
       .panel
         .panel-body(style='background-color: lightgreen;')
@@ -24,9 +24,9 @@ hr
             .col-sm-8.text-center
               p {{projects.length}}
               p Current Projects
-        .panel-footer(ui-sref="dashboard.view-projects")
+        .panel-footer
           | Current Projects
-          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:green;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-projects" aria-hidden="true" style="color:green;")
 
     .col-sm-3
       .panel
@@ -38,7 +38,7 @@ hr
               | Check your activity!
         .panel-footer 
           | Activity
-          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:blue;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.activity" aria-hidden="true" style="color:blue;")
     .col-sm-3
       .panel
         .panel-body(style='background-color: yellow;')
@@ -49,16 +49,17 @@ hr
               | Manage your team
         .panel-footer 
           | Something about employees?
-          span.glyphicon.glyphicon-share.pull-right(aria-hidden="true" style="color:orange;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-employees" aria-hidden="true" style="color:orange;")
 
-.row.dash-chart
-  .col-sm-12
-    .panel.panel-default
-      .panel-heading
-        h4 Activity Snapshot
-      .panel-body
-        .row
-        .col-sm-10.col-sm-10.col-lg-6
-          highchart#gciPerMonth(config='projectsPerWeek')
-        .col-sm-10.col-sm-10.col-lg-6
-          highchart#chart1(config='projectsPerMonth')
+.container-fluid
+  .row.dash-chart
+    .col-sm-12
+      .panel.panel-default
+        .panel-heading
+          h4 Activity Snapshot
+        .panel-body
+          .row
+          .col-sm-10.col-sm-10.col-lg-6
+            highchart#gciPerMonth(config='projectsPerWeek')
+          .col-sm-10.col-sm-10.col-lg-6
+            highchart#chart1(config='projectsPerMonth')
