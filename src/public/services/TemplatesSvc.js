@@ -35,13 +35,13 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.postTemplate = function () {
+  this.postTemplate = function (newTemplate) {
     var defer = $q.defer();
 
     $http({
       method: "POST",
-      url: "/api/tasks/template",
-      data: {}
+      url: "/api/template",
+      data: newTemplate
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
