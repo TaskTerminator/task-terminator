@@ -3,7 +3,7 @@ hr
 .container
   .row.text-center(style="padding-top: 20px;")
     .col-sm-4.text-right
-      h3(style="margin-top:5px;") Create New: 
+      h2(style="margin-top:5px;") Create New: 
     .col-sm-6.text-left
       button.btn.btn-primary(type="button" ng-click="openSingleModal()") Single Instance Project
       button.btn.btn-default(type="button" ng-click="openScheduleModal()") Scheduled Project
@@ -15,7 +15,7 @@ hr
         .panel-heading
           h3.panel-title(style="display:inline-block;") 
             | Active Projects (Click to open)
-          .btn-group(style="padding-left:50%; font-size:35px;")
+          .btn-group(style="padding-left:50%; font-size:35px")
             button.btn.btn-default(type='button' ng-click="sortProjectList = !sortProjectList")
               span.glyphicon.glyphicon-th(aria-hidden='true')
             button.btn.btn-default(type='button' ng-click="sortProjectList = !sortProjectList")
