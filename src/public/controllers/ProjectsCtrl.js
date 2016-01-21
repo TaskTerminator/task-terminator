@@ -88,14 +88,18 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   // $scope.newTemplate = {};
 
+  $scope.showTheRest = false;
+
   $scope.addTemplate = function (newTemplate) {
       var templateID;
       ProjectsSvc.postTemplate(newTemplate).then(function(results) {
         console.log("New Template added", results);
         templateID = results.data._id;
         console.log(templateID);
-        $state.go('templateTasks', {"id": templateID});
-      })
+        // $state.go('templateTasks', {"id": templateID});
+      });
+
+      $scope.showTheRest = true;
   }
 
 

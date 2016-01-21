@@ -6,8 +6,39 @@
           label(for="addProjectField")
             | Project Name:  
           input.form-control(type="text" ng-model="newTemplate.name" id="addProjectField")
-        //.form-group
-          //label(for="descriptionField")
-            //| Description:  
-          //input.form-control(type="text" ng-model="description" id="descriptionField") 
-        button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Create and Add Tasks
+      .form-group
+        label(for="descriptionField")
+          | Description:  
+        input.form-control(type="text" ng-model="newTemplate.description" id="descriptionField") 
+      button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Create and Add Tasks
+.container(style="padding-top: 20px;" ng-if="showTheRest")
+  .row
+    .col-sm-8
+      form
+        .form-group
+          button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
+            span(type="text" ng-if="!showTaskBox") Add Task
+            span(type="text" ng-if="showTaskBox") Cancel Task
+          div.animate-if(ng-if="showTaskBox")
+            label(for="taskName")
+              | Task Name:
+            input.form-control(type="text" ng-model="name" id="taskName")
+            label(for="taskDesc")
+              | Task Description:
+            input.form-control(type="text" ng-model="description" id="taskDesc")
+            label(for="taskAssign")
+              | Assign To:
+            select.form-control(ng-model="taskAssign" id="assignField")
+              option
+                | Department
+              option
+                | Role
+              option
+                | Individual
+            button.btn.btn-success(type="button" ng-click="addTask()") Submit
+          .form-group
+            label(for="tasksField")
+              | Tasks: 
+              //-div
+              //-ul
+              //-li(ng-repeat="project.tasks in projects")
