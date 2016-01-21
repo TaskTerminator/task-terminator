@@ -19,8 +19,13 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
 
   $scope.cssClass = 'page-yourTeam';
 
+  $scope.successAlert = {
+    type: 'success',
+    msg: 'Well done! You successfully read this important alert message.'
+  }
+
   ///////////////////////////////////////////////////////////////
-  // Employee Modals
+  // Employee Modals                                           //
   ///////////////////////////////////////////////////////////////
 
   $scope.openAddEmployeeModal = function() {
@@ -37,9 +42,13 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		animation: true,
   		templateUrl: "./templates/editEmployee.html",
       size: 'lg',
-      controller: function ($scope) {
+      controller: function ($scope, $uibModalInstance) {
         $scope.employee = employee;
         console.log($scope.employee);
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
 
       }
   	})
@@ -54,12 +63,18 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		animation: true,
   		templateUrl: "./templates/addNewDepartment.html",
       size: 'lg',
-      controller: function ($scope, YourTeamSvc) {
+      controller: function ($scope, YourTeamSvc, $uibModalInstance) {
         $scope.addDepartment = function(newDepartment) {
           YourTeamSvc.postDepartment(newDepartment).then(function(results) {
             console.log("Department added");
           });
+          $scope.cancel();
         }
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+
   	 }
     })
   }
@@ -69,9 +84,14 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		animation: true,
   		templateUrl: "./templates/editDepartment.html",
       size: 'lg',
-      controller: function ($scope, YourTeamSvc) {
+      controller: function ($scope, YourTeamSvc, $uibModalInstance) {
         $scope.department = department;
         console.log($scope.department);
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+
       }
   	})
   }
@@ -85,11 +105,12 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		animation: true,
   		templateUrl: "./templates/addNewPosition.html",
       size: 'lg',
-      controller: function($scope, YourTeamSvc) {
+      controller: function($scope, YourTeamSvc, $uibModalInstance) {
         $scope.addPosition = function(newPosition) {
           YourTeamSvc.postPosition(newPosition).then(function(results) {
             console.log("Position added");
           })
+          $scope.cancel();
         }
         $scope.getCompany = function() {
           CompanySvc.getCompanies().then(function(res) {
@@ -97,7 +118,12 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
             $scope.companies = res.data;
           });
         }();
-      } 
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+
+      }
   	})
   }
 
@@ -106,7 +132,7 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		animation: true,
   		templateUrl: "./templates/editPosition.html",
       size: 'lg',
-      controller: function ($scope) {
+      controller: function ($scope, $uibModalInstance) {
         $scope.position = position;
         console.log($scope.position);
 
@@ -116,6 +142,10 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
             $scope.employees = res.data;
           });
         }();
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
 
       }
   	})
@@ -128,6 +158,12 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       console.log("Employee added");
     })
     $scope.newEmployee = {};
+    $scope.cancel();
   }
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
 
 });

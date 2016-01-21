@@ -5,4 +5,5 @@ div.employeeAddForm
     .form-group
       label(for="departmentName")
         | Department Name:  
-      input.form-control(type="text" ng-model="department.name" id="departmentName")
+      input.form-control(type="text" ng-model="department.name" id="departmentName" style="margin-bottom:15px;")
+      button.btn.btn-primary(ng-click="cancel()") Close

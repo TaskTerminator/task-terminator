@@ -4,24 +4,23 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
 
   $scope.getCompanies = function() {
     CompanySvc.getCompanies().then(function(res) {
-      console.log(res)
       $scope.companies = res.data;
     });
   }();
 
   $scope.getProjects = function() {
     ProjectsSvc.getProjects().then(function(res) {
-      console.log(res)
       $scope.projects = res.data;
     });
   }();
 
   $scope.getTemplates = function () {
     TemplatesSvc.getTemplates().then(function(res){
-      console.log(res);
       $scope.templates = res.data;
     })
   }();
+
+  
 
   //////////////////////
   // Datepicker Stuff
