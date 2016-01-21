@@ -18,14 +18,6 @@
             span.input-group-btn
               button.btn.btn-default(type="button" ng-click="open1()")
                 i.glyphicon.glyphicon-calendar
-        .form-group
-          label(for="anticipatedDateField")
-            | Anticipated Due Date:  
-            p.input-group
-              input(type="text" class="form-control" uib-datepicker-popup="{{format}}" is-open="popup3.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="newSingleProject.setup.dueDate.anticipated")
-              span.input-group-btn
-                button.btn.btn-default(type="button" class="btn btn-default" ng-click="open1()")
-                  i.glyphicon.glyphicon-calendar
         button.btn.btn-success(type="button" ng-click="saveProject()") Create and Add Tasks
 
           
