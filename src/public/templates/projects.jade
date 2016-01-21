@@ -2,12 +2,8 @@ h1(style="padding-left:15px; padding-top: 15px;") Projects
 hr
 .container
   .row.text-center(style="padding-top: 20px;")
-    .col-sm-4.text-right
-      h2(style="margin-top:5px;") Create New: 
-    .col-sm-6.text-left
-      button.btn.btn-primary(type="button" ng-click="openSingleModal()") Single Instance Project
-      button.btn.btn-primary(type="button" ng-click="openScheduleModal()") Scheduled Project
-      button.btn.btn-primary(type="button" ng-click="openTemplateModal()") Create Template
+    .col-sm-12.text-right
+      button.btn.btn-lg.btn-primary(type="button" ng-click="openSingleModal()") Create Project/Template
     .col-sm-2
   .row(style="padding-top: 15px;")
     .col-sm-12
@@ -67,9 +63,9 @@ hr
                   a.list-group-item(ng-repeat="template in templates | filter:{setup:{frequency:'By Date'}}" ng-if="!sortProjectList" ng-click="openModal(template)")
                     .row
                       .col-xs-4
-                        | {{project.name}} 
+                        | {{template.name}} 
                       .col-xs-4
-                        | {{project.description}} 
+                        | {{template.description}} 
                       .col-xs-3.col-sm-offset-1.text-center
                         
   .row(style="padding-top: 15px;")
@@ -98,7 +94,7 @@ hr
                 a.list-group-item(ng-repeat="template in templates | filter:{setup:{frequency:'By Interval'}}" ng-if="!sortProjectList" ng-click="openModal(template)")
                   .row
                     .col-xs-4
-                      | {{project.name}} 
+                      | {{template.name}} 
                     .col-xs-4
-                      | {{project.description}} 
+                      | {{template.description}} 
                     .col-xs-3.col-sm-offset-1.text-center
