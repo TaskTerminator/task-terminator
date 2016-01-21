@@ -307,6 +307,18 @@ module.exports = {
       });
       return deferred.promise;
     },
+    
+    taskComplete(id) {
+      console.log("Here's the id I'm looking for", id);
+        var deferred = Q.defer();
+        ProjectTask.findOneAndUpdate({"friendlyId": id}, {status: 'Complete'}, {new: true})
+        .exec()
+        .then((newTask) => {
+            console.log("RESULT", newTask);
+            deferred.resolve(newTask);
+        })
+        return deferred.promise;
+    },
 
     /************** QUERIES - DUE DATES  **************/
 

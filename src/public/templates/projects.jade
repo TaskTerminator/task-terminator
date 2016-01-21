@@ -6,26 +6,26 @@ hr
       h2(style="margin-top:5px;") Create New: 
     .col-sm-6.text-left
       button.btn.btn-primary(type="button" ng-click="openSingleModal()") Single Instance Project
-      button.btn.btn-default(type="button" ng-click="openScheduleModal()") Scheduled Project
-      button.btn.btn-default(type="button" ng-click="openTemplateModal()") Create Template
+      button.btn.btn-primary(type="button" ng-click="openScheduleModal()") Scheduled Project
+      button.btn.btn-primary(type="button" ng-click="openTemplateModal()") Create Template
     .col-sm-2
   .row(style="padding-top: 15px;")
     .col-sm-12
-      .panel.panel-default
-        .panel-heading
-          h3.panel-title(style="display:inline-block;") 
+      .panel.panel-default(style="background-color: rgb(20,20,20);")
+        .panel-heading(style="background-color: #45484d;")
+          h3.panel-title(style="display:inline-block;color:#6ABED8;") 
             | Active Projects (Click to open)
-          .btn-group(style="padding-left:50%; font-size:35px")
+          .btn-group(style="padding-left:65%; font-size:35px")
             button.btn.btn-default(type='button' ng-click="sortProjectList = !sortProjectList")
               span.glyphicon.glyphicon-th(aria-hidden='true')
             button.btn.btn-default(type='button' ng-click="sortProjectList = !sortProjectList")
               span.glyphicon.glyphicon-th-list(aria-hidden='true')
 
-        .panel-body
+        .panel-body(style="background-color: rgba(125,125,125,0.2); color:white;")
             .row
               .col-sm-3(ng-repeat="project in projects" ng-if="sortProjectList")
                 .box-wrapper(style="margin: 25px auto;" ng-click="openModal(project)")
-                  .project-thing
+                  .project-thing(style="background-color: rgb(45,115,160); -webkit-border-radius: 10px;")
                     ul(style="list-style-type:none; padding:5px;")
                       li
                         p <b><i>Project Name:</i></b> {{project.name}}
