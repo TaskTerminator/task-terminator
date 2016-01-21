@@ -13,11 +13,11 @@ const randomstring = require('randomstring');
 
 module.exports = {
 
-  newProject(req, res) {
+  newProject(templateId) {
     console.log("#1 - New Project Function Called");
-    var templateId = req.params.templateid;
-    var instance = req.body.instance;
-    var description = req.body.description;
+//    var templateId = req.params.templateid;
+//    var instance = req.body.instance;
+//    var description = req.body.description;
     var associatedProjectId;
     var newProject;
     helpers.makeProjectObject(templateId)
@@ -60,9 +60,13 @@ module.exports = {
         for (var i = 0; i < project_tasks.length; i++) {
           newProject.tasks.push(project_tasks[i]);
         }
+        newProject.associatedTemplate = templateId;
         newProject.save().then((project) => {
           console.log("Made it!");
-          return res.json(project);
+            if (res) {
+              return res.json(project);  
+            }
+            return project;
         });
       });
     },

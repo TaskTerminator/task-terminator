@@ -23,6 +23,7 @@ const projectSchema = new mongoose.Schema({
   tasks: [
         {type: String , ref: 'ProjectTask'}
           ],
+    overdue: {type: Boolean, default: false},
   setup: {
       created: {type: Date, default: new Date()},
       type:  {type: String, enum: ['Single','Triggered', 'Scheduled']},
@@ -63,6 +64,7 @@ const projectSchema = new mongoose.Schema({
             fromEnd: {}
           }
       },
+      associatedTemplate: {type: String, ref: "Template"},
       critical: {type: Boolean, default: false},
       projectUrl: {type:String}
   }

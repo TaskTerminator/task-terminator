@@ -18,6 +18,7 @@ const templateSchema = new mongoose.Schema({
   tasks: [
         {type: String , ref: 'TemplateTask'}
           ],
+    overdue: {type: Boolean, default: false},
   setup: {
       created: {type: Date, default: new Date()},
       type:  {type: String, enum: ['Single','Triggered', 'Scheduled']},
