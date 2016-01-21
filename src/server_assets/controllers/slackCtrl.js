@@ -401,9 +401,29 @@ const controller = Botkit.slackbot({
 
 
  	witbot.hears('task_complete', 0.8, function (bot, message, outcome) {
- 		console.log("WIT.AI Outcome", outcome);
-
- 		bot.reply(message, "Way to go brah!");
+        console.log("I'm trying to change the task status to complete...");
+        var taskid = outcome.entities.task_id[0].value;
+        console.log("TASK ID", taskid)
+		return botHelper.hashStripper(taskid)
+		.then((cleanId) => {
+			console.log("Here's the clean ID I made", cleanId);
+			return botHelper.taskComplete(cleanId);
+        })        
+        .then((task) => {
+            console.log("Here's the returned promise...", task);
+			var title = "Here's the task...";
+			return botHelper.taskAttachment([task], title);
+		})
+		.then((attachment) => {
+			var attachments = [];
+			attachments.push(attachment);
+			bot.reply(message,{
+				// text: ' ',
+				attachments: attachments,
+			},function(err,resp) {
+				console.log(err,resp);
+			});
+		});
  	});
 
     /****************** INCOMPLETE PROJECTS ******************/
