@@ -33,4 +33,5 @@ div.employeeAddForm
     .form-group
       label(for="PositionsField")
         | Position:  
-      input.form-control(type="email" ng-model="employee.positions" id="EmployeeEmailField")
+      input.form-control(type="email" ng-model="employee.positions" id="EmployeeEmailField" style="margin-bottom:15px;")
+      button.btn.btn-primary(ng-click="cancel()") Close

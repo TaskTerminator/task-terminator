@@ -10,9 +10,10 @@ div.employeeAddForm
       label(for="departmentName")
         | Department Name:  
       input.form-control(type="text" ng-model="position.department" id="departmentName")
-    .list-group.employeeList
+    .list-group.employeeList(style="margin-bottom:15px;")
       h3 Employees:
       a.list-group-item(ng-repeat='employee in employees')
         .row
           .col-xs-4
             | {{employee.identification.name.fullName}}
+    button.btn.btn-primary(ng-click="cancel()") Close

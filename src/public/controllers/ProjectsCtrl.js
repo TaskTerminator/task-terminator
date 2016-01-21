@@ -13,6 +13,10 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   $scope.sortProjectList = true;
 
+  $scope.successModal = function () {
+    SweetAlert.swal("Good job!", "You clicked the button!", "success");
+  };
+
 ////////////////////////////////////////
 
   $scope.cssClass = 'page-projects';
@@ -91,9 +95,9 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
         templateID = results.data._id;
         console.log(templateID);
         $state.go('templateTasks', {"id": templateID});
-      })   
+      })
   }
-  
+
 
   // $scope.saveProject = function() {
   //   var modalInstance = $uibModal.open({
