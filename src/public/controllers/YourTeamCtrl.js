@@ -13,6 +13,16 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
     CompanySvc.getCompanies().then(function(res) {
       console.log(res)
       $scope.companies = res.data;
+      //build out a departments dictionary
+      $scope.departmentsDict = {};
+      for(var j = 0; j < $scope.companies[0].departments.length; j++) {
+        $scope.departmentsDict[$scope.companies[0].departments[j]._id] = $scope.companies[0].departments[j];
+      }
+      console.log("departmentsDict", $scope.departmentsDict);
+      for(var i = 0; i<$scope.companies[0].positions.length; i++) {
+        var position = $scope.companies[0].positions[i];
+        position.department = $scope.departmentsDict[position.department];
+      }
     });
   }();
 
