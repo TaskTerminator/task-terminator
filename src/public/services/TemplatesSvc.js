@@ -9,7 +9,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
     $http({
       method: "GET",
-      url: "/api/tasks/template"
+      url: "/api/template"
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -25,7 +25,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
     $http({
       method: "GET",
-      url: "/api/tasks/template/" + id
+      url: "/api/template/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -56,7 +56,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
     $http({
       method: "PUT",
-      url: "/api/tasks/template/" + id,
+      url: "/api/template/" + id,
       data: {}
     }).then(function(response) {
       defer.resolve(response);
@@ -72,7 +72,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
     $http({
       method: "DELETE",
-      url: "/api/tasks/template/" + id
+      url: "/api/template/" + id
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
@@ -92,7 +92,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
 
     $http({
       method: "POST",
-      url: "/api/template/"+ id +"/tasks",
+      url: "/api/template/"+ id +"",
       data: newTasksArr
     }).then(function(response) {
       defer.resolve(response);
