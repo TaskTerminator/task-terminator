@@ -9,15 +9,15 @@ const Witbot = require('witbot');
 const controller = Botkit.slackbot({
 	  debug: false
 	});
-
-	// connect the bot to a stream of messages
-	controller.spawn({
-	  token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
-	}).startRTM(function(err) {
-    if (err) {
-      throw new Error(err);
-    }
-  });
+	//
+	// // connect the bot to a stream of messages
+	// controller.spawn({
+	//   token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
+	// }).startRTM(function(err) {
+  //   if (err) {
+  //     throw new Error(err);
+  //   }
+  // });
 
 	//LINK THE BOT TO WIT.AI
 	const witbot = Witbot("CZPINC6EVOQ7DCPZSUUBQ3B5GWQVOQ66"
@@ -408,7 +408,7 @@ const controller = Botkit.slackbot({
 		.then((cleanId) => {
 			console.log("Here's the clean ID I made", cleanId);
 			return botHelper.taskComplete(cleanId);
-        })        
+        })
         .then((task) => {
             console.log("Here's the returned promise...", task);
 			var title = "Here's the task...";

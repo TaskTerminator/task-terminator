@@ -36,7 +36,7 @@ angular.module('terminatorApp').controller('TemplatesCtrl', function($scope, Tem
 	$scope.addTasks = function(newTasksArr) {
 		TemplatesSvc.postTasks(newTasksArr, $scope.templateID).then(function(results) {
 			console.log("Tasks added successfully", results);
-			$state.go('projects');
+			// $state.go('projects');
 		})
 	}
 });
