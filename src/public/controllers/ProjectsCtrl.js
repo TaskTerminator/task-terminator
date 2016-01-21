@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $scope, $uibModal, ProjectsSvc) {
+angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $scope, $uibModal, ProjectsSvc, TemplatesSvc, $filter) {
 
 ////////////////////////////////////////
 
@@ -9,14 +9,21 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
     });
   }();
 
+  $scope.getTemplates = function() {
+    TemplatesSvc.getTemplates().then(function(res) {
+      $scope.templates = res.data;
+      console.log($scope.templates);
+
+    });
+  }();
+
 ////////////////////////////////////////
 
   $scope.sortProjectList = true;
 
-  $scope.successModal = function () {
-    SweetAlert.swal("Good job!", "You clicked the button!", "success");
-  };
-
+  $scope.filteredByDate = $filter('filter')($scope.templates, {setup: {frequency: "By Date"} });
+  $scope.filteredByInterval = $filter('filter')($scope.templates, {setup: {frequency: "By Interval"} });
+  console.log($scope.filteredByDate);
 ////////////////////////////////////////
 
   $scope.cssClass = 'page-projects';
@@ -25,7 +32,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.openSingleModal = function() {
   	var modalInstance = $uibModal.open({
   		animation: true,
-  		templateUrl: "./templates/projectForms.html",
+  		templateUrl: "./templates/projectsModal.html",
       controller: 'ProjectsCtrl',
       size: 'lg'
   	})
