@@ -408,7 +408,7 @@ const controller = Botkit.slackbot({
 		.then((cleanId) => {
 			console.log("Here's the clean ID I made", cleanId);
 			return botHelper.taskComplete(cleanId);
-        })        
+        })
         .then((task) => {
             console.log("Here's the returned promise...", task);
 			var title = "Here's the task...";

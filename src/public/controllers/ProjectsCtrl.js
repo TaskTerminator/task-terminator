@@ -21,9 +21,6 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   $scope.sortProjectList = true;
 
-  $scope.filteredByDate = $filter('filter')($scope.templates, {setup: {frequency: "By Date"} });
-  $scope.filteredByInterval = $filter('filter')($scope.templates, {setup: {frequency: "By Interval"} });
-  console.log($scope.filteredByDate);
 ////////////////////////////////////////
 
   $scope.cssClass = 'page-projects';
