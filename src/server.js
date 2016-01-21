@@ -11,6 +11,9 @@ const passport = require('passport');
 const app = express();
 const port = 8000;
 
+require('./server_assets/cron/test').start();
+
+
 //********** CONTROLLERS **********
 const companyCtrl = require('./server_assets/controllers/companyCtrl.js');
 const departmentCtrl = require('./server_assets/controllers/departmentCtrl.js');
