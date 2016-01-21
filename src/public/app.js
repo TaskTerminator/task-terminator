@@ -41,7 +41,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         .state('dashboard', {
             url: '/dashboard',
             templateUrl: 'Templates/main.html',
-            // controller: 'DashboardCtrl',
+            controller: 'DashboardCtrl',
         })
         .state('dashboard.home',{
             url:'/home',
@@ -93,6 +93,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('templateTasks', {
           url:'/templateTasks/:id',
+          url:'/template/Tasks/:id',
           templateUrl: 'Templates/templateTasks.html',
           controller: 'TemplatesCtrl'
           // templateUrl: 'Templates/templateTasks.html',

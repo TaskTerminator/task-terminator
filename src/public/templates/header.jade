@@ -1,5 +1,5 @@
 nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
-  .container-fluid
+  .container-fluid(ng-controller="DashboardCtrl")
     .navbar-header
       button.navbar-toggle.collapsed(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
           span.sr-only Toggle navigation
@@ -21,4 +21,4 @@ nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bot
               a(href='#') User Profile
             li.divider(role='separator')
             li
-              a(href='#') Logout
+              a Logout

@@ -7,11 +7,13 @@ hr
         .panel-heading
           h4 Projects Completed
         .panel-body
-          .row
-          .col-sm-10.col-sm-10.col-lg-6
-            highchart#gciPerMonth(config='projectsPerWeek')
-          .col-sm-10.col-sm-10.col-lg-6
-            highchart#chart1(config='projectsPerMonth')
+          .container-fluid
+            .row
+            .col-sm-8.col-md-8.col-lg-6
+              highchart#gciPerMonth(config='projectsPerWeek')
+            .col-sm-8.col-md-8.col-lg-6
+              highchart#chart1(config='projectsPerMonth')
+.container-fluid
   .row.text-center(style="padding-top: 20px;")
     .col-sm-12
       .panel.panel-default
@@ -19,10 +21,11 @@ hr
           h4 Tasks Completed
         .panel-body
           .row
-          .col-sm-10.col-sm-10.col-lg-6
+          .col-sm-10.col-md-10.col-lg-6
             highchart#gciPerMonth(config='tasksPerWeek')
-          .col-sm-10.col-sm-10.col-lg-6
+          .col-sm-10.col-md-10.col-lg-6
             highchart#chart1(config='tasksPerMonth')
+.container-fluid
   .row.text-center(style="padding-top: 20px;")
     .col-sm-12
       .panel.panel-default

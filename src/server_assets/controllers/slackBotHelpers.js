@@ -322,8 +322,10 @@ module.exports = {
                 console.log('ITEM2', moment());
                 console.log('TRUE OR FALSE', moment().isAfter(moment(item.setup.dueDate.actual)));
                 if (moment().isAfter(moment(item.setup.dueDate.actual))) {
-                    console.log('ITEM3', item);
-                    overdue.push(item);
+                    if (item.status === 'Incomplete') {
+                        console.log('ITEM3', item);
+                        overdue.push(item);
+                    }
                 }
             });
             deferred.resolve(overdue);
