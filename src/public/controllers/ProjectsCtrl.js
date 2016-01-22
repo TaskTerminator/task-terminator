@@ -20,6 +20,8 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 ////////////////////////////////////////
 
   $scope.sortProjectList = true;
+  $scope.sortProjectList2 = true;
+  $scope.sortProjectList3 = true;
 
 ////////////////////////////////////////
 
