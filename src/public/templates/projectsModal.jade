@@ -76,7 +76,8 @@ div.container
             | Description:
           input.form-control(type="text")
         button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
-        
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3500") {{alert.msg}}
+
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
           .row
             .col-sm-8
@@ -123,7 +124,9 @@ div.container
             | Description:
           input.form-control(type="text")
         button.btn.btn-success(type="button" ng-click="addTemplate()") Add Tasks
-        
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3500") {{alert.msg}}
+
+
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
           .row
             .col-sm-8
