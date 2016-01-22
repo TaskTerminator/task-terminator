@@ -19,187 +19,187 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.getOneTemplate = function (id) {
+  // this.getOneTemplate = function (id) {
 
-    var defer = $q.defer();
+  //   var defer = $q.defer();
 
-    $http({
-      method: "GET",
-      url: "/api/template/" + id
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "GET",
+  //     url: "/api/template/" + id
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  };
+  //   return defer.promise;
+  // };
 
-  this.postTemplate = function (newTemplate) {
-    var defer = $q.defer();
+  // this.postTemplate = function (newTemplate) {
+  //   var defer = $q.defer();
 
-    $http({
-      method: "POST",
-      url: "/api/template",
-      data: newTemplate
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "POST",
+  //     url: "/api/template",
+  //     data: newTemplate
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  };
+  //   return defer.promise;
+  // };
 
-  this.editTemplate = function () {
-    var defer = $q.defer();
+  // this.editTemplate = function () {
+  //   var defer = $q.defer();
 
-    $http({
-      method: "PUT",
-      url: "/api/template/" + id,
-      data: {}
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "PUT",
+  //     url: "/api/template/" + id,
+  //     data: {}
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  };
+  //   return defer.promise;
+  // };
 
-  this.deleteTemplate = function (id) {
-    var defer = $q.defer();
+  // this.deleteTemplate = function (id) {
+  //   var defer = $q.defer();
 
-    $http({
-      method: "DELETE",
-      url: "/api/template/" + id
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "DELETE",
+  //     url: "/api/template/" + id
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  };
+  //   return defer.promise;
+  // };
 
-  ////////////////////////
-  // Task Template Calls
-  ////////////////////////
+  // ////////////////////////
+  // // Task Template Calls
+  // ////////////////////////
 
-  this.postTasks = function (newTasksArr, id) {
-    console.log("TemplatesSvc");
-    var defer = $q.defer();
+  // this.postTasks = function (newTasksArr, id) {
+  //   console.log("TemplatesSvc");
+  //   var defer = $q.defer();
 
-    $http({
-      method: "POST",
-      url: "/api/template/"+ id +"",
-      data: newTasksArr
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "POST",
+  //     url: "/api/template/tasks",
+  //     data: newTasksArr
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  }
+  //   return defer.promise;
+  // }
 
-  ////////////////////////
-  // Project Template Calls
-  ////////////////////////
+  // ////////////////////////
+  // // Project Template Calls
+  // ////////////////////////
 
-  this.getProjectTemplates = function () {
+  // this.getProjectTemplates = function () {
 
-    var defer = $q.defer();
+  //   var defer = $q.defer();
 
-    $http({
-      method: "GET",
-      url: "/api/template"
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "GET",
+  //     url: "/api/template"
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  }
+  //   return defer.promise;
+  // }
 
-  this.getOneProjectTemplate = function (id) {
+  // this.getOneProjectTemplate = function (id) {
 
-    var defer = $q.defer();
+  //   var defer = $q.defer();
 
-    $http({
-      method: "GET",
-      url: "/api/template/" + id
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "GET",
+  //     url: "/api/template/" + id
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  }
+  //   return defer.promise;
+  // }
 
-  this.postProjectTemplate = function () {
-    var defer = $q.defer();
+  // this.postProjectTemplate = function () {
+  //   var defer = $q.defer();
 
-    $http({
-      method: "POST",
-      url: "/api/template",
-      data: {}
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "POST",
+  //     url: "/api/template",
+  //     data: {}
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  };
+  //   return defer.promise;
+  // };
 
-  this.editProjectTemplate = function () {
-    var defer = $q.defer();
+  // this.editProjectTemplate = function () {
+  //   var defer = $q.defer();
 
-    $http({
-      method: "PUT",
-      url: "/api/template/" + id,
-      data: {}
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "PUT",
+  //     url: "/api/template/" + id,
+  //     data: {}
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  };
+  //   return defer.promise;
+  // };
 
-  this.deleteProjectTemplate = function (id) {
-    var defer = $q.defer();
+  // this.deleteProjectTemplate = function (id) {
+  //   var defer = $q.defer();
 
-    $http({
-      method: "DELETE",
-      url: "/api/template/" + id
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "DELETE",
+  //     url: "/api/template/" + id
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;;
-  };
+  //   return defer.promise;;
+  // };
 
-  this.getCompanies = function () {
+  // this.getCompanies = function () {
 
-    var defer = $q.defer();
+  //   var defer = $q.defer();
 
-    $http({
-      method: "GET",
-      url: "/api/company"
-    }).then(function(response) {
-      defer.resolve(response);
-    }, function (error) {
-      console.log("error: ", error);
-    });
+  //   $http({
+  //     method: "GET",
+  //     url: "/api/company"
+  //   }).then(function(response) {
+  //     defer.resolve(response);
+  //   }, function (error) {
+  //     console.log("error: ", error);
+  //   });
 
-    return defer.promise;
-  }
+  //   return defer.promise;
+  // }
 
 });

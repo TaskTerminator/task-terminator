@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $scope, $uibModal, ProjectsSvc, TemplatesSvc, $filter) {
+angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $scope, $uibModal, ProjectsSvc, $filter) {
 
 ////////////////////////////////////////
 
@@ -10,7 +10,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   }();
 
   $scope.getTemplates = function() {
-    TemplatesSvc.getTemplates().then(function(res) {
+    ProjectsSvc.getTemplates().then(function(res) {
       $scope.templates = res.data;
       console.log($scope.templates);
 
@@ -95,12 +95,12 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.showTheRest = false;
   $scope.alerts = [];
 
+  $scope.templateID;
   $scope.addTemplate = function (newTemplate) {
-      var templateID;
       ProjectsSvc.postTemplate(newTemplate).then(function(results) {
         console.log("New Template added", results);
-        templateID = results.data._id;
-        console.log(templateID);
+        $scope.templateID = results.data._id;
+        console.log($scope.templateID);
         // $state.go('templateTasks', {"id": templateID});
       }).then(function(res) {
         $scope.alerts.push({msg: "Project ID Created", type: "success"})
@@ -216,4 +216,51 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
     return '';
   };
+
+  ////////
+  //Updates to the project control from Template control
+  ////////
+
+  $scope.newTask = {
+    assignment: {
+      departments: '',
+      positions: '',
+      employees: ''
+    }
+  };
+
+  $scope.newTasksArr = [];
+
+  // $scope.getCompany = function() {
+  //     CompanySvc.getCompanies().then(function(res) {
+  //       console.log(res)
+  //       $scope.companies = res.data;
+  //     });
+  //   }();
+
+  $scope.saveTask = function(newTask) {
+    newTask.associatedTemplate = $scope.templateID;
+    console.log(newTask);
+    $scope.newTasksArr.push(newTask);
+    console.log($scope.newTasksArr);
+    $scope.newTask = {
+      assignment: {
+        departments: '',
+        positions: '',
+        employees: ''
+      }
+    };
+    // $scope.selectedAssign = null; tryig to clear drop downs with this.
+  }
+
+  $scope.addTasks = function(newTasksArr) {
+    ProjectsSvc.postTasks(newTasksArr, $scope.templateID).then(function(results) {
+      console.log("Tasks added successfully", results);
+      // $state.go('projects');
+    })
+  }
+
 });
+
+
+
