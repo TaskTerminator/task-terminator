@@ -37,23 +37,23 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   	})
   };
 
-  $scope.openScheduleModal = function() {
-    var modalInstance = $uibModal.open({
-      animation: true,
-      templateUrl: "./templates/scheduledProject.html",
-      controller: 'ProjectsCtrl',
-      size: 'lg'
-    })
-  };
-
-  $scope.openTemplateModal = function() {
-    var modalInstance = $uibModal.open({
-      animation: true,
-      templateUrl: "./templates/projectTemplates.html",
-      controller: "ProjectsCtrl",
-      size: "lg"
-    })
-  }
+  // $scope.openScheduleModal = function() {
+  //   var modalInstance = $uibModal.open({
+  //     animation: true,
+  //     templateUrl: "./templates/scheduledProject.html",
+  //     controller: 'ProjectsCtrl',
+  //     size: 'lg'
+  //   })
+  // };
+  //
+  // $scope.openTemplateModal = function() {
+  //   var modalInstance = $uibModal.open({
+  //     animation: true,
+  //     templateUrl: "./templates/projectTemplates.html",
+  //     controller: "ProjectsCtrl",
+  //     size: "lg"
+  //   })
+  // }
 
   $scope.change = function() {
   	$scope.meh = !$scope.meh;
@@ -89,6 +89,10 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
     console.log("New Single Project Info: ", newSingleProject);
     ProjectsSvc.postProject(newSingleProject).then(function(results) {
       console.log("Single Project added: ", results);
+    }).then(function(res) {
+      $scope.alerts.push({msg: "Project ID Created", type: "success"})
+    }).catch(function(res) {
+      $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
     })
   };
 
@@ -263,6 +267,3 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   }
 
 });
-
-
-
