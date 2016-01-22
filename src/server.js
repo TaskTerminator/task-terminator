@@ -87,7 +87,7 @@ app.get('/api/template', templateCtrl.allTemplates);
 
 //********** TEMPLATE TASK ENDPOINTS **********
 app.get('/api/tasks/template', templateTaskCtrl.getAllTasks);
-app.post('/api/template/:templateid/tasks', templateTaskCtrl.addTask);
+app.post('/api/template/tasks', templateTaskCtrl.addTask);
 app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
 
 //********** TIME ENDPOINTS **********

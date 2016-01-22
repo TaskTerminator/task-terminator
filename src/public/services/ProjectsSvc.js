@@ -115,7 +115,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
   //Templates
   ///////////////
 
-   this.postTemplate = function (newTemplate) {
+  this.postTemplate = function (newTemplate) {
     console.log(newTemplate);
     var defer = $q.defer();
 
@@ -131,6 +131,39 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
 
     return defer.promise;
   };
+
+  this.getTemplates = function () {
+
+    var defer = $q.defer();
+
+    $http({
+      method: "GET",
+      url: "/api/template"
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  };
+
+  this.postTasks = function (newTasksArr, id) {
+    console.log("TemplatesSvc");
+    var defer = $q.defer();
+
+    $http({
+      method: "POST",
+      url: "/api/template/tasks",
+      data: newTasksArr
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  }
 
 
 });
