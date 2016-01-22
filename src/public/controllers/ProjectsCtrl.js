@@ -93,6 +93,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   // $scope.newTemplate = {};
 
   $scope.showTheRest = false;
+  $scope.alerts = [];
 
   $scope.addTemplate = function (newTemplate) {
       var templateID;
@@ -101,9 +102,16 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
         templateID = results.data._id;
         console.log(templateID);
         // $state.go('templateTasks', {"id": templateID});
-      });
-
+      }).then(function(res) {
+        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+      }).catch(function(res) {
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
+      })
       $scope.showTheRest = true;
+  }
+
+  $scope.closeAlert = function(index) {
+    $scope.alerts.splice(index, 1);
   }
 
 
