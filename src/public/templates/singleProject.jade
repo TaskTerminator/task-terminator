@@ -1,10 +1,10 @@
 .singleProject(style="margin:0 auto;")
-  h1.text-center {{project.name}}
+  h1.text-center Project Name: {{project.name}}
   hr
   .text-center
-      h2 {{project.description}}
+      h2 Description: {{project.description}}
   .text-center.dueDate
-      h4 {{project.setup.dueDate.actual | date:'mediusmate'}}
+      h4 Due Date: {{project.setup.dueDate.actual | date : 'MM/dd/yyyy' : 'UTC'}}
 
 .panel.panel-default(style="margin:0 25px;")
   .panel-body
@@ -27,5 +27,5 @@
               | {{project.description}}
             
             .col-xs-2.text-center(style="padding:0")
-              | {{project.setup.dueDate.actual | date:'mediusmate'}}
+              | {{project.setup.dueDate.actual}}
               
