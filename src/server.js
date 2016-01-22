@@ -69,7 +69,7 @@ app.get('/api/position', positionCtrl.allPositions);
 app.get('/api/project/:id', projectCtrl.oneProject);
 app.put('/api/project/:id', projectCtrl.editProject);
 app.delete('/api/project/:id', projectCtrl.deleteProject);
-app.post('/api/project/:templateid', projectCtrl.newProject);
+app.post('/api/project/:templateid', projectCtrl.endpointProject);
 app.get('/api/project', projectCtrl.allProjects);
 
 //********** PROJECT TASK ENDPOINTS **********
