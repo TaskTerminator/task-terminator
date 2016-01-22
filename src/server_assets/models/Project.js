@@ -23,6 +23,7 @@ const projectSchema = new mongoose.Schema({
   tasks: [
         {type: String , ref: 'ProjectTask'}
           ],
+    tasksCompleted: {type: Number, default: 0},
     overdue: {type: Boolean, default: false},
   setup: {
       created: {type: Date, default: new Date()},
