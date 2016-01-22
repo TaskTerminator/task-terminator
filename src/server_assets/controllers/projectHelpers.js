@@ -52,14 +52,19 @@ module.exports = {
     },
 
     makeProjectTask(object, associatedProjectId){
-      console.log("#21 Made it to Make Project Task");
+      console.log("#21 Made it to Make Project Task", object, "ASSOCIATEDPROJECTID", associatedProjectId);
       var deferred = Q.defer();
       var newTask = new ProjectTask(object);
       newTask.friendlyId = randomstring.generate({length: 5, readable: true});
       newTask.associatedProject = associatedProjectId;
-      newTask.save().then((task) => {
-        deferred.resolve(task._id);
-      });
+      console.log("NEW TASK CREATED", newTask);
+      newTask.save()
+        .then((task) => {
+            console.log("DID WE MAKE IT?", task);
+            deferred.resolve(task._id);
+        }).catch((err) => {
+            console.log("ERROR", err);
+        });
       return deferred.promise;
     },
 

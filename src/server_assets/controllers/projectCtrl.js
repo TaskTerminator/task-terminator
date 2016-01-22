@@ -12,12 +12,20 @@ const randomstring = require('randomstring');
 
 
 module.exports = {
+    
+    endpointProject(req, res) {
+        var templateId = req.params.templateid;
+        var instance = req.body.instance;
+        var description = req.body.description;
+        module.exports.newProject(templateId, instance, description)
+        .then((project) => {
+            return res.json(project);
+        });
+    },
 
-  newProject(templateId) {
+  newProject(templateId, instance, description) {
     console.log("#1 - New Project Function Called");
-//    var templateId = req.params.templateid;
-//    var instance = req.body.instance;
-//    var description = req.body.description;
+      var deferred = Q.defer();
     var associatedProjectId;
     var newProject;
     helpers.makeProjectObject(templateId)
@@ -63,12 +71,10 @@ module.exports = {
         newProject.associatedTemplate = templateId;
         newProject.save().then((project) => {
           console.log("Made it!");
-            if (res) {
-              return res.json(project);  
-            }
-            return project;
+            deferred.resolve(project);
         });
       });
+      return deferred.promise;
     },
     
     newSingleProject(req, res) {
