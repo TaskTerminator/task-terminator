@@ -4,7 +4,7 @@ var projectCtrl = require('../controllers/projectCtrl');
 var moment = require('moment');
 
 var job = new CronJob({
-  cronTime: '05 * * * * *',
+  cronTime: '10 * * * * *',
   onTick: function() {
       var today = moment().utc().hours(23).minute(0).second(0).millisecond(0).toJSON();
       console.log("TODAY", today);
@@ -13,14 +13,20 @@ var job = new CronJob({
     .then((projects) => {
         console.log("PROJECTS", projects);
         for (var i = 0; i < projects.length; i++) {
+            console.log('CURRENT PROJECT', projects[i]);
             projects[i].overdue = true;
             projects[i].save()
             .then((project) => {
-                var newProject = projectCtrl.newProject(project.setup.associatedTemplate);
-                console.log("NEW PROJECT", newProject);
+                projectCtrl.newProject(project.setup.associatedTemplate)
+                .then((project) => {
+                    console.log("NEW PROJECT INSTANCE CREATED", project);
+                })
             })
         }
     })
+    .catch((err) => {
+           console.log("ERROR", err);
+    });
   },
   start: false,
   timeZone: 'America/Chicago'
