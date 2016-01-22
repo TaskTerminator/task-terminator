@@ -11,7 +11,7 @@ const passport = require('passport');
 const app = express();
 const port = 8000;
 
-require('./server_assets/cron/test').start();
+// require('./server_assets/cron/test').start();
 
 
 //********** CONTROLLERS **********
@@ -87,7 +87,7 @@ app.get('/api/template', templateCtrl.allTemplates);
 
 //********** TEMPLATE TASK ENDPOINTS **********
 app.get('/api/tasks/template', templateTaskCtrl.getAllTasks);
-app.post('/api/template/:templateid/tasks', templateTaskCtrl.addTask);
+app.post('/api/template/tasks', templateTaskCtrl.addTask);
 app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
 
 //********** TIME ENDPOINTS **********

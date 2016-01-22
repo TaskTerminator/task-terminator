@@ -10,7 +10,7 @@ div.container
         .form-group
           label(for="descriptionField")
             | Description:
-          input.form-control(type="text")
+          input.form-control(type="text" ng-model="description")
         .form-group
           label(for="startField")
             | Start Date:
@@ -27,7 +27,7 @@ div.container
               span.input-group-btn
                 button.btn.btn-default(type="button" ng-click="open2()")
                   i.glyphicon.glyphicon-calendar
-        button.btn.btn-success(type="button" ng-click="addTemplate()") Add Tasks
+        button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
         uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3500") {{alert.msg}}
 
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
@@ -70,12 +70,12 @@ div.container
         .form-group
           label(for="addProjectField")
             | Project Name: 
-          input.form-control(type="text" ng-model="name" id="addProjectField")
+          input.form-control(type="text" ng-model="newTemplate.name" id="addProjectField")
         .form-group
           label(for="descriptionField")
             | Description:
           input.form-control(type="text")
-        button.btn.btn-success(type="button" ng-click="addTemplate()") Add Tasks
+        button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
         
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
           .row

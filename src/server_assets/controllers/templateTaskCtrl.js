@@ -12,7 +12,7 @@ module.exports = {
         const newTemplateTask = new TemplateTask(req.body[i]);
         Template
           .findOne({
-            _id: req.params.templateid
+            _id: req.body[i].associatedTemplate
           })
           .exec()
           .then(function(result) {
