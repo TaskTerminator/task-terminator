@@ -28,7 +28,7 @@ div.container
                 button.btn.btn-default(type="button" ng-click="open2()")
                   i.glyphicon.glyphicon-calendar
         button.btn.btn-success(type="button" ng-click="addTemplate()") Add Tasks
-        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2000") {{alert.msg}}
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3500") {{alert.msg}}
 
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
           .row
