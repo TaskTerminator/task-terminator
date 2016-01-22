@@ -4,7 +4,7 @@ var projectCtrl = require('../controllers/projectCtrl');
 var moment = require('moment');
 
 var job = new CronJob({
-  cronTime: '10 * * * * *',
+  cronTime: '00 00 17 * *',
   onTick: function() {
       var today = moment().utc().hours(23).minute(0).second(0).millisecond(0).toJSON();
       console.log("TODAY", today);
