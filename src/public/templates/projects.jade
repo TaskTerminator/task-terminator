@@ -27,7 +27,7 @@ hr
                         p <b><i>Project Name:</i></b> {{project.name}}
                         p <b><i>Description:</i></b> {{project.description}}
                         p <b><i>Due Date:</i></b> {{project.setup.dueDate.actual | date : 'MM/dd/yyyy' : 'UTC'}}     
-              .col-sm-12(style="padding: 0;")
+              .col-sm-12
                 .list-group
                   a.list-group-item(ng-repeat='project in projects' ng-if="!sortProjectList" ng-click="openModal(project)")
                     .row
@@ -71,7 +71,7 @@ hr
   .row(style="padding-top: 15px;")
     .col-sm-12
       .panel.panel-default(style="background-color: rgb(20,20,20);")
-        .panel-heading(style="background-color: #45484d;")
+        .panel-heading(style="background-color: #45484d;padding:10px;")
           h3.panel-title(style="display:inline-block;color:#6ABED8;") 
             | Interval Templates (Click to open)
           .btn-group.pull-right(style="font-size:35px")
