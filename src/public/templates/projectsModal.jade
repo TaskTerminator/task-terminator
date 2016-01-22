@@ -1,4 +1,5 @@
 div.container
+  h3.text-center {{company.name}}
   form.tab-form-demo(name='outerForm')
     uib-tabset
       uib-tab(heading='Happens Once')
@@ -49,19 +50,19 @@ div.container
                       | Assign To:
                     select.form-control(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
 
-                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="selectedDep" ng-options="department._id as department.name for department in company.departments" id="valField")
+                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
 
-                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="selectedDep" ng-options="position._id as position.name for position in company.positions" id="valField")
+                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
 
-                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="selectedDep" ng-options="employee._id as employee.identification.name.fullName for employee in company.employees" id="valField")
+                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
 
                     button.btn.btn-success(type="button" ng-click="saveTask(newTask)") Save Task
                   .form-group
                     label(for="tasksField")
                       | Tasks: 
-                      //-div
-                      //-ul
-                      //-li(ng-repeat="project.tasks in projects")
+                      div
+                        ul
+                          li(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
                   button.btn.btn-danger(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
 
 
@@ -97,19 +98,19 @@ div.container
                       | Assign To:
                     select.form-control(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
 
-                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="selectedDep" ng-options="department._id as department.name for department in company.departments" id="valField")
+                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
 
-                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="selectedDep" ng-options="position._id as position.name for position in company.positions" id="valField")
+                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
 
-                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="selectedDep" ng-options="employee._id as employee.identification.name.fullName for employee in company.employees" id="valField")
+                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
 
                     button.btn.btn-success(type="button" ng-click="saveTask(newTask)") Save Task
                   .form-group
                     label(for="tasksField")
                       | Tasks: 
-                      //-div
-                      //-ul
-                      //-li(ng-repeat="project.tasks in projects")
+                      div
+                        ul
+                          li(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
                   button.btn.btn-danger(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
 
 
@@ -146,17 +147,17 @@ div.container
                       | Assign To:
                     select.form-control(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
 
-                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="selectedDep" ng-options="department._id as department.name for department in company.departments" id="valField")
+                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
 
-                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="selectedDep" ng-options="position._id as position.name for position in company.positions" id="valField")
+                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
 
-                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="selectedDep" ng-options="employee._id as employee.identification.name.fullName for employee in company.employees" id="valField")
+                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
 
                     button.btn.btn-success(type="button" ng-click="saveTask(newTask)") Save Task
                   .form-group
                     label(for="tasksField")
                       | Tasks: 
-                      //-div
-                      //-ul
-                      //-li(ng-repeat="project.tasks in projects")
+                      div
+                        ul
+                          li(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
                   button.btn.btn-danger(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project

@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $scope, $uibModal, ProjectsSvc, $filter) {
+angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $scope, $uibModal, ProjectsSvc, $filter, CompanySvc) {
 
 ////////////////////////////////////////
 
@@ -228,6 +228,8 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   ////////
 
   $scope.newTask = {
+    name: '',
+    description: '',
     assignment: {
       departments: '',
       positions: '',
@@ -236,20 +238,28 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   };
 
   $scope.newTasksArr = [];
+  $scope.newTasksDisplayArray = [];
 
-  // $scope.getCompany = function() {
-  //     CompanySvc.getCompanies().then(function(res) {
-  //       console.log(res)
-  //       $scope.companies = res.data;
-  //     });
-  //   }();
+  $scope.getCompany = function() {
+      CompanySvc.getCompanies().then(function(res) {
+        console.log("Company object", res)
+        $scope.companies = res.data;
+        $scope.company = $scope.companies[0];
+      });
+    }();
 
   $scope.saveTask = function(newTask) {
     newTask.associatedTemplate = $scope.templateID;
     console.log(newTask);
+    $scope.newTasksDisplayArray.push(newTask);
+    if(newTask.assignment.departments) newTask.assignment.departments = newTask.assignment.departments._id;
+    if(newTask.assignment.positions) newTask.assignment.positions = newTask.assignment.positions._id;
+    if(newTask.assignment.employees) newTask.assignment.employee = newTask.assignment.employee._id;
     $scope.newTasksArr.push(newTask);
-    console.log($scope.newTasksArr);
+    console.log("newTasksArr", $scope.newTasksArr);
     $scope.newTask = {
+      name: '',
+      description: '',
       assignment: {
         departments: '',
         positions: '',
