@@ -26,7 +26,7 @@ hr
                       li
                         p <b><i>Project Name:</i></b> {{project.name}}
                         p <b><i>Description:</i></b> {{project.description}}
-                        p <b><i>Due Date:</i></b> {{project.setup.dueDate.actual | date:'mediusmate'}}     
+                        p <b><i>Due Date:</i></b> {{project.setup.dueDate.actual | date : 'MM/dd/yyyy' : 'UTC'}}     
               .col-sm-12(style="padding: 0;")
                 .list-group
                   a.list-group-item(ng-repeat='project in projects' ng-if="!sortProjectList" ng-click="openModal(project)")
