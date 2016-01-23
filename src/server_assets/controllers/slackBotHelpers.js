@@ -319,6 +319,37 @@ module.exports = {
         })
         return deferred.promise;
     },
+    
+    statusCheck(id) {
+        console.log("ID", id);
+        var deferred = Q.defer();
+        ProjectTask.find({"friendlyId": id})
+        .exec()
+        .then((task) => {
+            console.log('TASK', task);
+              if (task[0].status === 'Complete'){
+                deferred.resolve(false);
+            } else {
+                deferred.resolve(task);
+            }
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        return deferred.promise;
+    },
+    
+    taskCompleteCount(projectId) {
+        Project.find({'_id': projectId)
+        .exec()
+        .then((project) => {
+            project[0].tasksCompleted++;
+            if (project[0].tasksCompleted === project[0].tasks.length) {
+                project[0].status = 'Complete';
+            }
+            return project[0].save()
+        });
+    },
 
     /************** QUERIES - DUE DATES  **************/
 

@@ -15,7 +15,7 @@ const controller = Botkit.slackbot({
 		//DevMtn Token
 	  // token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
 		//Our Slack Token
-		token: 'xoxb-19173759013-cGyV554J5XzYpOvptXNBWh53',
+		token: 'xoxb-19173759013-8uzX74R1NerEeFscDMEHIu39',
 	}).startRTM(function(err) {
    if (err) {
      throw new Error(err);
@@ -406,11 +406,23 @@ const controller = Botkit.slackbot({
  	witbot.hears('task_complete', 0.8, function (bot, message, outcome) {
         console.log("I'm trying to change the task status to complete...");
         var taskid = outcome.entities.task_id[0].value;
+        var newCleanId;
+        var projectIdRef;
         console.log("TASK ID", taskid)
 		return botHelper.hashStripper(taskid)
-		.then((cleanId) => {
+        .then((cleanId) => {
 			console.log("Here's the clean ID I made", cleanId);
-			return botHelper.taskComplete(cleanId);
+            newCleanId = cleanId;
+			return botHelper.statusCheck(cleanId);
+        })
+		.then((task) => {
+            if (!task) {
+                console.log("MADE IT");
+                bot.reply(message, "Task has already been completed.")
+            } else {
+                projectIdRef = task.associatedProject;
+                return botHelper.taskComplete(newCleanId);
+            }
         })
         .then((task) => {
             console.log("Here's the returned promise...", task);
@@ -418,15 +430,24 @@ const controller = Botkit.slackbot({
 			return botHelper.taskAttachment([task], title);
 		})
 		.then((attachment) => {
+            var deferred = Q.defer();
 			var attachments = [];
 			attachments.push(attachment);
-			bot.reply(message,{
+			deferred.resolve(bot.reply(message,{
 				// text: ' ',
 				attachments: attachments,
 			},function(err,resp) {
 				console.log(err,resp);
-			});
-		});
+			}));
+            return deferred.promise;
+		})
+        .then(() => {
+            console.log('MADE IT TO TASK COMPLETION')
+            return botHelper.taskCompleteCount(projectIdRef);
+        })
+        .then((project) => {
+            console.log('PROJECT!!!!!!!!', project);
+        })
  	});
 
     /****************** INCOMPLETE PROJECTS ******************/
