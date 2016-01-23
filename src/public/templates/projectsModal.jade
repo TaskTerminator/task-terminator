@@ -7,33 +7,35 @@ div.container
         .form-group
           label(for="addProjectField")
             | Project Name: 
-          input.form-control(type="text" ng-model="name" id="addProjectField")
+            input.modalInput.form-control(type='text', ng-model='name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
+            span(ng-show='isFocused')
+              b Enter the name of the project.
+
         .form-group
           label(for="descriptionField")
             | Description:
-          input.form-control(type="text" ng-model="description")
-        .form-group
-          label(for="startField")
-            | Start Date:
-            p.input-group
-              input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="startDate")
-              span.input-group-btn
-                button.btn.btn-default(type="button" ng-click="open1()")
-                  i.glyphicon.glyphicon-calendar
+            input.modalInput.form-control(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
+            span(ng-show='isFocused2')
+              b Give a short description of what the project is.
         .form-group
           label(for="actualDateField")
             | Due Date:  
             p.input-group
-              input.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate")
+              input.modalInput.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate" ng-class="{true:'focus',false:'blur'}[isFocused3]", ng-focus='isFocused3=true', ng-blur='isFocused3=false')
+              span(ng-show='isFocused3')
+                b What is the due date of this project? 
               span.input-group-btn
                 button.btn.btn-default(type="button" ng-click="open2()")
                   i.glyphicon.glyphicon-calendar
+              br
+                 
+                  
         button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
         uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
 
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
           .row
-            .col-sm-8
+            .col-md-8.col-md-offset-4.taskBox
               form
                 .form-group
                   button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
@@ -162,17 +164,3 @@ div.container
                           li(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
                   button.btn.btn-danger(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
                   
-                  
-| Click me: 
-input(type='checkbox', ng-model='checked', aria-label='Toggle ngHide')
-br
-div
-  .check-element.animate-show(ng-show='checked')
-    span.glyphicon.glyphicon-thumbs-up
-    | Show:
-    |  I show up when your checkbox is checked.
-div
-  .check-element.animate-show(ng-hide='checked')
-    span.glyphicon.glyphicon-thumbs-down
-    | Hide:
-    |  I hide when your checkbox is checked.
