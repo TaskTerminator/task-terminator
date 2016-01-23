@@ -1,5 +1,5 @@
 div.container
-  h3.text-center {{company.name}}
+  h3.text-center Create a New Project
   form.tab-form-demo(name='outerForm')
     uib-tabset
       uib-tab(heading='Happens Once')
@@ -29,7 +29,7 @@ div.container
                 button.btn.btn-default(type="button" ng-click="open2()")
                   i.glyphicon.glyphicon-calendar
         button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
-        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3500") {{alert.msg}}
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
 
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
           .row
@@ -77,7 +77,7 @@ div.container
             | Description:
           input.form-control(type="text")
         button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
-        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3500") {{alert.msg}}
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
 
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
           .row
@@ -125,7 +125,7 @@ div.container
             | Description:
           input.form-control(type="text")
         button.btn.btn-success(type="button" ng-click="addTemplate()") Add Tasks
-        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="3500") {{alert.msg}}
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
 
 
         .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
@@ -161,3 +161,18 @@ div.container
                         ul
                           li(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
                   button.btn.btn-danger(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
+                  
+                  
+| Click me: 
+input(type='checkbox', ng-model='checked', aria-label='Toggle ngHide')
+br
+div
+  .check-element.animate-show(ng-show='checked')
+    span.glyphicon.glyphicon-thumbs-up
+    | Show:
+    |  I show up when your checkbox is checked.
+div
+  .check-element.animate-show(ng-hide='checked')
+    span.glyphicon.glyphicon-thumbs-down
+    | Hide:
+    |  I hide when your checkbox is checked.
