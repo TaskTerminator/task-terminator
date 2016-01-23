@@ -340,14 +340,17 @@ module.exports = {
     },
     
     taskCompleteCount(projectId) {
-        Project.find({'_id': projectId)
+        Project.find({'_id': projectId})
         .exec()
         .then((project) => {
             project[0].tasksCompleted++;
+            console.log("# TASKS COMPLETED", project[0].tasksCompleted);
             if (project[0].tasksCompleted === project[0].tasks.length) {
                 project[0].status = 'Complete';
+                console.log("IS PROJECT COMPLETE?", project[0].status);
             }
-            return project[0].save()
+            console.log('IS THIS A PROMISE?', project[0].save());
+            return project[0].save();
         });
     },
 
