@@ -120,6 +120,7 @@ module.exports = {
           deadline = timeCtrl.annuallyLastDay(instance);
         } else if (template.setup.interval.annualInterval.selection === 'In a Particular Month') {
           console.log("#11 - Make it to the correct annual selection!");
+          console.log('template', template.setup.interval.annualInterval.selectMonth);
           deadline = timeCtrl.annuallyParticularMonth(template.setup.interval.annualInterval.selectMonth, instance);
           console.log("#13 - Deadline", deadline);
         } else if (template.setup.interval.annualInterval.selection === 'In a Particular Quarter') {

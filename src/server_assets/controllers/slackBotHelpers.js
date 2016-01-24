@@ -7,6 +7,7 @@ const Project = require('../models/Project.js');
 const ProjectTask = require('../models/ProjectTask.js');
 const Q = require('q');
 const moment = require('moment');
+const helpers = require('../controllers/projectHelpers');
 
 module.exports = {
 
@@ -340,6 +341,8 @@ module.exports = {
     },
     
     taskCompleteCount(projectId) {
+        var deferred = Q.defer();
+        var oldProject;
         Project.find({'_id': projectId})
         .exec()
         .then((project) => {
@@ -351,6 +354,22 @@ module.exports = {
             }
             console.log('IS THIS A PROMISE?', project[0].save());
             return project[0].save();
+        })
+        .then((project) => {
+            if (project.status === 'Complete') {
+                oldProject = project;
+                console.log('PrOjEcT', project);
+                return helpers.nextOccurrence(project);
+            }
+        })
+        .then((nextInstance) => {
+            console.log('NEXT INSTANCE', nextInstance);
+            var nextProject = new Project(oldProject);
+            nextProject.status = 'Incomplete';
+            nextProject.tasksCompleted = 0;
+            nextProject.setup.dueDate.actual = nextInstance;
+            console.log('IS THIS A NEW PROJECT', nextProject);
+            return nextProject.save()     
         });
     },
 
