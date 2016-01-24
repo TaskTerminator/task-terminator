@@ -50,6 +50,8 @@ const projectSchema = new mongoose.Schema({
             fromEnd: {}
           },
           annualInterval: {
+            selectMonth: {type: String, enum: allowedMonthlyIntervals},
+            selectQuarter: {type: Number},
             selection:  {type: String, enum: allowedAnnuallyIntervals},
             fromBeginning: {},
             fromEnd: {}
