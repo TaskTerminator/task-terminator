@@ -442,9 +442,6 @@ const controller = Botkit.slackbot({
 		})
         .then(() => {
             return botHelper.taskCompleteCount(projectIdRef);
-        })
-        .then((nextProject) => {
-            console.log('NEXT PROJECT', nextProject);
         });
  	});
 
