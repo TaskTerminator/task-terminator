@@ -147,5 +147,32 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       });
 
       return defer.promise;
+    };
+
+    this.editPosition = function(position) {
+      var defer = $q.defer();
+      $http({
+        method: "PUT",
+        url: "api/position/" + position._id,
+        data: position
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
+      return defer.promise;
+    };
+
+    this.deletePosition = function(position) {
+      var defer = $q.defer();
+      $http({
+        method: "DELETE",
+        url: 'api/position/' + position._id
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
+      return defer.promise;
     }
 });
