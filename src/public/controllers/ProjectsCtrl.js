@@ -290,10 +290,10 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   //Adding Scheduled Project
   /////////////////
 
-  $scope.newScheduled = {};
+  $scope.newInterval = {};
 
-  $scope.addScheduledProject = function (newScheduled) {
-      ProjectsSvc.postScheduledProject(newScheduledProject).then(function(results) {
+  $scope.addIntervalProject = function (newInterval) {
+      ProjectsSvc.postIntervalProject(newInterval).then(function(results) {
         console.log("New Scheduled Project added", results);
         $scope.templateID = results.data._id;
         console.log($scope.templateID);
