@@ -285,7 +285,4 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the Quarter", "# Days from Start", "# Days from End", "Any" ];
   $scope.allowedAnnuallyIntervals = ["First Day of the Year", "Last Day of the Year", "Any Day of the year", "In a Particular Month", "In a Particular Quarter", "# of Days From Start", "# of Days Before End"];
 
-  console.log($scope.allowedIntervalTypes);
-
-
 });
