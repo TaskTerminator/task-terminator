@@ -29,9 +29,10 @@ div.employeeAddForm
     .form-group
       label(for="DepartmentsField")
         | Department: 
-      input.form-control(type="text" ng-model="employee.departments" id="EmployeeDepartmentField") 
+      input.form-control(type="text" ng-model="employee.departments[0].name" id="EmployeeDepartmentField") 
     .form-group
       label(for="PositionsField")
         | Position:  
-      input.form-control(type="text" ng-model="employee.positions" id="EmployeePositionField" style="margin-bottom:15px;")
-      button.btn.btn-primary(ng-click="cancel()") Close
+      input.form-control(type="text" ng-model="employee.positions[0].name" id="EmployeePositionField" style="margin-bottom:15px;")
+      button.btn.btn-primary(ng-click="editPosition(position)") Submit Edit
+      button.btn.btn-warning(ng-click="cancel()") Close
