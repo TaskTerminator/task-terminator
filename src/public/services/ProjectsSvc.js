@@ -188,7 +188,7 @@ this.postScheduledProject = function (newScheduled) {
   };
 
   this.postSingleProject = function (singleProject) {
-    console.log(singleProject;
+    console.log(singleProject);
     var defer = $q.defer();
 
     $http({

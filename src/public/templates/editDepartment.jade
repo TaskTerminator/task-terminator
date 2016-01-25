@@ -6,4 +6,6 @@ div.employeeAddForm
       label(for="departmentName")
         | Department Name:  
       input.form-control(type="text" ng-model="department.name" id="departmentName" style="margin-bottom:15px;")
-      button.btn.btn-primary(ng-click="cancel()") Close
+      button.btn.btn-primary(ng-click="editDepartment(department)") Submit Edit
+      button.btn.btn-warning(ng-click="cancel()") Close
+      button.btn.btn-danger(style="float: right;" ng-click="deleteDepartment(department)") Remove Department
