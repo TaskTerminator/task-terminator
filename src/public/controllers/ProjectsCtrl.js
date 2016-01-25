@@ -15,6 +15,13 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
     });
   }();
 
+  $scope.getCompany = function() {
+    CompanySvc.getCompanies().then(function(res) {
+      $scope.companies = res.data
+      $scope.company = $scope.companies[0];
+    });
+  }();
+
 ////////////////////////////////////////
 
   $scope.sortProjectList = true;
@@ -127,17 +134,17 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   $scope.templateID;
   $scope.addTemplate = function (newTemplate) {
-      ProjectsSvc.postTemplate(newTemplate).then(function(results) {
-        console.log("New Template added", results);
-        $scope.templateID = results.data._id;
-        console.log($scope.templateID);
-        // $state.go('templateTasks', {"id": templateID});
-      }).then(function(res) {
-        $scope.alerts.push({msg: "Project ID Created", type: "success"})
-      }).catch(function(res) {
-        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
-      })
-      $scope.showTheRest = true;
+    ProjectsSvc.postTemplate(newTemplate).then(function(results) {
+      console.log("New Template added", results);
+      $scope.templateID = results.data._id;
+      console.log($scope.templateID);
+      // $state.go('templateTasks', {"id": templateID});
+    }).then(function(res) {
+      $scope.alerts.push({msg: "Project ID Created", type: "success"})
+    }).catch(function(res) {
+      $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
+    })
+    $scope.showTheRest = true;
   }
 
   $scope.closeAlert = function(index) {
@@ -203,6 +210,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.format = $scope.formats[0];
   $scope.altInputFormats = ['M!/d!/yyyy'];
 
+
   $scope.popup1 = {
     opened: false
   };
@@ -264,12 +272,6 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.newTasksArr = [];
   $scope.newTasksDisplayArray = [];
 
-  $scope.getCompany = function() {
-      CompanySvc.getCompanies().then(function(res) {
-        $scope.companies = res.data;
-        $scope.company = $scope.companies[0];
-      });
-    }();
 
   $scope.saveTask = function(newTask) {
     newTask.associatedTemplate = $scope.templateID;

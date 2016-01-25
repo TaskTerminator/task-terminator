@@ -206,7 +206,7 @@ this.postScheduledProject = function (newScheduled) {
 
     $http({
       method: "POST",
-      //url: "/api/template",
+      url: "/api/template",
       data: newTemplate
     }).then(function(response) {
       defer.resolve(response);
