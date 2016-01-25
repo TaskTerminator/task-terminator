@@ -183,7 +183,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
   //////////
 
 
-this.postScheduledProject = function (newScheduled) {
+this.postRecurringProject = function (newRecurringProject) {
     console.log(newScheduled);
     var defer = $q.defer();
 
