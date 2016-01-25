@@ -417,7 +417,6 @@ const controller = Botkit.slackbot({
         })
 		.then((task) => {
             if (!task) {
-                console.log("MADE IT");
                 bot.reply(message, "Task has already been completed.")
             } else {
                 projectIdRef = task[0].associatedProject;
@@ -442,12 +441,10 @@ const controller = Botkit.slackbot({
             return deferred.promise;
 		})
         .then(() => {
-            console.log('MADE IT TO TASK COMPLETION')
             return botHelper.taskCompleteCount(projectIdRef);
         })
-        .then((project) => {
-///////////////// BREAKING HERE. PROJECT IS UNDEFINED. /////////////////////
-            console.log('PROJECT!!!!!!!!', project);
+        .then((nextProject) => {
+            console.log('NEXT PROJECT', nextProject);
         });
  	});
 

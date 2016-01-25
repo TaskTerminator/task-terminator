@@ -290,15 +290,19 @@ module.exports = {
 
   annuallyParticularMonth: function(selectedMonth, instance) {
     console.log("#12 - Made it to annuallyParticularMonth");
+    console.log("MONTH", selectedMonth);
     const nextYear = moment().year() + 1;
     const naturalInstance = moment().month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
     const nextInstance = moment().year(nextYear).month(selectedMonth).endOf("month").hours(deadlineHour).minute(0).second(0).millisecond(0)._d;
+      
 
     if (moment().isAfter(naturalInstance) === true) {
+        console.log('!!!!!!');
       return nextInstance;
     } else if (instance === "first") {
       return naturalInstance;
     } else {
+        console.log('??????');
       return nextInstance;
     }
   },
