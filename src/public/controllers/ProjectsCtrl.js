@@ -285,4 +285,25 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the Quarter", "# Days from Start", "# Days from End", "Any" ];
   $scope.allowedAnnuallyIntervals = ["First Day of the Year", "Last Day of the Year", "Any Day of the year", "In a Particular Month", "In a Particular Quarter", "# of Days From Start", "# of Days Before End"];
 
+
+  /////////////////
+  //Adding Scheduled Project
+  /////////////////
+
+  $scope.addScheduledProject = function (newScheduled) {
+      ProjectsSvc.postScheduledProject(newScheduledProject).then(function(results) {
+        console.log("New Scheduled Project added", results);
+        $scope.templateID = results.data._id;
+        console.log($scope.templateID);
+        // $state.go('templateTasks', {"id": templateID});
+      }).then(function(res) {
+        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+      }).catch(function(res) {
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
+      })
+      $scope.showTheRest = true;
+  }
+
+
+
 });
