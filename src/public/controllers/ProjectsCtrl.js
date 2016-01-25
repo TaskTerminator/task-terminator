@@ -96,7 +96,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
     })
   };
 
-  // $scope.newTemplate = {};
+  $scope.newTemplate = {};
 
   $scope.showTheRest = false;
   $scope.alerts = [];
@@ -290,6 +290,8 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   //Adding Scheduled Project
   /////////////////
 
+  $scope.newScheduled = {};
+
   $scope.addScheduledProject = function (newScheduled) {
       ProjectsSvc.postScheduledProject(newScheduledProject).then(function(results) {
         console.log("New Scheduled Project added", results);
@@ -304,6 +306,20 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
       $scope.showTheRest = true;
   }
 
+  $scope.singleProject = {};
 
+  $scope.addSingleProject = function (singleProject) {
+      ProjectsSvc.postSingleProject(singleProject).then(function(results) {
+        console.log("New Single Project added", results);
+        $scope.templateID = results.data._id;
+        console.log($scope.templateID);
+        // $state.go('templateTasks', {"id": templateID});
+      }).then(function(res) {
+        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+      }).catch(function(res) {
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
+      })
+      $scope.showTheRest = true;
+  }
 
 });
