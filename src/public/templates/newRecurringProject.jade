@@ -1,0 +1,94 @@
+{{test}}
+pre {{newRecurringForm}}
+h1 New Recurring Project
+b(heading='Happens On A Set Schedule')
+  ng-form(name='newRecurringProjectForm')
+    .form-group
+      label(for="addProjectField")
+        | Project Name: 
+        input(type='text', ng-model='newRecurringForm.name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
+        span(ng-show='isFocused')
+          b Select the name of the project.
+
+    .form-group
+      label(for="descriptionField")
+        | Description:
+        input(type='text', ng-model='newRecurringForm.description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
+        span(ng-show='isFocused2')
+          b Give a short description of what the project is.
+    
+      .form-group
+        label(for="intervalField")
+          | Interval Type: 
+          span(ng-show='isFocused3')
+          b Select the interval of this template.
+          br
+          select.modalInput(ng-options="a for a in allowedIntervalTypes" ng-model="newRecurringForm.setup.interval" ng-class="{true:'focus',false:'blur'}[isFocused3]" ng-focus='isFocused3=true' ng-blur='isFocused3=false')
+          br
+
+      .form-group(ng-show="newRecurringForm.setup.interval=='Daily'")
+        //- label(for="intervalField")
+        //-   | Which Day? 
+        //- select.modalInput(ng-options="a for a in allowedDays" ng-model="newRecurringForm.setup.interval.weeklyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        //- br
+        //- span(ng-show='isFocused4')
+        //-   b Select the day.
+          
+      .form-group(ng-show="newRecurringForm.setup.interval=='Daily Business Days'")
+        //- label(for="intervalField")
+        //-   | Which Day? 
+        //- select.modalInput(ng-options="a for a in allowedDays" ng-model="newInterval.newRecurringForm.setup.interval.weeklyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        //- br
+        //- span(ng-show='isFocused4')
+        //-   b Select the business day.
+        
+      .form-group(ng-show="newRecurringForm.setup.interval=='Weekly'")
+        label(for="intervalField")
+          | Which Day? 
+        select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newRecurringForm.setup.interval.weeklyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        br
+        span(ng-show='isFocused4')
+          b Select the day of the week this will occur.
+        
+      .form-group(ng-show="newRecurringForm.setup.interval=='Bi-Weekly'")
+        label(for="intervalField")
+          | Which Day? 
+        select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newRecurringForm.setup.interval.biWeeklyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        br
+        span(ng-show='isFocused4')
+          b Select the day of the week this will occur.
+          
+      .form-group(ng-show="newRecurringForm.setup.interval=='Monthly'")
+        label(for="intervalField")
+          | Which Month? 
+        select.modalInput(ng-options="a for a in allowedMonthlyIntervals" ng-model="newRecurringForm.setup.interval.monthlyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        br
+        span(ng-show='isFocused4')
+          b Select the month this will occur.
+      
+      .form-group(ng-show="newRecurringForm.setup.interval=='Semi-Monthly'")
+        label(for="intervalField")
+          | Which Day? 
+        select.modalInput(ng-options="a for a in allowedSemiMonthlyIntervals" ng-model="newRecurringForm.setup.interval.semiMonthlyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        br
+        span(ng-show='isFocused4')
+          b Select the day of the month this will occur.
+          
+      .form-group(ng-show="newRecurringForm.setup.interval=='Quarterly'")
+        label(for="intervalField")
+          | Which Day? 
+        select.modalInput(ng-options="a for a in allowedQuarterlyIntervals" ng-model="newRecurringForm.setup.interval.quarterlyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        br
+        span(ng-show='isFocused4')
+          b Select the part of the quarter this will occur.
+      
+      .form-group(ng-show="newRecurringForm.setup.interval=='Annually'")
+        label(for="intervalField")
+          | Which Day? 
+        select.modalInput(ng-options="a for a in allowedAnnuallyIntervals" ng-model="newRecurringForm.setup.interval.annualInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        br
+        span(ng-show='isFocused4')
+          b Select the part of the year this will occur.
+      
+        button.btn.blueButton(type="button" ng-click="addIntervalProject(newInterval)") Add Tasks
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
