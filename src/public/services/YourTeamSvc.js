@@ -100,6 +100,34 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       });
 
       return defer.promise;
+    };
+
+    this.putDepartment = function(department) {
+      var defer = $q.defer();
+
+      $http({
+        method: "PUT",
+        url: "api/department/" + department._id,
+        data: department
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
+      return defer.promise;
+    };
+
+    this.deleteDepartment = function(department) {
+      var defer = $q.defer();
+      $http({
+        method: "DELETE",
+        url: "api/department/" + department._id
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error)
+      });
+      return defer.promise;
     }
 
   ////////////////////////

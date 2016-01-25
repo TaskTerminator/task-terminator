@@ -98,6 +98,20 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
         $scope.department = department;
         console.log($scope.department);
 
+        $scope.editDepartment = function(department) {
+          YourTeamSvc.putDepartment(department).then(function(response) {
+            console.log("Department Edited");
+            $scope.cancel();
+          })
+        };
+
+        $scope.deleteDepartment = function(department) {
+          YourTeamSvc.deleteDepartment(department).then(function(response) {
+            console.log("Department Deleted");
+            $scope.cancel();
+          })
+        };
+
         $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
         };
@@ -144,17 +158,31 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope, $uibModalInstance) {
         $scope.position = position;
-        console.log($scope.position);
+        console.log("Position: ", $scope.position);
 
         $scope.getEmployees = function() {
+          console.log("Position Obj: ", $scope.position);
           YourTeamSvc.getEmployees().then(function(res) {
-            console.log(res)
+            console.log("All Employees", res)
             $scope.employees = res.data;
+            $scope.positionEmployees = [];
+            for (var i = 0; i < $scope.employees.length; i++) {
+              if ($scope.employees[i].positions[0]) {
+                if ($scope.employees[i].positions[0].name === $scope.position.name) {
+                  $scope.positionEmployees.push($scope.employees[i]);
+                }
+              }
+            }
+            console.log("Pos Employees: ", $scope.positionEmployees)
           });
         }();
 
         $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
+        };
+
+        $scope.editPosition = function(position) {
+
         };
 
       }
