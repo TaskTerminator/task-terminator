@@ -25,7 +25,7 @@ module.exports = {
 
   newProject(templateId, description,instance) {
     console.log("#1 - New Project Function Called");
-      var deferred = Q.defer();
+    var deferred = Q.defer();
     var associatedProjectId;
     var newProject;
     helpers.makeProjectObject(templateId)
@@ -68,7 +68,7 @@ module.exports = {
         for (var i = 0; i < project_tasks.length; i++) {
           newProject.tasks.push(project_tasks[i]);
         }
-        newProject.associatedTemplate = templateId;
+        newProject.setup.associatedTemplate = templateId;
         newProject.save().then((project) => {
           console.log("Made it!");
             deferred.resolve(project);
