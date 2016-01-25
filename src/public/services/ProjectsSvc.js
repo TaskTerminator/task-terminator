@@ -169,7 +169,8 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
   //Scheduled 
   //////////
 
-  this.postScheduledProject = function (newScheduled) {
+  
+this.postScheduledProject = function (newScheduled) {
     console.log(newScheduled);
     var defer = $q.defer();
 
@@ -186,6 +187,22 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     return defer.promise;
   };
 
+  this.postSingleProject = function (singleProject) {
+    console.log(singleProject;
+    var defer = $q.defer();
+
+    $http({
+      method: "POST",
+      //url: "/api/template",
+      data: newTemplate
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  };
 
 
 
