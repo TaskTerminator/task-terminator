@@ -96,7 +96,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
     })
   };
 
-  // $scope.newTemplate = {};
+  $scope.newTemplate = {};
 
   $scope.showTheRest = false;
   $scope.alerts = [];
@@ -284,5 +284,42 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.allowedSemiMonthlyIntervals = ["1st","2nd", "3rd", "4th", "5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th"];
   $scope.allowedQuarterlyIntervals = ["First Day of the Quarter", "Last Day of the Quarter", "# Days from Start", "# Days from End", "Any" ];
   $scope.allowedAnnuallyIntervals = ["First Day of the Year", "Last Day of the Year", "Any Day of the year", "In a Particular Month", "In a Particular Quarter", "# of Days From Start", "# of Days Before End"];
+
+
+  /////////////////
+  //Adding Scheduled Project
+  /////////////////
+
+  $scope.newInterval = {};
+
+  $scope.addIntervalProject = function (newInterval) {
+      ProjectsSvc.postIntervalProject(newInterval).then(function(results) {
+        console.log("New Scheduled Project added", results);
+        $scope.templateID = results.data._id;
+        console.log($scope.templateID);
+        // $state.go('templateTasks', {"id": templateID});
+      }).then(function(res) {
+        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+      }).catch(function(res) {
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
+      })
+      $scope.showTheRest = true;
+  }
+
+  $scope.singleProject = {};
+
+  $scope.addSingleProject = function (singleProject) {
+      ProjectsSvc.postSingleProject(singleProject).then(function(results) {
+        console.log("New Single Project added", results);
+        $scope.templateID = results.data._id;
+        console.log($scope.templateID);
+        // $state.go('templateTasks', {"id": templateID});
+      }).then(function(res) {
+        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+      }).catch(function(res) {
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
+      })
+      $scope.showTheRest = true;
+  }
 
 });
