@@ -1,36 +1,35 @@
-div.container
+div.container.modalPage
   h3.text-center Create a New Project
-  form.tab-form-demo(name='outerForm')
+  form.style-4.tab-form-demo(name='outerForm')
     uib-tabset
       uib-tab(heading='Happens Once')
         ng-form(name='nestedForm')
-          .form-group
+          .form-group(style="padding-top: 10px;")
             label(for="addProjectField")
               | Project Name: 
-              input.modalInput.form-control(type='text', ng-model='name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
+              input.modalInput(type='text', ng-model='name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
               span(ng-show='isFocused')
                 b Enter the name of the project.
 
           .form-group
             label(for="descriptionField")
               | Description:
-              input.modalInput.form-control(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
+              input.modalInput(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
               span(ng-show='isFocused2')
                 b Give a short description of what the project is.
           .form-group
             label(for="actualDateField")
               | Due Date:  
-              p.input-group
-                input.modalInput.form-control(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate" ng-class="{true:'focus',false:'blur'}[isFocused3]", ng-focus='isFocused3=true', ng-blur='isFocused3=false')
-                span(ng-show='isFocused3')
-                  b What is the due date of this project? 
-                span.input-group-btn
-                  button.btn.btn-default(type="button" ng-click="open2()")
-                    i.glyphicon.glyphicon-calendar
-                br
+              input.modalInput(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="actualDate" ng-class="{true:'focus',false:'blur'}[isFocused3]", ng-focus='isFocused3=true', ng-blur='isFocused3=false')
+              span(ng-show='isFocused3')
+                b What is the due date of this project? 
+              span.input-group-btn
+                button.btn.btn-default(type="button" ng-click="open2()")
+                  i.glyphicon.glyphicon-calendar
+              br
                  
                   
-        button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
+        button.btn.blueButton(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
         uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
 
 
@@ -40,23 +39,23 @@ div.container
               div.animate-if()
                 label(for="taskName")
                   | Task Name:
-                input.form-control(type="text" ng-model="newTask.name" id="taskName")
+                input(type="text" ng-model="newTask.name" id="taskName")
 
                 label(for="taskDesc")
                   | Task Description:
-                input.form-control(type="text" ng-model="newTask.description" id="taskDesc")
+                input(type="text" ng-model="newTask.description" id="taskDesc")
 
                 label(for="taskAssign")
-                  | Assign To:
-                select.form-control(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
+                  | Assign To: 
+                select(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
 
-                select.form-control(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
+                select(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
 
-                select.form-control(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
+                select(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
 
-                select.form-control(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
+                select(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
 
-                button.btn.btn-success.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
+                button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
               //- div.container-fluid
               //-   .row
               //-     .col-md-6.addTask
@@ -81,53 +80,61 @@ div.container
         .form-group
           label(for="addProjectField")
             | Project Name: 
-            input.modalInput.form-control(type='text', ng-model='name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
+            input.modalInput(type='text', ng-model='name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
             span(ng-show='isFocused')
               b Enter the name of the template.
 
         .form-group
           label(for="descriptionField")
             | Description:
-            input.modalInput.form-control(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
+            input.modalInput(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
             span(ng-show='isFocused2')
               b Give a short description.
 
-        button.btn.btn-success(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
+        button.btn.blueButton(type="button" ng-click="addTemplate(newTemplate)") Add Tasks
         uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
 
-        .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
+        .container-fluid(style="padding-top:20px;" ng-if="showTheRest")
           .row
-            .col-sm-8
-              form
-                .form-group
-                  button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
-                    span(type="text" ng-if="!showTaskBox") Add New Task
-                    span(type="text" ng-if="showTaskBox") Cancel Task
-                  div.animate-if(ng-if="showTaskBox")
-                    label(for="taskName")
-                      | Task Name:
-                    input.form-control(type="text" ng-model="newTask.name" id="taskName")
-                    label(for="taskDesc")
-                      | Task Description:
-                    input.form-control(type="text" ng-model="newTask.description" id="taskDesc")
-                    label(for="taskAssign")
-                      | Assign To:
-                    select.form-control(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
+            .col-md-4.form-group(style="padding-top:20px; border: 1px black solid")
+              div.animate-if()
+                label(for="taskName")
+                  | Task Name:
+                input(type="text" ng-model="newTask.name" id="taskName")
 
-                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
+                label(for="taskDesc")
+                  | Task Description:
+                input(type="text" ng-model="newTask.description" id="taskDesc")
 
-                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
+                label(for="taskAssign")
+                  | Assign To: 
+                select(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
 
-                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
+                select(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
 
-                    button.btn.btn-success(type="button" ng-click="saveTask(newTask)") Save Task
+                select(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
+
+                select(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
+
+                button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
+              //- div.container-fluid
+              //-   .row
+              //-     .col-md-6.addTask
+              //-       button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
+              //-         span(type="text" ng-if="!showTaskBox") Add New Task
+              //-         span(type="text" ng-if="showTaskBox") Cancel Task
+            .col-md-8.taskBox
+              form.taskForm
+                .viewTaskBox
                   .form-group
                     label(for="tasksField")
                       | Tasks: 
                       div
                         ul
-                          li(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
-                  button.btn.btn-danger(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
+                          li.tasksInBox(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
+          .row
+            .col-md-12.text-right
+              button.btn.btn-danger.text-right(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
 
 
       uib-tab(heading='Happens On A Set Schedule')
@@ -135,14 +142,14 @@ div.container
           .form-group
             label(for="addProjectField")
               | Project Name: 
-              input.modalInput.form-control(type='text', ng-model='name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
+              input.modalInput(type='text', ng-model='name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
               span(ng-show='isFocused')
                 b Select the name of the project.
 
           .form-group
             label(for="descriptionField")
               | Description:
-              input.modalInput.form-control(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
+              input.modalInput(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
               span(ng-show='isFocused2')
                 b Give a short description of what the project is.
                 
@@ -219,41 +226,48 @@ div.container
             span(ng-show='isFocused4')
               b Select the part of the year this will occur.
 
-        button.btn.btn-success(type="button" ng-click="addTemplate()") Add Tasks
+        button.btn.blueButton(type="button" ng-click="addTemplate()") Add Tasks
         uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
 
 
-        .container-fluid(style="padding-top: 20px;" ng-if="showTheRest")
+        .container-fluid(style="padding-top:20px;" ng-if="showTheRest")
           .row
-            .col-sm-8
-              form
-                .form-group
-                  button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
-                    span(type="text" ng-if="!showTaskBox") Add New Task
-                    span(type="text" ng-if="showTaskBox") Cancel Task
-                  div.animate-if(ng-if="showTaskBox")
-                    label(for="taskName")
-                      | Task Name:
-                    input.form-control(type="text" ng-model="newTask.name" id="taskName")
-                    label(for="taskDesc")
-                      | Task Description:
-                    input.form-control(type="text" ng-model="newTask.description" id="taskDesc")
-                    label(for="taskAssign")
-                      | Assign To:
-                    select.form-control(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
+            .col-md-4.form-group(style="padding-top:20px; border: 1px black solid")
+              div.animate-if()
+                label(for="taskName")
+                  | Task Name:
+                input(type="text" ng-model="newTask.name" id="taskName")
 
-                    select.form-control(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
+                label(for="taskDesc")
+                  | Task Description:
+                input(type="text" ng-model="newTask.description" id="taskDesc")
 
-                    select.form-control(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
+                label(for="taskAssign")
+                  | Assign To: 
+                select(ng-model="selectedAssign" ng-options="k as k for (k,v) in newTask.assignment" id="assignField")
 
-                    select.form-control(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
+                select(ng-show="selectedAssign==='departments'" ng-model="newTask.assignment.department" ng-options="department as department.name for department in company.departments" id="valField")
 
-                    button.btn.btn-success(type="button" ng-click="saveTask(newTask)") Save Task
+                select(ng-show="selectedAssign==='positions'" ng-model="newTask.assignment.position" ng-options="position as position.name for position in company.positions" id="valField")
+
+                select(ng-show="selectedAssign==='employees'" ng-model="newTask.assignment.employee" ng-options="employee as employee.identification.name.fullName for employee in company.employees" id="valField")
+
+                button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
+              //- div.container-fluid
+              //-   .row
+              //-     .col-md-6.addTask
+              //-       button.btn.btn-danger(type="button" ng-click="showTaskBox = !showTaskBox")
+              //-         span(type="text" ng-if="!showTaskBox") Add New Task
+              //-         span(type="text" ng-if="showTaskBox") Cancel Task
+            .col-md-8.taskBox
+              form.taskForm
+                .viewTaskBox
                   .form-group
                     label(for="tasksField")
                       | Tasks: 
                       div
                         ul
-                          li(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
-                  button.btn.btn-danger(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
-                  
+                          li.tasksInBox(ng-repeat="task in newTasksArr") {{task.name}} ({{task.description}}): {{task.assignment.department.name}}{{task.assignment.position.name}}{{task.assignment.employee.identification.name.fullName}}
+          .row
+            .col-md-12.text-right
+              button.btn.btn-danger.text-right(type="button" ng-click="addTasks(newTasksArr)") Submit Tasks to Project
