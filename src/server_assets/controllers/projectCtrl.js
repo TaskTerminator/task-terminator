@@ -12,18 +12,18 @@ const randomstring = require('randomstring');
 
 
 module.exports = {
-    
+
     endpointProject(req, res) {
         var templateId = req.params.templateid;
         var instance = req.body.instance;
         var description = req.body.description;
-        module.exports.newProject(templateId, instance, description)
+        module.exports.newProject(templateId, description, instance)
         .then((project) => {
             return res.json(project);
         });
     },
 
-  newProject(templateId, instance, description) {
+  newProject(templateId, description,instance) {
     console.log("#1 - New Project Function Called");
       var deferred = Q.defer();
     var associatedProjectId;
@@ -76,7 +76,7 @@ module.exports = {
       });
       return deferred.promise;
     },
-    
+
     newSingleProject(req, res) {
         const newProject = new Project(req.body);
         newProject.friendlyId = randomstring.generate({length: 5, readable: true});
@@ -87,7 +87,7 @@ module.exports = {
             return res.status(500).end();
         });
     },
-    
+
     newTriggeredProject(req, res) {
         console.log("#1 - New Project Function Called");
         var templateId = req.params.templateid;

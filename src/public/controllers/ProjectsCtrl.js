@@ -4,7 +4,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   $scope.getProjects = function() {
     ProjectsSvc.getProjects().then(function(res) {
-      console.log(res)
+      console.log(res);
       $scope.projects = res.data;
     });
   }();
@@ -34,7 +34,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   		templateUrl: "./templates/projectsModal.html",
       controller: 'ProjectsCtrl',
       size: 'lg'
-  	})
+  	});
   };
 
   $scope.openActivationModal = function(template) {
@@ -46,8 +46,8 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
         console.log($scope.template);
       },
       size: 'lg'
-  	})
-  }
+  	});
+  };
 
   // $scope.openScheduleModal = function() {
   //   var modalInstance = $uibModal.open({
@@ -79,8 +79,8 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
         $scope.project = project;
       },
       size: 'lg'
-  	})
-  }
+  	});
+  };
 
   $scope.cancel = function () {
     $uibModalInstance.dismiss('cancel');
@@ -102,10 +102,10 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
     ProjectsSvc.postProject(newSingleProject).then(function(results) {
       console.log("Single Project added: ", results);
     }).then(function(res) {
-      $scope.alerts.push({msg: "Project ID Created", type: "success"})
+      $scope.alerts.push({msg: "Project ID Created", type: "success"});
     }).catch(function(res) {
-      $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
-    })
+      $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+    });
   };
 
   $scope.newTemplate = {};
@@ -113,7 +113,8 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.showTheRest = false;
   $scope.alerts = [];
 
-  $scope.templateID;
+  $scope.templateID = "";
+
   $scope.addTemplate = function (newTemplate) {
       ProjectsSvc.postTemplate(newTemplate).then(function(results) {
         console.log("New Template added", results);
@@ -121,16 +122,16 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
         console.log($scope.templateID);
         // $state.go('templateTasks', {"id": templateID});
       }).then(function(res) {
-        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+        $scope.alerts.push({msg: "Project ID Created", type: "success"});
       }).catch(function(res) {
-        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
-      })
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+      });
       $scope.showTheRest = true;
-  }
+  };
 
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
-  }
+  };
 
 
   // $scope.saveProject = function() {
@@ -254,7 +255,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   $scope.getCompany = function() {
       CompanySvc.getCompanies().then(function(res) {
-        console.log("Company object", res)
+        console.log("Company object", res);
         $scope.companies = res.data;
         $scope.company = $scope.companies[0];
       });
@@ -279,14 +280,14 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
       }
     };
     // $scope.selectedAssign = null; tryig to clear drop downs with this.
-  }
+  };
 
   $scope.addTasks = function(newTasksArr) {
     ProjectsSvc.postTasks(newTasksArr, $scope.templateID).then(function(results) {
       console.log("Tasks added successfully", results);
       // $state.go('projects');
-    })
-  }
+    });
+  };
 
   $scope.allowedIntervalTypes = ['Daily', 'Daily Business Days', 'Weekly', 'Bi-Weekly', 'Monthly', 'Semi-Monthly', 'Quarterly', 'Annually'];
   $scope.allowedFrequencies = ["Triggered", "Scheduled"];
@@ -311,12 +312,12 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
         console.log($scope.templateID);
         // $state.go('templateTasks', {"id": templateID});
       }).then(function(res) {
-        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+        $scope.alerts.push({msg: "Project ID Created", type: "success"});
       }).catch(function(res) {
-        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
-      })
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+      });
       $scope.showTheRest = true;
-  }
+  };
 
   $scope.singleProject = {};
 
@@ -327,11 +328,11 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
         console.log($scope.templateID);
         // $state.go('templateTasks', {"id": templateID});
       }).then(function(res) {
-        $scope.alerts.push({msg: "Project ID Created", type: "success"})
+        $scope.alerts.push({msg: "Project ID Created", type: "success"});
       }).catch(function(res) {
-        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"})
-      })
+        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+      });
       $scope.showTheRest = true;
-  }
+  };
 
 });

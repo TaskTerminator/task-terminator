@@ -93,7 +93,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         })
         .state('templateTasks', {
           url:'/templateTasks/:id',
-          url:'/template/Tasks/:id',
+          // url:'/template/Tasks/:id',
           templateUrl: 'Templates/templateTasks.html',
           controller: 'TemplatesCtrl'
           // templateUrl: 'Templates/templateTasks.html',
@@ -103,7 +103,56 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             url: '/yourteam',
             templateUrl: 'Templates/yourTeam.html',
             controller: 'YourTeamCtrl',
+        })
+        .state('newSingleProject' , {
+          url: '/project/new/single',
+          templateUrl: 'Templates/newSingleProject.html',
+          controller: 'NewSingleProjectCtrl'
+        })
+        .state('newRecurringProject', {
+          url: '/project/new/recurring',
+          templateUrl: 'Templates/newRecurringProject.html',
+          controller: 'NewRecurringProjectCtrl'
+        })
+        .state('newTriggeredProject', {
+          url:'/project/new/triggered',
+          templateUrl: 'Templates/newTriggeredProject.html',
+          controller: 'NewTriggeredProjectCtrl'
+        })
+        .state('projectView', {
+          url:'/project/:id',
+          templateUrl: 'Templates/oneProject.html',
+          controller : 'OneProjectCtrl',
+          resolve : {
+            resolveProject: function($stateParams,ProjectsSvc){
+              return ProjectsSvc.getOneProject($stateParams.id);
+            }
+          }
+        })
+        .state('templateView', {
+          url:'/template/:id',
+          templateUrl: 'Templates/oneTemplate.html',
+          controller: 'OneTemplateCtrl',
+          resolve : {
+            resolveTemplate: function($stateParams,TemplatesSvc){
+              return TemplatesSvc.getOneTemplate($stateParams.id);
+            }
+          }
         });
+
+
+        // .state('authed.customer', {
+        //   url: '/customers/:id',
+        //   templateUrl: 'components/customer/customer.html',
+        //   controller: 'customerCtrl',
+        //   resolve: {
+        //     resolveCustomer: function($stateParams,customerService){
+        //       return customerService.getCustomer($stateParams.id);
+        //     }
+        //   }
+        // })
+
+
 
     $urlRouterProvider
         .otherwise('/dashboard/home');
