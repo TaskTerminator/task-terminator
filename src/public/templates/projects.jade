@@ -17,9 +17,9 @@ hr
             button.btn.btn-default(type='button' ng-click="sortProjectList = !sortProjectList")
               span.glyphicon.glyphicon-th-list(aria-hidden='true')
 
-        .panel-body(style="background-color: rgba(125,125,125,0.2); color:white;")
+        .panel-body.container(style="background-color: rgba(125,125,125,0.2); color:white; padding: 0;")
             .row
-              .col-sm-3(ng-repeat="project in projects" ng-if="sortProjectList")
+              .col-sm-3(ng-repeat="project in projects" ng-if="sortProjectList" style="padding: 0 10px;")
                 .box-wrapper(style="margin: 25px auto;" ng-click="openModal(project)")
                   .project-thing(style="background-color: rgb(45,115,160); -webkit-border-radius: 10px;")
                     ul(style="list-style-type:none; padding:5px;")
@@ -28,7 +28,7 @@ hr
                         p <b><i>Description:</i></b> {{project.description}}
                         p <b><i>Due Date:</i></b> {{project.setup.dueDate.actual | date : 'MM/dd/yyyy' : 'UTC'}}     
               .col-sm-12
-                .list-group
+                .list-group(style="margin-bottom:0;")
                   a.list-group-item(ng-repeat='project in projects' ng-if="!sortProjectList" ng-click="openModal(project)")
                     .row
                       .col-xs-4
@@ -39,7 +39,7 @@ hr
                         | {{project.setup.dueDate.actual | date : 'MM/dd/yyyy' : 'UTC'}} 
   .row(style="padding-top: 15px;")
     .col-sm-12
-      .panel.panel-default(style="background-color: rgb(20,20,20);")
+      .panel.panel-default(style="background-color: rgb(20,20,20); margin-bottom:0;")
         .panel-heading(style="background-color: #45484d;padding-bottom:15px;")
           h3.panel-title(style="display:inline-block;color:#6ABED8;") 
             | Scheduled Templates (Click to open)
@@ -49,7 +49,7 @@ hr
             button.btn.btn-default(type='button' ng-click="sortProjectList2 = !sortProjectList2")
               span.glyphicon.glyphicon-th-list(aria-hidden='true')
 
-        .panel-body(style="background-color: rgba(125,125,125,0.2); color:white;")
+        .panel-body(style="background-color: rgba(125,125,125,0.2); color:white; padding-bottom:0;")
             .row
               .col-sm-3(ng-repeat="template in templates | filter:{setup:{frequency:'By Date'}}" ng-if="sortProjectList2")
                 .box-wrapper(style="margin: 25px auto;" ng-click="openModal(template)")
@@ -59,7 +59,7 @@ hr
                         p <b><i>Template Name:</i></b> {{template.name}}
                         p <b><i>Description:</i></b> {{template.description}}
               .col-sm-12(style="padding: 0;")
-                .list-group
+                .list-group(style="margin-bottom: 0;")
                   a.list-group-item(ng-repeat="template in templates | filter:{setup:{frequency:'By Date'}}" ng-if="!sortProjectList2" ng-click="openModal(template)")
                     .row
                       .col-xs-4
