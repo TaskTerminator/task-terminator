@@ -9,7 +9,7 @@ hr
       .panel.panel-default(style="background-color: rgb(20,20,20);")
         .panel-heading(style="background-color: #45484d;padding:15px;")
           h3.panel-title(style="display:inline-block;color:#6ABED8;") 
-            | Active Projects (Click to open)
+            | Active Projects ({{projects.length}})
           .btn-group.pull-right(style="font-size:35px;padding-bottom:10px;")
             button.btn.btn-default(type='button' ng-click="sortProjectList = !sortProjectList")
               span.glyphicon.glyphicon-th(aria-hidden='true')
