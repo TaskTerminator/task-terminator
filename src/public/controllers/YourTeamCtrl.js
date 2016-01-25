@@ -156,9 +156,16 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		animation: true,
   		templateUrl: "./templates/editPosition.html",
       size: 'lg',
-      controller: function ($scope, $uibModalInstance) {
+      controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.position = position;
         console.log("Position: ", $scope.position);
+
+        $scope.getCompany = function() {
+          CompanySvc.getCompanies().then(function(res) {
+            console.log(res)
+            $scope.company = res.data[0];
+          });
+        }();
 
         $scope.getEmployees = function() {
           console.log("Position Obj: ", $scope.position);
@@ -168,7 +175,7 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
             $scope.positionEmployees = [];
             for (var i = 0; i < $scope.employees.length; i++) {
               if ($scope.employees[i].positions[0]) {
-                if ($scope.employees[i].positions[0].name === $scope.position.name) {
+                if ($scope.employees[i].positions[0].name === $scope.position.name && $scope.employees[i].departments[0].name === $scope.position.department.name) {
                   $scope.positionEmployees.push($scope.employees[i]);
                 }
               }
@@ -182,9 +189,18 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
         };
 
         $scope.editPosition = function(position) {
-
+          YourTeamSvc.editPosition(position).then(function(res) {
+            console.log("Position Edited");
+            $scope.cancel();
+          })
         };
 
+        $scope.deletePosition = function(position) {
+          YourTeamSvc.deletePosition(position).then(function(res) {
+            console.log("Position Deleted");
+            $scope.cancel();
+          })
+        }
       }
   	})
   }
