@@ -163,13 +163,26 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     });
 
     return defer.promise;
+  };
+
+  this.getTemplateTasks = function (id) {
+    var defer = $q.defer();
+
+    $http({
+      method: "GET",
+      url: "/api/tasks/template/" + id,
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
   }
 
   ///////////
-  //Scheduled 
+  //Scheduled
   //////////
 
-  
+
 this.postScheduledProject = function (newScheduled) {
     console.log(newScheduled);
     var defer = $q.defer();
