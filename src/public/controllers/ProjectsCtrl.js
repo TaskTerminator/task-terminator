@@ -43,8 +43,8 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   		templateUrl: "./templates/activateTemplate.html",
       controller: function ($scope, ProjectsSvc) {
         $scope.template = template;
-        // $scope.dueDate = new Date();
-        // $scope.format = 'MM/dd/yy';
+        $scope.dueDate = new Date();
+        $scope.format = 'MM/dd/yy';
 
         $scope.activateTemplates = function (description){
           var id = template._id

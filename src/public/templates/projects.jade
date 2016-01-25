@@ -82,7 +82,7 @@ hr
         .panel-body(style="background-color: rgba(125,125,125,0.2); color:white;")
             .row
             .col-sm-3(ng-repeat="template in templates | filter:{setup:{frequency:'By Interval'}}" ng-if="sortProjectList3")
-              .box-wrapper(style="margin: 25px auto;" ng-click="openModal(template)")
+              .box-wrapper(style="margin: 25px auto;" ng-click="openActivationModal(template)")
                 .project-thing(style="background-color: rgb(45,115,160); -webkit-border-radius: 10px;")
                   ul(style="list-style-type:none; padding:5px;")
                     li
