@@ -4,7 +4,6 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   $scope.getProjects = function() {
     ProjectsSvc.getProjects().then(function(res) {
-      console.log(res)
       $scope.projects = res.data;
     });
   }();
@@ -12,7 +11,6 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.getTemplates = function() {
     ProjectsSvc.getTemplates().then(function(res) {
       $scope.templates = res.data;
-      console.log($scope.templates);
 
     });
   }();
@@ -268,7 +266,6 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
 
   $scope.getCompany = function() {
       CompanySvc.getCompanies().then(function(res) {
-        console.log("Company object", res)
         $scope.companies = res.data;
         $scope.company = $scope.companies[0];
       });
