@@ -4,7 +4,6 @@ hr
   .row.text-center(style="padding-top: 20px;")
     .col-sm-12.text-right
       button.btn.btn-lg.btn-primary(type="button" ng-click="openSingleModal()") Create Project/Template
-    .col-sm-2
   .row(style="padding-top: 15px;")
     .col-sm-12
       .panel.panel-default(style="background-color: rgb(20,20,20);")
@@ -17,7 +16,7 @@ hr
             button.btn.btn-default(type='button' ng-click="sortProjectList = !sortProjectList")
               span.glyphicon.glyphicon-th-list(aria-hidden='true')
 
-        .panel-body.container(style="background-color: rgba(125,125,125,0.2); color:white; padding: 0;")
+        .panel-body.container(style="background-color: rgba(125,125,125,0.2); color:white;")
             .row
               .col-sm-3(ng-repeat="project in projects" ng-if="sortProjectList" style="padding: 0 10px;")
                 .box-wrapper(style="margin: 25px auto;" ng-click="openModal(project)")
