@@ -12,7 +12,7 @@ const randomstring = require('randomstring');
 
 
 module.exports = {
-    
+
     endpointProject(req, res) {
         var templateId = req.params.templateid;
         var instance = req.body.instance;
@@ -76,7 +76,7 @@ module.exports = {
       });
       return deferred.promise;
     },
-    
+
     newSingleProject(req, res) {
         const newProject = new Project(req.body);
         newProject.friendlyId = randomstring.generate({length: 5, readable: true});
@@ -87,7 +87,7 @@ module.exports = {
             return res.status(500).end();
         });
     },
-    
+
     newTriggeredProject(req, res) {
         console.log("#1 - New Project Function Called");
         var templateId = req.params.templateid;
@@ -143,7 +143,7 @@ module.exports = {
     },
 
   oneProject(req, res) {
-    Project.findById(req.params.id).exec().then((result) => {
+    Project.findById(req.params.id).populate('tasks').exec().then((result) => {
       return res.json(result);
     }).catch((err) => {
       return res.status(500).end();
@@ -168,7 +168,7 @@ module.exports = {
 
 
   allProjects(req, res) {
-    Project.find().exec().then((result) => {
+    Project.find().populate('tasks').exec().then((result) => {
       return res.json(result);
     }).catch((err) => {
       return res.status(500).end();

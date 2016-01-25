@@ -41,9 +41,22 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   	var modalInstance = $uibModal.open({
   		animation: true,
   		templateUrl: "./templates/activateTemplate.html",
-      controller: function ($scope) {
+      controller: function ($scope, ProjectsSvc) {
         $scope.template = template;
-        console.log($scope.template);
+        // $scope.dueDate = new Date();
+        // $scope.format = 'MM/dd/yy';
+
+        $scope.activateTemplates = function (description){
+          var id = template._id
+          ProjectsSvc.activateTemplates(id, description).then (function(res){
+            console.log('response: ', res);
+          }).then(function(res) {
+            $scope.alerts.push({msg: "Project Activated", type: "success"})
+          }).catch(function(res) {
+            $scope.alerts.push({msg: "Failed to Activate Project", type: "danger"})
+          })
+        };
+
       },
       size: 'lg'
   	})
@@ -77,6 +90,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   		templateUrl: "./templates/singleProject.html",
       controller: function ($scope) {
         $scope.project = project;
+        console.log($scope.project);
       },
       size: 'lg'
   	})

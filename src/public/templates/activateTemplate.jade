@@ -3,16 +3,20 @@
     .col-md-4
       h3 Template Name:
       h4 Description:
-      h4 Due Date:
+      //- h4 Due Date:
     .col-md-8
       h3 {{template.name}}
-      h4 {{template.description}}
-      ng-form(name='nestedForm')
-        .form-group
-          input.modalInput(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="singleProject.actualDate" ng-class="{true:'focus',false:'blur'}[isFocused3]", ng-focus='isFocused3=true', ng-blur='isFocused3=false')
-          span(ng-show='isFocused3')
-            b Enter using mm/dd/yy format
-          br
+      .form-group
+        input.modalInput(type='text', ng-model='description', ng-class="{true:'focus',false:'blur'}[isFocused2]", ng-focus='isFocused2=true', ng-blur='isFocused2=false')
+        span(ng-show='isFocused2')
+          b Give a short description of what the project is.
+
+      //- ng-form(name='nestedForm')
+      //-   .form-group
+      //-     input.modalInput(type="text" uib-datepicker-popup="{{format}}" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="dueDate" ng-class="{true:'focus',false:'blur'}[isFocused3]", ng-focus='isFocused3=true', ng-blur='isFocused3=false')
+      //-     span(ng-show='isFocused3')
+      //-       b Enter using mm/dd/yy format
+      //-     br
 
 .panel.panel-default(style="margin:0 25px;")
   .panel-body
@@ -40,6 +44,6 @@
 .container-fluid
   .row
     .col-md-12.text-right
-      button.btn.blueButton.modal-bottom
+      button.btn.blueButton.modal-bottom(ng-click="activateTemplates(description)")
         | Activate Project
               
