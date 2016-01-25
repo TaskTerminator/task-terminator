@@ -13,7 +13,7 @@ newTemplate(req, res) {
 },
 
 oneTemplate(req, res) {
-  Template.findById(req.params.id).exec().then((result) => {
+  Template.findById(req.params.id).populate('tasks').exec().then((result) => {
     return res.json(result);
   }).catch((err) => {
     return res.status(500).end();

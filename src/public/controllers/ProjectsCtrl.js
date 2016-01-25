@@ -37,6 +37,18 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   	})
   };
 
+  $scope.openActivationModal = function(template) {
+  	var modalInstance = $uibModal.open({
+  		animation: true,
+  		templateUrl: "./templates/activateTemplate.html",
+      controller: function ($scope) {
+        $scope.template = template;
+        console.log($scope.template);
+      },
+      size: 'lg'
+  	})
+  }
+
   // $scope.openScheduleModal = function() {
   //   var modalInstance = $uibModal.open({
   //     animation: true,
