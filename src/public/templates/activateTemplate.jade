@@ -19,21 +19,27 @@
     table.table
       thead 
         tr
-          th(id="th-one" class="text-center" style="padding-left:40px;")
+          th(id="th-one" style="padding-left:40px;")
             | Task Name
-          th(id="th-two" class="text-right" style="padding=0;")
+          th(id="th-two" style="padding=0;")
             | Description
           th(id="th-three" class="text-right" style="padding-right:18px;padding-left:0;")
             | Due Date
     .list-group
         a.list-group-item(ng-repeat="temp in template.tasks")
           .row
-            .col-xs-6
-              | {{temp}}
+            .col-xs-4
+              | {{temp.name}}
             
-            //- .col-xs-4.text-center(style="padding:0;")
-            //-   | {{template.tasks.description}}
-            //- 
-            //- .col-xs-2.text-center(style="padding:0")
-            //-   | {{template.tasks.date.deadline.}}
-            //-   
+            .col-xs-6(style="padding:0;")
+              | {{temp.description}}
+            
+            .col-xs-2.text-center(style="padding:0")
+              | {{temp.date.deadline}}
+              
+.container-fluid
+  .row
+    .col-md-12.text-right
+      button.btn.blueButton.modal-bottom
+        | Activate Project
+              
