@@ -1,24 +1,22 @@
-angular.module('terminatorApp').controller('NewTriggeredProjectCtrl', function($scope, ProjectsSvc) {
+angular.module('terminatorApp').controller('NewTriggeredProjectCtrl', function($scope, ProjectsSvc, $state) {
 
   	$scope.test = "The new triggered project ctrl is working!";
 
   	$scope.newTriggeredForm = {};
-  	$scope.selectedAssign
+  	$scope.selectedAssign = '';
 
   	$scope.addTriggeredTemplate = function (newTriggeredForm) {
-	    ProjectsSvc.postTriggeredTemplate(newTriggeredForm).then(function(results) {
-	      console.log("New Triggered Template added", results);
-	      $scope.templateID = results.data._id;
-	      console.log($scope.templateID);
-	      // $state.go('templateTasks', {"id": templateID});
-	    }).then(function(res) {
-	      // $scope.alerts.push({msg: "Project ID Created", type: "success"});
-	      console.log("Results",res);
-	    }).catch(function(err) {
-	      // $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
-	      console.log("Error", err);
-	    });
-	    $scope.showTheRest = true;
+        if (newTriggeredForm.name===undefined) {
+            alert('Please enter a project name.');
+        } else {
+            ProjectsSvc.postTriggeredTemplate(newTriggeredForm).then(function(results) {
+              console.log("New Triggered Template added", results);
+              $state.go('templateView', {id: results._id});
+            }).catch(function(err) {
+              // $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+              console.log("Error", err);
+            });        
+        }
 	};
 
 	$scope.newTasksArr = [];

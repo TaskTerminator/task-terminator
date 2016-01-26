@@ -11,7 +11,7 @@ const projectTaskSchema = new mongoose.Schema({
     created: {type: Date, default: new Date()},
     deadline: {type: Date},
   },
-  assigment: {
+  assignment: {
       departments: {type:String, ref: 'Department'},
       positions: {type:String, ref: 'Position'},
       employees: {type:String, ref: 'Employee'}
