@@ -5,7 +5,7 @@ hr
   .row.dashboard-cards
     .col-sm-3
       .panel
-        .panel-body(style='background-color: pink;')
+        .panel-body
           .row
             .col-sm-6
               span.glyphicon.glyphicon-remove.cardIcon(aria-hidden="true" style="color: red;")
@@ -14,10 +14,10 @@ hr
               p Overdue Tasks
         .panel-footer 
           | Overdue Tasks
-          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(aria-hidden="true" style="color:red;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(aria-hidden="true")
     .col-sm-3
       .panel
-        .panel-body(style='background-color: lightgreen;')
+        .panel-body
           .row
             .col-sm-4
               span.glyphicon.glyphicon-duplicate.cardIcon(aria-hidden="true" style="color:green;")
@@ -26,11 +26,11 @@ hr
               p Current Projects
         .panel-footer
           | Current Projects
-          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-projects" aria-hidden="true" style="color:green;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-projects" aria-hidden="true")
 
     .col-sm-3
       .panel
-        .panel-body(style='background-color: lightblue;')
+        .panel-body
           .row
             .col-sm-6
               span.glyphicon.glyphicon-signal.cardIcon(aria-hidden="true" style="color: blue;")
@@ -38,10 +38,10 @@ hr
               | Check your activity!
         .panel-footer 
           | Activity
-          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.activity" aria-hidden="true" style="color:blue;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.activity" aria-hidden="true")
     .col-sm-3
       .panel
-        .panel-body(style='background-color: yellow;')
+        .panel-body
           .row
             .col-sm-6
               span.glyphicon.glyphicon-user.cardIcon(aria-hidden="true" style="color: orange;")
@@ -49,7 +49,7 @@ hr
               | Manage your team
         .panel-footer 
           | Something about employees?
-          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-employees" aria-hidden="true" style="color:orange;")
+          span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-employees" aria-hidden="true")
 
 .container-fluid
   .row.dash-chart
