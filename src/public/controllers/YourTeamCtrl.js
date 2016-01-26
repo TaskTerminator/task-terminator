@@ -43,7 +43,8 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.newEmployee = {
-          departments: []
+          departments: [],
+          positions: []
         };
         $scope.getCompany = function() {
           CompanySvc.getCompanies().then(function(res) {
@@ -55,6 +56,7 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
 
         $scope.addEmployee = function(newEmployee) {
           newEmployee.departments.push($scope.department)
+          newEmployee.positions.push($scope.positions)
           console.log("Passed Employee info", newEmployee)
           console.log('companyId:', $scope.company._id)
           YourTeamSvc.postEmployee(newEmployee, $scope.company._id).then(function(results) {
