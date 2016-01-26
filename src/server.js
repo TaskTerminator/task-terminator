@@ -32,7 +32,7 @@ mongoose.Promise = require('q').Promise;
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static(__dirname+'/Public'));
+app.use(express.static(__dirname+'/public'));
 app.listen(port, function () {
   console.log("Listening on port: " + port);
 });
