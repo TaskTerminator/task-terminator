@@ -2,18 +2,43 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, r
   $scope.test = "The one template ctrl is working!";
   $scope.template = resolveTemplate.data;
   $scope.company = resolveCompany.data;
+  
   $scope.departments = $scope.company.departments;
   $scope.positions = $scope.company.positions;
   $scope.employees = $scope.company.employees;
   $scope.choices = ["Specific Department", "Specific Position", "Specific Person"];
 
+  console.log("TESTING INFO", $scope.employees);
 
   $scope.friendlyInterval = "";
   $scope.friendlyFreq = "";
 
   var template = $scope.template;
 
+  $scope.departmentsArr = [];
+  $scope.positionsArr = [];
+  $scope.employeesArr = [];
 
+  (function departmentsArr() {
+    for(var i = 0; i<$scope.departments.length; i++) {
+      $scope.departmentsArr.push($scope.departments[i].name);
+    }
+    return $scope.departmentsArr;
+  })();
+
+  (function positionsArr() {
+    for(var i = 0; i<$scope.positions.length; i++) {
+      $scope.positionsArr.push($scope.positions[i].name);
+    }
+    return $scope.positionsArr;
+  })();
+
+  (function employeesArr() {
+    for(var i = 0; i<$scope.employees.length; i++) {
+      $scope.employeesArr.push($scope.employees[i].identification.name.fullName);
+    }
+    return $scope.employeesArr;
+  })();
 
 
   $scope.getIntervalName = function(template){
