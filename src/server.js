@@ -40,6 +40,7 @@ app.listen(port, function () {
 //********** COMPANY ENDPOINTS **********
 app.post('/api/company', companyCtrl.newCompany);
 app.get('/api/company', companyCtrl.allCompanies);
+app.get('/api/company/:id', companyCtrl.getOneCompany);
 
 //********** DEPARTMENT ENDPOINTS **********
 app.get('/api/department/:id', departmentCtrl.oneDepartment);
