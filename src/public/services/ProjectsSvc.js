@@ -149,7 +149,6 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
   };
 
   this.postTasks = function (newTasksArr, id) {
-    console.log("TemplatesSvc");
     var defer = $q.defer();
 
     $http({
@@ -208,6 +207,23 @@ this.postRecurringProject = function (newRecurringForm) {
       method: "POST",
       //url: "/api/template",
       data: newTemplate
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  };
+
+  this.postTriggeredTemplate = function (newTriggeredForm) {
+    console.log(newTriggeredForm);
+    var defer = $q.defer();
+
+    $http({
+      method: "POST",
+      url: "/api/template",
+      data: newTriggeredForm
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
