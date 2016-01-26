@@ -9,7 +9,7 @@ const passport = require('passport');
 // const bcrypt = require('bcrypt-nodejs');
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
  require('./server_assets/cron/test').start();
 
