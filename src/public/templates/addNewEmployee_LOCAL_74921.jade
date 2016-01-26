@@ -29,13 +29,7 @@ div.employeeAddForm
     .form-group
       label(for="DepartmentsField")
         | Department: 
-<<<<<<< HEAD
       select.form-control(ng-model="newEmployee.departments[0]" id="EmployeeDepartmentField" ng-options="department as department.name for department in company.departments")
-=======
-      select.form-control(ng-model="department" id="EmployeeDepartmentField" ng-options="department as department.name for department in company.departments")
-        //- option(ng-repeat="department in company.departments")
-        //-   | {{department.name}} 
->>>>>>> 2569160d0688fd5fbb10b9835062442b485aa410
     .form-group
       label(for="PositionsField")
         | Position:
