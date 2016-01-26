@@ -122,7 +122,11 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         controller: 'OneTemplateCtrl',
         resolve : {
           resolveTemplate: function($stateParams,TemplatesSvc){
+              console.log('State Params', $stateParams);
             return TemplatesSvc.getOneTemplate($stateParams.id);
+          },
+          resolveCompany: function(CompanySvc){
+            return CompanySvc.getOneCompany("569533191bfb3ca903f17803");
           }
         }
       });

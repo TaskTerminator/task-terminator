@@ -192,7 +192,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
       }, function (error) {
         console.log("error: ", error);
       });
-  }
+  };
 
   ///////////
   //Scheduled
@@ -234,7 +234,6 @@ this.postRecurringProject = function (newRecurringForm) {
   };
 
   this.postTriggeredTemplate = function (newTriggeredForm) {
-    console.log(newTriggeredForm);
     var defer = $q.defer();
 
     $http({
@@ -242,7 +241,8 @@ this.postRecurringProject = function (newRecurringForm) {
       url: "/api/template",
       data: newTriggeredForm
     }).then(function(response) {
-      defer.resolve(response);
+        console.log(response);
+      defer.resolve(response.data);
     }, function (error) {
       console.log("error: ", error);
     });

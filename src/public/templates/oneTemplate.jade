@@ -1,6 +1,24 @@
-{{test}}
-{{template}}
-
-h1 Template Name 
-  {{template.data.name}} 
-h2 {{template.data.description}}
+pre
+  {{test}}
+  {{template}}
+  {{departments}}
+  {{choices}}
+div.container-fluid.glCenter
+  h4
+    span.label.label-primary Template - {{template.setup.type === "Scheduled" ? "Recurring": "Triggered"}}
+  hr
+  h1 {{template.name}} 
+  h4 {{template.description}}
+  p This project is due {{friendlyInterval}} on {{friendlyFreq}}
+  div.text-center
+    button.btn.btn-sm.btn-primary Add Tasks
+  hr
+form(id="addTasksForm")
+  div.form-horizontal
+    div.form-group
+      label Task Name 
+      input
+      label Task Description
+      input
+      label Who is this assigned to?
+      select(ng-model="addTasksForm.choice" ng-options="choice for choice in choices")

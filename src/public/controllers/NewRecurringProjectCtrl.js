@@ -1,7 +1,9 @@
-angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($scope, ProjectsSvc) {
+angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($scope, ProjectsSvc, $state) {
 
   $scope.newRecurringForm = {
-
+    setup: {
+      type: "Scheduled"
+    }
   };
 
   $scope.showTheRest = false;
@@ -19,38 +21,36 @@ angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($
 
   $scope.monthlyOptions = [
     {
-      name: "First of Month",
-      value: "firstOfMonth"
+      name: "First Day of Month",
+      value: "First Day of Month"
     },
     {
-      name: "Last of Month",
-      value: "lastOfMonth"
+      name: "Last Day of Month",
+      value: "Last Day of Month"
     },
     {
       name: "# of Days from Beginning",
-      value: "fromBeginning"
+      value: "# of Days From Start"
     },
     {
       name: "# of Days from End",
-      value: "fromEnd"
+      value: "# of Days Before End"
     }
   ];
 
   $scope.addRecurringProject = function (newRecurringForm) {
-      ProjectsSvc.postRecurringProject(newRecurringForm).then(function(results) {
+      ProjectsSvc.postRecurringProject(newRecurringForm)
+      .then(function(results) {
         console.log("New Recurring Project added", results);
         $scope.templateID = results.data._id;
         console.log($scope.templateID);
-        // $state.go('templateTasks', {"id": templateID});
-      }).then(function(res) {
-        // $scope.alerts.push({msg: "Project ID Created", type: "success"});
-        console.log("Results",res);
+        $state.go('templateView', {id: results.data._id});
       }).catch(function(err) {
-        // $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
         console.log("Error", err);
       });
-      $scope.showTheRest = true;
   };
+
+
 
   $scope.newTasksArr = [];
 
