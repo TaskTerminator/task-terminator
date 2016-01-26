@@ -52,13 +52,13 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
-    this.editEmployee = function () {
+    this.editEmployee = function (employee) {
       var defer = $q.defer();
 
       $http({
         method: "PUT",
-        url: "api/569533191bfb3ca903f17803/employee" + id,
-        data: {}
+        url: "api/employee/" + employee._id,
+        data: employee
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
@@ -68,12 +68,12 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
-    this.deleteEmployee = function (id) {
+    this.deleteEmployee = function (employee) {
       var defer = $q.defer();
 
       $http({
         method: "DELETE",
-        url: "api/569533191bfb3ca903f17803/employee" + id
+        url: "api/employee/" + employee._id
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
@@ -146,6 +146,33 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
         console.log("error: ", error);
       });
 
+      return defer.promise;
+    };
+
+    this.editPosition = function(position) {
+      var defer = $q.defer();
+      $http({
+        method: "PUT",
+        url: "api/position/" + position._id,
+        data: position
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
+      return defer.promise;
+    };
+
+    this.deletePosition = function(position) {
+      var defer = $q.defer();
+      $http({
+        method: "DELETE",
+        url: 'api/position/' + position._id
+      }).then(function(response) {
+        defer.resolve(response);
+      }, function (error) {
+        console.log("error: ", error);
+      });
       return defer.promise;
     }
 });

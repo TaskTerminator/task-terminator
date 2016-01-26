@@ -28,11 +28,12 @@ div.employeeAddForm
           | No
     .form-group
       label(for="DepartmentsField")
-        | Department: 
-      input.form-control(type="text" ng-model="employee.departments[0].name" id="EmployeeDepartmentField") 
+        | Department: {{employee.departments[0].name}}
+      select.form-control(ng-model="employee.departments[0]" id="departmentName" ng-options="department._id as department.name for department in company.departments")
     .form-group
       label(for="PositionsField")
-        | Position:  
-      input.form-control(type="text" ng-model="employee.positions[0].name" id="EmployeePositionField" style="margin-bottom:15px;")
-      button.btn.btn-primary(ng-click="editPosition(position)") Submit Edit
+        | Position: {{employee.positions[0].name}} 
+      select.form-control(ng-model="employee.positions[0]" id="positionName" ng-options="position._id as position.name for position in company.positions")
+      button.btn.btn-primary(ng-click="editEmployee(employee)") Submit Edit
       button.btn.btn-warning(ng-click="cancel()") Close
+      button.btn.btn-danger(style="float: right;" ng-click="deleteEmployee(employee)") Remove Employee

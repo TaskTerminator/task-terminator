@@ -18,14 +18,14 @@
           th(id="th-three" class="text-right" style="padding-right:18px;padding-left:0;")
             | Due Date
     .list-group
-        a.list-group-item(ng-repeat="project in projects")
+        a.list-group-item(ng-repeat="proj in project.tasks")
           .row
             .col-xs-6
-              | {{project.name}}
+              | {{proj.name}}
             
             .col-xs-4.text-center(style="padding:0;")
-              | {{project.description}}
+              | {{proj.description}}
             
             .col-xs-2.text-center(style="padding:0")
-              | {{project.setup.dueDate.actual}}
+              | {{proj.setup.dueDate.actual | date : 'MM/dd/yyyy' : 'UTC' }}
               

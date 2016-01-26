@@ -80,13 +80,30 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
     return defer.promise;
   };
 
-  this.editProject = function () {
+  this.postIntervalProject = function (newSingleProject) {
     var defer = $q.defer();
 
     $http({
-      method: "PUT",
+      method: "POST",
+      url: "/api/project",
+      data: newSingleProject
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+
+    return defer.promise;
+  };
+
+  this.activateTemplates = function (id, description) {
+    var defer = $q.defer();
+    $http({
+      method: "POST",
       url: "/api/project/" + id,
-      data: {}
+      data: {
+        description: description,
+      }
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {

@@ -143,7 +143,7 @@ module.exports = {
     },
 
   oneProject(req, res) {
-    Project.findById(req.params.id).exec().then((result) => {
+    Project.findById(req.params.id).populate('tasks').exec().then((result) => {
       return res.json(result);
     }).catch((err) => {
       return res.status(500).end();
@@ -168,7 +168,7 @@ module.exports = {
 
 
   allProjects(req, res) {
-    Project.find().exec().then((result) => {
+    Project.find().populate('tasks').exec().then((result) => {
       return res.json(result);
     }).catch((err) => {
       return res.status(500).end();

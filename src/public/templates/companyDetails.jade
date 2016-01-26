@@ -101,7 +101,7 @@ div(ng-repeat="company in companies")
                   a.list-group-item(ng-repeat='employee in employees | orderBy: "identification.name.fullName"' ng-click='openEditEmployeeModal(employee)')
                     .row
                       .col-xs-4
-                        | {{employee.identification.name.fullName}}
+                        | {{employee.identification.name.firstName}} {{employee.identification.name.lastName}}
                       .col-xs-4
                         | {{employee.positions[0].name}}/{{employee.departments[0].name}}
                       .col-xs-3.col-sm-offset-1.text-center

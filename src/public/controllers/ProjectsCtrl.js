@@ -12,8 +12,14 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.getTemplates = function() {
     ProjectsSvc.getTemplates().then(function(res) {
       $scope.templates = res.data;
-      console.log($scope.templates);
 
+    });
+  }();
+
+  $scope.getCompany = function() {
+    CompanySvc.getCompanies().then(function(res) {
+      $scope.companies = res.data
+      $scope.company = $scope.companies[0];
     });
   }();
 
@@ -41,9 +47,22 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   	var modalInstance = $uibModal.open({
   		animation: true,
   		templateUrl: "./templates/activateTemplate.html",
-      controller: function ($scope) {
+      controller: function ($scope, ProjectsSvc) {
         $scope.template = template;
-        console.log($scope.template);
+        $scope.dueDate = new Date();
+        $scope.format = 'MM/dd/yy';
+
+        $scope.activateTemplates = function (description){
+          var id = template._id
+          ProjectsSvc.activateTemplates(id, description).then (function(res){
+            console.log('response: ', res);
+          }).then(function(res) {
+            $scope.alerts.push({msg: "Project Activated", type: "success"})
+          }).catch(function(res) {
+            $scope.alerts.push({msg: "Failed to Activate Project", type: "danger"})
+          })
+        };
+
       },
       size: 'lg'
   	});
@@ -77,6 +96,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   		templateUrl: "./templates/singleProject.html",
       controller: function ($scope) {
         $scope.project = project;
+        console.log($scope.project);
       },
       size: 'lg'
   	});
@@ -114,20 +134,6 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.alerts = [];
 
   $scope.templateID = "";
-
-  $scope.addTemplate = function (newTemplate) {
-      ProjectsSvc.postTemplate(newTemplate).then(function(results) {
-        console.log("New Template added", results);
-        $scope.templateID = results.data._id;
-        console.log($scope.templateID);
-        // $state.go('templateTasks', {"id": templateID});
-      }).then(function(res) {
-        $scope.alerts.push({msg: "Project ID Created", type: "success"});
-      }).catch(function(res) {
-        $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
-      });
-      $scope.showTheRest = true;
-  };
 
   $scope.closeAlert = function(index) {
     $scope.alerts.splice(index, 1);
@@ -192,6 +198,7 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.format = $scope.formats[0];
   $scope.altInputFormats = ['M!/d!/yyyy'];
 
+
   $scope.popup1 = {
     opened: false
   };
@@ -253,13 +260,6 @@ angular.module('terminatorApp').controller('ProjectsCtrl', function($state, $sco
   $scope.newTasksArr = [];
   $scope.newTasksDisplayArray = [];
 
-  $scope.getCompany = function() {
-      CompanySvc.getCompanies().then(function(res) {
-        console.log("Company object", res);
-        $scope.companies = res.data;
-        $scope.company = $scope.companies[0];
-      });
-    }();
 
   $scope.saveTask = function(newTask) {
     newTask.associatedTemplate = $scope.templateID;

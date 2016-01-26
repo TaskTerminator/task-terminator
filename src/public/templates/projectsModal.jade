@@ -159,69 +159,69 @@ div.container.modalPage
               span(ng-show='isFocused3')
               b Select the interval of this template.
               br
-              select.modalInput(ng-options="a for a in allowedIntervalTypes" ng-model="selected" ng-class="{true:'focus',false:'blur'}[isFocused3]" ng-focus='isFocused3=true' ng-blur='isFocused3=false')
+              select.modalInput(ng-options="a for a in allowedIntervalTypes" ng-model="newInterval.intervalType" ng-class="{true:'focus',false:'blur'}[isFocused3]" ng-focus='isFocused3=true' ng-blur='isFocused3=false')
               br
 
-          .form-group(ng-show="selected=='Daily'")
+          .form-group(ng-show="newInterval.intervalType=='Daily'")
             label(for="intervalField")
               | Which Day? 
-            select.modalInput(ng-options="a for a in allowedDays" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedDays" ng-model="newInterval.day" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the day.
               
-          .form-group(ng-show="selected=='Daily Business Days'")
+          .form-group(ng-show="newInterval.intervalType=='Daily Business Days'")
             label(for="intervalField")
               | Which Day? 
-            select.modalInput(ng-options="a for a in allowedDays" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedDays" ng-model="newInterval.businessDay" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the business day.
             
-          .form-group(ng-show="selected=='Weekly'")
+          .form-group(ng-show="newInterval.intervalType=='Weekly'")
             label(for="intervalField")
               | Which Day? 
-            select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newInterval.weekly" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the day of the week this will occur.
             
-          .form-group(ng-show="selected=='Bi-Weekly'")
+          .form-group(ng-show="newInterval.intervalType=='Bi-Weekly'")
             label(for="intervalField")
               | Which Day? 
-            select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newInterval.biweekly" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the day of the week this will occur.
               
-          .form-group(ng-show="selected=='Monthly'")
+          .form-group(ng-show="newInterval.intervalType=='Monthly'")
             label(for="intervalField")
               | Which Month? 
-            select.modalInput(ng-options="a for a in allowedMonthlyIntervals" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedMonthlyIntervals" ng-model="newInterval.month" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the month this will occur.
           
-          .form-group(ng-show="selected=='Semi-Monthly'")
+          .form-group(ng-show="newInterval.intervalType=='Semi-Monthly'")
             label(for="intervalField")
               | Which Day? 
-            select.modalInput(ng-options="a for a in allowedSemiMonthlyIntervals" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedSemiMonthlyIntervals" ng-model="newInterval.semimonthly" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the day of the month this will occur.
               
-          .form-group(ng-show="selected=='Quarterly'")
+          .form-group(ng-show="newInterval.intervalType=='Quarterly'")
             label(for="intervalField")
               | Which Day? 
-            select.modalInput(ng-options="a for a in allowedQuarterlyIntervals" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedQuarterlyIntervals" ng-model="newInterval.quarterly" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the part of the quarter this will occur.
 
-          .form-group(ng-show="selected=='Annually'")
+          .form-group(ng-show="newInterval.intervalType=='Annually'")
             label(for="intervalField")
               | Which Day? 
-            select.modalInput(ng-options="a for a in allowedAnnuallyIntervals" ng-model="newInterval.selected2" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+            select.modalInput(ng-options="a for a in allowedAnnuallyIntervals" ng-model="newInterval.anually" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
             br
             span(ng-show='isFocused4')
               b Select the part of the year this will occur.
