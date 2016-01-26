@@ -68,42 +68,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
             controller: 'YourTeamCtrl',
             templateUrl:'Templates/companyDetails.html',
         })
-
-
-
-        .state('projectForms', {
-            url: '/projectForms',
-            templateUrl: 'Templates/projectForms.html',
-            controller: 'DashboardCtrl',
-        })
-        .state('projects', {
-            url: '/projects',
-            templateUrl: 'Templates/projects.html',
-            controller: 'ProjectsCtrl',
-        })
         .state('singleProject', {
             url: '/singleProject',
             templateUrl: 'Templates/singleProject.html',
             controller: 'DashboardCtrl',
-        })
-        .state('templates', {
-            url: '/template',
-            templateUrl: 'Templates/projectTemplate.html',
-            controller: 'TemplatesCtrl',
-        })
-        .state('templateTasks', {
-          url:'/templateTasks/:id',
-          url:'/template/Tasks/:id',
-          templateUrl: 'Templates/templateTasks.html',
-          controller: 'TemplatesCtrl'
-          // templateUrl: 'Templates/templateTasks.html',
-          // controller: 'TemplatesCtrl'
-        })
-        .state('yourteam', {
-            url: '/yourteam',
-            templateUrl: 'Templates/yourTeam.html',
-            controller: 'YourTeamCtrl',
         });
+
 
     $urlRouterProvider
         .otherwise('/dashboard/home');
