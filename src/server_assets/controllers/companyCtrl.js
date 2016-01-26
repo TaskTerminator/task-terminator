@@ -34,6 +34,7 @@ module.exports = {
 		.populate('employees')
 		.exec()
 		.then((result) => {
+			console.log("result",result.employees[0].identification);
 			return res.json(result);
 		}).catch((err)=> {
 			return res.status(500).end();
