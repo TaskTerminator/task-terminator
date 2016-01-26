@@ -21,20 +21,20 @@ angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($
 
   $scope.monthlyOptions = [
     {
-      name: "First of Month",
-      value: "firstOfMonth"
+      name: "First Day of Month",
+      value: "First Day of Month"
     },
     {
-      name: "Last of Month",
-      value: "lastOfMonth"
+      name: "Last Day of Month",
+      value: "Last Day of Month"
     },
     {
       name: "# of Days from Beginning",
-      value: "fromBeginning"
+      value: "# of Days From Start"
     },
     {
       name: "# of Days from End",
-      value: "fromEnd"
+      value: "# of Days Before End"
     }
   ];
 
