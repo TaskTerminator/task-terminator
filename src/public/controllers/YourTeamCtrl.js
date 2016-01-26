@@ -1,10 +1,8 @@
 angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state, CompanySvc) {
 
-  $scope.newEmployee = {};
-
   $scope.getEmployees = function() {
     YourTeamSvc.getEmployees().then(function(res) {
-      console.log(res)
+      console.log('res from getEmployees', res)
       $scope.employees = res.data;
     });
   }();
@@ -44,18 +42,25 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		templateUrl: "./templates/addNewEmployee.html",
       size: 'lg',
       controller: function ($scope, $uibModalInstance, CompanySvc) {
+        $scope.newEmployee = {
+          departments: []
+        };
         $scope.getCompany = function() {
           CompanySvc.getCompanies().then(function(res) {
             console.log(res)
             $scope.company = res.data[0];
           });
-        }();
+        }
+        $scope.getCompany();
 
         $scope.addEmployee = function(newEmployee) {
+          newEmployee.departments.push($scope.department)
           console.log("Passed Employee info", newEmployee)
-          YourTeamSvc.postEmployee(newEmployee).then(function(results) {
+          console.log('companyId:', $scope.company._id)
+          YourTeamSvc.postEmployee(newEmployee, $scope.company._id).then(function(results) {
             console.log("Employee added");
           })
+          $scope.getCompany()
           $scope.newEmployee = {};
           $scope.cancel();
         };
