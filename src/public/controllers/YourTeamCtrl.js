@@ -42,8 +42,28 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   	var modalInstance = $uibModal.open({
   		animation: true,
   		templateUrl: "./templates/addNewEmployee.html",
-      controller: 'YourTeamCtrl',
-      size: 'lg'
+      size: 'lg',
+      controller: function ($scope, $uibModalInstance, CompanySvc) {
+        $scope.getCompany = function() {
+          CompanySvc.getCompanies().then(function(res) {
+            console.log(res)
+            $scope.company = res.data[0];
+          });
+        }();
+
+        $scope.addEmployee = function(newEmployee) {
+          console.log("Passed Employee info", newEmployee)
+          YourTeamSvc.postEmployee(newEmployee).then(function(results) {
+            console.log("Employee added");
+          })
+          $scope.newEmployee = {};
+          $scope.cancel();
+        };
+
+        $scope.cancel = function () {
+          $uibModalInstance.dismiss('cancel');
+        };
+      }
   	})
   }
 
@@ -54,7 +74,7 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.employee = employee;
-        console.log($scope.employee);
+        console.log("EMPLOYEE: ", $scope.employee);
         $scope.getCompany = function() {
           CompanySvc.getCompanies().then(function(res) {
             console.log(res)
@@ -82,15 +102,6 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
 
       }
   	})
-  };
-
-  $scope.addEmployee = function(newEmployee) {
-    console.log("Passed Employee info", newEmployee)
-    YourTeamSvc.postEmployee(newEmployee).then(function(results) {
-      console.log("Employee added");
-    })
-    $scope.newEmployee = {};
-    $scope.cancel();
   };
 
   ///////////////////////////////////////////////////////////////
@@ -233,10 +244,6 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       }
   	})
   }
-
-  $scope.cancel = function () {
-    $uibModalInstance.dismiss('cancel');
-  };
 
 
 });
