@@ -183,14 +183,14 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
   //////////
 
 
-this.postRecurringProject = function (newRecurringProject) {
-    console.log(newScheduled);
+this.postRecurringProject = function (newRecurringForm) {
+    console.log(newRecurringForm);
     var defer = $q.defer();
 
     $http({
       method: "POST",
-      //url: "/api/template",
-      data: newTemplate
+      url: "/api/template",
+      data: newRecurringForm
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {

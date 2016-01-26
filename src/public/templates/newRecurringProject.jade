@@ -93,5 +93,5 @@ b(heading='Happens On A Set Schedule')
         select.modalInput(ng-show="newRecurringForm.setup.interval.annualInterval.selection=='In a Particular Month'" ng-repeat="choice in allowedMonthlyIntervals" ng-model="newRecurringForm.setup.interval.annualInterval.selectMonth")
         input(ng-show="newRecurringForm.setup.interval.annualInterval.selection=='In a Particular Quarter'" type="number" ng-model="newRecurringForm.setup.interval.annualInterval.selectQuarter")
       
-      button.btn.blueButton(type="button" ng-click="addRecurringProject(newRecurringProject)") Add Tasks
+      button.btn.blueButton(type="button" ng-click="addRecurringProject(newRecurringForm)") Add Tasks
       uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}

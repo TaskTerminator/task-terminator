@@ -1,36 +1,7 @@
-angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($scope) {
+angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($scope, ProjectsSvc) {
 
 $scope.newRecurringForm = {
-  setup: {
-    interval: {
-      type: "",
-      weeklyInterval: "",
-      biWeeklyInterval: "",
-      monthlyInterval: {
-        // firstOfMonth: false,
-        // lastOfMonth: false,
-        // fromBeginning: 0,
-        // fromEnd: 0
-        
-      },
-      annualInterval: {
-        // fromBeginning: 0,
-        // fromEnd: 0,
-        // selectMonth: "January",
-        // selectQuarter: (1,2,3,4)
-      },
-      quarterlyInterval: {
-          // selection:{type:String, enum: allowedQuarterlyIntervals},
-          // fromBeginning: {},
-          // fromEnd: {}
-      }
-      // semiMonthlyInterval: {
-      //   // selection: {type: String, enum: allowedSemiMonthlyIntervals},
-      //   // fromBeginning: {},
-      //   // fromEnd: {}
-      // }
-    }
-  }
+
 };
 
 $scope.selected= "";
@@ -63,16 +34,18 @@ $scope.monthlyOptions = [
   }
 ];
 
-$scope.addRecurringProject = function (newRecurringProject) {
-    ProjectsSvc.postRecurringProject(newRecurringProject).then(function(results) {
+$scope.addRecurringProject = function (newRecurringForm) {
+    ProjectsSvc.postRecurringProject(newRecurringForm).then(function(results) {
       console.log("New Recurring Project added", results);
       $scope.templateID = results.data._id;
       console.log($scope.templateID);
       // $state.go('templateTasks', {"id": templateID});
     }).then(function(res) {
-      $scope.alerts.push({msg: "Project ID Created", type: "success"});
-    }).catch(function(res) {
-      $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+      // $scope.alerts.push({msg: "Project ID Created", type: "success"});
+      console.log("Results",res);
+    }).catch(function(err) {
+      // $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+      console.log("Error", err);
     });
     $scope.showTheRest = true;
 };
