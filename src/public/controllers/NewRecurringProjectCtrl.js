@@ -1,7 +1,9 @@
 angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($scope, ProjectsSvc, $state) {
 
   $scope.newRecurringForm = {
-
+    setup: {
+      type: "Scheduled"
+    }
   };
 
   $scope.showTheRest = false;
@@ -48,24 +50,6 @@ angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($
       });
   };
 
-  $scope.addCustomer = function(customerObject) {
-  console.log("Calling addcustomer!");
-  //Normalize inputs before they hit the database
-  customerObject.firstName = changeCase.titleCase(customerObject.firstName);
-  customerObject.lastName = changeCase.titleCase(customerObject.lastName);
-  customerObject.residenceInfo.streetAddress1 = changeCase.titleCase(customerObject.residenceInfo.streetAddress1);
-  customerObject.residenceInfo.city = changeCase.titleCase(customerObject.residenceInfo.city);
-  console.log("Sending this to customerService", customerObject);
-
-  customerService.addCustomer(customerObject)
-    .then(function(res,err){
-      console.log("This is what i got back from the server! RES", res);
-      console.log("This is what i got back from the server! ERR", err);
-
-      growl.success("Thanks! Your reference was added!");
-      $state.go("authed.customer", {id: res._id} );
-    });
-};
 
 
   $scope.newTasksArr = [];
