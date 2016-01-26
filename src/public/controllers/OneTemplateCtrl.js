@@ -3,7 +3,5 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, r
   $scope.test = "The one template ctrl is working!";
   $scope.template = resolveTemplate;
 
-  
-
 
 });

@@ -118,10 +118,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
       })
       .state('templateView', {
         url:'/template/:id',
+//        params: {_id: null},
         templateUrl: 'Templates/oneTemplate.html',
         controller: 'OneTemplateCtrl',
         resolve : {
           resolveTemplate: function($stateParams,TemplatesSvc){
+              console.log('State Params', $stateParams);
             return TemplatesSvc.getOneTemplate($stateParams.id);
           }
         }
