@@ -3,12 +3,21 @@ color2 = #6ABED8
 color3 = #F0F0F0
 color4 = #80ABA0
 color5 = #181712
+color1 = #E8F1F2
+color2 = #1b98E0
+color3 = #247BA0
+color4 = #006494
+color5 = #13293D
+
+primary-header-bg-color = #edeff1
+primary-bg-color = #D4D6D7
+primary-header-color = #4E6071
 
   /* BASE STYLES
 ============================================================================= */
 
 html, body {
-    /*background-color: rgb(20,20,25)*/
+    background-color: primary-bg-color
     padding-bottom: 20px
 }
 
@@ -21,6 +30,10 @@ html, body {
     background-color: color5
 }
 
+.page-wrapper .row{
+  background-color: color3
+}
+
 .container, .container-fluid
   width: 100%
 
@@ -28,6 +41,11 @@ html, body {
   margin:5px;
 }
 
+
+.navbar-brand
+  font-family: 'Lobster Two', cursive;
+  color: primary-header-color;
+  font-size: 24px;
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -54,18 +72,8 @@ html, body {
 }
 #side-menu {
   height: 900px
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#45484d+46,000000+100 */
-  background: color1 /* Old browsers */
-  background: -moz-linear-gradient(left,  color1 0%, rgb(20,20,25) 0%) /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  color1 0%,rgb(20,20,25) 0%) /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  color1 0%,rgb(20,20,25) 0%) /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=1 ); /* IE6-9 */
+  background-color: color5
 }
-
-// .nav>li:active>a {
-// text-decoration: none
-// background-color: color3
-// }
 
 .dashboard-projects
   height: 350px
@@ -91,10 +99,14 @@ html, body {
 
 .dashboard-cards .panel .panel-body
   border-radius: 5px 5px 0 0
+  background-color: color1
+
+.dashboard-cards .panel .panel-body .row
+  background-color: color1
 
 .dashboard-cards .panel .panel-footer
   border-radius: 0 0 5px 5px
-  background-color: color3
+  background-color: lightgray
 
 .singleProject
   margin-top: 10px
@@ -114,13 +126,13 @@ html, body {
   padding-top: 20px
 
 h1
-  color: color2
+  color: color5
 
 h2
-  color: color2
+  color: color5
 
 h3
-  color: color2
+  color: color5
 
 .cardIcon
   font-size: 70px
@@ -140,8 +152,11 @@ h3
 ul p.navbar-text
   color: color3
 
+.navbar
+  background-color: primary-header-bg-color
+
 .navbar-text a
-  color: color3
+  color: primary-header-color
 
 .taskForm
   padding-top: 20px
@@ -213,51 +228,35 @@ input[type="text"]:focus {
     padding-left: 0
 }
 
-nav.navbar {
-  background-color: color1
+// header > .navbar > div.collapse
+//   background-color: color2 !important
 
-}
 
 .sidebar {
-  background: #45484d /* Old browsers */
-  background: -moz-linear-gradient(left,  #45484d 0%, color5 100%) /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #45484d 0%,color5 100%) /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #45484d 0%,color5 100%) /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: color5
 }
 
-// .sidebar ul li {
-//     border-bottom: 1px solid #color3
-//     padding-left: 15px
-// }
-
-.sidebar ul li a, .sidebar ul li .active a {
-  color: color3
-  background: #45484d /* Old browsers */
-  background: -moz-linear-gradient(left,  #45484d 0%, rgb(20,20,25) 60%) /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #45484d 0%,rgb(20,20,25) 60%) /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #45484d 0%,rgb(20,20,25) 60%) /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  text-shadow: 0 1px 1px rgba(0,0,0,.3);
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
-	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+.sidebar ul li {
+    border-bottom: 1px color3 solid
+    padding-left: 15px
+    background-color: color4
 }
 
 .sidebar ul li a:hover {
   background-color: rgb(141, 141, 141)
 }
 
-// .sidebar ul li a:visited {
-//     background-color: rgb(141, 141, 141)
-// }
+.sidebar ul li a:visited {
+    background-color: rgb(141, 141, 141)
+}
 
 .positionList
   height: 350px
   overflow-y: scroll
 
 
-// .row .col-sm-12 div.panel{
-//   background-color: rgb(190, 190, 190)
-// }
+.row .col-sm-12 div.panel
+  background-color: color4
 
 .project-thing ul li
   border: 1px color1 solid
