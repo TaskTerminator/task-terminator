@@ -94,6 +94,10 @@ module.exports = {
           deadline = timeCtrl.monthlyFirstDay();
         } else if (template.setup.interval.monthlyInterval.lastOfMonth === true) {
           deadline = timeCtrl.monthlyLastDay(instance);
+        } else if (template.setup.interval.monthlyInterval.selection === '# of Days From Start') {
+          deadline = timeCtrl.monthlyDaysFromStart(template.setup.interval.monthlyInterval.fromBeginning, instance);
+        } else if (template.setup.interval.monthlyInterval.selection === '# of Days Before End') {
+          deadline = timeCtrl.monthlyDaysBeforeEnd(template.setup.interval.monthlyInterval.fromEnd, instance);
         } else {
           deadline = timeCtrl.monthlyAnyDay(instance);
         }

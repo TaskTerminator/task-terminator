@@ -18,7 +18,15 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, r
       $scope.friendlyInterval = "Every Business Day";
     } else if( link === "Weekly"){
       $scope.friendlyInterval = "Every Week";
-      $scope.friendFreq = pink.weeklyInterval;
+      $scope.friendlyFreq = pink.weeklyInterval;
+    } else if(link === "Bi-Weekly") {
+      $scope.friendlyInterval = "Every Other Week";
+      $scope.friendlyFreq = pink.weeklyInterval;
+    } else if(link === "Monthly") {
+      $scope.friendlyInterval = "Every Month";
+      if(pink.monthlyInterval.fromBeginning){
+        $scope.friendlyFreq = pink.monthlyInterval.fromBeginning;
+      }
     }
   };
 
