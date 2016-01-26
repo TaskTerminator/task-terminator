@@ -52,13 +52,13 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
-    this.editEmployee = function () {
+    this.editEmployee = function (employee) {
       var defer = $q.defer();
 
       $http({
         method: "PUT",
-        url: "api/569533191bfb3ca903f17803/employee" + id,
-        data: {}
+        url: "api/employee/" + employee._id,
+        data: employee
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
@@ -68,12 +68,12 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
-    this.deleteEmployee = function (id) {
+    this.deleteEmployee = function (employee) {
       var defer = $q.defer();
 
       $http({
         method: "DELETE",
-        url: "api/569533191bfb3ca903f17803/employee" + id
+        url: "api/employee/" + employee._id
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
