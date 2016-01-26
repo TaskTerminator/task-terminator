@@ -52,9 +52,29 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		animation: true,
   		templateUrl: "./templates/editEmployee.html",
       size: 'lg',
-      controller: function ($scope, $uibModalInstance) {
+      controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.employee = employee;
         console.log($scope.employee);
+        $scope.getCompany = function() {
+          CompanySvc.getCompanies().then(function(res) {
+            console.log(res)
+            $scope.company = res.data[0];
+          });
+        }();
+
+        $scope.editEmployee = function(employee) {
+          YourTeamSvc.editEmployee(employee).then(function(res) {
+            console.log("Employee Edited");
+            $scope.cancel();
+          })
+        };
+
+        $scope.deleteEmployee = function(employee) {
+          YourTeamSvc.deleteEmployee(employee).then(function(res) {
+            console.log("Employee Deleted");
+            $scope.cancel();
+          })
+        }
 
         $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
@@ -62,7 +82,16 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
 
       }
   	})
-  }
+  };
+
+  $scope.addEmployee = function(newEmployee) {
+    console.log("Passed Employee info", newEmployee)
+    YourTeamSvc.postEmployee(newEmployee).then(function(results) {
+      console.log("Employee added");
+    })
+    $scope.newEmployee = {};
+    $scope.cancel();
+  };
 
   ///////////////////////////////////////////////////////////////
   // Department Modals
@@ -203,16 +232,6 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
         }
       }
   	})
-  }
-
-
-  $scope.addEmployee = function(newEmployee) {
-    console.log("Passed Employee info", newEmployee)
-    YourTeamSvc.postEmployee(newEmployee).then(function(results) {
-      console.log("Employee added");
-    })
-    $scope.newEmployee = {};
-    $scope.cancel();
   }
 
   $scope.cancel = function () {
