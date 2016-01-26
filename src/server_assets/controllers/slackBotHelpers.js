@@ -8,6 +8,7 @@ const ProjectTask = require('../models/ProjectTask.js');
 const Q = require('q');
 const moment = require('moment');
 const helpers = require('../controllers/projectHelpers');
+const projectCtrl = require('../controllers/projectCtrl');
 
 module.exports = {
 
@@ -357,19 +358,13 @@ module.exports = {
         })
         .then((project) => {
             if (project.status === 'Complete') {
-                oldProject = project;
-                console.log('PrOjEcT', project);
-                return helpers.nextOccurrence(project);
+                return projectCtrl.newProject(project.setup.associatedTemplate);   
+            } else {
+                return;
             }
         })
-        .then((nextInstance) => {
-            console.log('NEXT INSTANCE', nextInstance);
-            var nextProject = new Project(oldProject);
-            nextProject.status = 'Incomplete';
-            nextProject.tasksCompleted = 0;
-            nextProject.setup.dueDate.actual = nextInstance;
-            console.log('IS THIS A NEW PROJECT', nextProject);
-            return nextProject.save()     
+        .then((newProject) => {
+            console.log('DID IT WORK?', newProject);
         });
     },
 

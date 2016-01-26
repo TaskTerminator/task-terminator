@@ -19,21 +19,18 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     return defer.promise;
   };
 
-  // this.getOneTemplate = function (id) {
-
-  //   var defer = $q.defer();
-
-  //   $http({
-  //     method: "GET",
-  //     url: "/api/template/" + id
-  //   }).then(function(response) {
-  //     defer.resolve(response);
-  //   }, function (error) {
-  //     console.log("error: ", error);
-  //   });
-
-  //   return defer.promise;
-  // };
+  this.getOneTemplate = function (id) {
+    var defer = $q.defer();
+    $http({
+      method: "GET",
+      url: "/api/template/" + id
+    }).then(function(response) {
+      defer.resolve(response);
+    }, function (error) {
+      console.log("error: ", error);
+    });
+    return defer.promise;
+  };
 
   // this.postTemplate = function (newTemplate) {
   //   var defer = $q.defer();

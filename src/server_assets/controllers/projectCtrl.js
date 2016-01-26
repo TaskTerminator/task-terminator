@@ -17,15 +17,15 @@ module.exports = {
         var templateId = req.params.templateid;
         var instance = req.body.instance;
         var description = req.body.description;
-        module.exports.newProject(templateId, instance, description)
+        module.exports.newProject(templateId, description, instance)
         .then((project) => {
             return res.json(project);
         });
     },
 
-  newProject(templateId, instance, description) {
+  newProject(templateId, description,instance) {
     console.log("#1 - New Project Function Called");
-      var deferred = Q.defer();
+    var deferred = Q.defer();
     var associatedProjectId;
     var newProject;
     helpers.makeProjectObject(templateId)
@@ -68,7 +68,7 @@ module.exports = {
         for (var i = 0; i < project_tasks.length; i++) {
           newProject.tasks.push(project_tasks[i]);
         }
-        newProject.associatedTemplate = templateId;
+        newProject.setup.associatedTemplate = templateId;
         newProject.save().then((project) => {
           console.log("Made it!");
             deferred.resolve(project);
