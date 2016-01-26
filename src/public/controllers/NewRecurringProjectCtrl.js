@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($scope, ProjectsSvc) {
+angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($scope, ProjectsSvc, $state) {
 
   $scope.newRecurringForm = {
 
@@ -37,20 +37,36 @@ angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($
   ];
 
   $scope.addRecurringProject = function (newRecurringForm) {
-      ProjectsSvc.postRecurringProject(newRecurringForm).then(function(results) {
+      ProjectsSvc.postRecurringProject(newRecurringForm)
+      .then(function(results) {
         console.log("New Recurring Project added", results);
         $scope.templateID = results.data._id;
         console.log($scope.templateID);
-        // $state.go('templateTasks', {"id": templateID});
-      }).then(function(res) {
-        // $scope.alerts.push({msg: "Project ID Created", type: "success"});
-        console.log("Results",res);
+        $state.go('templateView', {id: results.data._id});
       }).catch(function(err) {
-        // $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
         console.log("Error", err);
       });
-      $scope.showTheRest = true;
   };
+
+  $scope.addCustomer = function(customerObject) {
+  console.log("Calling addcustomer!");
+  //Normalize inputs before they hit the database
+  customerObject.firstName = changeCase.titleCase(customerObject.firstName);
+  customerObject.lastName = changeCase.titleCase(customerObject.lastName);
+  customerObject.residenceInfo.streetAddress1 = changeCase.titleCase(customerObject.residenceInfo.streetAddress1);
+  customerObject.residenceInfo.city = changeCase.titleCase(customerObject.residenceInfo.city);
+  console.log("Sending this to customerService", customerObject);
+
+  customerService.addCustomer(customerObject)
+    .then(function(res,err){
+      console.log("This is what i got back from the server! RES", res);
+      console.log("This is what i got back from the server! ERR", err);
+
+      growl.success("Thanks! Your reference was added!");
+      $state.go("authed.customer", {id: res._id} );
+    });
+};
+
 
   $scope.newTasksArr = [];
 
