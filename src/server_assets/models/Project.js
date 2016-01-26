@@ -44,28 +44,28 @@ const projectSchema = new mongoose.Schema({
           type: {type: String, enum: allowedIntervalTypes},
           weeklyInterval: {type: String, enum: allowedWeeklyIntervals},
           monthlyInterval: {
-            selection: {type: String, enum: ["# of Days From Start", "# of Days Before End"]},
+            selection: {type: String, enum: ["# of Days From Start", "# of Days Before End", "First Day of Month", "Last Day of Month"]},
             firstOfMonth: {type: Boolean, default: false},
             endOfMonth: {type: Boolean, default: false},
-            fromBeginning: {},
-            fromEnd: {}
+            fromBeginning: {type: Number},
+            fromEnd: {type:Number}
           },
           annualInterval: {
             selectMonth: {type: String, enum: allowedMonthlyIntervals},
             selectQuarter: {type: Number},
             selection:  {type: String, enum: allowedAnnuallyIntervals},
-            fromBeginning: {},
-            fromEnd: {}
+            fromBeginning: {type:Number},
+            fromEnd: {type:Number}
           },
           quarterlyInterval: {
               selection:{type:String, enum: allowedQuarterlyIntervals},
-              fromBeginning: {},
-              fromEnd: {}
+              fromBeginning: {type:Number},
+              fromEnd: {type:Number}
           },
           semiMonthlyInterval: {
             selection: {type: String, enum: allowedSemiMonthlyIntervals},
-            fromBeginning: {},
-            fromEnd: {}
+            fromBeginning: {type:Number},
+            fromEnd: {type:Number}
           }
       },
       associatedTemplate: {type: String, ref: "Template"},

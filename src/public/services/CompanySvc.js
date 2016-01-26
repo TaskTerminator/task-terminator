@@ -18,12 +18,10 @@ angular.module('terminatorApp').service('CompanySvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.getOneCompany = function (id) {
-
     var defer = $q.defer();
-
     $http({
       method: "GET",
       url: "/api/company/" + id
@@ -32,9 +30,8 @@ angular.module('terminatorApp').service('CompanySvc', function($http, $q) {
     }, function (error) {
       console.log("error: ", error);
     });
-
     return defer.promise;
-  }
+  };
 
   this.getCompanyTask = function (id) {
 
@@ -50,7 +47,7 @@ angular.module('terminatorApp').service('CompanySvc', function($http, $q) {
     });
 
     return defer.promise;
-  }
+  };
 
   this.postCompany = function () {
     var defer = $q.defer();
