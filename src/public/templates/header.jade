@@ -1,4 +1,4 @@
-nav.navbar.navbar-static-top(role='navigation', style='margin-bottom: 0; background-color: #1b98E0;')
+nav.navbar.navbar-static-top(role='navigation', style='margin-bottom: 0;')
   .container-fluid(ng-controller="DashboardCtrl")
     .navbar-header
       button.navbar-toggle.collapsed(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
@@ -6,7 +6,7 @@ nav.navbar.navbar-static-top(role='navigation', style='margin-bottom: 0; backgro
           span.icon-bar
           span.icon-bar
           span.icon-bar
-      a.navbar-brand(ui-sref="dashboard.home" style="font-family: 'Lobster Two', cursive; color: #F0F0F0; font-size:24px;") 
+      a.navbar-brand(ui-sref="dashboard.home") 
         | <i>TaskTerminator</i>
     .collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right.user-dropdown(style="padding-right:20px")

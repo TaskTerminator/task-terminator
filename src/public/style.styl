@@ -4,11 +4,15 @@ color3 = #247BA0
 color4 = #006494
 color5 = #13293D
 
+primary-header-bg-color = #edeff1
+primary-bg-color = #D4D6D7
+primary-header-color = #4E6071
+
   /* BASE STYLES
 ============================================================================= */
 
 html, body {
-    background-color: color5
+    background-color: primary-bg-color
     padding-bottom: 20px
 }
 
@@ -28,13 +32,15 @@ html, body {
 .container, .container-fluid
   width: 100%
 
-.mainArea
-  background-color:
-
 .btn {
   margin:5px;
 }
 
+
+.navbar-brand
+  font-family: 'Lobster Two', cursive;
+  color: primary-header-color;
+  font-size: 24px;
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -141,8 +147,11 @@ h3
 ul p.navbar-text
   color: color3
 
+.navbar
+  background-color: primary-header-bg-color
+
 .navbar-text a
-  color: color1
+  color: primary-header-color
 
 .taskForm
   padding-top: 20px
@@ -214,8 +223,8 @@ input[type="text"]:focus {
     padding-left: 0
 }
 
-header > .navbar > div.collapse
-  background-color: color2 !important
+// header > .navbar > div.collapse
+//   background-color: color2 !important
 
 
 .sidebar {
