@@ -7,7 +7,7 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
   console.log($scope.project);
 
   $scope.company = resolveCompany.data;
-  
+
   $scope.departments = $scope.company.departments;
   $scope.positions = $scope.company.positions;
   $scope.employees = $scope.company.employees;
@@ -113,7 +113,13 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
 	    }
   	};
 
-	$scope.getIntervalName(project);
+  if(project.setup.type !== "Single"){
+    $scope.getIntervalName(project);
+  }  else {
+    $scope.friendlyInterval = "Specific Date";
+    $scope.friendlyFreq = project.setup.dueDate.actual;
+  }
+
 	console.log("friendlyInterval", $scope.friendlyInterval);
 	console.log("friendlyFreq", $scope.friendlyFreq);
 
