@@ -113,6 +113,11 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
 	    }
   	};
 
+
+
+
+
+
   if(project.setup.type !== "Single"){
     $scope.getIntervalName(project);
   }  else {
