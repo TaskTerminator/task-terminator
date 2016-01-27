@@ -17,3 +17,8 @@
         span.glyphicon.glyphicon-briefcase
         a
           |  Company Details
+      li.pointer-cursor(ng-click='tooltipIsOpen = !tooltipIsOpen')
+        span.glyphicon.glyphicon-briefcase
+        a
+          |  Tooltip Button
+  button.btn.btn-lg(ng-click='tooltipIsOpen = !tooltipIsOpen')
