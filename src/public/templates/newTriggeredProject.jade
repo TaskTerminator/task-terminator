@@ -1,12 +1,13 @@
-| {{test}}
-pre {{newTriggeredForm}} {{newTasksArr}}
-
-
-.form-group
-	label(for="addProjectField")
-		| Project Name: 
-	input.modalInput(type='text', placeholder='Enter Project Name Here', ng-model='newTriggeredForm.name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
-	span(ng-show='isFocused')
-
-	button.btn.blueButton(type="button" ng-click="addTriggeredTemplate(newTriggeredForm)") Next Step
-	uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
+h1.text-center New Triggered Project
+div.space
+.form-group.text-center
+    label(for="addProjectField")
+        | Project Name:
+        div.space
+        div.glCenter
+            input.modalInput(type='text', placeholder='Enter Project Name Here', ng-model='newTriggeredForm.name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
+            span(ng-show='isFocused')
+        div.space
+    div.glCenter
+        button.btn.btn-primary(type="button" ng-click="addTriggeredTemplate(newTriggeredForm)") Next Step
+        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}

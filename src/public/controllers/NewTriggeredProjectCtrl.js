@@ -2,7 +2,12 @@ angular.module('terminatorApp').controller('NewTriggeredProjectCtrl', function($
 
   	$scope.test = "The new triggered project ctrl is working!";
 
-  	$scope.newTriggeredForm = {};
+  	$scope.newTriggeredForm = {
+		setup: {
+			type: "Triggered"
+		}
+	};
+    
   	$scope.selectedAssign = '';
 
   	$scope.addTriggeredTemplate = function (newTriggeredForm) {
