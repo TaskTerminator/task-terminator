@@ -7,7 +7,7 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
   console.log($scope.project);
 
   $scope.company = resolveCompany.data;
-  
+
   $scope.departments = $scope.company.departments;
   $scope.positions = $scope.company.positions;
   $scope.employees = $scope.company.employees;
@@ -53,51 +53,51 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
       $scope.friendlyInterval = "Every Business Day";
     } else if( link === "Weekly"){
       $scope.friendlyInterval = "Every Week";
-      $scope.friendlyFreq = "Every " + pink.weeklyInterval;
+      $scope.friendlyFreq = pink.weeklyInterval;
     } else if(link === "Bi-Weekly") {
       $scope.friendlyInterval = "Every Other Week";
-      $scope.friendlyFreq = "Every other " + pink.weeklyInterval;
+      $scope.friendlyFreq = pink.weeklyInterval;
     } else if(link === "Monthly") {
       $scope.friendlyInterval = "Every Month";
       console.log("SELECTION", pink.monthlyInterval.selection);
-      if(pink.monthlyInterval.selection == "# of Days From Start"){
-        $scope.friendlyFreq = pink.monthlyInterval.fromBeginning + " days after the beginning of the month";
-        console.log("Stephens fault", pink.monthlyInterval.fromBeginning);
-      } else if(pink.monthlyInterval.selection == "# of Days Before End"){
-        $scope.friendlyFreq = pink.monthlyInterval.fromEnd + " days before the end of the month";
-      } else if (pink.monthlyInterval.firstOfMonth){
-        $scope.friendlyFreq = "First Day of the Month";
-      } else if(pink.monthlyInterval.endOfMonth) {
-        $scope.friendlyFreq = "Last Day of the Month";
-      }
+          if(pink.monthlyInterval.selection == "# of Days From Start"){
+            $scope.friendlyFreq = pink.monthlyInterval.fromBeginning + " days after the beginning of the month";
+            console.log("Stephens fault", pink.monthlyInterval.fromBeginning);
+          } else if(pink.monthlyInterval.selection == "# of Days Before End"){
+            $scope.friendlyFreq = pink.monthlyInterval.fromEnd + " days before the end of the month";
+          } else if (pink.monthlyInterval.selection == "First Day of Month"){
+            $scope.friendlyFreq = "First Day of the Month";
+          } else if(pink.monthlyInterval.selection == "Last Day of Month") {
+            $scope.friendlyFreq = "Last Day of the Month";
+          }
     } else if(link === "Annually") {
       $scope.friendlyInterval = "Every Year";
-      if(pink.annualInterval.selection === "# of Days From Start"){
-        $scope.friendlyFreq = pink.annualInterval.fromBeginning + " days after the beginning of the year. ";
-      } else if(pink.annualInterval.selection === "# of Days Before end"){
-        $scope.friendlyFreq = pink.annualInterval.fromEnd + " days before the end of the year";
-      } else if(pink.annualInterval.selection === "First Day of the Year"){
-        $scope.friendlyFreq = "First Day of the Year";
-      } else if(pink.annualInterval.selection === "Last Day of the Year"){
-        $scope.friendlyFreq = "Last Day of the Year";
-      } else if(pink.annualInterval.selection === "Any Day of the Year"){
-        $scope.friendlyFreq = "Any Day of the Year";
-      } else if(pink.annualInterval.selection === "In a Particular Month"){
-        $scope.friendlyFreq = "Every " + pink.annualInterval.selectMonth;
-      } else if(pink.annualInterval.selection === "In a Particular Quarter"){
-          var ending;
-        if(pink.annualInverval.selectQuarter === 1){
-          ending = "st";
-        } else if(pink.annualInverval.selectQuarter === 2){
-          ending = "nd";
-        } else if(pink.annualInverval.selectQuarter === 3){
-          ending = "rd";
-        } else if(pink.annualInverval.selectQuarter === 4){
-          ending = "th";
-        }
-        $scope.friendlyFreq = "Every " + pink.annualInterval.selectQuarter + ending;
-      }
-	    } else if (link === "Quarterly"){
+          if(pink.annualInterval.selection === "# of Days From Start"){
+            $scope.friendlyFreq = pink.annualInterval.fromBeginning + " days after the beginning of the year. ";
+          } else if(pink.annualInterval.selection === "# of Days Before end"){
+            $scope.friendlyFreq = pink.annualInterval.fromEnd + " days before the end of the year";
+          } else if(pink.annualInterval.selection === "First Day of the Year"){
+            $scope.friendlyFreq = "First Day of the Year";
+          } else if(pink.annualInterval.selection === "Last Day of the Year"){
+            $scope.friendlyFreq = "Last Day of the Year";
+          } else if(pink.annualInterval.selection === "Any Day of the Year"){
+            $scope.friendlyFreq = "Any Day of the Year";
+          } else if(pink.annualInterval.selection === "In a Particular Month"){
+            $scope.friendlyFreq = "Every " + pink.annualInterval.selectMonth;
+          } else if(pink.annualInterval.selection === "In a Particular Quarter"){
+              var ending;
+            if(pink.annualInverval.selectQuarter === 1){
+              ending = "st";
+            } else if(pink.annualInverval.selectQuarter === 2){
+              ending = "nd";
+            } else if(pink.annualInverval.selectQuarter === 3){
+              ending = "rd";
+            } else if(pink.annualInverval.selectQuarter === 4){
+              ending = "th";
+            }
+            $scope.friendlyFreq = "Every " + pink.annualInterval.selectQuarter + ending;
+          }
+    } else if (link === "Quarterly"){
 	      $scope.friendlyInterval = "Every Quarter";
 	        if(pink.quarterlyInterval.selection === "First Day of the Quarter"){
 	          $scope.friendlyFreq = "The First Day of the Quarter";
@@ -113,7 +113,18 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
 	    }
   	};
 
-	$scope.getIntervalName(project);
+
+
+
+
+
+  if(project.setup.type !== "Single"){
+    $scope.getIntervalName(project);
+  }  else {
+    $scope.friendlyInterval = "Specific Date";
+    $scope.friendlyFreq = project.setup.dueDate.actual;
+  }
+
 	console.log("friendlyInterval", $scope.friendlyInterval);
 	console.log("friendlyFreq", $scope.friendlyFreq);
 
