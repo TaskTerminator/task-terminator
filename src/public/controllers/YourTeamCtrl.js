@@ -8,28 +8,11 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
     });
   }
 
-  var formatDepts = function(scope){
-    var departmentsDict = {};
-    for(var j = 0; j < scope.company.departments.length; j++) {
-      departmentsDict[scope.company.departments[j]._id] = company.departments[j].name;
-    }
-    console.log("departmentsDict", departmentsDict);
-    for (var i = 0; i < company.employees.length; i++){
-      compan
-    }
-  }
-  var formatPositions = function(){
-    for(var i = 0; i<scope.company.positions.length; i++) {
-      var position = scope.company.positions[i];
-      position.department = scope.departmentsDict[position.department];
-    }
-  }
-
   var getCompany = function(scope) {
     CompanySvc.getOneCompany(companyInfo.id).then(function(res) {
       var company = res.data
       scope.company = company
-      scope.employees = company.employees
+      getEmployees(company._id, scope)
     });
   }
   var parentScope = $scope
@@ -61,12 +44,12 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
         getCompany($scope)
         $scope.addEmployee = function(newEmployee) {
           newEmployee.departments.push($scope.department)
-          console.log("Passed Employee info", newEmployee)
-          console.log('companyId:', $scope.company._id)
+          newEmployee.positions.push($scope.position)
           YourTeamSvc.postEmployee(newEmployee, $scope.company._id).then(function(results) {
-            getCompany(parentScope)
-            $scope.newEmployee = {};
-            $scope.cancel();
+            console.log('results from employee add', results)
+            // getCompany(parentScope)
+            // $scope.newEmployee = {};
+            // $scope.cancel();
           })
         };
 
