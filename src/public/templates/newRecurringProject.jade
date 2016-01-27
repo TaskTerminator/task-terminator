@@ -57,7 +57,7 @@ div.container-fluid
       .form-group(ng-show="newRecurringForm.setup.interval.type=='Bi-Weekly'")
         label(for="intervalField")
           | Which Day? 
-        select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newRecurringForm.setup.interval.biWeeklyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
+        select.modalInput(ng-options="a for a in allowedWeeklyIntervals" ng-model="newRecurringForm.setup.interval.weeklyInterval" id='intervalField' ng-class="{true:'focus',false:'blur'}[isFocused4]" ng-focus='isFocused4=true' ng-blur='isFocused4=false')<br />
         br
         span(ng-show='isFocused4')
           b Select the day of the week this will occur.
@@ -94,7 +94,7 @@ div.container-fluid
         br
         input(ng-show="newRecurringForm.setup.interval.annualInterval.selection=='# of Days From Start'" type="number" ng-model="newRecurringForm.setup.interval.annualInterval.fromBeginning")
         input(ng-show="newRecurringForm.setup.interval.annualInterval.selection=='# of Days Before End'" type="number" ng-model="newRecurringForm.setup.interval.annualInterval.fromEnd")
-        select.modalInput(ng-show="newRecurringForm.setup.interval.annualInterval.selection=='In a Particular Month'" ng-repeat="choice in allowedMonthlyIntervals" ng-model="newRecurringForm.setup.interval.annualInterval.selectMonth")
+        select.modalInput(ng-show="newRecurringForm.setup.interval.annualInterval.selection=='In a Particular Month'" ng-options="month for month in allowedMonthlyIntervals" ng-model="newRecurringForm.setup.interval.annualInterval.selectMonth")
         input(ng-show="newRecurringForm.setup.interval.annualInterval.selection=='In a Particular Quarter'" type="number" ng-model="newRecurringForm.setup.interval.annualInterval.selectQuarter")
       
       button.btn.blueButton(type="button" ng-click="addRecurringProject(newRecurringForm)") Save This Project
