@@ -117,9 +117,15 @@ module.exports = {
         _id: req.params.companyid
       })
       .populate(options).exec().then(function(docs){
-        res.json(docs)
+        res
+          .status
+          .json(docs)
       }).catch(function(e){
-        console.log("STUPID FUCKING ERROR >>>", e.message)
+        console.log("MONGOOSE ERROR >>>", e.message)
+        res
+          .status(500)
+          .json(e)
+
       })
   }
 };
