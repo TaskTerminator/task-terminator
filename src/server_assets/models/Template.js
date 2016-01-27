@@ -39,9 +39,7 @@ const templateSchema = new mongoose.Schema({
           weeklyInterval: {type: String, enum: allowedWeeklyIntervals},
           biWeeklyInterval: {type: String, enum: allowedWeeklyIntervals},
           monthlyInterval: {
-            selection: {type: String, enum: ["# of Days From Start", "# of Days Before End"]},
-            firstOfMonth: {type: Boolean},
-            endOfMonth: {type: Boolean},
+            selection: {type: String, enum: ["# of Days From Start", "# of Days Before End", "First Day of Month", "Last Day of Month"]},
             fromBeginning: {},
             fromEnd: {}
           },

@@ -1,6 +1,7 @@
 pre
 {{test}}
 {{project}}
+
 div.container-fluid.glCenter
   h4
     span.label.label-danger Project - {{project.setup.type}}
@@ -20,27 +21,30 @@ div.container-fluid.glCenter
               | Tasks 
           .panel-body
             .row
-              .col-sm-12
+              .col-xs-12
                 table.table
                   thead
                     tr
-                      th
+                      th.text-center
                         | Task Name
-                      th
+                      th.text-center
                         | Task description
-                      th
+                      th.text-center
                         | Task Assignment            
             .row
               div.departmentList(style="padding-top:0;")    
                 .list-group
-                  .list-group-item(ng-repeat='task in tasks')
+                  .list-group-item(ng-repeat='task in project.tasks')
                     .row
-                      .col-xs-4.text-center
+                      .col-xs-3
                         | {{task.name}}
-                      .col-xs-4.text-center
+                      .col-xs-1
+                      .col-xs-3
                         | {{task.description}}
-                      .col-xs-3.col-sm-offset-1.text-center
+                      .col-xs-1
+                      .col-xs-3
                         | {{task.assignment.departments}} {{task.assignment.positions}} {{task.assignment.employees}}
+                      .col-xs-1
   div.text-center
     button.btn.btn-lg.btn-primary(ng-click="showForm = !showForm") Add Task
     button.btn.btn-lg.btn-success(ng-click="startProject()") Start Project

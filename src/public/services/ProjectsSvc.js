@@ -133,7 +133,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
   ///////////////
 
   this.postTemplate = function (newTemplate) {
-    console.log(newTemplate);
+    console.log('newTemplate', newTemplate);
     var defer = $q.defer();
 
     $http({
@@ -200,7 +200,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
 
 
 this.postRecurringProject = function (newRecurringForm) {
-    console.log(newRecurringForm);
+    console.log('FORM', newRecurringForm);
     var defer = $q.defer();
 
     $http({
