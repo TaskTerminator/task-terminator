@@ -37,6 +37,7 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
     };
 
     this.postEmployee = function (newEmployee, companyId) {
+      console.log(newEmployee)
       var defer = $q.defer();
       $http({
         method: "POST",

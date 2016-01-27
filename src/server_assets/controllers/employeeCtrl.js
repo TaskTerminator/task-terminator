@@ -116,10 +116,11 @@ module.exports = {
       .findOne({
         _id: req.params.companyid
       })
-      .populate(options).exec().then(function(docs){
+      .select('employees')
+      .populate(options).exec().then(function(company){
         res
-          .status
-          .json(docs)
+          .status(200)
+          .json(company.employees)
       }).catch(function(e){
         console.log("MONGOOSE ERROR >>>", e.message)
         res

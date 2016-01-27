@@ -1,11 +1,10 @@
-angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
+angular.module('terminatorApp').service('CompanySvc', function($http, $q) {
 
   ////////////////////////
   // Company Calls
   ////////////////////////
-  var service = {}
 
-  service.getCompanies = function () {
+  this.getCompanies = function () {
 
     var defer = $q.defer();
 
@@ -21,7 +20,7 @@ angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
     return defer.promise;
   };
 
-  service.getOneCompany = function (id) {
+  this.getOneCompany = function (id) {
     var defer = $q.defer();
     $http({
       method: "GET",
@@ -34,7 +33,7 @@ angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
     return defer.promise;
   };
 
-  service.getCompanyTask = function (id) {
+  this.getCompanyTask = function (id) {
 
     var defer = $q.defer();
 
@@ -50,7 +49,7 @@ angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
     return defer.promise;
   };
 
-  service.postCompany = function () {
+  this.postCompany = function () {
     var defer = $q.defer();
 
     $http({
@@ -66,7 +65,7 @@ angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
     return defer.promise;
   };
 
-  service.editCompany = function () {
+  this.editCompany = function () {
     var defer = $q.defer();
 
     $http({
@@ -82,7 +81,7 @@ angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
     return defer.promise;
   };
 
-  service.deleteCompany = function (id) {
+  this.deleteCompany = function (id) {
     var defer = $q.defer();
 
     $http({
@@ -97,6 +96,5 @@ angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
     return defer.promise;;
   };
 
-  return service
 
 });
