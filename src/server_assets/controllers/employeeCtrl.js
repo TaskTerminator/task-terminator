@@ -81,30 +81,46 @@ module.exports = {
     });
   },
 
+  // allEmployees(req, res) {
+  //   console.log('GET - ALL EMPLOYEES ENDPOINT');
+  //   Company
+  //     .findOne({
+  //       _id: req.params.companyid
+  //     })
+  //     .populate('employees')
+  //     .exec(function(err, company) {
+  //       console.log('COMPANY FOUND:', company);
+  //       Employee.populate  
+  //     }
+  //   }
+
   allEmployees(req, res) {
     console.log('GET - ALL EMPLOYEES ENDPOINT');
+    
+    var options = {
+      path: 'employees',
+      model: 'Employee',
+      populate: [{
+        path: 'departments',
+        model: 'Department',
+        select: 'name'
+      },{
+        path: 'positions',
+        model: 'Position',
+        select: 'name'
+      }]
+    }
+    console.log('options for populate', options)
+    console.log()
     Company
       .findOne({
         _id: req.params.companyid
       })
-      .populate('employees')
-      .exec(function(err, company) {
-        var employeeArr = [];
-        var employeeDepArr = [];
-        Employee.populate(company.employees, [{path:'positions', select:'name'}, {path:'departments', select:'name'}])
-        })
-        .then((result) => {
-<<<<<<< HEAD
-            console.log(result)
-=======
->>>>>>> master
-            return res.json(result);
-        }).catch((err) => {
-            return res.status(500).end();
-        });
-    }
-<<<<<<< HEAD
+      .populate(options).exec().then(function(docs){
+        res.json(docs)
+      }).catch(function(e){
+        console.log("STUPID FUCKING ERROR >>>", e.message)
+      })
+  }
 };
-=======
-};
->>>>>>> master
+

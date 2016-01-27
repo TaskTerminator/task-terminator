@@ -21,12 +21,7 @@ angular.module('terminatorApp').factory('CompanySvc', function($http, $q) {
     return defer.promise;
   };
 
-<<<<<<< HEAD
   service.getOneCompany = function (id) {
-
-=======
-  this.getOneCompany = function (id) {
->>>>>>> master
     var defer = $q.defer();
     $http({
       method: "GET",

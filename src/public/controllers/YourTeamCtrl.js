@@ -8,21 +8,26 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
     });
   }
 
-  // var buildDeptDictionary = function(scope){
-  //   scope.departmentsDict = {};
-  //   for(var j = 0; j < scope.company.departments.length; j++) {
-  //     scope.departmentsDict[scope.company.departments[j]._id] = scope.company.departments[j];
-  //   }
-  //   console.log("scope.departmentsDict", scope.departmentsDict);
-  //   for(var i = 0; i<scope.company.positions.length; i++) {
-  //     var position = scope.company.positions[i];
-  //     position.department = scope.departmentsDict[position.department];
-  //   }
-  // }
+  var formatDepts = function(scope){
+    var departmentsDict = {};
+    for(var j = 0; j < scope.company.departments.length; j++) {
+      departmentsDict[scope.company.departments[j]._id] = company.departments[j].name;
+    }
+    console.log("departmentsDict", departmentsDict);
+    for (var i = 0; i < company.employees.length; i++){
+      compan
+    }
+  }
+  var formatPositions = function(){
+    for(var i = 0; i<scope.company.positions.length; i++) {
+      var position = scope.company.positions[i];
+      position.department = scope.departmentsDict[position.department];
+    }
+  }
 
   var getCompany = function(scope) {
     CompanySvc.getOneCompany(companyInfo.id).then(function(res) {
-      console.log(res)
+      console.log('getOneCompany res:', res.data)
     });
   }
   var parentScope = $scope
@@ -48,7 +53,8 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.newEmployee = {
-          departments: []
+          departments: [],
+          positions: []
         };
         getCompany($scope)
         $scope.addEmployee = function(newEmployee) {
