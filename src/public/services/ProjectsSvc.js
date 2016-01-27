@@ -222,8 +222,8 @@ this.postRecurringProject = function (newRecurringForm) {
 
     $http({
       method: "POST",
-      //url: "/api/template",
-      data: newTemplate
+      url: "/api/singleproject",
+      data: singleProject
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
