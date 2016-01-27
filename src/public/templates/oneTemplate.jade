@@ -1,8 +1,8 @@
-pre
-  {{tasks}}
+//- pre
+//-   {{tasks}}
 div.container-fluid.glCenter
   h4
-    span.label.label-primary Template - {{template.setup.type === "Scheduled" ? "Recurring": "Triggered"}}
+    span.label.label-danger Template - {{template.setup.type === "Scheduled" ? "Recurring": "Triggered"}}
   hr
   h1 {{template.name}} 
   h4 {{template.description}}
@@ -40,7 +40,8 @@ div.container-fluid.glCenter
                       .col-xs-3.col-sm-offset-1.text-center
                         | {{task.assignment.departments}} {{task.assignment.positions}} {{task.assignment.employees}}
   div.text-center
-    button.btn.btn-sm.btn-primary(ng-click="showForm = !showForm") Add Tasks
+    button.btn.btn-lg.btn-primary(ng-click="showForm = !showForm") Add Task
+    button.btn.btn-lg.btn-success(ng-click="startProject()") Start Project
   hr
 form.glCenter(id="addTasksForm" ng-show="showForm")
   div.form-group
