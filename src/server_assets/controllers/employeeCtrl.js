@@ -89,6 +89,7 @@ module.exports = {
       })
       .populate('employees')
       .exec(function(err, company) {
+        console.log("THE COMPANY INFO", company);
         var employeeArr = [];
         var employeeDepArr = [];
         Employee.populate(company.employees, [{path:'positions', select:'name'}, {path:'departments', select:'name'}])
