@@ -1,5 +1,6 @@
 h1(style="padding-left:15px; padding-top: 15px;") Company Details
 hr
+<<<<<<< HEAD
 div
   h2.text-center
     | {{company.name}}
@@ -105,3 +106,111 @@ div.container
                       | {{employee.positions[0].name}}/{{employee.departments[0].name}}
                     .col-xs-3.col-sm-offset-1.text-center
                       | Hire Date? 
+=======
+div(ng-repeat="company in companies")
+  div
+    h2.text-center
+      | {{company.name}}
+  div.container(style="padding: 15px 50px")
+    .row
+      .col-sm-12.text-right(style="padding-bottom: 20px;")
+        button.btn.btn-primary.btn-lg(ng-click="openAddDepartmentModal()") Add New Department
+    .row
+      .col-sm-12
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title 
+              | Departments 
+          .panel-body
+            .row
+              .col-sm-12
+                table.table
+                  thead
+                    tr
+                      th
+                        | Department Name
+                      th.text-center
+                        | Number of Employees
+                      th.text-right
+                        | Number of Positions
+            .row
+              div.departmentList(style="padding-top:0;")    
+                .list-group
+                  a.list-group-item(ng-repeat='department in company.departments' ng-click='openEditDepartmentModal(department)')
+                    .row
+                      .col-xs-4
+                        | {{department.name}}
+                      .col-xs-4.text-center
+                        | {{department.employees.length}}
+                      .col-xs-3.col-sm-offset-1.text-center
+                        | {{department.positions.length}}
+          
+  div.container(style="padding: 15px 50px")
+    .row
+      .col-sm-12.text-right(style="padding-bottom: 20px;")
+        button.btn.btn-primary.btn-lg(ng-click="openAddPositionModal()") Add New Position
+    .row
+      .col-sm-12
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title 
+              | Positions 
+          .panel-body
+            .row
+              .col-sm-12
+                table.table
+                  thead
+                    tr
+                      th 
+                        | Position Name
+                      th.text-center
+                        | Department
+                      th.text-right
+                        | Number of Employees
+            .row
+              div.positionList(style="padding-top:0;")    
+                .list-group
+                  a.list-group-item(ng-repeat='position in company.positions' ng-click='openEditPositionModal(position)')
+                    .row
+                      .col-xs-4
+                        | {{position.name}}
+                      .col-xs-4
+                        | {{position.department.name}}
+                      .col-xs-3.col-sm-offset-1.text-center
+                        | {{position.employees.length}}
+
+  
+  .container(style="padding: 15px 50px")
+    .row
+      .col-sm-12.text-right(style="padding-bottom: 20px;")
+        button.btn.btn-primary.btn-lg(ng-click="openAddEmployeeModal()") Add New Employee
+    .row
+      .col-sm-12
+        .panel.panel-default
+          .panel-heading
+            h3.panel-title 
+              | Employees
+          .panel-body
+            .row
+              .col-sm-12
+                table.table
+                  thead
+                    tr
+                      th 
+                        | Employee Name
+                      th
+                        | Position/Department
+                      th.text-center
+                        | Hire Date
+            .row
+              div.employeeList(style="padding-top:0;")    
+                .list-group
+                  a.list-group-item(ng-repeat='employee in employees | orderBy: "identification.name.fullName"' ng-click='openEditEmployeeModal(employee)')
+                    .row
+                      .col-xs-4
+                        | {{employee.identification.name.firstName}} {{employee.identification.name.lastName}}
+                      .col-xs-4
+                        | {{employee.positions[0].name}}/{{employee.departments[0].name}}
+                      .col-xs-3.col-sm-offset-1.text-center
+                        | Hire Date? 
+>>>>>>> master

@@ -72,55 +72,60 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
           controller: 'YourTeamCtrl',
           templateUrl:'templates/companyDetails.html',
       })
-      .state('singleProject', {
-          url: '/singleProject',
-          templateUrl: 'templates/singleProject.html',
-          controller: 'DashboardCtrl',
-      })
-      .state('templates', {
-          url: '/template',
-          templateUrl: 'templates/projectTemplate.html',
-          controller: 'TemplatesCtrl',
-      })
-      .state('templateTasks', {
-        url:'/templateTasks/:id',
-        // url:'/template/Tasks/:id',
-        templateUrl: 'templates/templateTasks.html',
-        controller: 'TemplatesCtrl'
-        // templateUrl: 'Templates/templateTasks.html',
-        // controller: 'TemplatesCtrl'
-      })
-      .state('yourteam', {
-          url: '/yourteam',
-          templateUrl: 'templates/yourTeam.html',
-          controller: 'YourTeamCtrl',
-      })
-      .state('newSingleProject' , {
+
+      // .state('singleProject', {
+      //     url: '/singleProject',
+      //     templateUrl: 'templates/singleProject.html',
+      //     controller: 'DashboardCtrl',
+      // })
+      // .state('templates', {
+      //     url: '/template',
+      //     templateUrl: 'templates/projectTemplate.html',
+      //     controller: 'TemplatesCtrl',
+      // })
+      // .state('templateTasks', {
+      //   url:'/templateTasks/:id',
+      //   // url:'/template/Tasks/:id',
+      //   templateUrl: 'templates/templateTasks.html',
+      //   controller: 'TemplatesCtrl'
+      //   // templateUrl: 'Templates/templateTasks.html',
+      //   // controller: 'TemplatesCtrl'
+      // })
+      // .state('yourteam', {
+      //     url: '/yourteam',
+      //     templateUrl: 'templates/yourTeam.html',
+      //     controller: 'YourTeamCtrl',
+      // })
+
+      .state('dashboard.newSingleProject' , {
         url: '/project/new/single',
         templateUrl: 'templates/newSingleProject.html',
         controller: 'NewSingleProjectCtrl'
       })
-      .state('newRecurringProject', {
+      .state('dashboard.newRecurringProject', {
         url: '/project/new/recurring',
         templateUrl: 'templates/newRecurringProject.html',
         controller: 'NewRecurringProjectCtrl'
       })
-      .state('newTriggeredProject', {
+      .state('dashboard.newTriggeredProject', {
         url:'/project/new/triggered',
         templateUrl: 'templates/newTriggeredProject.html',
         controller: 'NewTriggeredProjectCtrl'
       })
-      .state('projectView', {
+      .state('dashboard.projectView', {
         url:'/project/:id',
         templateUrl: 'templates/oneProject.html',
         controller : 'OneProjectCtrl',
         resolve : {
           resolveProject: function($stateParams,ProjectsSvc){
             return ProjectsSvc.getOneProject($stateParams.id);
+          },
+          resolveCompany: function(CompanySvc){
+            return CompanySvc.getOneCompany("569533191bfb3ca903f17803");
           }
         }
       })
-      .state('templateView', {
+      .state('dashboard.templateView', {
         url:'/template/:id',
         templateUrl: 'templates/oneTemplate.html',
         controller: 'OneTemplateCtrl',
@@ -128,6 +133,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
           resolveTemplate: function($stateParams,TemplatesSvc){
               console.log('State Params', $stateParams);
             return TemplatesSvc.getOneTemplate($stateParams.id);
+          },
+          resolveCompany: function(CompanySvc){
+            return CompanySvc.getOneCompany("569533191bfb3ca903f17803");
           }
         }
       });

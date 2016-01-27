@@ -94,10 +94,17 @@ module.exports = {
         Employee.populate(company.employees, [{path:'positions', select:'name'}, {path:'departments', select:'name'}])
         })
         .then((result) => {
+<<<<<<< HEAD
             console.log(result)
+=======
+>>>>>>> master
             return res.json(result);
         }).catch((err) => {
             return res.status(500).end();
         });
     }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> master

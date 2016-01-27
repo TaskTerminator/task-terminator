@@ -24,6 +24,22 @@ module.exports = {
 		}).catch((err) => {
 			return res.status(500).end();
 		});
+	},
+
+	getOneCompany(req,res){
+		console.log(req.params.id);
+		Company.findById({_id: req.params.id})
+		.populate('departments')
+		.populate('positions')
+		.populate('employees')
+		.exec()
+		.then((result) => {
+			console.log("result",result.employees[0].identification);
+			return res.json(result);
+		}).catch((err)=> {
+			return res.status(500).end();
+		});
+
 	}
 
 };

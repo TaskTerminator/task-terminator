@@ -192,7 +192,7 @@ angular.module('terminatorApp').service('ProjectsSvc', function($http, $q) {
       }, function (error) {
         console.log("error: ", error);
       });
-  }
+  };
 
   ///////////
   //Scheduled

@@ -1,15 +1,19 @@
-.navbar-default.sidebar(role='navigation')
+.sidebar(role='navigation' style="height: 100%")
   .sidebar-nav.navbar-collapse.collapse
     ul#side-menu.nav.in
-      li
-        a(ui-sref='dashboard.home')
+      li.pointer-cursor(ui-sref='dashboard.home')
+        span.glyphicon.glyphicon-blackboard
+        a
           |  Dashboard
-      li
-        a(ui-sref='dashboard.view-projects')
+      li.pointer-cursor(ui-sref='dashboard.view-projects')
+        span.glyphicon.glyphicon-duplicate
+        a
           |  Projects
-      li
-        a(ui-sref='dashboard.activity')
+      li.pointer-cursor(ui-sref='dashboard.activity')
+        span.glyphicon.glyphicon-stats
+        a
           |  Activity
-      li
-        a(ui-sref='dashboard.company-details')
+      li.pointer-cursor(ui-sref='dashboard.company-details')
+        span.glyphicon.glyphicon-briefcase
+        a
           |  Company Details

@@ -1,6 +1,30 @@
 {{test}}
 {{project}}
 
-h1 Project Name 
-  {{project.data.name}} 
-h2 {{project.data.description}}
+div.container-fluid.glCenter
+  h4
+    span.label.label-primary Project - {{project.setup.type}}
+  hr
+  h1 {{project.name}} 
+  h4 {{project.description}}
+  p This project is due {{friendlyInterval}} on {{friendlyFreq}}
+  div.text-center
+    button.btn.btn-sm.btn-primary Add Tasks
+  hr
+form(id="addTasksForm")
+  div.form-horizontal
+    div.form-group
+      label Task Name 
+      input
+      label Task Description
+      input
+      label Who is this assigned to?
+      select(ng-model="stephensWrong" ng-options="choice for choice in choices")
+
+      select(ng-show="stephensWrong==='Specific Department'" ng-model="newTask.assignment.department" ng-options="department for department in departmentsArr" id="valField")
+
+      select(ng-show="stephensWrong==='Specific Position'" ng-model="newTask.assignment.position" ng-options="position for position in positionsArr" id="valField")
+
+      select(ng-show="stephensWrong==='Specific Person'" ng-model="newTask.assignment.employee" ng-options="employee for employee in employeesArr" id="valField")
+
+      button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task

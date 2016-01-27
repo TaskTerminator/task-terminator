@@ -11,7 +11,7 @@ angular.module('terminatorApp').controller('NewTriggeredProjectCtrl', function($
         } else {
             ProjectsSvc.postTriggeredTemplate(newTriggeredForm).then(function(results) {
               console.log("New Triggered Template added", results);
-              $state.go('templateView', {id: results._id});
+              $state.go('dashboard.templateView', {id: results._id});
             }).catch(function(err) {
               // $scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
               console.log("Error", err);
