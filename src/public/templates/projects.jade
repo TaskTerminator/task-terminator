@@ -5,9 +5,9 @@ hr
     .col-sm-12.text-right
       //- button.btn.btn-lg.btn-primary(type="button" ng-click="openSingleModal()") Create Project/Template
       div.projectButtons
-        button.btn.btn-primary(type="button" ui-sref="newSingleProject") New Single Project
-        button.btn.btn-primary(type="button" ui-sref="newRecurringProject") New Recurring Project
-        button.btn.btn-primary(type="button" ui-sref="newTriggeredProject") New Triggered Project
+        button.btn.btn-primary(type="button" ui-sref="dashboard.newSingleProject") New Single Project
+        button.btn.btn-primary(type="button" ui-sref="dashboard.newRecurringProject") New Recurring Project
+        button.btn.btn-primary(type="button" ui-sref="dashboard.newTriggeredProject") New Triggered Project
   .row(style="padding-top: 15px;")
     .col-sm-12
       .panel.panel-default(style="background-color: rgb(20,20,20);")
@@ -54,7 +54,7 @@ hr
 
         .panel-body(style="background-color: rgba(125,125,125,0.2); color:white; padding-bottom:0;")
             .row
-              .col-sm-3(ng-repeat="template in templates | filter:{setup:{type: 'Scheduled'}}" ng-if="sortProjectList2")
+              .col-sm-3(ng-repeat="template in templates | filter:{setup:{type: 'Scheduled'}}" ng-if="sortProjectList2" style="height: 155px;")
                 .box-wrapper(style="margin: 25px auto;" ui-sref='templateView({id: template._id})')
                   .project-thing(style="background-color: rgb(45,115,160); -webkit-border-radius: 10px;")
                     ul(style="list-style-type:none; padding:5px;")
@@ -85,7 +85,7 @@ hr
 
         .panel-body(style="background-color: rgba(125,125,125,0.2); color:white;")
             .row
-            .col-sm-3(ng-repeat="template in templates | filter:{setup:{type: 'Triggered'}}" ng-if="sortProjectList3")
+            .col-sm-3(ng-repeat="template in templates | filter:{setup:{type: 'Triggered'}}" ng-if="sortProjectList3" style="height: 155px;")
               .box-wrapper(style="margin: 25px auto;" ng-click="openActivationModal(template)")
                 .project-thing(style="background-color: rgb(45,115,160); -webkit-border-radius: 10px;")
                   ul(style="list-style-type:none; padding:5px;")
