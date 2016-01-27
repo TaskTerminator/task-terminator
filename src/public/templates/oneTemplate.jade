@@ -38,7 +38,7 @@ div.container-fluid.glCenter
                       .col-xs-4.text-center
                         | {{task.description}}
                       .col-xs-3.col-sm-offset-1.text-center
-                        | {{task.assignment.departments}} {{task.assignment.positions}} {{task.assignment.employees}}
+                        | {{task.assignment.departments.name}} {{task.assignment.positions.name}} {{task.assignment.employees.name}}
   div.text-center
     button.btn.btn-lg.btn-primary(ng-click="showForm = !showForm") Add Task
     button.btn.btn-lg.btn-success(ng-click="startProject()") Start Project

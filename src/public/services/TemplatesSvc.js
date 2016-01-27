@@ -27,7 +27,7 @@ angular.module('terminatorApp').service('TemplatesSvc', function($http, $q) {
     }).then(function(response) {
       defer.resolve(response);
     }, function (error) {
-      console.log("error: ", error);
+      console.log("error:(HERE) ", error);
     });
     return defer.promise;
   };

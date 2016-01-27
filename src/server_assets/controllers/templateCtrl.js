@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 const Template = require('../models/Template.js');
+const TemplateTask = require('../models/TemplateTask.js');
+const Department = require('../models/Department.js');
+const Position = require('../models/Position.js');
+const Employee = require('../models/Employee.js');
 
 module.exports = {
 
@@ -13,7 +17,29 @@ newTemplate(req, res) {
 },
 
 oneTemplate(req, res) {
-  Template.findById(req.params.id).populate('tasks').exec().then((result) => {
+
+  var templateOptions = {
+    path: 'tasks',
+    model: 'TemplateTask',
+    populate: [{
+      path: "assignment.departments",
+      model: "Department",
+      select: "name"
+    },
+    {
+      path: "assignment.positions",
+      model: "Position",
+      select: "name"
+    },
+    {
+      path:"assignment.employees",
+      model: "Employee",
+      select: "name"
+    }]
+  }
+
+  Template.findById(req.params.id).populate(templateOptions)
+  .exec().then((result) => {
     return res.json(result);
   }).catch((err) => {
     return res.status(500).end();

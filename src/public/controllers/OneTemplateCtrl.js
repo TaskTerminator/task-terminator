@@ -1,6 +1,7 @@
 angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $state, resolveTemplate, resolveCompany, TaskSvc, ProjectsSvc) {
   $scope.test = "The one template ctrl is working!";
   $scope.template = resolveTemplate.data;
+  console.log("SCOPETEMPLATE", $scope.template);
   $scope.company = resolveCompany.data;
   $scope.tasks = $scope.template.tasks;
   var templateId = $scope.template._id;
