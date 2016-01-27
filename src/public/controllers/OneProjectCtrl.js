@@ -1,6 +1,7 @@
 angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, resolveProject, resolveCompany) {
 
-  $scope.test = "The one project ctrl is working!";
+  $scope.isSingle = "";
+  $scope.showForm = false;
 
   $scope.project = resolveProject.data;
   console.log(resolveProject);
@@ -120,7 +121,9 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
 
   if(project.setup.type !== "Single"){
     $scope.getIntervalName(project);
+    $scope.isSingle = false;
   }  else {
+    $scope.isSingle = true;
     $scope.friendlyInterval = "Specific Date";
     $scope.friendlyFreq = project.setup.dueDate.actual;
   }
