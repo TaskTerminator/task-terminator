@@ -1,8 +1,12 @@
-angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, resolveTemplate, resolveCompany) {
+angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $state, resolveTemplate, resolveCompany, TaskSvc, ProjectsSvc) {
   $scope.test = "The one template ctrl is working!";
   $scope.template = resolveTemplate.data;
   $scope.company = resolveCompany.data;
-  
+  $scope.tasks = $scope.template.tasks;
+  var templateId = $scope.template._id;
+  $scope.showForm = false;
+
+
   $scope.departments = $scope.company.departments;
   $scope.positions = $scope.company.positions;
   $scope.employees = $scope.company.employees;
@@ -21,21 +25,31 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, r
 
   (function departmentsArr() {
     for(var i = 0; i<$scope.departments.length; i++) {
-      $scope.departmentsArr.push($scope.departments[i].name);
+      $scope.departmentsArr.push({
+        name: $scope.departments[i].name,
+        id: $scope.departments[i]._id
+      });
     }
     return $scope.departmentsArr;
   })();
+  console.log($scope.departmentsArr);
 
   (function positionsArr() {
     for(var i = 0; i<$scope.positions.length; i++) {
-      $scope.positionsArr.push($scope.positions[i].name);
+      $scope.positionsArr.push({
+        name: $scope.positions[i].name,
+        id: $scope.positions[i]._id
+      });
     }
     return $scope.positionsArr;
   })();
 
   (function employeesArr() {
     for(var i = 0; i<$scope.employees.length; i++) {
-      $scope.employeesArr.push($scope.employees[i].identification.name.fullName);
+      $scope.employeesArr.push({
+        name: $scope.employees[i].identification.name.fullName,
+        id: $scope.employees[i]._id
+      });
     }
     return $scope.employeesArr;
   })();
@@ -114,33 +128,28 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, r
   console.log("friendlyInterval", $scope.friendlyInterval);
   console.log("friendlyFreq", $scope.friendlyFreq);
 
-
-  $scope.newTasksArr = [];
-  $scope.newTask = {};
-  $scope.saveTask = function(newTask) {
-    //newTask.associatedTemplate = $scope.templateID;
-    $scope.newTasksArr.push(newTask);
-    if(newTask.assignment.departments) newTask.assignment.departments = newTask.assignment.departments._id;
-    if(newTask.assignment.positions) newTask.assignment.positions = newTask.assignment.positions._id;
-    if(newTask.assignment.employees) newTask.assignment.employee = newTask.assignment.employee._id;
-    $scope.newTasksArr.push(newTask);
-    console.log("newTasksArr", $scope.newTasksArr);
-    $scope.newTask = {
-      name: '',
-      description: '',
-      assignment: {
-        departments: '',
-        positions: '',
-        employees: ''
-      }
-    };
-    // $scope.selectedAssign = null; tryig to clear drop downs with this.
+  $scope.saveTask = function(newTask){
+    console.log("WHAT'S THIS", newTask);
+    TaskSvc.addTask(newTask,templateId)
+    .then((res)=>{
+      $state.reload();
+    });
   };
 
-  $scope.addTasks = function(newTasksArr) {
-    ProjectsSvc.postTasks(newTasksArr, $scope.templateID).then(function(results) {
-      console.log("Tasks added successfully", results);
-      // $state.go('projects');
+  $scope.newTask = {
+    assignment: {
+      departments: '',
+
+    }
+  };
+
+  $scope.taskButton = false;
+
+  $scope.startProject = function(){
+    console.log("STARTING THIS TEMPLATE: ", templateId);
+    ProjectsSvc.startProject(templateId).
+    then((res)=> {
+      $state.reload();
     });
   };
 

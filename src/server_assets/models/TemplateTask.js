@@ -14,9 +14,7 @@ const templateTaskSchema = new mongoose.Schema({
       positions: {type:String, ref: 'Position'},
       employees: {type:String, ref: 'Employee'}
   },
-  status : {
-    complete: {type: Boolean, default: false}
-  }
+  status : {type: String, enum: ['Incomplete', 'Complete'], default: 'Incomplete'}
 });
 
 module.exports = mongoose.model('TemplateTask', templateTaskSchema);
