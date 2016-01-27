@@ -37,18 +37,17 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
     };
 
     this.postEmployee = function (newEmployee, companyId) {
-      console.log(newEmployee)
+      console.log('newEmployee', newEmployee)
       var defer = $q.defer();
       $http({
         method: "POST",
-        url: `api/${companyId}/${newEmployee.departments[0]._id}/${newEmployee.positions._id}/employee`,
+        url: `api/${companyId}/${newEmployee.departments[0]}/${newEmployee.positions[0]}/employee`,
         data: newEmployee
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
         console.log("error: ", error);
       });
-
       return defer.promise;
     };
 

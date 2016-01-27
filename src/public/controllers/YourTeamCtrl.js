@@ -47,9 +47,9 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
           newEmployee.positions.push($scope.position)
           YourTeamSvc.postEmployee(newEmployee, $scope.company._id).then(function(results) {
             console.log('results from employee add', results)
-            // getCompany(parentScope)
-            // $scope.newEmployee = {};
-            // $scope.cancel();
+            getCompany(parentScope)
+            $scope.newEmployee = {};
+            $scope.cancel();
           })
         };
 
