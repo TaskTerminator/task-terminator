@@ -4,7 +4,7 @@ div(ng-repeat="company in companies")
   div
     h2.text-center
       | {{company.name}}
-  div.container
+  div.container(style="padding: 15px 50px")
     .row
       .col-sm-12.text-right(style="padding-bottom: 20px;")
         button.btn.btn-primary.btn-lg(ng-click="openAddDepartmentModal()") Add New Department
@@ -38,7 +38,7 @@ div(ng-repeat="company in companies")
                       .col-xs-3.col-sm-offset-1.text-center
                         | {{department.positions.length}}
           
-  div.container
+  div.container(style="padding: 15px 50px")
     .row
       .col-sm-12.text-right(style="padding-bottom: 20px;")
         button.btn.btn-primary.btn-lg(ng-click="openAddPositionModal()") Add New Position
@@ -73,7 +73,7 @@ div(ng-repeat="company in companies")
                         | {{position.employees.length}}
 
   
-  .container(style="padding-top: 20px;")
+  .container(style="padding: 15px 50px")
     .row
       .col-sm-12.text-right(style="padding-bottom: 20px;")
         button.btn.btn-primary.btn-lg(ng-click="openAddEmployeeModal()") Add New Employee

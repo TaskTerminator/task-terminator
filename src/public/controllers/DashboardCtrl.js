@@ -20,7 +20,7 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
     })
   }();
 
-  
+
 
   //////////////////////
   // Datepicker Stuff
@@ -83,7 +83,7 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
         options: {
           colors: ['#50B432'],
             chart: {
-                type: 'bar',
+                type: 'area',
                 enableMouseTracking: true,
                 plotShadow: true
             },
@@ -116,7 +116,7 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
     $scope.projectsPerMonth = {
         options: {
             chart: {
-                type: 'line',
+                type: 'areaspline',
                 enableMouseTracking: true
             }
         },
