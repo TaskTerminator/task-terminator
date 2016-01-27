@@ -110,9 +110,38 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, r
     }
   };
 
-$scope.getIntervalName(template);
-console.log("friendlyInterval", $scope.friendlyInterval);
-console.log("friendlyFreq", $scope.friendlyFreq);
+  $scope.getIntervalName(template);
+  console.log("friendlyInterval", $scope.friendlyInterval);
+  console.log("friendlyFreq", $scope.friendlyFreq);
 
+
+  $scope.newTasksArr = [];
+  $scope.newTask = {};
+  $scope.saveTask = function(newTask) {
+    //newTask.associatedTemplate = $scope.templateID;
+    $scope.newTasksArr.push(newTask);
+    if(newTask.assignment.departments) newTask.assignment.departments = newTask.assignment.departments._id;
+    if(newTask.assignment.positions) newTask.assignment.positions = newTask.assignment.positions._id;
+    if(newTask.assignment.employees) newTask.assignment.employee = newTask.assignment.employee._id;
+    $scope.newTasksArr.push(newTask);
+    console.log("newTasksArr", $scope.newTasksArr);
+    $scope.newTask = {
+      name: '',
+      description: '',
+      assignment: {
+        departments: '',
+        positions: '',
+        employees: ''
+      }
+    };
+    // $scope.selectedAssign = null; tryig to clear drop downs with this.
+  };
+
+  $scope.addTasks = function(newTasksArr) {
+    ProjectsSvc.postTasks(newTasksArr, $scope.templateID).then(function(results) {
+      console.log("Tasks added successfully", results);
+      // $state.go('projects');
+    });
+  };
 
 });
