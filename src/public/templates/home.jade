@@ -10,11 +10,13 @@ hr
             .col-sm-6
               span.glyphicon.glyphicon-remove.cardIcon(aria-hidden="true" style="color: red;")
             .col-sm-6.text-center(style="font-size:14px;")
-              p 0
+              p 5
               p Overdue Tasks
         .panel-footer 
           | Overdue Tasks
           span.glyphicon.glyphicon-share.pull-right.pointer-cursor(aria-hidden="true")
+          div
+            span.pull-right(uib-tooltip='{{overdueTaskTip}}', tooltip-is-open='tooltipIsOpen', tooltip-placement='bottom')
     .col-sm-3
       .panel
         .panel-body
@@ -27,6 +29,8 @@ hr
         .panel-footer
           | Current Projects
           span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-projects" aria-hidden="true")
+          div
+            span.pull-right(uib-tooltip='{{currentProjectTip}}', tooltip-is-open='tooltipIsOpen', tooltip-placement='bottom')
 
     .col-sm-3
       .panel
@@ -39,6 +43,8 @@ hr
         .panel-footer 
           | Activity
           span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.activity" aria-hidden="true")
+          div
+            span.pull-right(uib-tooltip='{{activityTip}}', tooltip-is-open='tooltipIsOpen', tooltip-placement='bottom')
     .col-sm-3
       .panel
         .panel-body
@@ -50,6 +56,8 @@ hr
         .panel-footer 
           | Something about employees?
           span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-employees" aria-hidden="true")
+          div
+            span.pull-right(uib-tooltip='{{companyDetailsTip}}', tooltip-is-open='tooltipIsOpen', tooltip-placement='bottom')
 
 .container-fluid(style="padding: 15px 50px")
   .row.dash-chart
@@ -57,6 +65,7 @@ hr
       .panel.panel-default
         .panel-heading
           h4 Activity Snapshot
+          span(uib-tooltip='{{activitySnapshotTop}}', tooltip-is-open='tooltipIsOpen', tooltip-placement='right-bottom')
         .panel-body
           .row
           .col-sm-10.col-sm-10.col-lg-6

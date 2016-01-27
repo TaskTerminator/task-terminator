@@ -1,8 +1,8 @@
 pre
-  {{test}}
-  {{template}}
-  {{departments}}
-  {{choices}}
+  | {{test}}
+  | {{template}}
+  | {{departments}}
+  | {{choices}}
 div.container-fluid.glCenter
   h4
     span.label.label-primary Template - {{template.setup.type === "Scheduled" ? "Recurring": "Triggered"}}
@@ -30,4 +30,3 @@ form(id="addTasksForm")
       select(ng-show="stephensWrong==='Specific Person'" ng-model="newTask.assignment.employee" ng-options="employee for employee in employeesArr" id="valField")
 
       button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
-
