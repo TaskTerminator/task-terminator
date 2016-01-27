@@ -108,7 +108,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         templateUrl: 'templates/newTriggeredProject.html',
         controller: 'NewTriggeredProjectCtrl'
       })
-      .state('projectView', {
+      .state('dashboard.projectView', {
         url:'/project/:id',
         templateUrl: 'templates/oneProject.html',
         controller : 'OneProjectCtrl',
@@ -118,7 +118,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
           }
         }
       })
-      .state('templateView', {
+      .state('dashboard.templateView', {
         url:'/template/:id',
         templateUrl: 'templates/oneTemplate.html',
         controller: 'OneTemplateCtrl',
