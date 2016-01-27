@@ -2,6 +2,6 @@ angular.module('terminatorApp').controller('OneProjectCtrl', function($scope, re
 
   $scope.test = "The one project ctrl is working!";
 
-  $scope.project = resolveProject;
+  $scope.project = resolveProject.data;
 
 });

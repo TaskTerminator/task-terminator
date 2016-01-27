@@ -21,4 +21,13 @@ form(id="addTasksForm")
       label Task Description
       input
       label Who is this assigned to?
-      select(ng-model="addTasksForm.choice" ng-options="choice for choice in choices")
+      select(ng-model="stephensWrong" ng-options="choice for choice in choices")
+
+      select(ng-show="stephensWrong==='Specific Department'" ng-model="newTask.assignment.department" ng-options="department for department in departmentsArr" id="valField")
+
+      select(ng-show="stephensWrong==='Specific Position'" ng-model="newTask.assignment.position" ng-options="position for position in positionsArr" id="valField")
+
+      select(ng-show="stephensWrong==='Specific Person'" ng-model="newTask.assignment.employee" ng-options="employee for employee in employeesArr" id="valField")
+
+      button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
+
