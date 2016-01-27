@@ -133,7 +133,7 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
         },
         series: [{
             name: 'Actual',
-            data: [84, 89, 94, 96]
+            data: [30, 50, 85, 96]
         }],
         title: {
             text: 'Projects Completed Per Month'
