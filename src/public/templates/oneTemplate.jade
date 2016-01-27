@@ -60,14 +60,14 @@ form.glCenter(id="addTasksForm" ng-show="showForm")
   div.space(ng-show="stephensWrong==='Specific Department'")
     label Which Department?
     div
-      select(ng-model="newTask.assignment.departments" ng-options="departments.id as departments.name for departments in departmentsArr" id="valField")
+      select(ng-model="newTask.assignment.departments" ng-options="departments._id as departments.name for departments in departmentsArr" id="valField")
   div.space(ng-show="stephensWrong==='Specific Position'")
     label Which Position?
     div  
-      select(ng-model="newTask.assignment.positions" ng-options="positions.id as positions.name for positions in positionsArr" id="valField")
+      select(ng-model="newTask.assignment.positions" ng-options="positions._id as positions.name for positions in positionsArr" id="valField")
   div.space(ng-show="stephensWrong==='Specific Person'" )
     label Which Person?
     div
-      select(ng-model="newTask.assignment.employees" ng-options="employees.id as employees.name for employees in employeesArr" id="valField")
+      select(ng-model="newTask.assignment.employees" ng-options="employees._id as employees.name for employees in employeesArr" id="valField")
   div.space 
     button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task

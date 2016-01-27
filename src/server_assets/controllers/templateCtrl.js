@@ -38,10 +38,13 @@ oneTemplate(req, res) {
     }]
   }
 
+  console.log("id?", req.params.id);
+
   Template.findById(req.params.id).populate(templateOptions)
   .exec().then((result) => {
     return res.json(result);
   }).catch((err) => {
+    console.log(err.stack);
     return res.status(500).end();
   });
 },
@@ -50,6 +53,7 @@ editTemplate(req, res) {
   Template.update({_id: req.params.id}, req.body).then(() => {
     return res.status(200).end();
   }).catch((err) => {
+    console.log(err.stack);
     return res.status(500).end();
   });
 },
@@ -58,6 +62,7 @@ deleteTemplate(req, res) {
   Template.remove({_id: req.params.id}, req.body).then(() => {
     return res.status(200).end();
   }).catch((err) => {
+    console.log(err.stack);
     return res.status(500).end();
   });
 },
@@ -66,6 +71,7 @@ allTemplates(req, res) {
   Template.find().populate('tasks').exec().then((result) => {
     return res.json(result);
   }).catch((err) => {
+    console.log(err.stack);
     return res.status(500).end();
   });
 }
