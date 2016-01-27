@@ -1,12 +1,10 @@
-//- pre
-//-   {{tasks}}
 div.container-fluid.glCenter
   h4
     span.label.label-danger Template - {{template.setup.type === "Scheduled" ? "Recurring": "Triggered"}}
   hr
   h1 {{template.name}} 
   h4 {{template.description}}
-  p This project is due {{friendlyInterval}} on {{friendlyFreq}}
+  p(ng-show="template.setup.type==='Scheduled'") This project is due {{friendlyInterval}} on {{friendlyFreq}}
   div(style="padding: 15px 50px")
     .row
       .col-sm-12.text-right(style="padding-bottom: 20px;")
