@@ -115,6 +115,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
         resolve : {
           resolveProject: function($stateParams,ProjectsSvc){
             return ProjectsSvc.getOneProject($stateParams.id);
+          },
+          resolveCompany: function(CompanySvc){
+            return CompanySvc.getOneCompany("569533191bfb3ca903f17803");
           }
         }
       })
