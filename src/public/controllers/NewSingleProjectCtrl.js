@@ -7,16 +7,13 @@ angular.module('terminatorApp').controller('NewSingleProjectCtrl', function($sco
 
 	$scope.addSingleProject = function (newSingleProject) {
 		ProjectsSvc.postSingleProject(newSingleProject).then(function(results) {
-		console.log("New Single Project added", results);
-		$scope.templateID = results.data._id;
-		console.log($scope.templateID);
-		// $state.go('templateTasks', {"id": templateID});
-		}).then(function(res) {
-		$scope.alerts.push({msg: "Project ID Created", type: "success"});
-		}).catch(function(res) {
-		$scope.alerts.push({msg: "Failed to Create Project", type: "danger"});
+			console.log("New Single Project added", results);
+			$scope.templateID = results.data._id;
+			console.log($scope.templateID);
+			$state.go('dashboard.projectView', {id: results.data._id});
+		}).catch(function(err) {
+			console.log("Error", err);
 		});
-		$scope.showTheRest = true;
 	};
 
 
