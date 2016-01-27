@@ -250,6 +250,20 @@ this.postRecurringProject = function (newRecurringForm) {
     return defer.promise;
   };
 
+  this.startProject = function(templateid){
+    var deferred = $q.defer();
+    $http({
+      method: "POST",
+      url: "/api/project/" + templateid
+    }).then((res)=>{
+      console.log(res);
+      deferred.resolve(res.data);
+    }).catch((err)=>{
+      console.log("ERROR STARTING PROJECT!");
+    });
+    return deferred.promise;
+  };
+
 
 
 });

@@ -45,8 +45,8 @@ const projectSchema = new mongoose.Schema({
           weeklyInterval: {type: String, enum: allowedWeeklyIntervals},
           monthlyInterval: {
             selection: {type: String, enum: ["# of Days From Start", "# of Days Before End", "First Day of Month", "Last Day of Month"]},
-            firstOfMonth: {type: Boolean, default: false},
-            endOfMonth: {type: Boolean, default: false},
+            firstOfMonth: {type: Boolean},
+            endOfMonth: {type: Boolean},
             fromBeginning: {type: Number},
             fromEnd: {type:Number}
           },

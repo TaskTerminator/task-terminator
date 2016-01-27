@@ -1,4 +1,4 @@
-angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $state, resolveTemplate, resolveCompany, TaskSvc) {
+angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $state, resolveTemplate, resolveCompany, TaskSvc, ProjectsSvc) {
   $scope.test = "The one template ctrl is working!";
   $scope.template = resolveTemplate.data;
   $scope.company = resolveCompany.data;
@@ -141,36 +141,16 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $
       departments: '',
 
     }
-  }
+  };
 
   $scope.taskButton = false;
-  // $scope.newTasksArr = [];
-  // $scope.newTask = {};
-  // $scope.saveTask = function(newTask) {
-  //   //newTask.associatedTemplate = $scope.templateID;
-  //   $scope.newTasksArr.push(newTask);
-  //   if(newTask.assignment.departments) newTask.assignment.departments = newTask.assignment.departments._id;
-  //   if(newTask.assignment.positions) newTask.assignment.positions = newTask.assignment.positions._id;
-  //   if(newTask.assignment.employees) newTask.assignment.employee = newTask.assignment.employee._id;
-  //   $scope.newTasksArr.push(newTask);
-  //   console.log("newTasksArr", $scope.newTasksArr);
-  //   $scope.newTask = {
-  //     name: '',
-  //     description: '',
-  //     assignment: {
-  //       departments: '',
-  //       positions: '',
-  //       employees: ''
-  //     }
-  //   };
-  //   // $scope.selectedAssign = null; tryig to clear drop downs with this.
-  // };
-  //
-  // $scope.addTasks = function(newTasksArr) {
-  //   ProjectsSvc.postTasks(newTasksArr, $scope.templateID).then(function(results) {
-  //     console.log("Tasks added successfully", results);
-  //     // $state.go('projects');
-  //   });
-  // };
+
+  $scope.startProject = function(){
+    console.log("STARTING THIS TEMPLATE: ", templateId);
+    ProjectsSvc.startProject(templateId).
+    then((res)=> {
+      $state.reload();
+    });
+  };
 
 });
