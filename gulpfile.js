@@ -31,6 +31,10 @@ gulp.task('styles', function() {
 gulp.task ('index_page', function() {
   gulp.src ('./src/public/index.jade')
     .pipe(jade())
+    .on('error', function(e){
+      console.log('JADE ERROR >>>> ', e.message)
+      this.emit('end')
+    })
     .pipe(gulp.dest('./build/public'));
 });
 
