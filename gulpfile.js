@@ -46,7 +46,7 @@ gulp.task ('templates', function() {
 
 gulp.task('babel', function() {
   
-	gulp.src(['src/**/*.js', '!src/public/scripts/**/*.js'])
+	gulp.src(['src/**/*.js'])
     .pipe(sourcemaps.init())
 		.pipe(babel({
 			presets: ['es2015']
@@ -61,7 +61,7 @@ gulp.task('babel', function() {
 gulp.task('watch', ['styles', 'index_page', 'templates', 'babel'], function(){
   gulp.watch('./src/**/*.styl', ['styles']);
   gulp.watch('./src/**/*.jade', ['index_page', 'templates']);
-  gulp.watch('./src/**/*.js', ['babel']);
+  gulp.watch(['./src/**/*.js', '!src/public/scripts/**/*.js'], ['babel']);
 });
 
 gulp.task('develop', function () {

@@ -27,7 +27,9 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
 
   var getCompany = function(scope) {
     CompanySvc.getOneCompany(companyInfo.id).then(function(res) {
-      console.log('getOneCompany res:', res.data)
+      var company = res.data
+      scope.company = company
+      scope.employees = company.employees
     });
   }
   var parentScope = $scope
