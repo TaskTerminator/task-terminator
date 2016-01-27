@@ -10,7 +10,7 @@ angular.module('terminatorApp').controller('NewSingleProjectCtrl', function($sco
 			console.log("New Single Project added", results);
 			$scope.templateID = results.data._id;
 			console.log($scope.templateID);
-			$state.go('projectView', {id: results.data._id});
+			$state.go('dashboard.projectView', {id: results.data._id});
 		}).catch(function(err) {
 			console.log("Error", err);
 		});

@@ -44,7 +44,7 @@ angular.module('terminatorApp').controller('NewRecurringProjectCtrl', function($
         console.log("New Recurring Project added", results);
         $scope.templateID = results.data._id;
         console.log($scope.templateID);
-        $state.go('templateView', {id: results.data._id});
+        $state.go('dashboard.templateView', {id: results.data._id});
       }).catch(function(err) {
         console.log("Error", err);
       });
