@@ -1,11 +1,16 @@
-angular.module('terminatorApp').controller('NewSingleProjectCtrl', function($scope) {
+angular.module('terminatorApp').controller('NewSingleProjectCtrl', function($scope, $state, ProjectsSvc) {
 
 
 	$scope.test = "The new single project ctrl is working!";
 
-	$scope.newSingleProject = {};
+	$scope.newSingleProject = {
+		setup: {
+			type: "Single"
+		}
+	};
 
 	$scope.addSingleProject = function (newSingleProject) {
+		console.log("This is what I'm sending", newSingleProject);
 		ProjectsSvc.postSingleProject(newSingleProject).then(function(results) {
 			console.log("New Single Project added", results);
 			$scope.templateID = results.data._id;

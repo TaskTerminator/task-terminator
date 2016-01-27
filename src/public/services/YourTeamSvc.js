@@ -4,13 +4,13 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
   // Employee Calls
   ////////////////////////
 
-    this.getEmployees = function () {
+    this.getEmployees = function (companyId) {
 
       var defer = $q.defer();
 
       $http({
         method: "GET",
-        url: "api/569533191bfb3ca903f17803/employee"
+        url: `api/${companyId}/employee`
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
@@ -20,13 +20,13 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
-    this.getOneEmployee = function (id) {
+    this.getOneEmployee = function (companyId, id) {
 
       var defer = $q.defer();
 
       $http({
         method: "GET",
-        url: "api/569533191bfb3ca903f17803/employee" + id
+        url: `api/${companyId}/employee/${id}`
       }).then(function(response) {
         defer.resolve(response);
       }, function (error) {
@@ -36,12 +36,11 @@ angular.module('terminatorApp').service('YourTeamSvc', function($http, $q) {
       return defer.promise;
     };
 
-    this.postEmployee = function (newEmployee) {
+    this.postEmployee = function (newEmployee, companyId) {
       var defer = $q.defer();
-
       $http({
         method: "POST",
-        url: "api/569533191bfb3ca903f17803/569553970a39481510b6bf84/569553ff0a39481510b6bf87/employee",
+        url: `api/${companyId}/${newEmployee.departments[0]._id}/${newEmployee.positions._id}/employee`,
         data: newEmployee
       }).then(function(response) {
         defer.resolve(response);
