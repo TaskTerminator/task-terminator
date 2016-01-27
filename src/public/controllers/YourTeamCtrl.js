@@ -1,29 +1,34 @@
-angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state, CompanySvc) {
+angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uibModal, YourTeamSvc, $state, CompanySvc, companyInfo) {
 
-  $scope.getEmployees = function() {
-    YourTeamSvc.getEmployees().then(function(res) {
+  var getEmployees = function(companyId, scope) {
+    console.log('companyId', companyId)
+    YourTeamSvc.getEmployees(companyId).then(function(res) {
       console.log('res from getEmployees', res)
-      $scope.employees = res.data;
+      scope.employees = res.data;
     });
-  }();
+  }
 
-  $scope.getCompany = function() {
-    CompanySvc.getCompanies().then(function(res) {
+  // var buildDeptDictionary = function(scope){
+  //   scope.departmentsDict = {};
+  //   for(var j = 0; j < scope.company.departments.length; j++) {
+  //     scope.departmentsDict[scope.company.departments[j]._id] = scope.company.departments[j];
+  //   }
+  //   console.log("scope.departmentsDict", scope.departmentsDict);
+  //   for(var i = 0; i<scope.company.positions.length; i++) {
+  //     var position = scope.company.positions[i];
+  //     position.department = scope.departmentsDict[position.department];
+  //   }
+  // }
+
+  var getCompany = function(scope) {
+    CompanySvc.getOneCompany(companyInfo.id).then(function(res) {
       console.log(res)
-      $scope.companies = res.data;
-      //build out a departments dictionary
-      $scope.departmentsDict = {};
-      for(var j = 0; j < $scope.companies[0].departments.length; j++) {
-        $scope.departmentsDict[$scope.companies[0].departments[j]._id] = $scope.companies[0].departments[j];
-      }
-      console.log("departmentsDict", $scope.departmentsDict);
-      for(var i = 0; i<$scope.companies[0].positions.length; i++) {
-        var position = $scope.companies[0].positions[i];
-        position.department = $scope.departmentsDict[position.department];
-      }
     });
-  }();
+  }
+  var parentScope = $scope
+  getCompany($scope)
 
+  
 
   $scope.cssClass = 'page-yourTeam';
 
@@ -46,26 +51,17 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
           departments: [],
           positions: []
         };
-        $scope.getCompany = function() {
-          CompanySvc.getCompanies().then(function(res) {
-            console.log("COMPANY: ", res)
-            $scope.company = res.data[0];
-          });
-        }
-        $scope.getCompany();
-
+        getCompany($scope)
         $scope.addEmployee = function(newEmployee) {
           newEmployee.departments.push($scope.department)
           newEmployee.positions.push($scope.positions)
           console.log("Passed Employee info", newEmployee)
           console.log('companyId:', $scope.company._id)
           YourTeamSvc.postEmployee(newEmployee, $scope.company._id).then(function(results) {
-            console.log("Employee added");
+            getCompany(parentScope)
+            $scope.newEmployee = {};
+            $scope.cancel();
           })
-          $scope.getCompany()
-          $scope.newEmployee = {};
-          $scope.cancel();
-          $scope.getCompany();
         };
 
         $scope.cancel = function () {
@@ -83,13 +79,7 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.employee = employee;
         console.log("EMPLOYEE: ", $scope.employee);
-        $scope.getCompany = function() {
-          CompanySvc.getCompanies().then(function(res) {
-            console.log(res)
-            $scope.company = res.data[0];
-          });
-        }();
-
+        getCompany($scope)
         $scope.editEmployee = function(employee) {
           YourTeamSvc.editEmployee(employee).then(function(res) {
             console.log("Employee Edited");
@@ -178,18 +168,12 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
   		templateUrl: "./templates/addNewPosition.html",
       size: 'lg',
       controller: function($scope, YourTeamSvc, $uibModalInstance) {
+        getCompany($scope)
         $scope.addPosition = function(newPosition) {
           YourTeamSvc.postPosition(newPosition).then(function(results) {
-            console.log("Position added");
+            $scope.cancel();
           })
-          $scope.cancel();
         }
-        $scope.getCompany = function() {
-          CompanySvc.getCompanies().then(function(res) {
-            console.log(res)
-            $scope.companies = res.data;
-          });
-        }();
 
         $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');
@@ -207,30 +191,7 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.position = position;
         console.log("Position: ", $scope.position);
-
-        $scope.getCompany = function() {
-          CompanySvc.getCompanies().then(function(res) {
-            console.log(res)
-            $scope.company = res.data[0];
-          });
-        }();
-
-        $scope.getEmployees = function() {
-          console.log("Position Obj: ", $scope.position);
-          YourTeamSvc.getEmployees().then(function(res) {
-            console.log("All Employees", res)
-            $scope.employees = res.data;
-            $scope.positionEmployees = [];
-            for (var i = 0; i < $scope.employees.length; i++) {
-              if ($scope.employees[i].positions[0]) {
-                if ($scope.employees[i].positions[0].name === $scope.position.name && $scope.employees[i].departments[0].name === $scope.position.department.name) {
-                  $scope.positionEmployees.push($scope.employees[i]);
-                }
-              }
-            }
-            console.log("Pos Employees: ", $scope.positionEmployees)
-          });
-        }();
+        getCompany($scope)
 
         $scope.cancel = function () {
           $uibModalInstance.dismiss('cancel');

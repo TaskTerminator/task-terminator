@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var sourcemaps = require('gulp-sourcemaps')
 var stylus = require('gulp-stylus');
 var jade = require ('gulp-jade');
 var babel = require('gulp-babel');
@@ -40,13 +41,19 @@ gulp.task ('templates', function() {
 });
 
 gulp.task('babel', function() {
-	gulp.src('src/**/*.js')
+  
+	gulp.src(['src/**/*.js', '!src/public/scripts/**/*.js'])
+    .pipe(sourcemaps.init())
 		.pipe(babel({
 			presets: ['es2015']
 		}))
+    .on('error', function(e){
+      console.log("BABEL ERROR >>>> ", e.message)
+      this.emit('end')
+    })
+    .pipe(sourcemaps.write())
 		.pipe(gulp.dest('./build'));
 });
-
 gulp.task('watch', ['styles', 'index_page', 'templates', 'babel'], function(){
   gulp.watch('./src/**/*.styl', ['styles']);
   gulp.watch('./src/**/*.jade', ['index_page', 'templates']);
@@ -56,7 +63,7 @@ gulp.task('watch', ['styles', 'index_page', 'templates', 'babel'], function(){
 gulp.task('develop', function () {
   nodemon({ script: './build/server.js'
           , ext: 'html js'
-          , delay: 3500
+          , delay: 2000
          })
     .on('restart', function () {
       console.log('restarted!')

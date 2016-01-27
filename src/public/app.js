@@ -1,5 +1,9 @@
 var app = angular.module('terminatorApp', ['ui.router', 'ngMaterial', 'ui.bootstrap', 'ngAnimate', 'highcharts-ng']);
 
+app.constant('companyInfo', {
+  id: '569533191bfb3ca903f17803'
+})
+
 
 app.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 
