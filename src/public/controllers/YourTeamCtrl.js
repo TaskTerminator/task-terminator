@@ -48,13 +48,11 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
       size: 'lg',
       controller: function ($scope, $uibModalInstance, CompanySvc) {
         $scope.newEmployee = {
-          departments: [],
-          positions: []
+          departments: []
         };
         getCompany($scope)
         $scope.addEmployee = function(newEmployee) {
           newEmployee.departments.push($scope.department)
-          newEmployee.positions.push($scope.positions)
           console.log("Passed Employee info", newEmployee)
           console.log('companyId:', $scope.company._id)
           YourTeamSvc.postEmployee(newEmployee, $scope.company._id).then(function(results) {
