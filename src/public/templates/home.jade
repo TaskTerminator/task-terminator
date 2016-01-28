@@ -9,9 +9,9 @@ hr
       .panel
         .panel-body
           .row
-            .col-sm-6
+            .col-sm-4
               span.glyphicon.glyphicon-remove.cardIcon(aria-hidden="true" style="color: red;")
-            .col-sm-6.text-center(style="font-size:14px;")
+            .col-sm-8.text-center(style="font-size:14px;")
               p 5
               p Overdue Tasks
         .panel-footer 
@@ -56,7 +56,7 @@ hr
             .col-sm-6
               | Manage your team
         .panel-footer 
-          | Something about employees?
+          | Company Details
           span.glyphicon.glyphicon-share.pull-right.pointer-cursor(ui-sref="dashboard.view-employees" aria-hidden="true")
           div
             span.pull-right(uib-tooltip='{{companyDetailsTip}}', tooltip-is-open='tooltipIsOpen', tooltip-placement='bottom')

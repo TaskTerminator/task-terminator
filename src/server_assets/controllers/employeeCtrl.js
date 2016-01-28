@@ -81,23 +81,52 @@ module.exports = {
     });
   },
 
+  // allEmployees(req, res) {
+  //   console.log('GET - ALL EMPLOYEES ENDPOINT');
+  //   Company
+  //     .findOne({
+  //       _id: req.params.companyid
+  //     })
+  //     .populate('employees')
+  //     .exec(function(err, company) {
+  //       console.log('COMPANY FOUND:', company);
+  //       Employee.populate  
+  //     }
+  //   }
+
   allEmployees(req, res) {
     console.log('GET - ALL EMPLOYEES ENDPOINT');
+    
+    var options = {
+      path: 'employees',
+      model: 'Employee',
+      populate: [{
+        path: 'departments',
+        model: 'Department',
+        select: 'name'
+      },{
+        path: 'positions',
+        model: 'Position',
+        select: 'name'
+      }]
+    }
+    console.log('options for populate', options)
+    console.log()
     Company
       .findOne({
         _id: req.params.companyid
       })
-      .populate('employees')
-      .exec(function(err, company) {
-        console.log("THE COMPANY INFO", company);
-        var employeeArr = [];
-        var employeeDepArr = [];
-        Employee.populate(company.employees, [{path:'positions', select:'name'}, {path:'departments', select:'name'}])
-        })
-        .then((result) => {
-            return res.json(result);
-        }).catch((err) => {
-            return res.status(500).end();
-        });
-    }
+      .select('employees')
+      .populate(options).exec().then(function(company){
+        res
+          .status(200)
+          .json(company.employees)
+      }).catch(function(e){
+        console.log("MONGOOSE ERROR >>>", e.message)
+        res
+          .status(500)
+          .json(e)
+
+      })
+  }
 };

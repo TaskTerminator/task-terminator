@@ -1,6 +1,3 @@
-pre
-{{test}}
-{{project}}
 div.container-fluid.glCenter
   h4
     span.label.label-danger Project - {{project.setup.type}}
@@ -20,56 +17,58 @@ div.container-fluid.glCenter
               | Tasks 
           .panel-body
             .row
-              .col-sm-12
+              .col-xs-12
                 table.table
                   thead
                     tr
-                      th
+                      th.text-center
                         | Task Name
-                      th
+                      th.text-center
                         | Task description
-                      th
+                      th.text-center
                         | Task Assignment            
             .row
               div.departmentList(style="padding-top:0;")    
                 .list-group
-                  .list-group-item(ng-repeat='task in tasks')
+                  .list-group-item(ng-repeat='task in project.tasks')
                     .row
-                      .col-xs-4.text-center
+                      .col-xs-3
                         | {{task.name}}
-                      .col-xs-4.text-center
+                      .col-xs-1
+                      .col-xs-3
                         | {{task.description}}
-                      .col-xs-3.col-sm-offset-1.text-center
+                      .col-xs-1
+                      .col-xs-3
                         | {{task.assignment.departments}} {{task.assignment.positions}} {{task.assignment.employees}}
+                      .col-xs-1
   div.text-center
-    button.btn.btn-lg.btn-primary(ng-click="showForm = !showForm") Add Task
-    button.btn.btn-lg.btn-success(ng-click="startProject()") Start Project
+    button.btn.btn-lg.btn-primary(ng-click="showForm = !showForm" ng-show="isSingle") Add Task
   hr
   form.glCenter(id="addTasksForm" ng-show="showForm")
-  div.form-group
-  div.space
-    label Task Name 
-  div.space  
-    input(ng-model="newTask.name")
-  div.space
-    label Task Description
-  div.space 
-    input(ng-model="newTask.description")
-  div.space 
-    label Who is this assigned to?
-  div.space   
-    select(ng-model="stephensWrong" ng-options="choice for choice in choices")
-  div.space(ng-show="stephensWrong==='Specific Department'")
-    label Which Department?
-    div
-      select(ng-model="newTask.assignment.departments" ng-options="departments.id as departments.name for departments in departmentsArr" id="valField")
-  div.space(ng-show="stephensWrong==='Specific Position'")
-    label Which Position?
-    div  
-      select(ng-model="newTask.assignment.positions" ng-options="positions.id as positions.name for positions in positionsArr" id="valField")
-  div.space(ng-show="stephensWrong==='Specific Person'" )
-    label Which Person?
-    div
-      select(ng-model="newTask.assignment.employees" ng-options="employees.id as employees.name for employees in employeesArr" id="valField")
-  div.space 
-    button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
+    div.form-group
+    div.space
+      label Task Name 
+    div.space  
+      input(ng-model="newTask.name")
+    div.space
+      label Task Description
+    div.space 
+      input(ng-model="newTask.description")
+    div.space 
+      label Who is this assigned to?
+    div.space   
+      select(ng-model="stephensWrong" ng-options="choice for choice in choices")
+    div.space(ng-show="stephensWrong==='Specific Department'")
+      label Which Department?
+      div
+        select(ng-model="newTask.assignment.departments" ng-options="departments.id as departments.name for departments in departmentsArr" id="valField")
+    div.space(ng-show="stephensWrong==='Specific Position'")
+      label Which Position?
+      div  
+        select(ng-model="newTask.assignment.positions" ng-options="positions.id as positions.name for positions in positionsArr" id="valField")
+    div.space(ng-show="stephensWrong==='Specific Person'" )
+      label Which Person?
+      div
+        select(ng-model="newTask.assignment.employees" ng-options="employees.id as employees.name for employees in employeesArr" id="valField")
+    div.space 
+      button.btn.blueButton.saveTask(type="button" ng-click="saveTask(newTask)" style="margin-bottom:10px") Save Task
