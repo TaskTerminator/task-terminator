@@ -21,29 +21,19 @@ oneTemplate(req, res) {
   var templateOptions = {
     path: 'tasks',
     model: 'TemplateTask',
-    populate: [{
-      path: "assignment.positions",
-      model: "Position",
-      select: "name"
-    },
-    {
-      path: "assignment.departments",
-      model: "Department",
-      select: "name"
-    },
-    {
+    populate: {
       path:"assignment.employees",
       model: "Employee",
-      select: "name"
-    }]
+      select: "identification.name.fullName"
+    }
   }
 
   console.log("id?", req.params.id);
 
-  Template.findById(req.params.id).populate(templateOptions)
-  .exec(function(err, template) {
-
-  }).then((result) => {
+  Template.findById(req.params.id)
+  .populate(templateOptions).exec()
+  .then((result) => {
+    console.log("RESULT ON back", result);
     return res.json(result);
   }).catch((err) => {
     console.log(err.stack);
