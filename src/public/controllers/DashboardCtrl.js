@@ -92,7 +92,7 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
             title: {
               text: "Months",
             },
-            categories: ['Jan','Feb',"Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
+            categories: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
         },
         yAxis: {
             title: {
@@ -101,7 +101,7 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
         },
         series: [{
             name: 'Actual',
-            data: [5, 7, 3.5, 6, 2, 9, 4, 5, 3, 5, 1, 6]
+            data: [5, 7, 3.5, 6, 2, 9, 4]
         }],
         title: {
             text: 'Projects Completed This Week'
