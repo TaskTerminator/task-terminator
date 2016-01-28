@@ -8,7 +8,7 @@ const helpers = require('../controllers/projectHelpers');
 const _ = require('underscore');
 const Q = require('q');
 const randomstring = require('randomstring');
-
+const Employee = require('../models/Employee.js');
 
 
 module.exports = {
@@ -143,7 +143,16 @@ module.exports = {
     },
 
   oneProject(req, res) {
-    Project.findById(req.params.id).populate('tasks').exec().then((result) => {
+    var templateOptions = {
+      path: 'tasks',
+      model: 'ProjectTask',
+      populate: {
+        path:"assignment.employees",
+        model: "Employee",
+        select: "identification.name.fullName"
+     }
+    }
+    Project.findById(req.params.id).populate(templateOptions).exec().then((result) => {
       return res.json(result);
     }).catch((err) => {
       return res.status(500).end();
