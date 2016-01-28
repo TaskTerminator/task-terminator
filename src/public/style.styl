@@ -37,11 +37,19 @@ html, body {
   margin:5px;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+header
+  border-bottom: 1px solid #AAA;
 
 .navbar-brand
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Exo 2', sans-serif;
+  text-transform: uppercase;
   color: primary-header-color;
-  font-size: 24px;
+  font-size: 29px;
+  font-weight: 300;
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -64,7 +72,6 @@ ul p.navbar-text
   color: color5
 
 .pageTitle {
-  text-align: center;
 }
 
 .projectButtons {
@@ -92,10 +99,11 @@ ul p.navbar-text
   color: black
 
 .dashboard-cards .panel
+  overflow: hidden;
   border: 1px #a0a0a0 solid
-  -webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
+  // -webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
+  // -moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
+  // box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
 
 .dashboard-cards .panel .panel-body
   border-radius: 5px 5px 0 0
@@ -105,20 +113,20 @@ ul p.navbar-text
   background-color: color1
 
 .panel
-  -webkit-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+  // -webkit-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+  // -moz-box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
+  // box-shadow: 4px 2px 5px 0px rgba(0,0,0,0.75);
 
 .btn
-  -webkit-box-shadow: 2px 4px 6px 1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 2px 4px 6px 1px rgba(0,0,0,0.75);
-  box-shadow: 2px 4px 6px 1px rgba(0,0,0,0.75);
+  // -webkit-box-shadow: 2px 4px 6px 1px rgba(0,0,0,0.75);
+  // -moz-box-shadow: 2px 4px 6px 1px rgba(0,0,0,0.75);
+  // box-shadow: 2px 4px 6px 1px rgba(0,0,0,0.75);
 
 .panel-body .row
   background-color: white
 
 .dashboard-cards .panel .panel-footer
-  border-radius: 0 0 5px 5px
+  border-radius: 0px;
   background-color: lightgray
 
 .singleProject
@@ -138,8 +146,18 @@ ul p.navbar-text
   border: .5px black solid
   padding-top: 20px
 
+h1, h2, h3, h4, h5
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  opacity: 0.5;
+  padding-top: 22px;
+  padding-left: 50px;
+  margin-bottom: 0;
+
 h1
   color: color5
+  font-size: 190%;
 
 h2
   color: color5
@@ -246,13 +264,13 @@ input[type="text"]:focus {
 
 .sidebar
   background: color5
-  -webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
-  box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
+  // -webkit-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
+  // -moz-box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
+  // box-shadow: 3px 0px 5px 0px rgba(0,0,0,0.75);
 
 
 .sidebar ul li
-  border-bottom: 1px color3 solid
+  border-bottom: 1px rgba(36, 123, 160, .5) solid
   padding-left: 15px
   background-color: color5
 
