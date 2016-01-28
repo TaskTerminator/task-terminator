@@ -42,6 +42,13 @@ angular.module('terminatorApp').controller('YourTeamCtrl', function($scope, $uib
           positions: []
         };
         getCompany($scope)
+        $scope.filterPositions = function(department){
+          console.log(department);
+          for(var i = 0; i < company.positions.length; i++){
+            console.log(company.positions[i]);
+            if(company.positions[i])
+          }
+        }
         $scope.addEmployee = function(newEmployee) {
           newEmployee.departments.push($scope.department)
           newEmployee.positions.push($scope.position)
