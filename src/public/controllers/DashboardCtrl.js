@@ -59,10 +59,6 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
     $scope.popup3.opened = true;
   };
 
-  // $scope.setDate = function(year, month, day) {
-  //   $scope.dt = new Date(year, month, day);
-  // };
-
   $scope.dateOptions = {
     formatYear: 'yy',
     startingDay: 1
@@ -147,10 +143,10 @@ angular.module('terminatorApp').controller('DashboardCtrl', function($scope, Com
 //  Tooltip Stuff
 ///////////////////////////////////////////////////////////
 
-  $scope.overdueTaskTip = "This is the overdue tasks card. It will tell you how many overdue tasks you have currently, as well as let you click the icon above to show you which tasks those are."
+  $scope.overdueTaskTip = "This is the overdue tasks card. It will tell you how many overdue tasks you have currently, as well as let you click the icon on the bottom-right corner to show you which tasks those are."
   $scope.currentProjectTip = "Here is how many current tasks you have. If you want to see what those current projects are, click on the icon above."
   $scope.activityTip = "It's very important to know how your business is running from the productivity and effiency side. Click on the icon above to get a more in-depth analysis."
-  $scope.companyDetailsTip = "Here, you will be able to view your departments, positions, and employees, as well add, edit and remove all of the above. Click the icon above to go to that page."
+  $scope.companyDetailsTip = "Here, you will be able to view your departments, positions, and employees, as well add, edit and remove all of the above. Click the icon on the bottom right corner to go to that page."
   $scope.activitySnapshotTop = "Here is a small snapshot of tasks completed this week and projects completed per month. If you want more information, click on the bottom of the Activity Card."
 
 });
