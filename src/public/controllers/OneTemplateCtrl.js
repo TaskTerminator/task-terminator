@@ -1,7 +1,9 @@
 angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $state, resolveTemplate, resolveCompany, TaskSvc, ProjectsSvc) {
   $scope.test = "The one template ctrl is working!";
   $scope.template = resolveTemplate.data;
-    console.log('TEMPLATE', $scope.template)
+
+  console.log('TEMPLATE', $scope.template)
+
   $scope.company = resolveCompany.data;
   $scope.tasks = $scope.template.tasks;
   var templateId = $scope.template._id;
@@ -28,7 +30,7 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $
     for(var i = 0; i<$scope.departments.length; i++) {
       $scope.departmentsArr.push({
         name: $scope.departments[i].name,
-        id: $scope.departments[i]._id
+        _id: $scope.departments[i]._id
       });
     }
     return $scope.departmentsArr;
@@ -39,7 +41,7 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $
     for(var i = 0; i<$scope.positions.length; i++) {
       $scope.positionsArr.push({
         name: $scope.positions[i].name,
-        id: $scope.positions[i]._id
+        _id: $scope.positions[i]._id
       });
     }
     return $scope.positionsArr;
@@ -49,7 +51,7 @@ angular.module('terminatorApp').controller('OneTemplateCtrl', function($scope, $
     for(var i = 0; i<$scope.employees.length; i++) {
       $scope.employeesArr.push({
         name: $scope.employees[i].identification.name.fullName,
-        id: $scope.employees[i]._id
+        _id: $scope.employees[i]._id
       });
     }
     return $scope.employeesArr;
