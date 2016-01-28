@@ -1,13 +1,20 @@
-h1.text-center New Triggered Project
-div.space
-.form-group.text-center
-    label(for="addProjectField")
-        | Project Name:
-        div.space
+div.container-fluid
+  h1.glCenter New Triggered Project
+  p.glCenter 
+    b Recurring 
+    | projects happen on specific dates, days, times or frequencies. i.e - by the 10th, each Friday, the last day of the month, etc
+  p.glCenter  
+    b Triggered 
+    | projects happen are recurring but not on a schedule. For instance , you may want to trigger a series of follow up tasks after you have closed a sale or when you are on-boarding a new hire. 
+    div.space
+    .form-group.text-center
+        label(for="addProjectField")
+            | Project Name:
+            div.space
+            div.glCenter
+                input.modalInput(type='text', placeholder='Enter Project Name Here', ng-model='newTriggeredForm.name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
+                span(ng-show='isFocused')
+            div.space
         div.glCenter
-            input.modalInput(type='text', placeholder='Enter Project Name Here', ng-model='newTriggeredForm.name', ng-class="{true:'focus',false:'blur'}[isFocused]", ng-focus='isFocused=true', ng-blur='isFocused=false')
-            span(ng-show='isFocused')
-        div.space
-    div.glCenter
-        button.btn.btn-primary(type="button" ng-click="addTriggeredTemplate(newTriggeredForm)") Next Step
-        uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
+            button.btn.btn-primary(type="button" ng-click="addTriggeredTemplate(newTriggeredForm)") Next Step
+            uib-alert(ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="2300") {{alert.msg}}
