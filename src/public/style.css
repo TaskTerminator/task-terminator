@@ -250,6 +250,11 @@ input[type="text"]:focus {
   border: 1px #e8f1f2 solid;
   padding: 5px;
 }
+
+.project-thing {
+  cursor: pointer
+}
+
 #side-menu li {
   padding: 0;
 }
