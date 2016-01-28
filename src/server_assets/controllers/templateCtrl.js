@@ -18,29 +18,50 @@ newTemplate(req, res) {
 
 oneTemplate(req, res) {
 
-  var templateOptions = {
+  var templateDepartments = {
     path: 'tasks',
     model: 'TemplateTask',
     populate: [{
       path: "assignment.departments",
       model: "Department",
       select: "name"
-    },
-    {
+    }]
+  }
+  var templatePositions = {
+    path: 'tasks',
+    model: 'TemplateTask',
+    populate: [{
       path: "assignment.positions",
       model: "Position",
       select: "name"
-    },
-    {
-      path:"assignment.employees",
+    }]
+  }
+  var templateEmployees = {
+    path: 'tasks',
+    model: 'TemplateTask',
+    populate: [{
+      path: "assignment.employees",
       model: "Employee",
       select: "name"
     }]
   }
+  //   {
+  //     path: "assignment.positions",
+  //     model: "Position",
+  //     select: "name"
+  //   },
+  //   {
+  //     path:"assignment.employees",
+  //     model: "Employee",
+  //     select: "name"
+  //   }]
+  // }
 
   console.log("id?", req.params.id);
 
-  Template.findById(req.params.id).populate(templateOptions)
+  Template.findById(req.params.id).populate(templateDepartments)
+  // .populate(templatePositions)
+  // .populate(templateEmployees)
   .exec().then((result) => {
     return res.json(result);
   }).catch((err) => {
