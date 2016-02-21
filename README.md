@@ -1,5 +1,7 @@
 # TaskTerminator
 
+[![Build Status](https://travis-ci.org/TaskTerminator/task-terminator.svg?branch=master)](https://travis-ci.org/TaskTerminator/task-terminator)
+
 ## How to get it running:
   ``` git pull origin master```<br>
     ```  npm install ``` <br>
