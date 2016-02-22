@@ -46,17 +46,17 @@ gulp.task ('templates', function() {
 
 gulp.task('babel', function() {
   // add function to ignore the scripts after initial build
-	gulp.src(['src/**/*.js', '!src/public/scripts/**/*.js'])
+  gulp.src(['src/**/*.js', '!src/public/scripts/**/*.js'])
     .pipe(sourcemaps.init())
-		.pipe(babel({
-			presets: ['es2015']
-		}))
+    .pipe(babel({
+      presets: ['es2015']
+    }))
     .on('error', function(e){
       console.log("BABEL ERROR >>>> ", e.message)
       this.emit('end')
     })
     .pipe(sourcemaps.write())
-		.pipe(gulp.dest('./build'));
+    .pipe(gulp.dest('./build'));
 });
 gulp.task('watch', ['styles', 'index_page', 'templates', 'babel', 'move'], function(){
   gulp.watch('./src/**/*.styl', ['styles']);
