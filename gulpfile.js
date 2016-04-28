@@ -65,7 +65,7 @@ gulp.task('watch', ['styles', 'index_page', 'templates', 'babel', 'move'], funct
 });
 
 gulp.task('develop', function () {
-  nodemon({ script: './build/server.js'
+  nodemon({ script: './server.js'
           , ext: 'html js'
           , delay: 2000
          })
