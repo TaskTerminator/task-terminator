@@ -1,0 +1,36 @@
+.animate-show {
+  height: 70px;
+  opacity: 1;
+  padding: 10px;
+  border: 1px solid #000;
+  background: #fff;
+}
+.animate-show.ng-hide-add,
+.animate-show.ng-hide-remove {
+  transition: all linear 0.5s;
+}
+.animate-show.ng-hide {
+  line-height: 0;
+  opacity: 0;
+  padding: 0 10px;
+}
+.check-element {
+  padding: 10px;
+  border: 1px solid #000;
+  background: #fff;
+}
+.focus {
+  background-color: #90ee90;
+  width: 350px;
+}
+.blur {
+  background-color: #fff;
+  width: 350px;
+}
+.modalInput {
+  width: 350px;
+}
+.taskBox {
+  border-left: 1px #000 solid;
+  border-top: 1px #000 solid;
+}
