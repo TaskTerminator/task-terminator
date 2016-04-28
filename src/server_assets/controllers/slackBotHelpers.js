@@ -124,9 +124,10 @@ module.exports = {
       };
 
       for(var j = 0; j < array.length; j ++){
+          console.log(array[j])
         attachment.fields.push({
           label: 'Field',
-          value: "_#" + array[j].friendlyId + "_: *" + array[j].name + "* - " + array[j].description + " - *Due : *" + moment(array[j].setup.dueDate.actual).format('dddd, MMMM Do') + " - *Status: *" + array[j].status,
+          value: "_#" + array[j].friendlyId + "_: *" + array[j].name + "* - " + array[j].description + " - *# of Tasks (" + array[j].tasks.length + ") - *Due : *" + moment(array[j].setup.dueDate.actual).format('dddd, MMMM Do') + " - *Status: *" + array[j].status,
           short: false
         });
       }
