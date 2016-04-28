@@ -1,5 +1,7 @@
 secret.js
 node_modules/
+build/
+src/server_assets/controllers/slackCtrl.js
 bower_components/
 .jshintrc
 UserStory.txt
