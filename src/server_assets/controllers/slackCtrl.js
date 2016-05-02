@@ -29,7 +29,8 @@ const controller = Botkit.slackbot({
 
 	/****************** BOT SPECIFIC COMMANDS ******************/
 	//wire up DM's and direct mentions to wit.ai
-	controller.hears('.*', 'direct_message,direct_mention', function (bot, message) {
+module.exports = {	
+    controller.hears('.*', 'direct_message,direct_mention', function (bot, message) {
 		witbot.process(message.text, bot, message);
 	});
 
@@ -488,3 +489,4 @@ const controller = Botkit.slackbot({
 			});
 		});
 	});
+};
