@@ -1,6 +1,5 @@
 secret.js
 node_modules/
-build/
 bower_components/
 .jshintrc
 UserStory.txt

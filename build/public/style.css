@@ -1,0 +1,278 @@
+/* BASE STYLES
+============================================================================= */
+html,
+body {
+  background-color: #d4d6d7;
+  padding-bottom: 20px;
+  font-family: Raleway, sans-serif;
+}
+#wrapper {
+  width: 100%;
+}
+#page-wrapper {
+  padding: 0 15px;
+  background-color: #13293d;
+}
+.page-wrapper .row {
+  background-color: #70b1e0;
+}
+.container,
+.container-fluid {
+  width: 100%;
+}
+.btn {
+  margin: 5px;
+}
+.pointer {
+  cursor: pointer;
+}
+header {
+  border-bottom: 1px solid #aaa;
+}
+.navbar-brand {
+  font-family: 'Exo 2', sans-serif;
+  text-transform: uppercase;
+  color: #4e6071;
+  font-size: 29px;
+  font-weight: 300;
+}
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.marketing,
+.footer {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+  padding-bottom: 19px;
+}
+ul p.navbar-text {
+  margin-top: 17px;
+  color: #13293d;
+}
+.projectButtons {
+  text-align: center;
+}
+#side-menu {
+  background-color: #13293d;
+}
+.dashboard-projects {
+  height: 350px;
+  overflow-y: scroll;
+  border: 1px #000 solid;
+}
+.dashboard-projects ul li {
+  list-style-type: none;
+  border-bottom: 1px #000 solid;
+}
+.dashboard-projects ul {
+  padding: 0;
+}
+.dashboard-projects hr {
+  color: #000;
+}
+.dashboard-cards .panel {
+  overflow: hidden;
+  border: 1px #a0a0a0 solid;
+}
+.dashboard-cards .panel .panel-body {
+  border-radius: 5px 5px 0 0;
+  background-color: #e8f1f2;
+}
+.dashboard-cards .panel .panel-body .row {
+  background-color: #e8f1f2;
+}
+.panel-body .row {
+  background-color: #fff;
+}
+.dashboard-cards .panel .panel-footer {
+  border-radius: 0px;
+  background-color: #d3d3d3;
+}
+.singleProject {
+  margin-top: 10px;
+}
+.dueDate {
+  border: 1.5px #000 solid;
+  width: 33%;
+  margin: 0 auto;
+}
+.employeeAddForm {
+  padding: 40px;
+}
+.employeeList {
+  height: 350px;
+  overflow-y: scroll;
+  border: 0.5px #000 solid;
+  padding-top: 20px;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 100;
+  text-transform: uppercase;
+  opacity: 0.5;
+  padding-top: 22px;
+  padding-left: 50px;
+  margin-bottom: 0;
+}
+h1 {
+  color: #13293d;
+  font-size: 190%;
+}
+h2 {
+  color: #13293d;
+}
+h3 {
+  color: #13293d;
+}
+.cardIcon {
+  font-size: 70px;
+}
+.pointer-cursor {
+  cursor: pointer;
+}
+.user-dropdown li a {
+  color: #247ba0;
+}
+.user-dropdown:hover {
+  background-color: #e8f1f2;
+}
+.dropdown > .dropdown-menu {
+  background-color: #e8f1f2;
+}
+.navbar {
+  background-color: #edeff1;
+}
+.navbar-text a {
+  color: #4e6071;
+}
+.taskForm {
+  padding-top: 20px;
+}
+.taskBox {
+  border: 1px #000 solid;
+  height: 253px;
+}
+.viewTaskBox {
+  margin-top: 20px;
+  border: 1px #000 solid;
+}
+.tasksInBox {
+  border: 1px solid #000;
+  list-style-type: none;
+}
+.saveTask {
+  margin: 10px 0;
+}
+.blueButton {
+  padding-left: 0;
+  background-color: #1b98e0;
+  border-color: #1b98e0;
+  border-radius: 15px;
+  padding-left: 12px;
+  color: #247ba0;
+}
+.modalPage {
+  background-color: #c8c8c8;
+  border-radius: 5px;
+}
+input[type="text"] {
+  display: block;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  background-color: #c8c8c8;
+  border-bottom: solid 2px #5b5b5b;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+.style-4 input[type="text"] {
+  padding: 10px;
+  border: none;
+  border-bottom: solid 2px #5b5b5b;
+  transition: border 0.3s;
+}
+.style-4 input[type="text"]:focus,
+.style-4 input[type="text"].focus {
+  border-bottom: solid 2px #969696;
+}
+.tooltip-inner {
+  background-color: #e8f1f2;
+  color: #1b98e0;
+  width: 200px;
+  border: 2px #000 solid;
+  font-size: 14px;
+/* Sidebar Styling
+  ============================================================================= */
+}
+.sidebar .sidebar-nav.navbar-collapse {
+  padding-right: 0;
+  padding-left: 0;
+}
+.sidebar {
+  background: #13293d;
+}
+.sidebar ul li {
+  border-bottom: 1px rgba(36,123,160,0.5) solid;
+  padding-left: 15px;
+  background-color: #13293d;
+}
+.sidebar ul li a {
+  height: 54px;
+  font-size: 16px;
+  display: inline-block;
+  padding-bottom: 0;
+  vertical-align: middle;
+}
+.sidebar ul li:hover {
+  background-color: #eee;
+}
+.sidebar ul li:visited {
+  background-color: #eee;
+}
+.sidebar ul li.active {
+  background-color: #eee;
+}
+.sidebar-nav ul li span {
+  font-size: 26px;
+  color: #1b98e0;
+  padding-top: 25px;
+  padding-left: 25px;
+}
+.positionList {
+  height: 350px;
+  overflow-y: scroll;
+}
+.row .col-sm-12 div.panel {
+  background-color: #006494;
+}
+.project-thing ul li {
+  border: 1px #e8f1f2 solid;
+  padding: 5px;
+}
+#side-menu li {
+  padding: 0;
+}
+.glheader,
+.glform,
+.glCenter {
+  text-align: center;
+}
+.space {
+  margin: 15px;
+}
+.label {
+  margin: 15px;
+}
