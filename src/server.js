@@ -108,11 +108,19 @@ mongoose.connection.once('connected', function() {
 });
 
 //-----------Passport Facebook Authentication-----------//
-app.use(session({
-    secret: "s0m3th1n",
-    resave: false,
-    saveUninitialized: false,
-}));
+function sessionCleanup() {
+    sessionStore.all(function(err, sessions) {
+        for (var i = 0; i < sessions.length; i++) {
+            sessionStore.get(sessions[i], function() {} );
+        }
+    });
+};
+setInterval(sessionCleanup, 1000000000);
+//app.use(session({
+//    secret: "s0m3th1n",
+//    resave: false,
+//    saveUninitialized: false,
+//}));
 // app.use(passport.initialize());
 // app.use(passport.session());
 //
