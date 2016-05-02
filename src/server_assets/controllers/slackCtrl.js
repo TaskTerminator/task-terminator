@@ -488,8 +488,3 @@ const controller = Botkit.slackbot({
 			});
 		});
 	});
-
-
- module.exports = {
-
- };
