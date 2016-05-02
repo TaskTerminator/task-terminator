@@ -16,7 +16,7 @@ const controller = Botkit.slackbot({
 //	   // token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
 //	 	//Our Slack Token
 	 	token: 'xoxp-19170951524-19175034981-39295117508-32bf38a3e3',
-	 }).startRTM((err) {
+	 }).startRTM((err) => {
     if (err) {
       throw new Error(err);
     }

@@ -46,7 +46,7 @@ gulp.task ('templates', function() {
 
 gulp.task('babel', function() {
   // add function to ignore the scripts after initial build
-  gulp.src(['src/**/*.js', '!src/public/scripts/**/*.js'])
+  gulp.src(['./src/**/*.js', '!src/public/scripts/**/*.js'])
     .pipe(sourcemaps.init())
     .pipe(babel({
       presets: ['es2015']
