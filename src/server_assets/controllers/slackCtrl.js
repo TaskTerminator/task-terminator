@@ -12,16 +12,16 @@ const controller = Botkit.slackbot({
 	});
 //
 //	// connect the bot to a stream of messages
-	 controller.spawn({
-//	 	//DevMtn Token
-//	   // token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
-//	 	//Our Slack Token
-	 	token: Secret.token
-	 }).startRTM((err) => {
-    if (err) {
-      throw new Error(err);
-    }
-  });
+//	 controller.spawn({
+////	 	//DevMtn Token
+////	   // token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
+////	 	//Our Slack Token
+//	 	token: Secret.token
+//	 }).startRTM((err) => {
+//    if (err) {
+//      throw new Error(err);
+//    }
+//  });
 
 	//LINK THE BOT TO WIT.AI
 	const witbot = Witbot("CZPINC6EVOQ7DCPZSUUBQ3B5GWQVOQ66");
