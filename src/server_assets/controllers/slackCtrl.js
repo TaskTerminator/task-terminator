@@ -2,9 +2,10 @@
 const mongoose = require('mongoose');
 const Botkit = require('botkit');
 const Q = require('q');
-const positions = require('../controllers/positionCtrl.js');
-const botHelper = require('../controllers/slackBotHelpers.js');
+const positions = require('./positionCtrl.js');
+const botHelper = require('./slackBotHelpers.js');
 const Witbot = require('witbot');
+const Secret = require('../secret.js');
 
 const controller = Botkit.slackbot({
 	  debug: false
@@ -15,7 +16,7 @@ const controller = Botkit.slackbot({
 //	 	//DevMtn Token
 //	   // token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
 //	 	//Our Slack Token
-	 	token: 'xoxp-19170951524-19175034981-39295117508-32bf38a3e3',
+	 	token: Secret
 	 }).startRTM((err) => {
     if (err) {
       throw new Error(err);
