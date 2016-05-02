@@ -23,8 +23,7 @@ const controller = Botkit.slackbot({
   });
 
 	//LINK THE BOT TO WIT.AI
-	const witbot = Witbot("CZPINC6EVOQ7DCPZSUUBQ3B5GWQVOQ66"
-	);
+	const witbot = Witbot("CZPINC6EVOQ7DCPZSUUBQ3B5GWQVOQ66");
 
 
 	/****************** BOT SPECIFIC COMMANDS ******************/
