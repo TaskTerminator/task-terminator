@@ -6,21 +6,21 @@ const positions = require('../controllers/positionCtrl.js');
 const botHelper = require('../controllers/slackBotHelpers.js');
 const Witbot = require('witbot');
 
-const controller = Botkit.slackbot({
-	  debug: false
-	});
-//
-//	// connect the bot to a stream of messages
-	 controller.spawn({
-//	 	//DevMtn Token
-//	   // token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
-//	 	//Our Slack Token
-	 	token: 'xoxp-19170951524-19175034981-39295117508-32bf38a3e3',
-	 }).startRTM((err) => {
-    if (err) {
-      throw new Error(err);
-    }
-  });
+//const controller = Botkit.slackbot({
+//	  debug: false
+//	});
+////
+////	// connect the bot to a stream of messages
+//	 controller.spawn({
+////	 	//DevMtn Token
+////	   // token: 'xoxb-18104911812-lrix7VmoDeWSS4PTA8SxNFnN',
+////	 	//Our Slack Token
+//	 	token: 'xoxp-19170951524-19175034981-39295117508-32bf38a3e3',
+//	 }).startRTM((err) => {
+//    if (err) {
+//      throw new Error(err);
+//    }
+//  });
 
 	//LINK THE BOT TO WIT.AI
 	const witbot = Witbot("CZPINC6EVOQ7DCPZSUUBQ3B5GWQVOQ66");
