@@ -1,9 +1,0 @@
-'use strict';
-
-angular.module('terminatorApp').directive('header', function () {
-  return {
-    restrict: 'E',
-    templateUrl: 'templates/header.html'
-  };
-});
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInB1YmxpYy9kaXJlY3RpdmVzL2hlYWRlci5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLE9BQU8sQ0FBQyxNQUFNLENBQUMsZUFBZSxDQUFDLENBQUMsU0FBUyxDQUFDLFFBQVEsRUFBRSxZQUFXO0FBQzdELFNBQU87QUFDTCxZQUFRLEVBQUUsR0FBRztBQUNiLGVBQVcsRUFBRSx1QkFBdUI7R0FDckMsQ0FBQTtDQUNGLENBQUMsQ0FBQSIsImZpbGUiOiJwdWJsaWMvZGlyZWN0aXZlcy9oZWFkZXIuanMiLCJzb3VyY2VzQ29udGVudCI6WyJhbmd1bGFyLm1vZHVsZSgndGVybWluYXRvckFwcCcpLmRpcmVjdGl2ZSgnaGVhZGVyJywgZnVuY3Rpb24oKSB7XG4gIHJldHVybiB7XG4gICAgcmVzdHJpY3Q6ICdFJyxcbiAgICB0ZW1wbGF0ZVVybDogJ3RlbXBsYXRlcy9oZWFkZXIuaHRtbCcsXG4gIH1cbn0pXG4iXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0=
