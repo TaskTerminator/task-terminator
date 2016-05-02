@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const session = require('express-session');
-const passport = require('passport');
+//const session = require('express-session');
+//const passport = require('passport');
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const secret = require("./secret");
 // const bcrypt = require('bcrypt-nodejs');
@@ -108,14 +108,6 @@ mongoose.connection.once('connected', function() {
 });
 
 //-----------Passport Facebook Authentication-----------//
-function sessionCleanup() {
-    sessionStore.all(function(err, sessions) {
-        for (var i = 0; i < sessions.length; i++) {
-            sessionStore.get(sessions[i], function() {} );
-        }
-    });
-};
-setInterval(sessionCleanup, 1000000000);
 //app.use(session({
 //    secret: "s0m3th1n",
 //    resave: false,
