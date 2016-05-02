@@ -101,7 +101,7 @@ app.post('/api/singleproject', projectCtrl.newSingleProject);
 app.post('/api/triggeredproject/:templateid', projectCtrl.newTriggeredProject);
 
 //-----------Connection to database-----------//
-mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
+mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mlab.com:39175/taskterminator');
 //const connection =  mongoose.connect('mongodb://localhost/terminator');
 mongoose.connection.once('connected', function() {
   console.log('connected to db');
