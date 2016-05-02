@@ -1,7 +1,6 @@
 secret.js
 node_modules/
 build/
-.travis.yml
 bower_components/
 .jshintrc
 UserStory.txt

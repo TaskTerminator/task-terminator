@@ -10,9 +10,6 @@ const controller = Botkit.slackbot({
 	  debug: false
 	});
 
-// [![Build Status](https://travis-ci.org/TaskTerminator/task-terminator.svg?branch=master)](https://travis-ci.org/TaskTerminator/task-terminator)
-
-//
 //	// connect the bot to a stream of messages
 //	 controller.spawn({
 ////	 	//DevMtn Token
