@@ -6,3 +6,4 @@ bower_components/
 UserStory.txt
 *.orig
 userStory2.txt
+.env
