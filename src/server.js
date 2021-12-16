@@ -1,111 +1,119 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const mongoose = require('mongoose');
+require('dotenv').config()
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const mongoose = require('mongoose')
 //const session = require('express-session');
 //const passport = require('passport');
 // const FacebookStrategy = require('passport-facebook').Strategy;
 // const secret = require("./secret");
 // const bcrypt = require('bcrypt-nodejs');
 
-const app = express();
-const port = process.env.PORT || 8000;
+const app = express()
+const port = process.env.PORT || 8000
 
 //require('./server_assets/cron/test').start();
 
-
 //********** CONTROLLERS **********
-const companyCtrl = require('./server_assets/controllers/companyCtrl.js');
-const departmentCtrl = require('./server_assets/controllers/departmentCtrl.js');
-const employeeCtrl = require('./server_assets/controllers/employeeCtrl.js');
-const positionCtrl = require('./server_assets/controllers/positionCtrl.js');
-const projectCtrl = require('./server_assets/controllers/projectCtrl.js');
-const projectTaskCtrl = require('./server_assets/controllers/projectTaskCtrl.js');
-const templateCtrl = require('./server_assets/controllers/templateCtrl.js');
-const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl.js');
-const slackCtrl = require('./server_assets/controllers/slackCtrl.js');
-const testTimeCtrl = require('./server_assets/controllers/testTimeCtrl.js');
+const companyCtrl = require('./server_assets/controllers/companyCtrl')
+const departmentCtrl = require('./server_assets/controllers/departmentCtrl')
+const employeeCtrl = require('./server_assets/controllers/employeeCtrl')
+const positionCtrl = require('./server_assets/controllers/positionCtrl')
+const projectCtrl = require('./server_assets/controllers/projectCtrl')
+const projectTaskCtrl = require('./server_assets/controllers/projectTaskCtrl')
+const templateCtrl = require('./server_assets/controllers/templateCtrl')
+const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl')
+const slackCtrl = require('./server_assets/controllers/slackCtrl')
+const testTimeCtrl = require('./server_assets/controllers/testTimeCtrl')
 
-mongoose.Promise = require('q').Promise;
+mongoose.Promise = require('q').Promise
 
 //----------Middleware------------//
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
-app.use(cors());
-app.use(express.static(__dirname+'/public'));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(cors())
+app.use(express.static(__dirname + '/public'))
 app.listen(port, function () {
-  console.log("Listening on port: " + port);
-});
+  console.log('Listening on port: ' + port)
+})
+
+console.log('dirname', __dirname)
 
 //********** COMPANY ENDPOINTS **********
-app.post('/api/company', companyCtrl.newCompany);
-app.get('/api/company', companyCtrl.allCompanies);
-app.get('/api/company/:id', companyCtrl.getOneCompany);
+app.post('/api/company', companyCtrl.newCompany)
+app.get('/api/company', companyCtrl.allCompanies)
+app.get('/api/company/:id', companyCtrl.getOneCompany)
 
 //********** DEPARTMENT ENDPOINTS **********
-app.get('/api/department/:id', departmentCtrl.oneDepartment);
-app.put('/api/department/:id', departmentCtrl.editDepartment);
-app.delete('/api/department/:id', departmentCtrl.deleteDepartment);
-app.post('/api/department/:companyid', departmentCtrl.newDepartment);
+app.get('/api/department/:id', departmentCtrl.oneDepartment)
+app.put('/api/department/:id', departmentCtrl.editDepartment)
+app.delete('/api/department/:id', departmentCtrl.deleteDepartment)
+app.post('/api/department/:companyid', departmentCtrl.newDepartment)
 
-app.get('/api/department', departmentCtrl.allDepartments);
-
+app.get('/api/department', departmentCtrl.allDepartments)
 
 //********** EMPLOYEE ENDPOINTS **********
-app.get('/api/employee/:id', employeeCtrl.oneEmployee);
-app.put('/api/employee/:id', employeeCtrl.editEmployee);
-app.delete('/api/employee/:id', employeeCtrl.deleteEmployee);
-app.post('/api/:companyid/:departmentid/:positionid/employee', employeeCtrl.newEmployee);
-app.get('/api/:companyid/employee', employeeCtrl.allEmployees);
-
+app.get('/api/employee/:id', employeeCtrl.oneEmployee)
+app.put('/api/employee/:id', employeeCtrl.editEmployee)
+app.delete('/api/employee/:id', employeeCtrl.deleteEmployee)
+app.post(
+  '/api/:companyid/:departmentid/:positionid/employee',
+  employeeCtrl.newEmployee
+)
+app.get('/api/:companyid/employee', employeeCtrl.allEmployees)
 
 //********** POSITION ENDPOINTS **********
-app.get('/api/position/:id', positionCtrl.onePosition);
-app.put('/api/position/:id', positionCtrl.editPosition);
-app.delete('/api/position/:id', positionCtrl.deletePosition);
-app.post('/api/position/:companyid/:departmentid', positionCtrl.newPosition);
-app.get('/api/position', positionCtrl.allPositions);
+app.get('/api/position/:id', positionCtrl.onePosition)
+app.put('/api/position/:id', positionCtrl.editPosition)
+app.delete('/api/position/:id', positionCtrl.deletePosition)
+app.post('/api/position/:companyid/:departmentid', positionCtrl.newPosition)
+app.get('/api/position', positionCtrl.allPositions)
 
 //********** PROJECT ENDPOINTS **********
-app.get('/api/project/:id', projectCtrl.oneProject);
-app.put('/api/project/:id', projectCtrl.editProject);
-app.delete('/api/project/:id', projectCtrl.deleteProject);
-app.post('/api/project/:templateid', projectCtrl.endpointProject);
-app.get('/api/project', projectCtrl.allProjects);
+app.get('/api/project/:id', projectCtrl.oneProject)
+app.put('/api/project/:id', projectCtrl.editProject)
+app.delete('/api/project/:id', projectCtrl.deleteProject)
+app.post('/api/project/:templateid', projectCtrl.endpointProject)
+app.get('/api/project', projectCtrl.allProjects)
 
 //********** PROJECT TASK ENDPOINTS **********
-app.get('/api/tasks/project/:id', projectTaskCtrl.getTasks);
-app.post('/api/tasks/project/:projectid', projectTaskCtrl.addTask);
-app.put('/api/tasks/project/:projectid', projectTaskCtrl.editTask);
+app.get('/api/tasks/project/:id', projectTaskCtrl.getTasks)
+app.post('/api/tasks/project/:projectid', projectTaskCtrl.addTask)
+app.put('/api/tasks/project/:projectid', projectTaskCtrl.editTask)
 // * app.get('/api/tasks/department/:id', projectTaskCtrl.getDepartmentTask);
 
 //********** TEMPLATE ENDPOINTS **********
-app.get('/api/template/:id', templateCtrl.oneTemplate);
-app.put('/api/template/:id', templateCtrl.editTemplate);
-app.delete('/api/template/:id', templateCtrl.deleteTemplate);
-app.post('/api/template', templateCtrl.newTemplate);
-app.get('/api/template', templateCtrl.allTemplates);
+app.get('/api/template/:id', templateCtrl.oneTemplate)
+app.put('/api/template/:id', templateCtrl.editTemplate)
+app.delete('/api/template/:id', templateCtrl.deleteTemplate)
+app.post('/api/template', templateCtrl.newTemplate)
+app.get('/api/template', templateCtrl.allTemplates)
 
 //********** TEMPLATE TASK ENDPOINTS **********
-app.get('/api/tasks/template', templateTaskCtrl.getAllTasks);
-app.post('/api/:templateid/tasks', templateTaskCtrl.addTask);
-app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks);
+app.get('/api/tasks/template', templateTaskCtrl.getAllTasks)
+app.post('/api/:templateid/tasks', templateTaskCtrl.addTask)
+app.get('/api/tasks/template/:id', templateTaskCtrl.getTasks)
 
 //********** TIME ENDPOINTS **********
-app.get('/api/time', testTimeCtrl.testTime);
+app.get('/api/time', testTimeCtrl.testTime)
 
 //********** SINGLE PROJECT ENDPOINTS **********
-app.post('/api/singleproject', projectCtrl.newSingleProject);
+app.post('/api/singleproject', projectCtrl.newSingleProject)
 
 //********** TRIGGERED PROJECT ENDPOINTS **********
-app.post('/api/triggeredproject/:templateid', projectCtrl.newTriggeredProject);
+app.post('/api/triggeredproject/:templateid', projectCtrl.newTriggeredProject)
 
 //-----------Connection to database-----------//
-mongoose.connect('mongodb://taskterminator:devmountain@ds039175.mongolab.com:39175/taskterminator');
+mongoose.connect(
+  `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
+  {
+    useMongoClient: true,
+  }
+)
 //const connection =  mongoose.connect('mongodb://localhost/terminator');
-mongoose.connection.once('connected', function() {
-  console.log('connected to db');
-});
+mongoose.connection.once('connected', function () {
+  console.log('connected to db')
+})
 
 //-----------Passport Facebook Authentication-----------//
 //app.use(session({
