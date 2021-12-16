@@ -15,16 +15,16 @@ const port = process.env.PORT || 8000
 //require('./server_assets/cron/test').start();
 
 //********** CONTROLLERS **********
-const companyCtrl = require('./server_assets/controllers/companyCtrl.js')
-const departmentCtrl = require('./server_assets/controllers/departmentCtrl.js')
-const employeeCtrl = require('./server_assets/controllers/employeeCtrl.js')
-const positionCtrl = require('./server_assets/controllers/positionCtrl.js')
-const projectCtrl = require('./server_assets/controllers/projectCtrl.js')
-const projectTaskCtrl = require('./server_assets/controllers/projectTaskCtrl.js')
-const templateCtrl = require('./server_assets/controllers/templateCtrl.js')
-const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl.js')
-const slackCtrl = require('./server_assets/controllers/slackCtrl.js')
-const testTimeCtrl = require('./server_assets/controllers/testTimeCtrl.js')
+const companyCtrl = require('./server_assets/controllers/companyCtrl')
+const departmentCtrl = require('./server_assets/controllers/departmentCtrl')
+const employeeCtrl = require('./server_assets/controllers/employeeCtrl')
+const positionCtrl = require('./server_assets/controllers/positionCtrl')
+const projectCtrl = require('./server_assets/controllers/projectCtrl')
+const projectTaskCtrl = require('./server_assets/controllers/projectTaskCtrl')
+const templateCtrl = require('./server_assets/controllers/templateCtrl')
+const templateTaskCtrl = require('./server_assets/controllers/templateTaskCtrl')
+const slackCtrl = require('./server_assets/controllers/slackCtrl')
+const testTimeCtrl = require('./server_assets/controllers/testTimeCtrl')
 
 mongoose.Promise = require('q').Promise
 

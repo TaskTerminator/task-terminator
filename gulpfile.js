@@ -8,42 +8,48 @@ var nodemon = require('gulp-nodemon')
 //////////////////
 // Copy package.json to build folder
 /////////////////
-gulp.task('move', function () {
+gulp.task('move', function (done) {
   gulp
     .src('src/public/scripts/**/*.*')
     .pipe(gulp.dest('./build/public/scripts'))
+  done()
 })
 
 //////////////////
 // Stylus Tasks
 /////////////////
-gulp.task('styles', function () {
+gulp.task('styles', function (done) {
   gulp
     .src('./src/public/*.styl')
     .pipe(stylus())
+    .on('error', function (e) {
+      console.log('STYLUS ERROR >>>> ', e.message)
+    })
     .pipe(gulp.dest('./build/public'))
+  done()
 })
 
 //////////////////
 // Jade Tasks
 /////////////////
 
-gulp.task('index_page', function () {
+gulp.task('index_page', function (done) {
   gulp
     .src('./src/public/index.jade')
     .pipe(jade())
     .on('error', function (e) {
       console.log('JADE ERROR >>>> ', e.message)
-      this.emit('end')
     })
     .pipe(gulp.dest('./build/public'))
+  done()
 })
 
-gulp.task('templates', function () {
+gulp.task('templates', function (done) {
   gulp
     .src('./src/public/templates/*.jade')
     .pipe(jade())
     .pipe(gulp.dest('./build/public/templates'))
+  done()
 })
 
 gulp.task('babel', function (done) {
@@ -53,7 +59,7 @@ gulp.task('babel', function (done) {
     .pipe(sourcemaps.init())
     .pipe(
       babel({
-        presets: ['es2015'],
+        presets: ['@babel/env'],
       })
     )
     .on('error', function (e) {
@@ -74,13 +80,25 @@ gulp.task(
   }
 )
 
-gulp.task('develop', function () {
+gulp.task('develop', function (done) {
   nodemon({ script: './build/server.js', ext: 'html js', delay: 2000 }).on(
     'restart',
     function () {
       console.log('restarted!')
     }
   )
+  done()
 })
 
-gulp.task('default', gulp.series('babel', 'develop', 'watch'))
+gulp.task(
+  'default',
+  gulp.series(
+    'babel',
+    'index_page',
+    'templates',
+    'styles',
+    'move',
+    'develop',
+    'watch'
+  )
+)
